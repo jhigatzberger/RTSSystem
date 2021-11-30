@@ -31,13 +31,13 @@ public class SelectionManager : MonoBehaviour
     }
 
     [SerializeField] Selector[] selectors;
-    private void Update()
+    private void Update() make this a static class and have the selectors update for themselves?
     {
         if (Input.GetMouseButtonDown(0))
             UnSelectAll();
         foreach (Selector selector in selectors)
         {
-            selector.UpdatePosition(Input.mousePosition);
+            selector.UpdatePosition(Input.mousePosition); unnecessary
             if (Input.GetMouseButtonDown(0))
                 selector.OnMouseDown();
             else if (Input.GetMouseButtonUp(0))
@@ -75,7 +75,7 @@ public class SelectionManager : MonoBehaviour
 
     public static HashSet<SelectableObject> selection = new HashSet<SelectableObject>();
     public static HashSet<SelectableObject> visibleSelectableObjects = new HashSet<SelectableObject>();
-    public void OnGUI()
+    public void OnGUI() unnecessary
     {
         foreach (Selector selector in selectors)
             selector.OnGUI();
