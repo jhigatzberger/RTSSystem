@@ -8,5 +8,4 @@ public class SelectableObjectProperties : ScriptableObject
 {
     public int selectionPriority;
     public GameObject selectionIndicatorPrefab;
-
 }

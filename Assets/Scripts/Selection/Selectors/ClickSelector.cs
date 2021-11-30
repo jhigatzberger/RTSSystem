@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MyClickSelector", menuName = "RTS/Selection/Selectors/ClickSelector", order = 1)]
 public class ClickSelector : Selector
 {
     [Tooltip("default value is the exact inverse of the boxselect threshhold")]
@@ -11,30 +10,26 @@ public class ClickSelector : Selector
     {
         get
         {
-            if (Position.HasValue && startPos.HasValue)
-                return Mathf.Abs(Position.Value.x - startPos.Value.x) < selectionThreshhold || Mathf.Abs(Position.Value.y - startPos.Value.y) < selectionThreshhold;
+            if (startPos.HasValue)
+                return Mathf.Abs(Input.mousePosition.x - startPos.Value.x) < selectionThreshhold || Mathf.Abs(Input.mousePosition.y - startPos.Value.y) < selectionThreshhold;
             return false;
         }
     }
 
     private Vector2? startPos;
-    public override void OnMouseDown()
+    public override void Down()
     {
-        startPos = Position;
+        startPos = Input.mousePosition;
     }
 
-    public override void OnMouseUp()
+    public override void Up()
     {
         if (Applicable)
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Position.Value);
-            if (Physics.Raycast(ray, out hit, float.MaxValue, SelectionManager.SelectableLayerMask))
-            {
-                SelectableObject selectableObject = hit.collider.GetComponent<SelectableObject>();
-                if(selectableObject != null)
-                    selectableObject.Select();
-            }
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, float.MaxValue, Manager.selectableLayerMask))
+                Manager.Selection.Add(hit.collider.GetComponent<SelectableObject>());
             Debug.Log(hit);
         }
     }

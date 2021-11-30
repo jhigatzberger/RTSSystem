@@ -2,78 +2,77 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MyBoxSelector", menuName = "RTS/Selection/Selectors/BoxSelector", order = 1)]
 public class BetterBoxSelector : Selector
 {
+    #region Config
     [Tooltip("minimum x and y distances to avoid dynamic mesh creation errors")]
     [SerializeField] private float selectionThreshhold = 2;
-    protected override bool Applicable
-    {
-        get
-        {
-            if (Position.HasValue && startPos.HasValue)
-            {
-                float threshhold = Mathf.Clamp(selectionThreshhold, 2, 100);
-                return Mathf.Abs(Position.Value.x - startPos.Value.x) > threshhold && Mathf.Abs(Position.Value.y - startPos.Value.y) > threshhold;
-            }
-            return false;
-        }
-    }
 
     [Header("GUI Box")]
     [SerializeField] private Color borderColor = new Color(0.8f, 0.8f, 0.95f);
     [SerializeField] private Color innerColor = new Color(0.8f, 0.8f, 0.95f, 0.25f);
     [SerializeField] private float borderThickness;
+    #endregion
 
-    private Vector2? startPos;
-
-    public override void OnMouseDown()
+    protected override bool Applicable
     {
-        startPos = Position;
+        get
+        {
+            if (startPos.HasValue)
+            {
+                float threshhold = Mathf.Clamp(selectionThreshhold, 2, 100);
+                return Mathf.Abs(Input.mousePosition.x - startPos.Value.x) > threshhold && Mathf.Abs(Input.mousePosition.y - startPos.Value.y) > threshhold;
+            }
+            return false;
+        }
     }
 
+    private Vector2? startPos;
     private HashSet<SelectableObject> hoveredSelectableObjects = new HashSet<SelectableObject>();
-    public override void OnMouseUp()
+    private int priority = 0;
+
+    public override void Down()
+    {
+        startPos = Input.mousePosition;
+    }
+
+    public override void Up()
     {
         startPos = null;
-        foreach (SelectableObject selectableObject in hoveredSelectableObjects)
-        {
-            selectableObject.ShouldShowIndicator = false;
-            selectableObject.Select();
-        }
+        Manager.Selection = new Selection(hoveredSelectableObjects, priority);
         hoveredSelectableObjects.Clear();
     }
 
-    public override void UpdatePosition(Vector2? pos)
+    private void Update()
     {
-        base.UpdatePosition(pos);
         if (Applicable)
         {
-            Bounds selectionBounds = GetViewportBounds( startPos.Value, Position.Value );
+            Bounds selectionBounds = GetViewportBounds( startPos.Value, Input.mousePosition );
             bool inBounds;
-            int priority = 0;
-            foreach (SelectableObject selectableObject in SelectionManager.visibleSelectableObjects)
+            priority = 0;
+            print(hoveredSelectableObjects.Count);
+            foreach (SelectableObject selectableObject in SelectableObject.onScreen)
             {
                 inBounds = selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position));
                 if (inBounds)
                 {
                     hoveredSelectableObjects.Add(selectableObject);
-                    if (selectableObject.Priority > priority)
-                        priority = selectableObject.Priority;
+                    if (selectableObject.ownPriority > priority)
+                        priority = selectableObject.ownPriority;
                 }
                 else
                     hoveredSelectableObjects.Remove(selectableObject);
-                selectableObject.ShouldShowIndicator = inBounds;
+                selectableObject.UpdateIndicator(inBounds);
             }
-            SelectionManager.Priority = priority;
+            Manager.Selection.Priority = priority;
         }
     }
 
-    public override void OnGUI()
+    private void OnGUI()
     {
         if (Applicable)
         {
-            Rect rect = ScreenDrawingUtils.GetScreenRect(startPos.Value, Position.Value);
+            Rect rect = ScreenDrawingUtils.GetScreenRect(startPos.Value, Input.mousePosition);
             ScreenDrawingUtils.DrawScreenRect(rect, innerColor);
             ScreenDrawingUtils.DrawScreenRectBorder(rect, borderThickness, borderColor);
         }
