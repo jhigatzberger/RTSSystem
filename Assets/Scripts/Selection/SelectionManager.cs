@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectionManager : MonoBehaviour
+public static class SelectionManager
 {
     [SerializeField] private LayerMask _groundLayerMask;
     public static LayerMask GroundLayerMask
@@ -20,16 +20,7 @@ public class SelectionManager : MonoBehaviour
             return Instance._selectableLayerMask;
         }
     }
-    public static SelectionManager Instance { get; set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
-
+    
     [SerializeField] Selector[] selectors;
     private void Update() make this a static class and have the selectors update for themselves?
     {
