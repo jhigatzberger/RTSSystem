@@ -1,19 +1,24 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SelectionManager))]
-public abstract class Selector : MonoBehaviour
+namespace RTS
 {
-    private SelectionManager _manager;
-    protected SelectionManager Manager
+    [RequireComponent(typeof(SelectionManager))]
+    public abstract class Selector : MonoBehaviour
     {
-        get
+        private SelectionManager _manager;
+        public abstract int Prority { get; }
+        protected SelectionManager Manager
         {
-            if (_manager == null)
-                _manager = GetComponent<SelectionManager>();
-            return _manager;
+            get
+            {
+                if (_manager == null)
+                    _manager = GetComponent<SelectionManager>();
+                return _manager;
+            }
         }
+        protected abstract bool Applicable { get; }
+        public abstract void InputStart();
+        public abstract void InputStop();
     }
-    protected abstract bool Applicable { get; }
-    public abstract void Down();
-    public abstract void Up();
 }
+

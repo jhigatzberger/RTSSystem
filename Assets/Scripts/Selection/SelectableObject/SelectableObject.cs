@@ -1,96 +1,120 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class SelectableObject : MonoBehaviour
+namespace RTS
 {
-    public static HashSet<SelectableObject> onScreen = new HashSet<SelectableObject>();
-    public SelectableObjectProperties properties;
-    public Renderer _renderer;
-
-    public GameObject selectionIndicator;
-
-
-    public static int selectedPriority = -1;
-    public int ownPriority;
-    public bool selected;
-
-    private void Awake()
+    public class SelectableObject : MonoBehaviour
     {
-        if (properties != null)
+        public DefaultSelectableObject properties;
+        public Renderer _renderer;
+        public bool Visible
         {
-            selectionIndicator = Instantiate(properties.selectionIndicatorPrefab, transform);
-            ownPriority = properties.selectionPriority;
+            get
+            {
+                return _renderer.isVisible;
+            }
         }
 
-        Debug.Assert(selectionIndicator != null, "Please make sure " + gameObject.name + " has a selection indicator object");
-        selectionIndicator.SetActive(selected);
+        public GameObject selectionIndicator;
 
-        if (_renderer == null)
-            _renderer = GetComponent<Renderer>();
+        public int ownPriority;
 
-        Debug.Assert(_renderer != null, "Please assign a renderer to define if the object ("+gameObject.name+") is on screen (performance reasons)");
-        _renderer.gameObject.AddComponent<ScreenObjectUpdater>().Init(this);
-
-    }
-    public void UpdateIndicator(bool show)
-    {
-        selectionIndicator.SetActive(show && selectedPriority == ownPriority);
-    }
-    public void OnSelect()
-    {
-        UpdateIndicator(selected = true);
-    }
- 
-    public void OnDeselect()
-    {
-        UpdateIndicator(selected = false);
-    }
-
-    public void UpdateVisibility(bool visible)
-    {
-        print(visible + gameObject.name);
-        if(visible)
-            onScreen.Add(this);
-        else
-            onScreen.Remove(this);
-        UpdateIndicator(visible && selected);
-    }
-}
-
-public class ScreenObjectUpdater: MonoBehaviour
-{ 
-    private SelectableObject main;
-    public void Init(SelectableObject main)
-    {
-        this.main = main;
-    }
-    private void OnBecameVisible()
-    {
-        main.UpdateVisibility(true);
-    }
-    private void OnBecameInvisible()
-    {
-        main.UpdateVisibility(false);
-    }
-}
-
-[CustomEditor(typeof(SelectableObject))]
-public class SelectableObjectEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        SelectableObject selectableObject = target as SelectableObject;
-        selectableObject.properties = (SelectableObjectProperties)EditorGUILayout.ObjectField("Properties", selectableObject.properties, typeof(SelectableObjectProperties), false);
-        if (selectableObject.properties == null)
+        private Selection _unselectableForceSelection;
+        public Selection UnselectableForceSelection
         {
-            selectableObject.selectionIndicator = (GameObject)EditorGUILayout.ObjectField("Selection Indicator", selectableObject.selectionIndicator, typeof(GameObject), true);
-            selectableObject.ownPriority = EditorGUILayout.IntField("Priority", 0);
+            get
+            {
+                return _unselectableForceSelection;
+            }
+            set
+            {
+                _unselectableForceSelection = value;
+                UpdateIndicator();
+            }
         }
-        Renderer ownRenderer = selectableObject.GetComponent<Renderer>();
-        if (ownRenderer == null)
-            selectableObject._renderer = (Renderer)EditorGUILayout.ObjectField("Renderer", selectableObject._renderer, typeof(Renderer), true);
-        else
-            selectableObject._renderer = ownRenderer;
+        public SelectionEvent onSelectionChange = new SelectionEvent();
+        private Selection _selection;
+        public Selection JoinedSelection
+        {
+            get
+            {
+                return _unselectableForceSelection==null?_selection: _unselectableForceSelection;
+            }
+            set
+            {
+                if (_unselectableForceSelection != null)
+                    return;
+                _selection = value;
+                UpdateIndicator();
+                onSelectionChange.Invoke(this);                
+            }
+        }
+
+
+        private void Awake()
+        {
+            if (properties != null)
+                properties.Init(this);
+
+
+            if (_renderer == null)
+                _renderer = GetComponent<Renderer>();
+
+            _renderer.gameObject.AddComponent<SelectableOnScreenObject>().Init(this);
+            UpdateIndicator();
+
+            Debug.Assert(selectionIndicator != null, "Please make sure " + gameObject.name + " has a selection indicator object");
+            Debug.Assert(_renderer != null, "Please assign a renderer to define if the object (" + gameObject.name + ") is on screen (performance reasons)");
+        }
+        public void UpdateIndicator()
+        {
+            selectionIndicator.SetActive(JoinedSelection != null && JoinedSelection.priority == ownPriority);
+        }
+    }
+
+    [System.Serializable]
+    public class SelectionEvent : UnityEvent<SelectableObject>
+    {
+    }
+
+
+    public class SelectableOnScreenObject : MonoBehaviour
+    {
+        public static HashSet<SelectableObject> current = new HashSet<SelectableObject>();
+        private SelectableObject main;
+        public void Init(SelectableObject main)
+        {
+            this.main = main;
+        }
+        private void OnBecameVisible()
+        {
+            current.Add(main);
+        }
+        private void OnBecameInvisible()
+        {
+            current.Remove(main);
+        }
+    }
+
+    [CustomEditor(typeof(SelectableObject))]
+    public class SelectableObjectEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            SelectableObject selectableObject = target as SelectableObject;
+            selectableObject.properties = (DefaultSelectableObject)EditorGUILayout.ObjectField("Properties", selectableObject.properties, typeof(DefaultSelectableObject), false);
+            if (selectableObject.properties == null)
+            {
+                selectableObject.selectionIndicator = (GameObject)EditorGUILayout.ObjectField("Selection Indicator", selectableObject.selectionIndicator, typeof(GameObject), true);
+                selectableObject.ownPriority = EditorGUILayout.IntField("Priority", 0);
+            }
+            Renderer ownRenderer = selectableObject.GetComponent<Renderer>();
+            if (ownRenderer == null)
+                selectableObject._renderer = (Renderer)EditorGUILayout.ObjectField("Renderer", selectableObject._renderer, typeof(Renderer), true);
+            else
+                selectableObject._renderer = ownRenderer;
+        }
     }
 }

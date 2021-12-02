@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3504677398895889827}
   - component: {fileID: 5785029596508816377}
   - component: {fileID: 3161792137656503160}
+  - component: {fileID: 1688848243938635843}
+  - component: {fileID: 1482610110}
   m_Layer: 0
   m_Name: '[RTS]'
   m_TagString: Untagged
@@ -63,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060c2991c1206da41bd3b9e5f6bf283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionThreshhold: 2
+  minMouseDistance: 2
   borderColor: {r: 0.006026864, g: 1, b: 0, a: 1}
   innerColor: {r: 0.8, g: 0.9490196, b: 0.81910986, a: 0.25}
   borderThickness: 2
@@ -79,4 +81,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeb971581b9a094b90656422a986166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionThreshhold: 2
+  maxMouseDistance: 2
+--- !u!114 &1688848243938635843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511686978195341712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83caae4c9b26ea74b8c812375f05030b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTimeBetweenClicks: 0.3
+  selectionDelay: 0.1
+--- !u!114 &1482610110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511686978195341712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f090df7504f24d14dadcd8df3951de54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggers:
+  - inputAxis: Fire1
+    triggerValue: 1
+    onInput:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3504677398895889827}
+          m_TargetAssemblyTypeName: RTS.SelectionManager, Assembly-CSharp
+          m_MethodName: ClearSelection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3504677398895889827}
+          m_TargetAssemblyTypeName: RTS.SelectionManager, Assembly-CSharp
+          m_MethodName: BroadcastInputStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onInputStop:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3504677398895889827}
+          m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
+          m_MethodName: BroadcastInputStop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

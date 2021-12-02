@@ -1,95 +1,96 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class BetterBoxSelector : Selector
+namespace RTS
 {
-    #region Config
-    [Tooltip("minimum x and y distances to avoid dynamic mesh creation errors")]
-    [SerializeField] private float selectionThreshhold = 2;
-
-    [Header("GUI Box")]
-    [SerializeField] private Color borderColor = new Color(0.8f, 0.8f, 0.95f);
-    [SerializeField] private Color innerColor = new Color(0.8f, 0.8f, 0.95f, 0.25f);
-    [SerializeField] private float borderThickness;
-    #endregion
-
-    protected override bool Applicable
+    public class BetterBoxSelector : Selector
     {
-        get
+        #region Config
+        [Tooltip("minimum x and y distances to avoid dynamic mesh creation errors")]
+        [SerializeField] private float minMouseDistance = 2;
+
+        [Header("GUI Box")]
+        [SerializeField] private Color borderColor = new Color(0.8f, 0.8f, 0.95f);
+        [SerializeField] private Color innerColor = new Color(0.8f, 0.8f, 0.95f, 0.25f);
+        [SerializeField] private float borderThickness;
+        #endregion
+
+        public override int Prority
         {
-            if (startPos.HasValue)
+            get
             {
-                float threshhold = Mathf.Clamp(selectionThreshhold, 2, 100);
-                return Mathf.Abs(Input.mousePosition.x - startPos.Value.x) > threshhold && Mathf.Abs(Input.mousePosition.y - startPos.Value.y) > threshhold;
+                return 2;
             }
-            return false;
         }
-    }
 
-    private Vector2? startPos;
-    private HashSet<SelectableObject> hoveredSelectableObjects = new HashSet<SelectableObject>();
-    private int priority = 0;
-
-    public override void Down()
-    {
-        startPos = Input.mousePosition;
-    }
-
-    public override void Up()
-    {
-        startPos = null;
-        Manager.Selection = new Selection(hoveredSelectableObjects, priority);
-        hoveredSelectableObjects.Clear();
-    }
-
-    private void Update()
-    {
-        if (Applicable)
+        protected override bool Applicable
         {
-            Bounds selectionBounds = GetViewportBounds( startPos.Value, Input.mousePosition );
-            bool inBounds;
-            priority = 0;
-            print(hoveredSelectableObjects.Count);
-            foreach (SelectableObject selectableObject in SelectableObject.onScreen)
+            get
             {
-                inBounds = selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position));
-                if (inBounds)
-                {
-                    hoveredSelectableObjects.Add(selectableObject);
-                    if (selectableObject.ownPriority > priority)
-                        priority = selectableObject.ownPriority;
-                }
+                if (startPos.HasValue)
+                    return Vector2.Distance(startPos.Value, Input.mousePosition)>minMouseDistance;
+                return false;
+            }
+        }
+
+        private Vector2? startPos;
+
+        public override void InputStart()
+        {
+            startPos = Input.mousePosition;
+            Manager.Selection = new Selection();
+        }
+
+        public override void InputStop()
+        {
+            startPos = null;
+        }
+
+        private void Update()
+        {
+            if (Applicable)
+            {
+                Manager.Selection.RemoveWhere(s => !s.Visible);
+                UpdateSelectionToBounds(GetViewportBounds(startPos.Value, Input.mousePosition));
+            }
+        }
+
+        private void UpdateSelectionToBounds(Bounds selectionBounds)
+        {
+            foreach (SelectableObject selectableObject in SelectableOnScreenObject.current)
+            {
+                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Manager.Selection.priority <= selectableObject.ownPriority)
+                    Manager.Selection.Add(selectableObject);
                 else
-                    hoveredSelectableObjects.Remove(selectableObject);
-                selectableObject.UpdateIndicator(inBounds);
+                    Manager.Selection.Remove(selectableObject);
             }
-            Manager.Selection.Priority = priority;
         }
-    }
 
-    private void OnGUI()
-    {
-        if (Applicable)
+        private void OnGUI()
         {
-            Rect rect = ScreenDrawingUtils.GetScreenRect(startPos.Value, Input.mousePosition);
-            ScreenDrawingUtils.DrawScreenRect(rect, innerColor);
-            ScreenDrawingUtils.DrawScreenRectBorder(rect, borderThickness, borderColor);
+            if (Applicable)
+            {
+                Rect rect = ScreenDrawingUtils.GetScreenRect(startPos.Value, Input.mousePosition);
+                ScreenDrawingUtils.DrawScreenRect(rect, innerColor);
+                ScreenDrawingUtils.DrawScreenRectBorder(rect, borderThickness, borderColor);
+            }
         }
+
+        public static Bounds GetViewportBounds(Vector2 screenPosition1, Vector2 screenPosition2)
+        {
+            var v1 = Camera.main.ScreenToViewportPoint(screenPosition1);
+            var v2 = Camera.main.ScreenToViewportPoint(screenPosition2);
+            var min = Vector3.Min(v1, v2);
+            var max = Vector3.Max(v1, v2);
+            min.z = Camera.main.nearClipPlane;
+            max.z = Camera.main.farClipPlane;
+
+            var bounds = new Bounds();
+            bounds.SetMinMax(min, max);
+            return bounds;
+        }
+
     }
-
-    public static Bounds GetViewportBounds(Vector2 screenPosition1, Vector2 screenPosition2)
-    {
-        var v1 = Camera.main.ScreenToViewportPoint(screenPosition1);
-        var v2 = Camera.main.ScreenToViewportPoint(screenPosition2);
-        var min = Vector3.Min(v1, v2);
-        var max = Vector3.Max(v1, v2);
-        min.z = Camera.main.nearClipPlane;
-        max.z = Camera.main.farClipPlane;
-
-        var bounds = new Bounds();
-        bounds.SetMinMax(min, max);
-        return bounds;
-    }
-
 }
