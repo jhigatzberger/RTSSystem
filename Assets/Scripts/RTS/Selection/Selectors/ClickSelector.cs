@@ -42,7 +42,7 @@ namespace RTS
                 {
                     SelectableObject selectableObject = hit.collider.GetComponent<SelectableObject>();
                     if(selectableObject != null)
-                        Manager.Selection.Add(selectableObject);
+                        Manager.Selection.Add(selectableObject.controller);
                 }
             }
         }

@@ -34,7 +34,7 @@ namespace RTS
             if (Applicable)
             {
                 string name = Manager.Selection.First.name;
-                Manager.Selection.AddRange(SelectableOnScreenObject.current.Where(s => s.name == name));
+                Manager.Selection.AddRange(SelectableOnScreenObject.current.Where(s => s.controller.name == name).Select(s => s.controller));
             }
             lastUpTime = Time.time;
         }

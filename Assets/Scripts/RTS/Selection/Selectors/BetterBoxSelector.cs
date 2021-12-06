@@ -52,7 +52,7 @@ namespace RTS
         {
             if (Applicable)
             {
-                Manager.Selection.RemoveWhere(s => !s.Visible);
+                Manager.Selection.Clear();
                 UpdateSelectionToBounds(GetViewportBounds(startPos.Value, Input.mousePosition));
             }
         }
@@ -61,10 +61,10 @@ namespace RTS
         {
             foreach (SelectableObject selectableObject in SelectableOnScreenObject.current)
             {
-                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Manager.Selection.priority <= selectableObject.ownPriority)
-                    Manager.Selection.Add(selectableObject);
+                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Manager.Selection.priority <= selectableObject.Priority)
+                    Manager.Selection.Add(selectableObject.controller);
                 else
-                    Manager.Selection.Remove(selectableObject);
+                    Manager.Selection.Remove(selectableObject.controller);
             }
         }
 
