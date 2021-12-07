@@ -63,8 +63,6 @@ namespace RTS
             {
                 if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Manager.Selection.priority <= selectableObject.Priority)
                     Manager.Selection.Add(selectableObject.controller);
-                else
-                    Manager.Selection.Remove(selectableObject.controller);
             }
         }
 
