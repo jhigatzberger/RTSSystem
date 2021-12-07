@@ -7,8 +7,7 @@ namespace RTS
 {
     public class BetterBoxSelector : Selector
     {
-        #region Config
-        [Tooltip("minimum x and y distances to avoid dynamic mesh creation errors")]
+        #region Config       
         [SerializeField] private float minMouseDistance = 2;
 
         [Header("GUI Box")]
