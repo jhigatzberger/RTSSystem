@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS
+namespace RTS.Selection
 {
     [RequireComponent(typeof(Renderer))]
     public class SelectionIndicator : MonoBehaviour
@@ -12,12 +12,12 @@ namespace RTS
         void Awake()
         {
             _renderer = GetComponent<Renderer>();
-            controller.OnSelection += UpdateVisuals;
+            controller.OnSelectedUpdate += UpdateVisuals;
         }
 
-        public void UpdateVisuals(Selection selection)
+        public void UpdateVisuals(bool selected)
         {
-            _renderer.enabled = selection != null;
+            _renderer.enabled = selected;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace RTS
+namespace RTS.Selection
 {
     public class SelectableObject : MonoBehaviour
     {

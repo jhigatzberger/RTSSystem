@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace RTS.Selectors
+namespace RTS.Selection.Selectors
 {
     public class BetterBoxSelector : Selector
     {
@@ -37,7 +37,7 @@ namespace RTS.Selectors
         {
             if (Applicable)
             {
-                Context.Selection.Clear();
+                Context.Deselect();
                 UpdateSelectionToBounds(GetViewportBounds(startPos.Value, Input.mousePosition));
             }
         }
@@ -45,8 +45,8 @@ namespace RTS.Selectors
         {
             foreach (SelectableObject selectableObject in Context.onScreen)
             {
-                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Context.Selection.priority <= selectableObject.Priority)
-                    Context.Selection.Add(selectableObject.controller);
+                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Context.priority <= selectableObject.Priority)
+                    Context.Select(selectableObject.controller);
             }
         }
         private void OnGUI()

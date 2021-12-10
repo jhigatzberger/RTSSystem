@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS.Selectors
+namespace RTS.Selection.Selectors
 {
     public class ClickSelector : Selector
     {
@@ -13,7 +13,7 @@ namespace RTS.Selectors
             get
             {
                 if (startPos.HasValue)
-                    return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance && Context.hoveredEntities.Count > 0;
+                    return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance && EntityContext.hovered.Count > 0;
                 return false;
             }
         }
@@ -30,10 +30,10 @@ namespace RTS.Selectors
             if (Applicable)
             {
                 BaseEntity _entity = null;
-                foreach (BaseEntity entity in Context.hoveredEntities)
+                foreach (BaseEntity entity in EntityContext.hovered)
                     if (_entity == null || _entity.Priority < entity.Priority)
                         _entity = entity;
-                Context.Selection.Add(_entity);
+                Context.Select(_entity);
             }
         }
     }

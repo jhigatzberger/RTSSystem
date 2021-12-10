@@ -15,6 +15,8 @@ namespace RTS
 
         private BaseState currentState;
 
+        // On State finished Event => allows closing down command when move state is finished for example
+
         private void Awake()
         {
             foreach (BaseState state in _states)

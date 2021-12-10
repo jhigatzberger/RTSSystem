@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Linq;
 
-namespace RTS.Selectors
+namespace RTS.Selection.Selectors
 {
     public class SameNameDoubleClickSelector : Selector
     {
@@ -11,7 +11,7 @@ namespace RTS.Selectors
         protected override bool Applicable {
             get
             {
-                return Time.time-lastUpTime < maxTimeBetweenClicks && Context.Selection.items.Count == 1;
+                return Time.time-lastUpTime < maxTimeBetweenClicks && Context.items.Count == 1;
             }
         }
 
@@ -27,8 +27,8 @@ namespace RTS.Selectors
         {
             if (Applicable)
             {
-                string name = Context.Selection.First.name;
-                Context.Selection.AddRange(Context.onScreen.Where(s => s.controller.name == name).Select(s => s.controller)); // BROKEN?
+                string name = Context.First.name;
+                Context.Select(Context.onScreen.Where(s => s.controller.name == name).Select(s => s.controller)); // BROKEN?
             }
             lastUpTime = Time.time;
         }

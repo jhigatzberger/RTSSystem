@@ -5,13 +5,14 @@ namespace RTS
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private PointerTrigger[] triggers;
+        public static Vector3? worldPointerPosition;
+        [SerializeField] private InputTrigger[] triggers;
 
         public LayerMask groundLayerMask;
 
         void Update()
         {
-            foreach (PointerTrigger trigger in triggers)
+            foreach (InputTrigger trigger in triggers)
                 trigger.Update();
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -19,15 +20,15 @@ namespace RTS
             if (Physics.Raycast(ray, out hit, float.MaxValue, groundLayerMask))
             {
                 Debug.DrawLine(ray.origin, hit.point);
-                Context.worldPointerPosition = hit.point;
+                worldPointerPosition = hit.point;
             }
             else
-                Context.worldPointerPosition = null;
+                worldPointerPosition = null;
         }
     }
 
     [System.Serializable]
-    public class PointerTrigger
+    public class InputTrigger
     {
         public string inputAxis;
         bool _active;

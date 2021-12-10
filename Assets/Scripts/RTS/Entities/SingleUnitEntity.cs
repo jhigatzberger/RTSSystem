@@ -7,7 +7,7 @@ using RTS.Command;
 
 namespace RTS
 {
-    public class Unit : BaseEntity, ICommandable, IMovable
+    public class SingleUnitEntity : BaseEntity, ICommandable, IMovable
     {
         public override int Priority => 10;
         
@@ -40,15 +40,16 @@ namespace RTS
             return new Type[] { typeof(MoveCommand) };
         }
 
-        public BaseCommand CreateCommandFromContext()
+        public BaseCommand CreateCommandFromContext(int index)
         {
-            if (!Context.worldPointerPosition.HasValue)
+            if (!InputManager.worldPointerPosition.HasValue)
                 return null;
-            return new MoveCommand(this, this, Context.worldPointerPosition.Value);
+            return new MoveCommand(this, this, Formation.Context.current.GetPosition(InputManager.worldPointerPosition.Value, index, Selection.Context.Count));
         }
         #endregion
 
         #region Movable
+        // this functionality will partially be moved into the state machine!
         private IEnumerator moveCoroutine;
         public IEnumerator MoveToAsync(MoveCommand command)
         {

@@ -6,6 +6,7 @@ namespace RTS.Command
 {
     public class CommandDistributor : MonoBehaviour
     {
+
         private bool shouldClearQueueOnInput = true;
         public void SetClearQueueOnInput(bool shouldClearQueueOnInput)
         {
@@ -13,14 +14,15 @@ namespace RTS.Command
         }
         public void OnInput()
         {
-            foreach(BaseEntity entity in Context.Selection.items)
+            int index = 0;
+            foreach(BaseEntity entity in Selection.Context.items)
             {
                 if(entity is ICommandable)
                 {
                     ICommandable commandable = (ICommandable)entity;
                     if(shouldClearQueueOnInput)
                         commandable.StopAndClear();
-                    BaseCommand command = commandable.CreateCommandFromContext();
+                    BaseCommand command = commandable.CreateCommandFromContext(index++);
                     if(command != null)
                         commandable.Enqueue(command);
                 }

@@ -7,30 +7,30 @@ namespace RTS
     public abstract class BaseEntity : MonoBehaviour
     {
         public abstract int Priority { get; }
-        public event Action<Selection> OnSelection;
-        private Selection _selection;
-        public Selection Selection
+        public event Action<bool> OnSelectedUpdate;
+        private bool _selected;
+        public bool Selected
         {
             get
             {
-                return _selection;
+                return _selected;
             }
             set
             {
-                if (_selection != value)
+                if (_selected != value)
                 {
-                    _selection = value;
-                    OnSelection?.Invoke(value);
+                    _selected = value;
+                    OnSelectedUpdate?.Invoke(value);
                 }
             }
         }
         public void OnMouseOverSelectableObject()
         {
-            Context.hoveredEntities.Add(this);
+            EntityContext.hovered.Add(this);
         }
         public void OnMouseExitSelectableObject()
         {
-            Context.hoveredEntities.Remove(this);
+            EntityContext.hovered.Remove(this);
         }
         private void OnDestroy()
         {
@@ -42,7 +42,7 @@ namespace RTS
         }
         protected virtual void OnExitScene()
         {
-            Context.hoveredEntities.Remove(this);
+            EntityContext.hovered.Remove(this);
         }
     }
 }
