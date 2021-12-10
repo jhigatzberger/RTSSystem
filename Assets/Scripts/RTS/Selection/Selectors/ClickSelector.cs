@@ -13,18 +13,11 @@ namespace RTS
             get
             {
                 if (startPos.HasValue)
-                    return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance;
+                    return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance && Context.hoveredEntities.Count > 0;
                 return false;
             }
         }
-
-        public override int Prority
-        {
-            get
-            {
-                return 0;
-            }
-        }
+        public override int Prority => 0;
 
         private Vector2? startPos;
         public override void InputStart()
@@ -36,14 +29,11 @@ namespace RTS
         {
             if (Applicable)
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, float.MaxValue, Manager.selectableLayerMask))
-                {
-                    SelectableObject selectableObject = hit.collider.GetComponent<SelectableObject>();
-                    if(selectableObject != null)
-                        Manager.Selection.Add(selectableObject.controller);
-                }
+                EntityController _entity = null;
+                foreach (EntityController entity in Context.hoveredEntities)
+                    if (_entity == null || _entity.Priority < entity.Priority)
+                        _entity = entity;
+                Context.Selection.Add(_entity);
             }
         }
     }

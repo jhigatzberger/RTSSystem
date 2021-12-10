@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace RTS
 {
-    [RequireComponent(typeof(SelectionManager))]
+    [RequireComponent(typeof(SelectorController))]
     public abstract class Selector : MonoBehaviour
     {
-        private SelectionManager _manager;
+        private SelectorController _manager;
         public abstract int Prority { get; }
-        protected SelectionManager Manager
+        protected SelectorController Manager
         {
             get
             {
                 if (_manager == null)
-                    _manager = GetComponent<SelectionManager>();
+                    _manager = GetComponent<SelectorController>();
                 return _manager;
             }
         }

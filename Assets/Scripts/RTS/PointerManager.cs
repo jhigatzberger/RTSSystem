@@ -3,19 +3,31 @@ using UnityEngine.Events;
 
 namespace RTS
 {
-    public class InputManager : MonoBehaviour
+    public class PointerManager : MonoBehaviour
     {
-        [SerializeField] private InputTrigger[] triggers;
+        [SerializeField] private PointerTrigger[] triggers;
+
+        public LayerMask groundLayerMask;
 
         void Update()
         {
-            foreach (InputTrigger trigger in triggers)
+            foreach (PointerTrigger trigger in triggers)
                 trigger.Update();
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, float.MaxValue, groundLayerMask))
+            {
+                Debug.DrawLine(ray.origin, hit.point);
+                Context.worldPointerPosition = hit.point;
+            }
+            else
+                Context.worldPointerPosition = null;
         }
     }
 
     [System.Serializable]
-    public class InputTrigger
+    public class PointerTrigger
     {
         public string inputAxis;
         bool _active;

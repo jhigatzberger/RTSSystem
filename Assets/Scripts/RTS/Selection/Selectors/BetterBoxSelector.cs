@@ -9,21 +9,12 @@ namespace RTS
     {
         #region Config       
         [SerializeField] private float minMouseDistance = 2;
-
         [Header("GUI Box")]
         [SerializeField] private Color borderColor = new Color(0.8f, 0.8f, 0.95f);
         [SerializeField] private Color innerColor = new Color(0.8f, 0.8f, 0.95f, 0.25f);
         [SerializeField] private float borderThickness;
         #endregion
-
-        public override int Prority
-        {
-            get
-            {
-                return 2;
-            }
-        }
-
+        public override int Prority => 2;
         protected override bool Applicable
         {
             get
@@ -33,38 +24,31 @@ namespace RTS
                 return false;
             }
         }
-
         private Vector2? startPos;
-
         public override void InputStart()
         {
             startPos = Input.mousePosition;
-            Manager.Selection = new Selection();
         }
-
         public override void InputStop()
         {
             startPos = null;
         }
-
         private void Update()
         {
             if (Applicable)
             {
-                Manager.Selection.Clear();
+                Context.Selection.Clear();
                 UpdateSelectionToBounds(GetViewportBounds(startPos.Value, Input.mousePosition));
             }
         }
-
         private void UpdateSelectionToBounds(Bounds selectionBounds)
         {
-            foreach (SelectableObject selectableObject in SelectableOnScreenObject.current)
+            foreach (SelectableObject selectableObject in Context.onScreen)
             {
-                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Manager.Selection.priority <= selectableObject.Priority)
-                    Manager.Selection.Add(selectableObject.controller);
+                if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Context.Selection.priority <= selectableObject.Priority)
+                    Context.Selection.Add(selectableObject.controller);
             }
         }
-
         private void OnGUI()
         {
             if (Applicable)
@@ -74,7 +58,6 @@ namespace RTS
                 ScreenDrawingUtils.DrawScreenRectBorder(rect, borderThickness, borderColor);
             }
         }
-
         public static Bounds GetViewportBounds(Vector2 screenPosition1, Vector2 screenPosition2)
         {
             var v1 = Camera.main.ScreenToViewportPoint(screenPosition1);
@@ -88,6 +71,5 @@ namespace RTS
             bounds.SetMinMax(min, max);
             return bounds;
         }
-
     }
 }

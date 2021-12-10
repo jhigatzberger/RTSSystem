@@ -11,17 +11,11 @@ namespace RTS
         protected override bool Applicable {
             get
             {
-                return Time.time-lastUpTime < maxTimeBetweenClicks && Manager.Selection.items.Count == 1;
+                return Time.time-lastUpTime < maxTimeBetweenClicks && Context.Selection.items.Count == 1;
             }
         }
 
-        public override int Prority
-        {
-            get
-            {
-                return 1;
-            }
-        }
+        public override int Prority => 1;
 
         private void Start()
         {
@@ -33,8 +27,8 @@ namespace RTS
         {
             if (Applicable)
             {
-                string name = Manager.Selection.First.name;
-                Manager.Selection.AddRange(SelectableOnScreenObject.current.Where(s => s.controller.name == name).Select(s => s.controller));
+                string name = Context.Selection.First.name;
+                Context.Selection.AddRange(Context.onScreen.Where(s => s.controller.name == name).Select(s => s.controller)); // BROKEN?
             }
             lastUpTime = Time.time;
         }

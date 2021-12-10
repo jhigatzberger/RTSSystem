@@ -7,25 +7,13 @@ namespace RTS
 {
     public class SelectableObject : MonoBehaviour
     {
-        public ContextController controller;
+        public EntityController controller;
         public Renderer _renderer;
-        public bool Visible
-        {
-            get
-            {
-                return _renderer.isVisible;
-            }
-        }
-        public int Priority
-        {
-            get
-            {
-                return controller.priority;
-            }
-        }
+        public bool Visible => _renderer.isVisible;
+        public int Priority => controller.Priority;
+
         private void Awake()
         {
-
             if (_renderer == null)
                 _renderer = GetComponent<Renderer>();
 
@@ -33,12 +21,18 @@ namespace RTS
 
             Debug.Assert(_renderer != null, "Please assign a renderer to define if the object (" + gameObject.name + ") is on screen (performance reasons)");
         }
+
+        private void OnMouseOver()
+        {
+            controller.OnMouseOverSelectableObject();
+        }
+        private void OnMouseExit()
+        {
+            controller.OnMouseExitSelectableObject();
+        }
     }
-
-
     public class SelectableOnScreenObject : MonoBehaviour
     {
-        public static HashSet<SelectableObject> current = new HashSet<SelectableObject>();
         private SelectableObject main;
         public void Init(SelectableObject main)
         {
@@ -46,11 +40,11 @@ namespace RTS
         }
         private void OnBecameVisible()
         {
-            current.Add(main);
+            Context.onScreen.Add(main);
         }
         private void OnBecameInvisible()
         {
-            current.Remove(main);
+            Context.onScreen.Remove(main);
         }
     }
 }

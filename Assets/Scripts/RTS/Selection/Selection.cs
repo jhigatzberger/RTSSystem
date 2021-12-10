@@ -7,13 +7,13 @@ namespace RTS
 {
     public class Selection
     {
-        public HashSet<ContextController> items;
+        public HashSet<EntityController> items;
         public int priority;
-        public Selection(IEnumerable<ContextController> items = null, int priority = -1)
+        public Selection(IEnumerable<EntityController> items = null, int priority = -1)
         {
             if (items == null)
-                items = new HashSet<ContextController>();
-            this.items = new HashSet<ContextController>(items);
+                items = new HashSet<EntityController>();
+            this.items = new HashSet<EntityController>(items);
             if (priority < 0)
                 priority = FindPriority();
             this.priority = priority;
@@ -22,61 +22,61 @@ namespace RTS
         private int FindPriority()
         {
             int priority = 0;
-            foreach (ContextController selectableObject in items)
-                if (selectableObject.priority > priority)
-                    priority = selectableObject.priority;
+            foreach (EntityController selectableObject in items)
+                if (selectableObject.Priority > priority)
+                    priority = selectableObject.Priority;
             return priority;
         }
 
-        public void Add(ContextController selectableObject)
+        public void Add(EntityController selectableObject)
         {
             if (selectableObject == null)
                 return;
 
             if (items.Add(selectableObject))
             {
-                if (selectableObject.priority > priority)
-                    priority = selectableObject.priority;
-                selectableObject.JoinedSelection = this;
+                if (selectableObject.Priority > priority)
+                    priority = selectableObject.Priority;
+                selectableObject.Selection = this;
             }
         }
-        public void AddRange(IEnumerable<ContextController> items)
+        public void AddRange(IEnumerable<EntityController> items)
         {
-            foreach (ContextController selectableObject in items)
+            foreach (EntityController selectableObject in items)
                 Add(selectableObject);
         }
 
-        internal void RemoveWhere(Func<ContextController, bool> p, bool updatePriority = true)
+        internal void RemoveWhere(Func<EntityController, bool> p, bool updatePriority = true)
         {
-            foreach (ContextController selectableObject in items.Where(p))
-                selectableObject.JoinedSelection = null;
-            items.RemoveWhere(new Predicate<ContextController>(p));
+            foreach (EntityController selectableObject in items.Where(p))
+                selectableObject.Selection = null;
+            items.RemoveWhere(new Predicate<EntityController>(p));
             if (updatePriority)
                 priority = FindPriority();
         }
 
-        public void Remove(ContextController selectableObject, bool updatePriority = true)
+        public void Remove(EntityController selectableObject, bool updatePriority = true)
         {
             if (selectableObject == null)
                 return;
 
             if (items.Remove(selectableObject))
             {
-                if (selectableObject.priority == priority && updatePriority)
+                if (selectableObject.Priority == priority && updatePriority)
                     priority = FindPriority();
-                selectableObject.JoinedSelection = null;
+                selectableObject.Selection = null;
             }
         }
 
         public void Clear()
         {
             priority = 0;
-            foreach (ContextController selectableObject in items)
-                selectableObject.JoinedSelection = null;
+            foreach (EntityController selectableObject in items)
+                selectableObject.Selection = null;
             items.Clear();
         }
 
-        public ContextController First {
+        public EntityController First {
             get
             {
                 return items.First();

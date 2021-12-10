@@ -5,8 +5,7 @@ using System.Linq;
 
 namespace RTS
 {
-
-    public class SelectionManager : MonoBehaviour
+    public class SelectorController : MonoBehaviour
     {
         private Selector[] selectors;
         void Awake()
@@ -14,32 +13,11 @@ namespace RTS
             selectors = GetComponents<Selector>().OrderBy(s => s.Prority).ToArray();
         }
 
-        #region Selection
-        private Selection _selection = new Selection();
-        public Selection Selection
-        {
-            set
-            {
-                if (value != null)
-                    _selection = value;
-                else
-                    _selection = new Selection();
-            }
-            get
-            {
-                return _selection;
-            }
-        }
-        #endregion
-
-        #region LayerMasks
-        public LayerMask groundLayerMask;
         public LayerMask selectableLayerMask;
-        #endregion
 
         public void ClearSelection()
         {
-            Selection.Clear();
+            Context.Selection.Clear();
         }
 
         public void BroadcastInputStart()

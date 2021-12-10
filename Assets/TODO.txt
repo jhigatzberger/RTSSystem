@@ -1,2 +1,0 @@
-inverse kinematics for spear
-find or model spear
