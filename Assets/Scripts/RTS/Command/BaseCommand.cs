@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace RTS.Command
 {
     public abstract class BaseCommand
@@ -19,7 +15,6 @@ namespace RTS.Command
         {
             if (!running)
                 return;
-            Debug.Log("stopped " + this);
             running = false;
             OnStop();
         }
@@ -27,7 +22,6 @@ namespace RTS.Command
         {
             if (running)
                 return;
-            Debug.Log("executing " + this);
             running = true;
             OnExecute();
         }
@@ -35,7 +29,6 @@ namespace RTS.Command
         {
             if (!running)
                 return;
-            Debug.Log("finished " + this);
             running = false;
             commandable.ExecuteFirst();
         }
