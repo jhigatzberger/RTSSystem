@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace RTS
+namespace RTS.Selectors
 {
     public class BetterBoxSelector : Selector
     {

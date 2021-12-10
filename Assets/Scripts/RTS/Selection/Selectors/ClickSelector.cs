@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS
+namespace RTS.Selectors
 {
     public class ClickSelector : Selector
     {
@@ -29,8 +29,8 @@ namespace RTS
         {
             if (Applicable)
             {
-                EntityController _entity = null;
-                foreach (EntityController entity in Context.hoveredEntities)
+                BaseEntity _entity = null;
+                foreach (BaseEntity entity in Context.hoveredEntities)
                     if (_entity == null || _entity.Priority < entity.Priority)
                         _entity = entity;
                 Context.Selection.Add(_entity);

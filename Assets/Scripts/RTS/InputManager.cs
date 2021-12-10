@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace RTS
 {
-    public class PointerManager : MonoBehaviour
+    public class InputManager : MonoBehaviour
     {
         [SerializeField] private PointerTrigger[] triggers;
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity;
 
-namespace RTS
+namespace RTS.Command
 {
-    public class MoveCommand : Command
+    public class MoveCommand : BaseCommand
     {
         public Vector3 destination;
         private IMovable movable;
@@ -13,7 +13,6 @@ namespace RTS
         {
             this.destination = destination;
             this.movable = movable;
-            Debug.Log(movable);
         }
         public override void OnExecute()
         {

@@ -4,7 +4,7 @@ using System;
 
 namespace RTS
 {   
-    public abstract class EntityController : MonoBehaviour
+    public abstract class BaseEntity : MonoBehaviour
     {
         public abstract int Priority { get; }
         public event Action<Selection> OnSelection;

@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Linq;
 
-namespace RTS
+namespace RTS.Selectors
 {
     public class SameNameDoubleClickSelector : Selector
     {

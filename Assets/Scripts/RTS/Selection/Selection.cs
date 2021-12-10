@@ -7,13 +7,13 @@ namespace RTS
 {
     public class Selection
     {
-        public HashSet<EntityController> items;
+        public HashSet<BaseEntity> items;
         public int priority;
-        public Selection(IEnumerable<EntityController> items = null, int priority = -1)
+        public Selection(IEnumerable<BaseEntity> items = null, int priority = -1)
         {
             if (items == null)
-                items = new HashSet<EntityController>();
-            this.items = new HashSet<EntityController>(items);
+                items = new HashSet<BaseEntity>();
+            this.items = new HashSet<BaseEntity>(items);
             if (priority < 0)
                 priority = FindPriority();
             this.priority = priority;
@@ -22,13 +22,13 @@ namespace RTS
         private int FindPriority()
         {
             int priority = 0;
-            foreach (EntityController selectableObject in items)
+            foreach (BaseEntity selectableObject in items)
                 if (selectableObject.Priority > priority)
                     priority = selectableObject.Priority;
             return priority;
         }
 
-        public void Add(EntityController selectableObject)
+        public void Add(BaseEntity selectableObject)
         {
             if (selectableObject == null)
                 return;
@@ -40,22 +40,22 @@ namespace RTS
                 selectableObject.Selection = this;
             }
         }
-        public void AddRange(IEnumerable<EntityController> items)
+        public void AddRange(IEnumerable<BaseEntity> items)
         {
-            foreach (EntityController selectableObject in items)
+            foreach (BaseEntity selectableObject in items)
                 Add(selectableObject);
         }
 
-        internal void RemoveWhere(Func<EntityController, bool> p, bool updatePriority = true)
+        internal void RemoveWhere(Func<BaseEntity, bool> p, bool updatePriority = true)
         {
-            foreach (EntityController selectableObject in items.Where(p))
+            foreach (BaseEntity selectableObject in items.Where(p))
                 selectableObject.Selection = null;
-            items.RemoveWhere(new Predicate<EntityController>(p));
+            items.RemoveWhere(new Predicate<BaseEntity>(p));
             if (updatePriority)
                 priority = FindPriority();
         }
 
-        public void Remove(EntityController selectableObject, bool updatePriority = true)
+        public void Remove(BaseEntity selectableObject, bool updatePriority = true)
         {
             if (selectableObject == null)
                 return;
@@ -71,12 +71,12 @@ namespace RTS
         public void Clear()
         {
             priority = 0;
-            foreach (EntityController selectableObject in items)
+            foreach (BaseEntity selectableObject in items)
                 selectableObject.Selection = null;
             items.Clear();
         }
 
-        public EntityController First {
+        public BaseEntity First {
             get
             {
                 return items.First();

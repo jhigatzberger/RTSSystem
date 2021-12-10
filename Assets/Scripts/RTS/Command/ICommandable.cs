@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS
+namespace RTS.Command
 {
     public interface ICommandable
     {
-        public Command Current { get; set; }
-        public void Enqueue(Command command);
+        public BaseCommand Current { get; set; }
+        public void Enqueue(BaseCommand command);
         public void ExecuteFirst();
         public void StopAndClear();
         public Type[] AvailableCommands();
-        public Command CreateCommandFromContext();
+        public BaseCommand CreateCommandFromContext();
     }
 }
 

@@ -7,7 +7,7 @@ namespace RTS
 {
     public class SelectableObject : MonoBehaviour
     {
-        public EntityController controller;
+        public BaseEntity controller;
         public Renderer _renderer;
         public bool Visible => _renderer.isVisible;
         public int Priority => controller.Priority;

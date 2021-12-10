@@ -7,9 +7,9 @@ namespace RTS
 {
     public abstract class BaseState : ScriptableObject
     {
-        protected EntityController controller;
+        protected BaseEntity controller;
         protected GameObject self;
-        public BaseState Init(EntityController controller, GameObject self)
+        public BaseState Init(BaseEntity controller, GameObject self)
         {
             this.controller = controller;
             this.self = self;

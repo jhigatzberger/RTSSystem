@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RTS
+namespace RTS.Selectors
 {
     [RequireComponent(typeof(SelectorController))]
     public abstract class Selector : MonoBehaviour

@@ -8,7 +8,7 @@ namespace RTS
 {
     public class StateMachine : MonoBehaviour
     {
-        public EntityController controller;
+        public BaseEntity controller;
 
         private Dictionary<Type, BaseState> states = new Dictionary<Type, BaseState>();
         [SerializeField] private BaseState[] _states;

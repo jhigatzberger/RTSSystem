@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace RTS
+namespace RTS.Selectors
 {
     public class SelectorController : MonoBehaviour
     {
@@ -15,9 +15,10 @@ namespace RTS
 
         public LayerMask selectableLayerMask;
 
-        public void ClearSelection()
+        public void ClearSelectionOnInput()
         {
-            Context.Selection.Clear();
+            if(shouldClearSelectionOnInput)
+                Context.Selection.Clear();
         }
 
         public void BroadcastInputStart()
@@ -29,6 +30,12 @@ namespace RTS
         {
             foreach (Selector selector in selectors)
                 selector.InputStop();
+        }
+
+        public bool shouldClearSelectionOnInput = true;
+        public void SetClearSelectionOnInput(bool shouldClearSelectionOnInput)
+        {
+            this.shouldClearSelectionOnInput = shouldClearSelectionOnInput;
         }
     }
 }

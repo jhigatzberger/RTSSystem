@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS
+namespace RTS.Command
 {
-    public abstract class Command
+    public abstract class BaseCommand
     {
         public bool running = false;
         protected ICommandable commandable;
-        public Command(ICommandable commandable)
+        public BaseCommand(ICommandable commandable)
         {
             this.commandable = commandable;
         }

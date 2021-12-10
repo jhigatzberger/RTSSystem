@@ -7,7 +7,7 @@ namespace RTS
     [RequireComponent(typeof(Renderer))]
     public class SelectionIndicator : MonoBehaviour
     {
-        [SerializeField] EntityController controller;
+        [SerializeField] BaseEntity controller;
         Renderer _renderer;
         void Awake()
         {

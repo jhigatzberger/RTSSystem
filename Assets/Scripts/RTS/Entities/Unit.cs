@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using RTS.Command;
 
 namespace RTS
 {
-    public class UnitController : EntityController, ICommandable, IMovable
+    public class Unit : BaseEntity, ICommandable, IMovable
     {
         public override int Priority => 10;
         
         #region Commandable        
-        Queue<Command> commandQueue = new Queue<Command>();
-        public Command Current { get; set; }
-        public void Enqueue(Command command)
+        Queue<BaseCommand> commandQueue = new Queue<BaseCommand>();
+        public BaseCommand Current { get; set; }
+        public void Enqueue(BaseCommand command)
         {
             commandQueue.Enqueue(command);
             if (Current == null || !Current.running)
@@ -22,10 +23,7 @@ namespace RTS
         public void ExecuteFirst()
         {
             if(commandQueue.Count == 0)
-            {
-                Current = null;
                 return;
-            }
             Current = commandQueue.Dequeue();
             Current.Execute();
         }
@@ -42,7 +40,7 @@ namespace RTS
             return new Type[] { typeof(MoveCommand) };
         }
 
-        public Command CreateCommandFromContext()
+        public BaseCommand CreateCommandFromContext()
         {
             if (!Context.worldPointerPosition.HasValue)
                 return null;
@@ -56,7 +54,7 @@ namespace RTS
         {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.SetDestination(command.destination);
-            while (agent.remainingDistance <= agent.stoppingDistance)
+            while (Vector3.Distance(transform.position, command.destination) > 0.1f + agent.stoppingDistance)
                 yield return null;
             command.Finish();
         }
