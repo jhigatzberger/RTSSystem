@@ -17,7 +17,7 @@ namespace RTS.Selection.Selectors
                 return false;
             }
         }
-        public override int Prority => 0;
+        public override int Priority => 0;
 
         private Vector2? startPos;
         public override void InputStart()

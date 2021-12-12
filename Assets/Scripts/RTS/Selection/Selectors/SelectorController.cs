@@ -9,7 +9,7 @@ namespace RTS.Selection.Selectors
         private Selector[] selectors;
         void Awake()
         {
-            selectors = GetComponents<Selector>().OrderBy(s => s.Prority).ToArray();
+            selectors = GetComponents<Selector>().OrderBy(s => s.Priority).ToArray();
         }
         public void BroadcastInputStart()
         {

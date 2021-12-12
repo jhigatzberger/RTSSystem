@@ -14,7 +14,7 @@ namespace RTS.Selection.Selectors
         [SerializeField] private Color innerColor = new Color(0.8f, 0.8f, 0.95f, 0.25f);
         [SerializeField] private float borderThickness;
         #endregion
-        public override int Prority => 2;
+        public override int Priority => 2;
         protected override bool Applicable
         {
             get

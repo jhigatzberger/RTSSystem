@@ -6,7 +6,7 @@ namespace RTS.Selection.Selectors
     public abstract class Selector : MonoBehaviour
     {
         private SelectorController _manager;
-        public abstract int Prority { get; }
+        public abstract int Priority { get; }
         protected SelectorController Manager
         {
             get

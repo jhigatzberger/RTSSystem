@@ -15,7 +15,7 @@ namespace RTS.Selection.Selectors
             }
         }
 
-        public override int Prority => 1;
+        public override int Priority => 1;
 
         private void Start()
         {
