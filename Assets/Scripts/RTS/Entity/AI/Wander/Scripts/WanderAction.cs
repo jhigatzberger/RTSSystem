@@ -14,7 +14,7 @@ namespace RTS.Entity.AI
             entity.GetComponent<Animator>().SetFloat("Velocity", 1);
             NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
 
-            Vector3 randomPos = Random.insideUnitSphere * maxDistance + entity.transform.position;
+            Vector3 randomPos = Random.insideUnitSphere * maxDistance + entity.transform.position; // deterministic random
             NavMeshHit hit;
             NavMesh.SamplePosition(randomPos, out hit, maxDistance, NavMesh.AllAreas);
 
