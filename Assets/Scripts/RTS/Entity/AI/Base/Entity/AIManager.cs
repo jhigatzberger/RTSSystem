@@ -29,12 +29,12 @@ namespace RTS.Entity.AI
                 Tick();
         }
 
-        private void Tick()
+        private void Tick() // make this server sided
         {
             timeSinceLastTick = 0;
             foreach(AIEntity entity in entities)
             {
-                entity.AIUpdate();
+                entity.AIUpdate(); // pass the server time
             }
         }
     }
