@@ -30,7 +30,7 @@ namespace RTS.Entity.AI
             AIManager.entities.Add(this);
         }
 
-        public void AIUpdate()
+        public void AIUpdate() // gets server time passed, save server time
         {
             if (currentState != null)
                 currentState.CheckTransitions(this);
@@ -58,7 +58,7 @@ namespace RTS.Entity.AI
                 ExecuteFirstCommand();
             else
                 currentCommand = null;
-            stateTimeStamp = Time.time;
+            stateTimeStamp = Time.time; // take last server time
         }  
         public void Enqueue(CommandData command)
         {
