@@ -9,7 +9,7 @@ namespace RTS.Entity
         #region Registering
         public static Dictionary<int, BaseEntity> entities = new Dictionary<int, BaseEntity>();
         private static int id = 0;
-        public static int Register(BaseEntity entity)
+        public static int Register(BaseEntity entity) // make the id deterministic
         {
             entities.Add(++id, entity);
             return id;
