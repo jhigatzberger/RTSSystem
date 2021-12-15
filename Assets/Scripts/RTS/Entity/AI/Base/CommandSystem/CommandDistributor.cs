@@ -52,7 +52,7 @@ namespace RTS.Entity.AI
                     cachedEntity = null;
             }
         }
-        public void DistributeCommand(DistributedCommand command)
+        public void DistributeCommand(DistributedCommand command) // one server sided one, one client sided one
         {
             foreach(int id in command.entities)
             {
