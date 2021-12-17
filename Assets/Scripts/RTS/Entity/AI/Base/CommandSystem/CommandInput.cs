@@ -54,18 +54,6 @@ namespace RTS.Entity.AI
                     cachedEntity = null;
             }
         }
-<<<<<<< Updated upstream:Assets/Scripts/RTS/Entity/AI/Base/CommandSystem/CommandDistributor.cs
-        public void DistributeCommand(DistributedCommand command) // one server sided one, one client sided one
-        {
-            foreach(int id in command.entities)
-            {
-                BaseEntity entity = EntityContext.entities[id];
-                if (entity != null && entity is AIEntity aiEntity)
-                    aiEntity.Enqueue(command.data);
-            }
-        }
-=======
->>>>>>> Stashed changes:Assets/Scripts/RTS/Entity/AI/Base/CommandSystem/CommandInput.cs
     }
     public struct DistributedCommand : IEquatable<DistributedCommand>
     {
