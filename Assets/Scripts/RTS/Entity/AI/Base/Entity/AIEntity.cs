@@ -42,7 +42,7 @@ namespace RTS.Entity.AI
         {
             Gizmos.color = Color.green;
             if(currentCommand.HasValue)
-                Gizmos.DrawSphere(currentCommand.Value.position.Value, 1);
+                Gizmos.DrawSphere(currentCommand.Value.position, 1);
         }
 
         public void ChangeState(State state)
@@ -62,7 +62,7 @@ namespace RTS.Entity.AI
         }  
         public void Enqueue(CommandData command)
         {
-            if (!commandCompetence.Contains(command.command))
+            if (!commandCompetence.Contains(CommandManager.Commands[command.commandID]))
                 return;
             commandQueue.Enqueue(command);
             if (currentCommand == null)
@@ -72,7 +72,8 @@ namespace RTS.Entity.AI
         public void ExecuteFirstCommand()
         {
             currentCommand = commandQueue.Dequeue();
-            currentCommand?.command.Apply(this);
+            if(currentCommand.HasValue)
+                CommandManager.Commands[currentCommand.Value.commandID].Apply(this);
         }
 
         public void ClearCommands()

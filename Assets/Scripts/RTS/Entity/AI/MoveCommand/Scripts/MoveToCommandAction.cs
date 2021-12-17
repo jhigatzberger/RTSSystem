@@ -14,7 +14,7 @@ namespace RTS.Entity.AI
             entity.GetComponent<Animator>().SetFloat("Velocity", 1);
             NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
             CommandData data = entity.currentCommand.Value;            
-            agent.SetDestination(Formation.Context.current.GetPosition(data.position.Value, entity.SelectionPosition, Context.entities.Count));
+            agent.SetDestination(Formation.Context.current.GetPosition(data.position, entity.SelectionPosition, Context.entities.Count));
         }
 
         public override void Exit(AIEntity entity)

@@ -16,9 +16,9 @@ namespace RTS.Entity.AI
         {
             return new CommandData
             {
-                command = this,
-                position = InputManager.worldPointerPosition,
-                target = null,
+                commandID = id,
+                position = InputManager.worldPointerPosition.Value,
+                targetID = -1,
             };
         }
     }
