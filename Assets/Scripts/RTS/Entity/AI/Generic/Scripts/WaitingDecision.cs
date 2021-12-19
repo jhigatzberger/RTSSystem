@@ -8,9 +8,9 @@ namespace RTS.Entity.AI
     public class WaitingDecision : Decision
     {
         public float waitTime;
-        public override bool Decide(AIEntity entity)
+        public override bool Decide(IStateMachine stateMachine)
         {
-            return Time.time - entity.stateTimeStamp > waitTime;
+            return Time.time - stateMachine.TimeStamp > waitTime;
         }
     }
 

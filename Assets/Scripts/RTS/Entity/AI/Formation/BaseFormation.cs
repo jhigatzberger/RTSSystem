@@ -6,6 +6,6 @@ namespace RTS.Entity.AI.Formation
 {
     public abstract class BaseFormation
     {
-        public abstract Vector3 GetPosition(Vector3 position, int index, int count);
+        public abstract Vector3 GetPosition(Vector3 destination, BaseEntity entity);
     }
 }

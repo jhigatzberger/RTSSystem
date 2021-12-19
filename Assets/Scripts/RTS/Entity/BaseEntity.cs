@@ -37,12 +37,11 @@ namespace RTS.Entity
         {
             id = EntityContext.Register(this);
         }
-
-        public void OnMouseOverSelectableObject()
+        private void OnMouseEnter()
         {
             EntityContext.hovered.Add(this);
         }
-        public void OnMouseExitSelectableObject()
+        private void OnMouseExit()
         {
             EntityContext.hovered.Remove(this);
         }
@@ -54,9 +53,11 @@ namespace RTS.Entity
         {
             OnExitScene();
         }
-        protected virtual void OnExitScene()
+        public delegate void ExitScene();
+        public event ExitScene OnExitScene;
+        protected virtual void OnExitSceneImpl()
         {
-            // POOLING RETURN
+            OnExitScene?.Invoke();
             EntityContext.hovered.Remove(this);
         }
     }

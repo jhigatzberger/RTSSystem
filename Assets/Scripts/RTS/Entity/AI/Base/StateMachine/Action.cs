@@ -6,7 +6,7 @@ namespace RTS.Entity.AI
 {   
     public abstract class Action : ScriptableObject
     {
-        public abstract void Enter(AIEntity entity);
-        public abstract void Exit(AIEntity entity);
+        public abstract void Enter(IStateMachine entity);
+        public abstract void Exit(IStateMachine entity);
     }
 }

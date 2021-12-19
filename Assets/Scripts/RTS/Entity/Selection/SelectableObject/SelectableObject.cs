@@ -6,12 +6,14 @@ using UnityEngine.Events;
 
 namespace RTS.Entity.Selection
 {
-    public class SelectableObject : MonoBehaviour
+    public class SelectableObject : MonoBehaviour, IEntityExtension
     {
         public BaseEntity controller;
         public Renderer _renderer;
         public bool Visible => _renderer.isVisible;
         public int Priority => controller.Priority;
+
+        public BaseEntity Entity => controller;
 
         private void Awake()
         {
@@ -21,15 +23,6 @@ namespace RTS.Entity.Selection
             _renderer.gameObject.AddComponent<SelectableOnScreenObject>().Init(this);
 
             Debug.Assert(_renderer != null, "Please assign a renderer to define if the object (" + gameObject.name + ") is on screen (performance reasons)");
-        }
-
-        private void OnMouseOver()
-        {
-            controller.OnMouseOverSelectableObject();
-        }
-        private void OnMouseExit()
-        {
-            controller.OnMouseExitSelectableObject();
         }
     }
     public class SelectableOnScreenObject : MonoBehaviour

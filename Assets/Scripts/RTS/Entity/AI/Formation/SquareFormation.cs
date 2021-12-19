@@ -13,8 +13,12 @@ namespace RTS.Entity.AI.Formation
             this.distance = distance;
             this.maxColumns = maxColumns;
         }
-        public override Vector3 GetPosition(Vector3 position, int index, int count)
+        public override Vector3 GetPosition(Vector3 position, BaseEntity entity)
         {
+            Debug.Log("GetPosition");
+            int count = Selection.Context.entities.Count;
+            int index = entity.SelectionPosition;
+
             if (count == 1)
                 return position;
 

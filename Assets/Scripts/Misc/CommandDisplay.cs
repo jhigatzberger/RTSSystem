@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using RTS.Entity.AI;
+using RTS.Entity;
 
 public class CommandDisplay : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class CommandDisplay : MonoBehaviour
     {
         text = GetComponent<Text>();
         CommandContext.OnCommandEnqueue += DisplayCommandEN;
-        CommandContext.OnCommandExecute += DisplayCommandEX;
+        CommandContext.OnCommandDistribute += DisplayCommandEX;
     }
 
     public void DisplayCommandEX(DistributedCommand c)

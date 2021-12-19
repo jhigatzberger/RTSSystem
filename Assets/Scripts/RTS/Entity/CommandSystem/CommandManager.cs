@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace RTS.Entity.AI
+namespace RTS.Entity
 {
     public class CommandManager : MonoBehaviour
     {
@@ -24,14 +24,23 @@ namespace RTS.Entity.AI
             foreach (Command command in _commands)
                 commandLookup.Add(command.id, command);
 
-            CommandContext.OnCommandExecute += ExecuteCommand;
+            CommandContext.OnCommandDistribute += DistributeCommand;
         }
 
-        public void ExecuteCommand(DistributedCommand command)
+        public void DistributeCommand(DistributedCommand command)
         {
             BaseEntity entity = EntityContext.entities[command.entity];
-            if (entity != null && entity is AIEntity aiEntity)
-                aiEntity.Enqueue(command.data);
+            if (entity != null && entity is ICommandable commandable)
+            {
+                if (command.clearQueueOnEnqeue)
+                    commandable.ClearCommands();
+                commandable.Enqueue(command.data);
+            }
+        }
+        public static void Execute(ICommandable commandable, CommandData commandData)
+        {
+            Command command = Commands[commandData.commandID];
+            command.Execute(commandable, commandData);
         }
         
     }

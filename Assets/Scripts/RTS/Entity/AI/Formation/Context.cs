@@ -6,7 +6,7 @@ namespace RTS.Entity.AI.Formation
 {
     public static class Context
     {
-        public static BaseFormation current = new SquareFormation(1.5f);
+        public static BaseFormation current = new SquareFormation(2);
     }
 
 }

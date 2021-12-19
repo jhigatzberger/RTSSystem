@@ -3,32 +3,29 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS.Entity.AI
+namespace RTS.Entity
 {
     public class CommandInput : MonoBehaviour
     {
         public Command contextCommand;
-        private AIEntity cachedEntity;
-        private bool shouldClearQueueOnInput = true;
+        private ICommandable cachedEntity;
+        public bool shouldClearQueueOnInput = true;
         public void SetClearQueueOnInput(bool shouldClearQueueOnInput)
         {
             this.shouldClearQueueOnInput = shouldClearQueueOnInput;
         }
         public void OnInput()
         {
-            if (cachedEntity == null || contextCommand == null)
+            if (contextCommand == null)
                 return;
-            CommandData command = contextCommand.Build(cachedEntity);
-            foreach(AIEntity entity in Context.entities)
+            foreach(ICommandable commandable in Context.entities)
             {
-                if (shouldClearQueueOnInput)
-                    entity.ClearCommands();
-
                 CommandContext.EnqueueCommand(
                     new DistributedCommand
                     {
-                        data = command,
-                        entity = entity.id
+                        data = contextCommand.Build(commandable),
+                        clearQueueOnEnqeue = shouldClearQueueOnInput,
+                        entity = commandable.Entity.id
                     }
                 );
             }
@@ -46,10 +43,10 @@ namespace RTS.Entity.AI
         {
             if (Context.entities.Count == 0)
                 cachedEntity = null;
-            else if (cachedEntity != Context.entities[0])
+            else if (cachedEntity == null || cachedEntity.Entity != Context.entities[0])
             {
-                if (Context.entities[0] is AIEntity)
-                    cachedEntity = (AIEntity)Context.entities[0];
+                if (Context.entities[0] is ICommandable)
+                    cachedEntity = (ICommandable)Context.entities[0];
                 else
                     cachedEntity = null;
             }
@@ -59,6 +56,7 @@ namespace RTS.Entity.AI
     {
         public CommandData data;
         public int entity;
+        public bool clearQueueOnEnqeue;
 
         public bool Equals(DistributedCommand other)
         {

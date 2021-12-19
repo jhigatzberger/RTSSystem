@@ -7,17 +7,23 @@ namespace RTS.Entity.AI
     [CreateAssetMenu(fileName = "MoveCommand", menuName = "RTS/AI/Commands/MoveCommand")]
     public class MoveCommand : Command
     {
-        public override bool Applicable(AIEntity entity)
+        public State state;
+        public override bool Applicable(ICommandable entity)
         {
             return InputManager.worldPointerPosition.HasValue;
         }
-
-        public override CommandData Build(AIEntity entity)
+        public override void Execute(ICommandable commandable, CommandData command)
+        {
+            BaseEntity entity = commandable.Entity;
+            entity.GetComponent<IStateMachine>().ChangeState(state);
+            entity.GetComponent<IMovable>().Enqueue(command.position);
+        }
+        public override CommandData Build(ICommandable entity)
         {
             return new CommandData
             {
                 commandID = id,
-                position = InputManager.worldPointerPosition.Value,
+                position = Formation.Context.current.GetPosition(InputManager.worldPointerPosition.Value, entity.Entity),
                 targetID = -1,
             };
         }

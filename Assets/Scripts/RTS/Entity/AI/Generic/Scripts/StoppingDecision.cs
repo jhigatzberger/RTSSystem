@@ -9,10 +9,10 @@ namespace RTS.Entity.AI
     public class StoppingDecision : Decision
     {
         public float stoppingDistance = 0.1f; 
-        public override bool Decide(AIEntity entity)
+        public override bool Decide(IStateMachine stateMachine)
         {
-            NavMeshAgent agent = entity.gameObject.GetComponent<NavMeshAgent>();
-            if (agent.remainingDistance <= stoppingDistance)
+            IMovable movable = stateMachine.Entity.GetComponent<IMovable>();            
+            if (!movable.Destination.HasValue || Vector3.Distance(movable.Destination.Value, movable.Entity.transform.position) <= stoppingDistance)
                 return true;
             return false;
         }

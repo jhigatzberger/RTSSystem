@@ -8,11 +8,11 @@ namespace RTS.Entity.AI
     [CreateAssetMenu(fileName = "IdleAction", menuName = "RTS/AI/Actions/IdleAction")]
     public class IdleAction : Action
     {
-        public override void Enter(AIEntity entity)
+        public override void Enter(IStateMachine stateMachine)
         {            
         }
 
-        public override void Exit(AIEntity entity)
+        public override void Exit(IStateMachine stateMachine)
         {
         }
     }

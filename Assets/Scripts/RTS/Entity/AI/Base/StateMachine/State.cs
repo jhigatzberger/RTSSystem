@@ -7,17 +7,17 @@ namespace RTS.Entity.AI
     {
         public Action[] actions;
         public Transition[] transitions;
-        public void Enter(AIEntity entity)
+        public void Enter(IStateMachine entity)
         {
             foreach (Action action in actions)
                 action.Enter(entity);
         }
-        public void Exit(AIEntity entity)
+        public void Exit(IStateMachine entity)
         {
             foreach (Action action in actions)
                 action.Exit(entity);
         }
-        public void CheckTransitions(AIEntity entity)
+        public void CheckTransitions(IStateMachine entity)
         {
             foreach(Transition transition in transitions)
             {

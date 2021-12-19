@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace RTS.Entity.AI
 {
-    public class AIManager : MonoBehaviour
+    public class StateMachineManager : MonoBehaviour
     {
-        public static HashSet<AIEntity> entities = new HashSet<AIEntity>();
+        public static HashSet<StatedEntity> machines = new HashSet<StatedEntity>();
 
         [SerializeField] private float ticksPerSecond = 2;
 
-        private static AIManager instance;
+        private static StateMachineManager instance;
         private void Awake()
         {
             if(instance != null)
@@ -26,16 +26,14 @@ namespace RTS.Entity.AI
         {
             timeSinceLastTick += Time.deltaTime;
             if (timeSinceLastTick > 1 / ticksPerSecond)
-                Tick();
+                UpdateStates();
         }
 
-        private void Tick() // make this server sided
+        private void UpdateStates()
         {
             timeSinceLastTick = 0;
-            foreach(AIEntity entity in entities)
-            {
-                entity.AIUpdate(); // pass the server time
-            }
+            foreach(StatedEntity machine in machines)
+                machine.UpdateState();
         }
     }
 

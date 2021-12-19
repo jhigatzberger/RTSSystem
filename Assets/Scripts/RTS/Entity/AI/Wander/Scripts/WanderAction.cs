@@ -9,8 +9,9 @@ namespace RTS.Entity.AI
     public class WanderAction : Action
     {
         public float maxDistance;
-        public override void Enter(AIEntity entity)
+        public override void Enter(IStateMachine stateMachine)
         {
+            /*
             entity.GetComponent<Animator>().SetFloat("Velocity", 1);
             NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
 
@@ -18,14 +19,14 @@ namespace RTS.Entity.AI
             NavMeshHit hit;
             NavMesh.SamplePosition(randomPos, out hit, maxDistance, NavMesh.AllAreas);
 
-            agent.SetDestination(hit.position);
+            agent.SetDestination(hit.position);*/
         }
 
-        public override void Exit(AIEntity entity)
+        public override void Exit(IStateMachine stateMachine)
         {
-            entity.GetComponent<Animator>().SetFloat("Velocity", 0);
+            /*entity.GetComponent<Animator>().SetFloat("Velocity", 0);
             NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
-            agent.SetDestination(entity.transform.position);
+            agent.SetDestination(entity.transform.position);*/
         }
     }
 }

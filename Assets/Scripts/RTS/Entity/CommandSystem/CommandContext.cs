@@ -3,19 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RTS.Entity.AI
+namespace RTS.Entity
 {
     public static class CommandContext
     {
         public static event Action<DistributedCommand> OnCommandEnqueue;
-        public static event Action<DistributedCommand> OnCommandExecute;
+        public static event Action<DistributedCommand> OnCommandDistribute;
         public static void EnqueueCommand(DistributedCommand command)
         {
             OnCommandEnqueue?.Invoke(command);
         }
-        public static void ExecuteCommand(DistributedCommand command)
+        public static void DistributeCommand(DistributedCommand command)
         {
-            OnCommandExecute?.Invoke(command);
+            OnCommandDistribute?.Invoke(command);
         }
     }
 
