@@ -15,7 +15,7 @@ namespace RTS.Entity
         public void Enqueue(Vector3 destination)
         {
             destinations.Enqueue(destination);
-            if (!currentDestination.HasValue)
+            if (!Destination.HasValue)
                 Move();
         }
         public Vector3? Destination { get; set; }
