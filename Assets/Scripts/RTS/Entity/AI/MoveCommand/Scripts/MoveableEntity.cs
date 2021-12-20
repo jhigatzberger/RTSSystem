@@ -12,7 +12,6 @@ namespace RTS.Entity
         public BaseEntity Entity => _entity;
         private Queue<Vector3> destinations = new Queue<Vector3>();
         private NavMeshAgent agent;
-        private Vector3? currentDestination;
         public void Enqueue(Vector3 destination)
         {
             destinations.Enqueue(destination);
@@ -47,7 +46,7 @@ namespace RTS.Entity
         {
             Entity.GetComponent<Animator>().SetFloat("Velocity", 0);
             agent.isStopped = true;
-            currentDestination = null;
+            Destination = null;
             agent.SetDestination(transform.position);
         }
     }
