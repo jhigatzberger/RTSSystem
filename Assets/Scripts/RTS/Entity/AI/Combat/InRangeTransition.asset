@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
-  m_Name: MoveToCommandTransitions
+  m_Name: InRangeTransition
   m_EditorClassIdentifier: 
-  decision: {fileID: 11400000, guid: 1a8f3e2a30978da43b4dae3ae9757ab8, type: 2}
-  trueState: {fileID: 0}
-  falseState: {fileID: 11400000, guid: bde7e5b7404f6f44baa50db2bd1a9396, type: 2}
+  decision: {fileID: 11400000, guid: 4e279f00477d9fa4eae5d2e1f8b8397c, type: 2}
+  trueState: {fileID: 11400000, guid: e7d7f6d094814f24a9f803627f820e9e, type: 2}
+  falseState: {fileID: 11400000, guid: 97390190838547f479a6682df8680520, type: 2}

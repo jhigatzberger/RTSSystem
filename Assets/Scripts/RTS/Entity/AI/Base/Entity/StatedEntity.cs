@@ -27,19 +27,19 @@ namespace RTS.Entity.AI
                 currentState.Enter(this);
             else
                 OnStateChainEnd.Invoke();
-            TimeStamp = Time.time;
+            TimeStamp = LockStep.time;
         }
 
         private void Awake()
         {
-            StateMachineManager.machines.Add(this);
+            LockStep.OnStep += UpdateState;
             _entity = GetComponent<BaseEntity>();
             _entity.OnExitScene += CleanUp;
         }
 
         public void CleanUp()
         {
-            StateMachineManager.machines.Remove(this);
+            LockStep.OnStep -= UpdateState;
             _entity.OnExitScene -= CleanUp;
         }
 
@@ -54,6 +54,12 @@ namespace RTS.Entity.AI
                 currentState.CheckTransitions(this);
             else if (defaultState != null)
                 ChangeState(defaultState);
+        }
+
+        public void OnExitScene()
+        {
+            CleanUp();
+            enabled = false;
         }
     }
 

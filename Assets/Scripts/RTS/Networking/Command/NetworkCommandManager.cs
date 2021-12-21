@@ -35,7 +35,7 @@ namespace RTS.Entity
             pendingCommands.Add(command);
         }
 
-        private void DistributePending(float time)
+        private void DistributePending()
         {
             foreach (DistributedCommand command in pendingCommands)
                 DistributedCommands.Add(command);

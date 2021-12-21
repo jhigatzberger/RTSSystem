@@ -15,7 +15,6 @@ namespace RTS.Entity.AI.Formation
         }
         public override Vector3 GetPosition(Vector3 position, BaseEntity entity)
         {
-            Debug.Log("GetPosition");
             int count = Selection.Context.entities.Count;
             int index = entity.SelectionPosition;
 

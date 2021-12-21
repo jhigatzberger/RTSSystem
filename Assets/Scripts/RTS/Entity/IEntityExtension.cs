@@ -7,5 +7,6 @@ namespace RTS.Entity
     public interface IEntityExtension
     {
         public BaseEntity Entity { get; }
+        public void OnExitScene();
     }
 }

@@ -15,12 +15,6 @@ namespace RTS.Entity.AI
         public BaseEntity Entity => this;
         public override int Priority => 10;
 
-        protected override void OnExitSceneImpl()
-        {
-            base.OnExitSceneImpl();
-            ClearCommands();
-        }
-
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
@@ -60,6 +54,12 @@ namespace RTS.Entity.AI
             Current = null;
             ExecuteFirstCommand();
         }
+
+        public void OnExitScene()
+        {
+            ClearCommands();
+        }
+
         public Command FirstApplicableCommand
         {
             get

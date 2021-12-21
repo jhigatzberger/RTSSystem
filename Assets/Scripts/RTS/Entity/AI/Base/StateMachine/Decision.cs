@@ -6,6 +6,6 @@ namespace RTS.Entity.AI
 {
     public abstract class Decision : ScriptableObject
     {
-        public abstract bool Decide(IStateMachine entity);
+        public abstract bool Decide(IStateMachine stateMachine);
     }
 }

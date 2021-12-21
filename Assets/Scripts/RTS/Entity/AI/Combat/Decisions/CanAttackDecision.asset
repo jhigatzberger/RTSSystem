@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
-  m_Name: MoveToCommandState
+  m_Script: {fileID: 11500000, guid: d5c481a94a6f49445be027f028f275d5, type: 3}
+  m_Name: CanAttackDecision
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: e096a77a919ade244bb2175491ccf252, type: 2}
-  transitions:
-  - {fileID: 11400000, guid: 6f56b5af3efa2ea4987199f4542739e3, type: 2}

@@ -15,6 +15,11 @@ namespace RTS.Entity.Selection
 
         public BaseEntity Entity => controller;
 
+        public void OnExitScene()
+        {
+            enabled = false;
+        }
+
         private void Awake()
         {
             if (_renderer == null)

@@ -1,19 +1,19 @@
-using RTS.Entity.Selection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace RTS.Entity.AI
 {
-    [CreateAssetMenu(fileName = "MoveAction", menuName = "RTS/AI/Actions/MoveAction")]
-    public class MoveAction : Action
+    [CreateAssetMenu(fileName = "ChaseAction", menuName = "RTS/AI/Actions/ChaseAction")]
+    public class ChaseAction : Action
     {
         public override void Enter(IStateMachine stateMachine)
         {
             BaseEntity entity = stateMachine.Entity;
             IMovable movable = entity.GetComponent<IMovable>();
-            movable.Move();
+            movable.Clear();
+            IAttacker attacker = entity.GetComponent<IAttacker>();
+            movable.Enqueue(attacker.Target.Entity);
         }
 
         public override void Exit(IStateMachine stateMachine)
@@ -21,7 +21,6 @@ namespace RTS.Entity.AI
             BaseEntity entity = stateMachine.Entity;
             IMovable movable = entity.GetComponent<IMovable>();
             movable.Stop();
-            entity.GetComponent<Animator>().SetFloat("Velocity", 0);
         }
     }
 }

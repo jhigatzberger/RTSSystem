@@ -7,7 +7,21 @@ namespace RTS.Entity
 {
     public class CommandInput : MonoBehaviour
     {
-        public Command contextCommand;
+        public Command _contextCommand;
+        public Command ContextCommand
+        {
+            get => _contextCommand;
+            set
+            {
+                if(value != _contextCommand)
+                {
+                    _contextCommand = value;
+                    OnContextCommand?.Invoke(value == null ? -1 : value.id);
+                }
+
+            }
+        }
+        public static event Action<int> OnContextCommand;
         private ICommandable cachedEntity;
         public bool shouldClearQueueOnInput = true;
         public void SetClearQueueOnInput(bool shouldClearQueueOnInput)
@@ -16,14 +30,14 @@ namespace RTS.Entity
         }
         public void OnInput()
         {
-            if (contextCommand == null)
+            if (ContextCommand == null)
                 return;
             foreach(ICommandable commandable in Context.entities)
             {
                 CommandContext.EnqueueCommand(
                     new DistributedCommand
                     {
-                        data = contextCommand.Build(commandable),
+                        data = ContextCommand.Build(commandable),
                         clearQueueOnEnqeue = shouldClearQueueOnInput,
                         entity = commandable.Entity.id
                     }
@@ -34,9 +48,9 @@ namespace RTS.Entity
         {
             CacheEntity();
             if (cachedEntity != null)
-                contextCommand = cachedEntity.FirstApplicableCommand;
+                ContextCommand = cachedEntity.FirstApplicableCommand;
             else
-                contextCommand = null;
+                ContextCommand = null;
         }
 
         private void CacheEntity()

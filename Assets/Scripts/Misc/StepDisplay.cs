@@ -12,9 +12,8 @@ public class StepDisplay : MonoBehaviour
         LockStep.OnStep += DisplayStep;
     }
 
-    public void DisplayStep(float step)
+    public void DisplayStep()
     {
-        text.text = step.ToString();
-        print(step);
+        text.text = LockStep.time.ToString();
     }
 }

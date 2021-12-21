@@ -12,7 +12,7 @@ namespace RTS.Entity.AI
         public override bool Decide(IStateMachine stateMachine)
         {
             IMovable movable = stateMachine.Entity.GetComponent<IMovable>();            
-            if (!movable.Destination.HasValue || Vector3.Distance(movable.Destination.Value, movable.Entity.transform.position) <= stoppingDistance)
+            if (movable.Destination == null || Vector3.Distance(movable.Destination.Point, movable.Entity.transform.position) <= stoppingDistance)
                 return true;
             return false;
         }

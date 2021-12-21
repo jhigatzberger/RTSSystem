@@ -47,11 +47,11 @@ namespace RTS.Entity
         }
         private void OnDestroy()
         {
-            OnExitScene();
+            OnExitSceneImpl();
         }
         private void OnDisable()
         {
-            OnExitScene();
+            OnExitSceneImpl();
         }
         public delegate void ExitScene();
         public event ExitScene OnExitScene;
@@ -59,6 +59,9 @@ namespace RTS.Entity
         {
             OnExitScene?.Invoke();
             EntityContext.hovered.Remove(this);
+            Selection.Context.Deselect(this);
+            foreach (IEntityExtension entityExtension in GetComponents<IEntityExtension>())
+                entityExtension.OnExitScene();
         }
     }
 }
