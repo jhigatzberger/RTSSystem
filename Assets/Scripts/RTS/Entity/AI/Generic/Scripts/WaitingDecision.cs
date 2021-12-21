@@ -10,7 +10,7 @@ namespace RTS.Entity.AI
         public float waitTime;
         public override bool Decide(IStateMachine stateMachine)
         {
-            return Time.time - stateMachine.TimeStamp > waitTime;
+            return LockStep.time - stateMachine.TimeStamp > waitTime;
         }
     }
 
