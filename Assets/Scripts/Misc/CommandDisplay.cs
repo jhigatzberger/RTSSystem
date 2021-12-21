@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using RTS.Entity;
+using RTSEngine.Entity;
 
 public class CommandDisplay : MonoBehaviour
 {
