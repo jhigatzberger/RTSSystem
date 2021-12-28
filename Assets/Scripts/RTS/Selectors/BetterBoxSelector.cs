@@ -34,16 +34,16 @@ public class BetterBoxSelector : Selector
     {
         if (Applicable)
         {
-            Context.Deselect();
+            RTSEngine.Entity.Selection.Context.Deselect();
             UpdateSelectionToBounds(GetViewportBounds(startPos.Value, Input.mousePosition));
         }
     }
     private void UpdateSelectionToBounds(Bounds selectionBounds)
     {
-        foreach (SelectableEntity selectableObject in Context.onScreen)
+        foreach (SelectableEntity selectableObject in RTSEngine.Entity.Selection.Context.onScreen)
         {
-            if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && Context.priority <= selectableObject.Priority)
-                Context.Select(selectableObject.controller);
+            if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.transform.position)) && RTSEngine.Entity.Selection.Context.Priority <= selectableObject.Priority)
+                RTSEngine.Entity.Selection.Context.Select(selectableObject.controller);
         }
     }
     private void OnGUI()

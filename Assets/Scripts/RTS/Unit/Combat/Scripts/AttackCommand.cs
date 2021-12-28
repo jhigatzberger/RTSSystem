@@ -1,16 +1,17 @@
 using RTSEngine.Entity;
 using RTSEngine.Entity.AI;
+using RTSEngine.Entity.Combat;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackCommand", menuName = "RTS /AI/Commands/AttackCommand")]
+[CreateAssetMenu(fileName = "AttackCommand", menuName = "RTS/AI/Commands/AttackCommand")]
 public class AttackCommand : Command
 {
     public State state;
     public override bool Applicable(ICommandable entity)
     {
         BaseEntity hovered = EntityContext.FirstOrNullHovered;
-        if(hovered != null && hovered.TryGetComponent(out IAttackable attackable))
-            if (entity.Entity.GetComponent<IAttacker>().Team != attackable.Team)
+        if(hovered != null && hovered.TryGetComponent(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
+            if (RTSEngine.Team.Context.AreEnenmies(entity.Entity.team, hovered.team))
                 return true;
         return false;
     }

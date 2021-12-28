@@ -11,7 +11,7 @@ public class SameNameDoubleClickSelector : Selector
     protected override bool Applicable {
         get
         {
-            return Time.time-lastUpTime < maxTimeBetweenClicks && Context.entities.Count == 1;
+            return Time.time - lastUpTime < maxTimeBetweenClicks && RTSEngine.Entity.Selection.Context.entities.Count == 1;
         }
     }
 
@@ -27,7 +27,7 @@ public class SameNameDoubleClickSelector : Selector
     {
         if (Applicable)
         {
-            string name = Context.entities[0].name;
+            string name = RTSEngine.Entity.Selection.Context.entities[0].name;
             Context.Select(Context.onScreen.Where(s => s.controller.name == name).Select(s => s.controller)); // BROKEN?
         }
         lastUpTime = Time.time;

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(BaseEntity))]
+[RequireComponent(typeof(ICommandable))]
 public class MoveableEntity : MonoBehaviour, IMovable
 {
     BaseEntity _entity;
@@ -83,10 +84,11 @@ public class MoveableEntity : MonoBehaviour, IMovable
         Stop();
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         _entity = GetComponent<BaseEntity>();
         agent = GetComponent<NavMeshAgent>();
+        Entity.OnClear += Clear;
     }
 
     public void Stop()
@@ -97,6 +99,8 @@ public class MoveableEntity : MonoBehaviour, IMovable
     public void OnExitScene()
     {
         Clear();
+        GetComponent<NavMeshAgent>().enabled = false;
+        Entity.OnClear -= Clear;
         enabled = false;
     }
 }

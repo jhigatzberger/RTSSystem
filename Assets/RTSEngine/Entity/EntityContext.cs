@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace RTSEngine.Entity
 {
@@ -8,11 +9,14 @@ namespace RTSEngine.Entity
     {
         #region Registering
         public static Dictionary<int, BaseEntity> entities = new Dictionary<int, BaseEntity>();
-        private static int id = 0;
-        public static int Register(BaseEntity entity) // make the id deterministic
+        public static event Action<int> OnRequireEntityID;
+        public static void RequireEntityID(int spawnID)
         {
-            entities.Add(++id, entity);
-            return id;
+            OnRequireEntityID?.Invoke(spawnID);
+        }
+        public static void Register(BaseEntity entity)
+        {
+            entities.Add(entity.id, entity);
         }
         public static void Unregister(BaseEntity entity)
         {

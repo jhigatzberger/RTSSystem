@@ -22,9 +22,21 @@ namespace RTSEngine.Entity.AI
             foreach(Transition transition in transitions)
             {
                 if (transition.decision.Decide(entity))
-                    entity.ChangeState(transition.trueState);
+                {
+                    if (transition.trueState != this)
+                    {
+                        entity.ChangeState(transition.trueState);
+                        return;
+                    }
+                }
                 else
-                    entity.ChangeState(transition.falseState);
+                {
+                    if (transition.falseState != this)
+                    {
+                        entity.ChangeState(transition.falseState);
+                        return;
+                    }
+                }
             }
         }
     }

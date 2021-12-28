@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using RTSEngine.Entity;
 using RTSEngine.Entity.AI;
 
@@ -11,7 +9,7 @@ using RTSEngine.Entity.AI;
 public class Unit : BaseEntity, ICommandable
 {
     public BaseEntity Entity => this;
-    public override int Priority => 10;
+    public override int Priority => team == RTSEngine.Team.Context.playerTeam ? 10 : 0;
 
     private void OnDrawGizmos()
     {
@@ -24,8 +22,8 @@ public class Unit : BaseEntity, ICommandable
     public Command[] commandCompetence;
     Queue<CommandData> commandQueue = new Queue<CommandData>();
     public CommandData? Current { get; set; }
-    [SerializeField] private UnityEvent _onCommandClear;
-    public UnityEvent OnCommandClear => _onCommandClear;
+    public event System.Action OnCommandClear;
+
     public void Enqueue(CommandData command)
     {
         if (!commandCompetence.Contains(CommandManager.Commands[command.commandID]))
@@ -43,7 +41,7 @@ public class Unit : BaseEntity, ICommandable
     }
     public void ClearCommands()
     {
-        OnCommandClear.Invoke();
+        OnCommandClear?.Invoke();
         Current = null;
         commandQueue.Clear();
     }
@@ -56,6 +54,7 @@ public class Unit : BaseEntity, ICommandable
     public void OnExitScene()
     {
         ClearCommands();
+        GetComponent<Collider>().enabled = false;
     }
 
     public Command FirstApplicableCommand

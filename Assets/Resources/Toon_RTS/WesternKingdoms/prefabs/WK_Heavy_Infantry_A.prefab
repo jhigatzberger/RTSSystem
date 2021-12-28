@@ -1106,7 +1106,8 @@ GameObject:
   - component: {fileID: 667902209289199887}
   - component: {fileID: 6523893705496880231}
   - component: {fileID: 4290570926667766817}
-  m_Layer: 0
+  - component: {fileID: 1485934768}
+  m_Layer: 10
   m_Name: WK_Heavy_Infantry_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,36 +1185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  _selectionPosition: -1
+  team: 0
   commandCompetence:
+  - {fileID: 11400000, guid: 62ac770852e3e2d4db7c8c70d072c429, type: 2}
   - {fileID: 11400000, guid: 63561030969b49848977984ea3d0b740, type: 2}
-  _onCommandClear:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 667902209289199887}
-        m_TargetAssemblyTypeName: RTS.Entity.AI.StatedEntity, Assembly-CSharp
-        m_MethodName: ResetState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2654579186011308614}
-        m_TargetAssemblyTypeName: RTS.Entity.MoveableEntity, Assembly-CSharp
-        m_MethodName: Clear
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1511759611420002866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,13 +1227,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fa7d747383c2f478af973c40258eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 0}
+  currentState: {fileID: 0}
+  defaultState: {fileID: 11400000, guid: fcf90ec97d72c6e4cb2c122bbd718f76, type: 2}
   _onStateChainEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2654579186011308614}
-        m_TargetAssemblyTypeName: RTS.Entity.MoveableEntity, Assembly-CSharp
-        m_MethodName: Stop
+      - m_Target: {fileID: 5591449636820015146}
+        m_TargetAssemblyTypeName: Unit, Assembly-CSharp
+        m_MethodName: Finish
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1303,6 +1279,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5294925, z: 1}
   m_Center: {x: 0, y: 0.71734244, z: 0}
+--- !u!114 &1485934768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137340246058539085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7ab86bbb2d4d743a044b757d7eadfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 66376d8e408e600488d90a6443ae9e26, type: 2}
+  _health: 0
 --- !u!1 &1137340246058539087
 GameObject:
   m_ObjectHideFlags: 0

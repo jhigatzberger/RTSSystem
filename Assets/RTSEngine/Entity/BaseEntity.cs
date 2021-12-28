@@ -4,13 +4,14 @@ using System;
 
 namespace RTSEngine.Entity
 {   
-    public abstract class BaseEntity : MonoBehaviour
+    public class BaseEntity : MonoBehaviour
     {
         public int id;
-        public abstract int Priority { get; }
+        public int team;
+        public virtual int Priority { get; }
         public event Action<bool> OnSelectedUpdate;
 
-        public int _selectionPosition = -1;
+        private int _selectionPosition = -1;
         public int SelectionPosition
         {
             get
@@ -33,17 +34,15 @@ namespace RTSEngine.Entity
                 return SelectionPosition>=0;
             }
         }
-        private void Start()
-        {
-            id = EntityContext.Register(this);
-        }
         private void OnMouseEnter()
         {
-            EntityContext.hovered.Add(this);
+            if(enabled)
+                EntityContext.hovered.Add(this);
         }
         private void OnMouseExit()
         {
-            EntityContext.hovered.Remove(this);
+            if (enabled)
+                EntityContext.hovered.Remove(this);
         }
         private void OnDestroy()
         {
@@ -53,15 +52,18 @@ namespace RTSEngine.Entity
         {
             OnExitSceneImpl();
         }
-        public delegate void ExitScene();
-        public event ExitScene OnExitScene;
+        public event Action OnClear;
+        public virtual void Clear()
+        {
+            OnClear?.Invoke();
+        }
         protected virtual void OnExitSceneImpl()
         {
-            OnExitScene?.Invoke();
-            EntityContext.hovered.Remove(this);
-            Selection.Context.Deselect(this);
             foreach (IEntityExtension entityExtension in GetComponents<IEntityExtension>())
                 entityExtension.OnExitScene();
+            EntityContext.hovered.Remove(this);
+            Selection.Context.Deselect(this);
+            EntityContext.Unregister(this);
         }
     }
 }

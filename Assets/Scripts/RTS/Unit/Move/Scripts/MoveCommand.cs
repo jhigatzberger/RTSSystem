@@ -24,7 +24,7 @@ public class MoveCommand : Command
         return new CommandData
         {
             commandID = id,
-            position = Context.current.GetPosition(InputManager.worldPointerPosition.Value, entity.Entity),
+            position = RTSEngine.Entity.AI.Formation.Context.current.GetPosition(InputManager.worldPointerPosition.Value, entity.Entity),
             targetID = -1,
         };
     }

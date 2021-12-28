@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BaseEntity))]
 public class StatedEntity : MonoBehaviour, IStateMachine
 {
-    private State currentState;
+    [SerializeField] private State currentState;
     [SerializeField] private State defaultState;
     public float TimeStamp { get; set; }
     private BaseEntity _entity;
@@ -16,7 +16,7 @@ public class StatedEntity : MonoBehaviour, IStateMachine
     [SerializeField] private UnityEvent _onStateChainEnd;
     public void ChangeState(State state)
     {
-        if (state == currentState)
+        if (state == currentState || state == null && currentState == defaultState)
             return;
         if (currentState != null)
             currentState.Exit(this);
@@ -28,17 +28,11 @@ public class StatedEntity : MonoBehaviour, IStateMachine
         TimeStamp = LockStep.time;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
-        LockStep.OnStep += UpdateState;
         _entity = GetComponent<BaseEntity>();
-        _entity.OnExitScene += CleanUp;
-    }
-
-    public void CleanUp()
-    {
-        LockStep.OnStep -= UpdateState;
-        _entity.OnExitScene -= CleanUp;
+        LockStep.OnStep += UpdateState;
+        _entity.OnClear += ResetState;
     }
 
     public void ResetState()
@@ -56,7 +50,11 @@ public class StatedEntity : MonoBehaviour, IStateMachine
 
     public void OnExitScene()
     {
-        CleanUp();
+        Debug.LogWarning(Entity.id + " died");
+        Entity.OnClear -= ResetState;
+        LockStep.OnStep -= UpdateState;
+        if(currentState != null)
+            currentState.Exit(this);
         enabled = false;
     }
 }

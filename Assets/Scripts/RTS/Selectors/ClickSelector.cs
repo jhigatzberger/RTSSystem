@@ -30,7 +30,7 @@ public class ClickSelector : Selector
             foreach (BaseEntity entity in EntityContext.hovered)
                 if (_entity == null || _entity.Priority < entity.Priority)
                     _entity = entity;
-            Context.Select(_entity);
+            RTSEngine.Entity.Selection.Context.Select(_entity);
         }
     }
 }

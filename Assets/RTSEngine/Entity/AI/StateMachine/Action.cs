@@ -6,7 +6,7 @@ namespace RTSEngine.Entity.AI
 {   
     public abstract class Action : ScriptableObject
     {
-        public abstract void Enter(IStateMachine entity);
-        public abstract void Exit(IStateMachine entity);
+        public abstract void Enter(IStateMachine stateMachine);
+        public abstract void Exit(IStateMachine stateMachine);
     }
 }

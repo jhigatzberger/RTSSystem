@@ -1,7 +1,6 @@
 using RTSEngine.Entity;
 using RTSEngine.Entity.AI;
-using System.Collections;
-using System.Collections.Generic;
+using RTSEngine.Entity.Combat;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ChaseAction", menuName = "RTS/AI/Actions/ChaseAction")]
