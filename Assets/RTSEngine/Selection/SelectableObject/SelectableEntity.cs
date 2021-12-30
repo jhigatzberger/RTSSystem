@@ -8,16 +8,15 @@ namespace RTSEngine.Entity.Selection
 {
     public class SelectableEntity : MonoBehaviour, IEntityExtension
     {
-        public BaseEntity controller;
         public Renderer _renderer;
         public bool Visible => _renderer.isVisible;
-        public int Priority => controller.Priority;
-        public BaseEntity Entity => controller;
+        public int Priority => Entity.Priority;
+        public BaseEntity Entity { get; set; }
         public void OnExitScene()
         {
             enabled = false;
         }
-        private void Awake()
+        private void Start()
         {
             if (_renderer == null)
                 _renderer = GetComponent<Renderer>();

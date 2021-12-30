@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: AttackCommand
   m_EditorClassIdentifier: 
   id: 1
+  icon: {fileID: 21300000, guid: 22e28b19643849e4ba22f88146914faf, type: 3}
+  dynamicallyBuildable: 1
+  requireContext: 1
   state: {fileID: 11400000, guid: 97390190838547f479a6682df8680520, type: 2}

@@ -7,9 +7,19 @@ namespace RTSEngine.Entity
     public class BaseEntity : MonoBehaviour
     {
         public int id;
-        public int team;
+        public int _team;
+        public int Team
+        {
+            get => _team;
+            set
+            {
+                if(value != _team)
+                    _team = value;
+            }
+        }
         public virtual int Priority { get; }
         public event Action<bool> OnSelectedUpdate;
+        private IEntityExtension[] extensions;
 
         private int _selectionPosition = -1;
         public int SelectionPosition
@@ -57,9 +67,17 @@ namespace RTSEngine.Entity
         {
             OnClear?.Invoke();
         }
+
+        private void Awake()
+        {
+            extensions = GetComponents<IEntityExtension>();
+            foreach (IEntityExtension entityExtension in extensions)
+                entityExtension.Entity = this;
+        }
+
         protected virtual void OnExitSceneImpl()
         {
-            foreach (IEntityExtension entityExtension in GetComponents<IEntityExtension>())
+            foreach (IEntityExtension entityExtension in extensions)
                 entityExtension.OnExitScene();
             EntityContext.hovered.Remove(this);
             Selection.Context.Deselect(this);

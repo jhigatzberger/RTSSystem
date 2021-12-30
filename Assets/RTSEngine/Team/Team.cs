@@ -9,6 +9,7 @@ namespace RTSEngine.Team
     {
         public int id;
         public int side;
+        public int layer;
         public Color color;
         public LayerMask enemies;
     }

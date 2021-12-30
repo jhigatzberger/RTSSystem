@@ -11,7 +11,7 @@ namespace RTSEngine.Team
         {
             if (!IsOwner)
                 return;
-            Context.playerTeam = (int)NetworkManager.Singleton.LocalClientId;
+            Context.PlayerTeam = (int)NetworkManager.Singleton.LocalClientId;
         }
     }
 }

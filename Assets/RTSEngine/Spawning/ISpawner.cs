@@ -7,7 +7,7 @@ namespace RTSEngine.Entity
     public interface ISpawner : IEntityExtension
     {
         public void AuthorizeID(int id);
-        public void Spawn(GameObject gameObject);
+        public void Enqueue(GameObject gameObject, float time);
     }
 }
 

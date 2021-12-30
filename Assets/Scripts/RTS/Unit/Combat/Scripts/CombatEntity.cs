@@ -47,6 +47,8 @@ public class CombatEntity : MonoBehaviour, IAttackable, IAttacker
         {
             Target.Health -= Damage;
         }
+        else
+            Target = null;
         attackCoroutine = null;
     }
     #endregion
@@ -114,13 +116,11 @@ public class CombatEntity : MonoBehaviour, IAttackable, IAttacker
         anim.SetTrigger("Death");
     }
     #endregion
-    private BaseEntity _entity;
-    public BaseEntity Entity => _entity;
+    public BaseEntity Entity { get; set; }
     private Animator anim;
     private void OnEnable()
     {
         _health = stats.Health;
-        _entity = GetComponent<BaseEntity>();
         anim = GetComponent<Animator>();
         Entity.OnClear += ResetTarget;
     }

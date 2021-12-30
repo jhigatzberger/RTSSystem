@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace RTSEngine
 {
@@ -35,9 +36,12 @@ namespace RTSEngine
         public float triggerValue;
         public UnityEvent onInput;
         public UnityEvent onInputStop;
+        public bool triggerOverUI;
+        
         public void Update()
         {
-            if (!_active && Input.GetAxisRaw(inputAxis) == triggerValue)
+            
+            if (!_active && Input.GetAxisRaw(inputAxis) == triggerValue && (triggerOverUI || !triggerOverUI && !EventSystem.current.IsPointerOverGameObject()))
             {
                 onInput.Invoke();
                 _active = true;

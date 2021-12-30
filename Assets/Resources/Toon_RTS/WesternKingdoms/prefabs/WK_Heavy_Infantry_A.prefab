@@ -1186,6 +1186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   team: 0
+  _priority: 10
   commandCompetence:
   - {fileID: 11400000, guid: 62ac770852e3e2d4db7c8c70d072c429, type: 2}
   - {fileID: 11400000, guid: 63561030969b49848977984ea3d0b740, type: 2}

@@ -9,11 +9,21 @@ namespace RTSEngine.Entity.Selection
     {
         [SerializeField] BaseEntity controller;
         Renderer _renderer;
-        void Awake()
+        void Start()
         {
             _renderer = GetComponent<Renderer>();
+
+            if(!Team.Context.TeamInitialized)
+                Team.Context.OnInitializeTeam += Context_OnInitializeTeam;
+            else
+                _renderer.material.color = controller.Team == Team.Context.PlayerTeam ? Color.green : Color.white;
             controller.OnSelectedUpdate += UpdateVisuals;
-            _renderer.material.color = controller.team == Team.Context.playerTeam ? Color.green : Color.white;
+        }
+
+        private void Context_OnInitializeTeam(int obj)
+        {
+            _renderer.material.color = controller.Team == Team.Context.PlayerTeam ? Color.green : Color.white;
+            Team.Context.OnInitializeTeam -= Context_OnInitializeTeam;
         }
 
         public void UpdateVisuals(bool selected)

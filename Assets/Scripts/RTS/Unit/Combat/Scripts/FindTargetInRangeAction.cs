@@ -12,7 +12,7 @@ public class FindTargetInRangeAction : Action
     {
         BaseEntity entity = stateMachine.Entity;
         IAttacker attacker = entity.GetComponent<IAttacker>();
-        Collider[] potentialTargets = Physics.OverlapSphere(entity.transform.position, attacker.VisionRange, Context.teams[entity.team].enemies);
+        Collider[] potentialTargets = Physics.OverlapSphere(entity.transform.position, attacker.VisionRange, Context.teams[entity.Team].enemies);
         if (potentialTargets.Length != 0)
         {
             potentialTargets.OrderBy(c => (entity.transform.position - c.transform.position).sqrMagnitude);

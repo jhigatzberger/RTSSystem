@@ -11,7 +11,7 @@ public class AttackCommand : Command
     {
         BaseEntity hovered = EntityContext.FirstOrNullHovered;
         if(hovered != null && hovered.TryGetComponent(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
-            if (RTSEngine.Team.Context.AreEnenmies(entity.Entity.team, hovered.team))
+            if (RTSEngine.Team.Context.AreEnenmies(entity.Entity.Team, hovered.Team))
                 return true;
         return false;
     }

@@ -8,8 +8,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(ICommandable))]
 public class MoveableEntity : MonoBehaviour, IMovable
 {
-    BaseEntity _entity;
-    public BaseEntity Entity => _entity;
+    public BaseEntity Entity { get; set; }
     private Queue<Destination> destinations = new Queue<Destination>();
     private NavMeshAgent agent;
     private Destination _currentDestination;
@@ -86,7 +85,6 @@ public class MoveableEntity : MonoBehaviour, IMovable
 
     private void OnEnable()
     {
-        _entity = GetComponent<BaseEntity>();
         agent = GetComponent<NavMeshAgent>();
         Entity.OnClear += Clear;
     }

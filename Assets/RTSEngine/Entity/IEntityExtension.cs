@@ -6,7 +6,7 @@ namespace RTSEngine.Entity
 {
     public interface IEntityExtension
     {
-        public BaseEntity Entity { get; }
+        public BaseEntity Entity { set;  get; }
         public void OnExitScene();
     }
 }

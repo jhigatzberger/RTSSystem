@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4039b2abf025a7489ee409fb78920b3, type: 3}
   m_Name: MoveCommand
   m_EditorClassIdentifier: 
+  id: 0
+  icon: {fileID: 21300000, guid: e92d4be15097ec349981436b3095ff31, type: 3}
+  dynamicallyBuildable: 1
+  requireContext: 1
   state: {fileID: 11400000, guid: bde7e5b7404f6f44baa50db2bd1a9396, type: 2}

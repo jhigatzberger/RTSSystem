@@ -6,9 +6,15 @@ namespace RTSEngine.Entity.Selection
 {
     public static class Context
     {
+        public const int NULL_PRIORITY = -1000;
+
+        public static bool locked = false;
+
+
+        public static event Action OnSelectionUpdate;
         public static List<BaseEntity> entities = new List<BaseEntity>();
         public static HashSet<SelectableEntity> onScreen = new HashSet<SelectableEntity>();
-        private static int _priority = 0;
+        private static int _priority = NULL_PRIORITY;
         public static int Priority {
             get
             {
@@ -27,7 +33,7 @@ namespace RTSEngine.Entity.Selection
 
         private static int FindPriority()
         {
-            int priority = 0;
+            int priority = NULL_PRIORITY;
             foreach (BaseEntity entity in entities)
                 if (entity.Priority > priority)
                     priority = entity.Priority;
@@ -37,6 +43,7 @@ namespace RTSEngine.Entity.Selection
         {
             for (int i = 0; i<entities.Count; i++)
                 entities[i].SelectionPosition = i;
+            OnSelectionUpdate?.Invoke();
         }
         private static void HandleDeselect(BaseEntity entity)
         {
@@ -44,26 +51,38 @@ namespace RTSEngine.Entity.Selection
         }
         private static void HandleSelect(BaseEntity entity)
         {
+            if (entity.Priority > Priority)
+                Priority = entity.Priority;
+            entities.Add(entity);
             entity.SelectionPosition = entities.Count - 1;
         }
 
         public static void Select(BaseEntity entity)
         {
+            if (locked)
+                return;
             if (entity == null || entity.Priority < Priority || entity.Selected || !entity.enabled)
                 return;
-
-            if (entity.Priority > Priority)
-                Priority = entity.Priority;
-            entities.Add(entity);
             HandleSelect(entity);
+            OnSelectionUpdate?.Invoke();
+
         }
         public static void Select(IEnumerable<BaseEntity> items)
         {
+            if (locked)
+                return;
             foreach (BaseEntity entity in items)
-                Select(entity);
+            {
+                if (entity == null || entity.Priority < Priority || entity.Selected || !entity.enabled)
+                    continue;
+                HandleSelect(entity);
+            }
+            OnSelectionUpdate?.Invoke();
         }
         public static void Deselect(Func<BaseEntity, bool> p, bool updatePriority = true)
         {
+            if (locked)
+                return;
             foreach (BaseEntity entity in entities.Where(p))
                 HandleDeselect(entity);
             entities.RemoveAll(new Predicate<BaseEntity>(p));
@@ -73,7 +92,7 @@ namespace RTSEngine.Entity.Selection
         }
         public static void Deselect(BaseEntity entity, bool updatePriority = true)
         {
-            if (entity == null || !entity.Selected)
+            if (locked || entity == null || !entity.Selected)
                 return;
 
             HandleDeselect(entity);
@@ -84,7 +103,9 @@ namespace RTSEngine.Entity.Selection
         }
         public static void Deselect()
         {
-            Priority = 0;
+            if (locked)
+                return;
+            Priority = NULL_PRIORITY;
             foreach (BaseEntity entity in entities)
                 HandleDeselect(entity);
             entities.Clear();

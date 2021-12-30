@@ -6,62 +6,70 @@ namespace RTSEngine.Entity
 {
     public class SpawnPoint : MonoBehaviour, ISpawner
     {
+        private Queue<EntitySpawnData> toSpawn = new Queue<EntitySpawnData>();
+        private EntitySpawnData? next;
+        private float timeStamp;
 
+        public BaseEntity Entity { get; set; }
         private int nextID = -1;
-        private GameObject toSpawn;
 
         public void AuthorizeID(int id)
         {
             nextID = id;
         }
 
-        public void Spawn(GameObject gameObject)
+        public void RequestNext()
         {
-            toSpawn = gameObject;
+            if (toSpawn.Count == 0 || next != null || nextID != -1)
+                return;
+            next = toSpawn.Dequeue();
             EntityContext.RequireEntityID(Entity.id);
+            timeStamp = LockStep.time;
         }
 
         private void DoSpawn()
         {
-            if (nextID < 0 || toSpawn == null)
+            if (nextID < 0 || !next.HasValue || next.Value.time > LockStep.time - timeStamp)
                 return;
-            BaseEntity entity = Instantiate(toSpawn, transform.position, transform.rotation).GetComponent<BaseEntity>();
+            BaseEntity entity = Instantiate(next.Value.prefab, transform.position, transform.rotation).GetComponent<BaseEntity>();
             entity.id = nextID;
-            entity.team = Entity.team;
-            toSpawn = null;
+            entity.Team = Entity.Team;
+            entity.gameObject.layer = gameObject.layer;
+            next = null;
             nextID = -1;
             EntityContext.Register(entity);
         }
 
-        public GameObject spawnObject;
-        public CommandData onSpawn;
-        public float spawnDelay;
-        private float lastSpawn = -5;
-
-        private BaseEntity _entity;
-        public BaseEntity Entity => _entity;
-
         private void Start()
         {
-            _entity = GetComponent<BaseEntity>();
             EntityContext.Register(Entity);
-            LockStep.OnStep += StepSpawn;
+            LockStep.OnStep += LockStep_OnStep;
         }
 
-        public void StepSpawn()
+        private void LockStep_OnStep()
         {
+            RequestNext();
             DoSpawn();
-            if(LockStep.time - lastSpawn > spawnDelay)
-            {
-                lastSpawn = LockStep.time;
-                Spawn(spawnObject);
-            }
         }
 
         public void OnExitScene()
         {
-            LockStep.OnStep -= StepSpawn;
+            LockStep.OnStep -= LockStep_OnStep;
+        }
+
+        public void Enqueue(GameObject gameObject, float spawnTime)
+        {
+            toSpawn.Enqueue(new EntitySpawnData
+            {
+                prefab = gameObject,
+                time = spawnTime
+            });
         }
     }
 
+    public struct EntitySpawnData
+    {
+        public float time;
+        public GameObject prefab;
+    }
 }

@@ -26,10 +26,10 @@ namespace RTSEngine.Entity.Selection
             if (shouldClearSelectionOnInput)
                 Context.Deselect();
         }
-        public bool shouldClearSelectionOnInput = true;
+        public static bool shouldClearSelectionOnInput = true;
         public void SetClearSelectionOnInput(bool shouldClearSelectionOnInput)
         {
-            this.shouldClearSelectionOnInput = shouldClearSelectionOnInput;
+            SelectorController.shouldClearSelectionOnInput = shouldClearSelectionOnInput;
         }
     }
 }
