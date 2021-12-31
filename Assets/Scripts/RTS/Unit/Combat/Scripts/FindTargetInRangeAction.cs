@@ -1,6 +1,6 @@
-using RTSEngine.Entity;
-using RTSEngine.Entity.AI;
-using RTSEngine.Entity.Combat;
+using RTSEngine.Core;
+using RTSEngine.Core.AI;
+using RTSEngine.Core.Combat;
 using RTSEngine.Team;
 using System.Linq;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class FindTargetInRangeAction : Action
 {
     public override void Enter(IStateMachine stateMachine)
     {
-        BaseEntity entity = stateMachine.Entity;
+        RTSBehaviour entity = stateMachine.Behaviour;
         IAttacker attacker = entity.GetComponent<IAttacker>();
         Collider[] potentialTargets = Physics.OverlapSphere(entity.transform.position, attacker.VisionRange, Context.teams[entity.Team].enemies);
         if (potentialTargets.Length != 0)

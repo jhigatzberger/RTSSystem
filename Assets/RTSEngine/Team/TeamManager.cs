@@ -7,7 +7,7 @@ namespace RTSEngine.Team
 {
     public class TeamManager : MonoBehaviour
     {
-        public Team[] teams;
+        public TeamProperties[] teams;
         private void Awake()
         {
             Context.teams = teams.OrderBy(t => t.id).ToArray();

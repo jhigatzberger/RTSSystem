@@ -1,5 +1,5 @@
-using RTSEngine.Entity;
-using RTSEngine.Entity.Selection;
+using RTSEngine.Core;
+using RTSEngine.Core.InputHandling;
 using UnityEngine;
 
 public class SelectionContextCommandPanel : MonoBehaviour

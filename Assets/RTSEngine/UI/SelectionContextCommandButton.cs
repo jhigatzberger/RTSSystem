@@ -1,7 +1,5 @@
-using RTSEngine;
-using RTSEngine.Entity;
-using System.Collections;
-using System.Collections.Generic;
+using RTSEngine.Core;
+using RTSEngine.Core.InputHandling;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +29,7 @@ public class SelectionContextCommandButton : MonoBehaviour
         if(command.Applicable(CommandInput.CachedEntity))
         {
             if (!command.requireContext)
-                CommandInput.DistributeCommand(command);
+                CommandInput.DistributeCommandToSelection(command);
             else
                 CommandInput.ForcedCommand = command;
         }

@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class HostServer : MonoBehaviour
 {
-    public GameObject joinButton;
-    public GameObject startButton;
-
-
     public void OnClick()
     {
+        SceneManager.LoadScene(1);
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        //NetworkSceneManager !
+    }
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
         NetworkManager.Singleton.StartHost();
-        gameObject.SetActive(false);
-        joinButton.SetActive(false);
-        startButton.SetActive(true);
     }
 }

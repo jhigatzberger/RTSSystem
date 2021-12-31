@@ -1,6 +1,7 @@
-using RTSEngine.Entity;
-using RTSEngine.Entity.AI;
-using RTSEngine.Entity.Combat;
+using RTSEngine.Core;
+using RTSEngine.Core.AI;
+using RTSEngine.Core.Combat;
+using RTSEngine.Core.Movement;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ChaseAction", menuName = "RTS/AI/Actions/ChaseAction")]
@@ -8,16 +9,16 @@ public class ChaseAction : Action
 {
     public override void Enter(IStateMachine stateMachine)
     {
-        BaseEntity entity = stateMachine.Entity;
+        RTSBehaviour entity = stateMachine.Behaviour;
         IMovable movable = entity.GetComponent<IMovable>();
         movable.Clear();
         IAttacker attacker = entity.GetComponent<IAttacker>();
-        movable.Enqueue(attacker.Target.Entity);
+        movable.Enqueue(attacker.Target.Behaviour);
     }
 
     public override void Exit(IStateMachine stateMachine)
     {
-        BaseEntity entity = stateMachine.Entity;
+        RTSBehaviour entity = stateMachine.Behaviour;
         IMovable movable = entity.GetComponent<IMovable>();
         movable.Stop();
     }

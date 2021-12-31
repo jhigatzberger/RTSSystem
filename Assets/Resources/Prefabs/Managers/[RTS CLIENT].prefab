@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad893dee7a73ae44aeb9381d9b211a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 5325991846260193828, guid: a23371d7e1589c841b79155c9de21869, type: 3}
 --- !u!114 &-1924757439165814627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,4 +100,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faaf2166c39e56545a4c79f3dedd695f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourcesPerSecond: 1
+  resourcesPerSecond: 5

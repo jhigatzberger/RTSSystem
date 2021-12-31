@@ -1,6 +1,7 @@
-using RTSEngine.Entity;
-using RTSEngine.Entity.AI;
-using RTSEngine.Entity.Combat;
+using RTSEngine.Core;
+using RTSEngine.Core.AI;
+using RTSEngine.Core.Combat;
+using RTSEngine.Core.InputHandling;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackCommand", menuName = "RTS/AI/Commands/AttackCommand")]
@@ -9,9 +10,9 @@ public class AttackCommand : Command
     public State state;
     public override bool Applicable(ICommandable entity)
     {
-        BaseEntity hovered = EntityContext.FirstOrNullHovered;
+        RTSBehaviour hovered = EntityContext.FirstOrNullHovered;
         if(hovered != null && hovered.TryGetComponent(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
-            if (RTSEngine.Team.Context.AreEnenmies(entity.Entity.Team, hovered.Team))
+            if (RTSEngine.Team.Context.AreEnenmies(entity.Behaviour.Team, hovered.Team))
                 return true;
         return false;
     }
@@ -28,7 +29,7 @@ public class AttackCommand : Command
 
     public override void Execute(ICommandable commandable, CommandData data)
     {
-        BaseEntity entity = commandable.Entity;
+        RTSBehaviour entity = commandable.Behaviour;
         entity.GetComponent<IAttacker>().Target = EntityContext.entities[data.targetID].GetComponent<IAttackable>();
         entity.GetComponent<IStateMachine>().ChangeState(state);
     }

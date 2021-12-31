@@ -23,8 +23,8 @@ namespace RTSEngine.Team
                 }
             }
         }
-        public static Team PlayerTeamData { get => teams[PlayerTeam]; }
-        public static Team[] teams;
+        public static TeamProperties PlayerTeamData { get => teams[PlayerTeam]; }
+        public static TeamProperties[] teams;
         public static bool AreEnenmies(int team1, int team2)
         {
             return teams[team1].side != teams[team2].side;

@@ -1,4 +1,5 @@
-using RTSEngine.Entity;
+using RTSEngine.Core.InputHandling;
+using RTSEngine.Core.Spawning;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SpawnCommand", menuName = "RTS/AI/Commands/SpawnCommand")]
@@ -23,7 +24,7 @@ public class SpawnCommand : Command
 
     public override void Execute(ICommandable commandable, CommandData data)
     {
-        commandable.Entity.GetComponent<ISpawner>().Enqueue(spawn, time);
+        commandable.Behaviour.GetComponent<ISpawner>().Enqueue(spawn, time);
     }
 
 }

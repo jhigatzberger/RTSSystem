@@ -19,20 +19,15 @@ public class ResourceManager : NetworkBehaviour
         if (!IsOwner)
             return;
         instance = this;
-        if (NetworkManager.IsServer)
-            resources = new List<int>();
-        GameStart.OnStart += GameStart_OnStart;
-    }
-
-    private void GameStart_OnStart()
-    {
         if (IsServer)
         {
+            resources = new List<int>();
             foreach (ulong clientID in NetworkManager.ConnectedClientsIds)
                 resources.Add(0);
             LockStep.OnStep += LockStep_OnStep;
         }
     }
+
 
     public static void Spend(int amount)
     {
