@@ -248,7 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 11400000, guid: 2a2501029e9f8be4d9386307ef926911, type: 2}
-  id: 0
+  registerSelf: 1
+  _id: 0
   _team: 0
 --- !u!65 &4728329790009542480
 BoxCollider:
@@ -881,7 +882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3812674456079280868, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
       propertyPath: m_Name

@@ -18,4 +18,4 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 0.1
-  spawn: {fileID: 8726071526014405772, guid: a363258e59b22cb45a8260e05b1a0de7, type: 3}
+  spawn: {fileID: 11400000, guid: e5723b8e224c78d4e86dfc7b964f8d9e, type: 2}

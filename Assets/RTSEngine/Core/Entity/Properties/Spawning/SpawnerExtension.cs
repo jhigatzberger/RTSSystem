@@ -6,7 +6,7 @@ namespace RTSEngine.Core.Spawning
 {
     public class SpawnerExtension : RTSExtension, ISpawner
     {
-        private Queue<EntitySpawnData> toSpawn = new Queue<EntitySpawnData>();
+        private Queue<EntitySpawnData> spawnQueue = new Queue<EntitySpawnData>();
         private EntitySpawnData? next;
         private float timeStamp;
         private int nextID = -1;
@@ -23,10 +23,10 @@ namespace RTSEngine.Core.Spawning
 
         public void RequestNext()
         {
-            if (toSpawn.Count == 0 || next != null || nextID != -1)
+            if (spawnQueue.Count == 0 || next != null || nextID != -1)
                 return;
-            next = toSpawn.Dequeue();
-            EntityContext.RequireEntityID(Behaviour.id);
+            next = spawnQueue.Dequeue();
+            EntityContext.RequireEntityID(Behaviour.Id);
             timeStamp = LockStep.time;
         }
 
@@ -34,13 +34,9 @@ namespace RTSEngine.Core.Spawning
         {
             if (nextID < 0 || !next.HasValue || next.Value.time > LockStep.time - timeStamp)
                 return;
-            RTSBehaviour entity = Object.Instantiate(next.Value.prefab, Behaviour.transform.position, Behaviour.transform.rotation).GetComponent<RTSBehaviour>(); // pooling!
-            entity.id = nextID;
-            entity.Team = Behaviour.Team;
-            entity.gameObject.layer = Behaviour.gameObject.layer;
+            next.Value.toSpawn.Instantiate(Behaviour.transform.position, nextID, Behaviour.Team);
             next = null;
             nextID = -1;
-            EntityContext.Register(entity);
         }
         protected override void OnExitScene()
         {
@@ -52,11 +48,11 @@ namespace RTSEngine.Core.Spawning
             RequestNext();
             DoSpawn();
         }
-        public void Enqueue(GameObject gameObject, float spawnTime)
+        public void Enqueue(RTSEntity toSpawn, float spawnTime)
         {
-            toSpawn.Enqueue(new EntitySpawnData
+            spawnQueue.Enqueue(new EntitySpawnData
             {
-                prefab = gameObject,
+                toSpawn = toSpawn,
                 time = spawnTime
             });
         }
@@ -65,6 +61,6 @@ namespace RTSEngine.Core.Spawning
     public struct EntitySpawnData
     {
         public float time;
-        public GameObject prefab;
+        public RTSEntity toSpawn;
     }
 }

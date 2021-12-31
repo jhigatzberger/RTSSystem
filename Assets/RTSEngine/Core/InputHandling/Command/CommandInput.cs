@@ -61,7 +61,6 @@ namespace RTSEngine.Core.InputHandling
         }
         public void DistributeContextCommand()
         {
-            print("DistributeContextCommand " + ContextCommand);
             if (ContextCommand == null || ForcedCommand != null)
                 return;
             DistributeCommandToSelection(ContextCommand);
@@ -80,11 +79,10 @@ namespace RTSEngine.Core.InputHandling
 
         public static void DistributeCommandToSelection(Command command)
         {
-            print("DistributeCommand " + command);
-            int playerTeam = Team.Context.PlayerTeam;
+            int playerTeam = Team.TeamContext.PlayerTeam;
             foreach (ISelectable selectable in SelectionContext.selection)
             {
-                if(selectable.Behaviour.TryGetComponent(out ICommandable commandable))
+                if(selectable.Behaviour.TryGetExtension(out ICommandable commandable))
                 {
                     if (commandable.Behaviour.Team == playerTeam && command.Applicable(commandable))
                     {
@@ -93,7 +91,7 @@ namespace RTSEngine.Core.InputHandling
                             {
                                 data = command.Build(commandable),
                                 clearQueueOnEnqeue = shouldClearQueueOnInput,
-                                entity = commandable.Behaviour.id
+                                entity = commandable.Behaviour.Id
                             }
                         );
                     }                        
@@ -118,8 +116,8 @@ namespace RTSEngine.Core.InputHandling
                 CachedEntity = null;
             else if (CachedEntity == null || CachedEntity.Behaviour != SelectionContext.selection[0].Behaviour)
             {
-                print(SelectionContext.selection[0].Behaviour.Team +" "+ Team.Context.PlayerTeam);
-                if (SelectionContext.selection[0].Behaviour.TryGetComponent(out ICommandable commandable) && SelectionContext.selection[0].Behaviour.Team == Team.Context.PlayerTeam)
+                print(SelectionContext.selection[0].Behaviour.Team +" "+ Team.TeamContext.PlayerTeam);
+                if (SelectionContext.selection[0].Behaviour.TryGetExtension(out ICommandable commandable) && SelectionContext.selection[0].Behaviour.Team == Team.TeamContext.PlayerTeam)
                 {
                     CachedEntity = commandable;
                 }

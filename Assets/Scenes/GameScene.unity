@@ -311,6 +311,14 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: teams.Array.data[0].layerName
+      value: Team1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: teams.Array.data[1].layerName
+      value: Team2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
       propertyPath: teams.Array.data[0].layer.m_Bits
       value: 1024
       objectReference: {fileID: 0}

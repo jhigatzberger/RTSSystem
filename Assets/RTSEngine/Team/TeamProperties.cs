@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RTSEngine.Team
@@ -9,7 +7,7 @@ namespace RTSEngine.Team
     {
         public int id;
         public int side;
-        public int layer;
+        public string layerName;
         public Color color;
         public LayerMask enemies;
     }

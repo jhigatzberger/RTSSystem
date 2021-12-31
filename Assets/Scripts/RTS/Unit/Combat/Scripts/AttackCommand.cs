@@ -11,8 +11,8 @@ public class AttackCommand : Command
     public override bool Applicable(ICommandable entity)
     {
         RTSBehaviour hovered = EntityContext.FirstOrNullHovered;
-        if(hovered != null && hovered.TryGetComponent(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
-            if (RTSEngine.Team.Context.AreEnenmies(entity.Behaviour.Team, hovered.Team))
+        if(hovered != null && hovered.TryGetExtension(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
+            if (RTSEngine.Team.TeamContext.AreEnenmies(entity.Behaviour.Team, hovered.Team))
                 return true;
         return false;
     }
@@ -23,15 +23,15 @@ public class AttackCommand : Command
         {
             commandID = id,
             position = EntityContext.FirstOrNullHovered.transform.position,
-            targetID = EntityContext.FirstOrNullHovered.id
+            targetID = EntityContext.FirstOrNullHovered.Id
         };
     }
 
     public override void Execute(ICommandable commandable, CommandData data)
     {
         RTSBehaviour entity = commandable.Behaviour;
-        entity.GetComponent<IAttacker>().Target = EntityContext.entities[data.targetID].GetComponent<IAttackable>();
-        entity.GetComponent<IStateMachine>().ChangeState(state);
+        entity.GetExtension<IAttacker>().Target = EntityContext.entities[data.targetID].GetExtension<IAttackable>();
+        entity.GetExtension<IStateMachine>().ChangeState(state);
     }
 }
 

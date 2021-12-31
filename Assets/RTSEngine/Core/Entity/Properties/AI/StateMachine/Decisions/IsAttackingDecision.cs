@@ -8,7 +8,7 @@ namespace RTSEngine.Core.AI
     {
         public override bool Decide(IStateMachine stateMachine)
         {
-            return stateMachine.Behaviour.GetComponent<IAttacker>().IsAttacking;
+            return stateMachine.Behaviour.GetExtension<IAttacker>().IsAttacking;
         }
     }
 }

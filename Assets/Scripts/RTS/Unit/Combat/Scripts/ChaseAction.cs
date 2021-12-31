@@ -10,16 +10,16 @@ public class ChaseAction : Action
     public override void Enter(IStateMachine stateMachine)
     {
         RTSBehaviour entity = stateMachine.Behaviour;
-        IMovable movable = entity.GetComponent<IMovable>();
+        IMovable movable = entity.GetExtension<IMovable>();
         movable.Clear();
-        IAttacker attacker = entity.GetComponent<IAttacker>();
+        IAttacker attacker = entity.GetExtension<IAttacker>();
         movable.Enqueue(attacker.Target.Behaviour);
     }
 
     public override void Exit(IStateMachine stateMachine)
     {
         RTSBehaviour entity = stateMachine.Behaviour;
-        IMovable movable = entity.GetComponent<IMovable>();
+        IMovable movable = entity.GetExtension<IMovable>();
         movable.Stop();
     }
 }

@@ -16,7 +16,7 @@ namespace RTSEngine.Core.AI.Formation
         }
         public override Vector3 GetPosition(Vector3 position, RTSBehaviour entity)
         {
-            if(entity.TryGetComponent(out ISelectable selectable))
+            if(entity.TryGetExtension(out ISelectable selectable))
             {
                 int index = selectable.SelectionIndex;
                 int count = SelectionContext.selection.Count;

@@ -9,14 +9,14 @@ public class MoveAction : Action
     public override void Enter(IStateMachine stateMachine)
     {
         RTSBehaviour entity = stateMachine.Behaviour;
-        IMovable movable = entity.GetComponent<IMovable>();
+        IMovable movable = entity.GetExtension<IMovable>();
         movable.Move();
     }
 
     public override void Exit(IStateMachine stateMachine)
     {
         RTSBehaviour entity = stateMachine.Behaviour;
-        IMovable movable = entity.GetComponent<IMovable>();
+        IMovable movable = entity.GetExtension<IMovable>();
         movable.Stop();
     }
 }

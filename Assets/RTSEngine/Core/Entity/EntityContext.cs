@@ -16,11 +16,11 @@ namespace RTSEngine.Core
         }
         public static void Register(RTSBehaviour entity)
         {
-            entities.Add(entity.id, entity);
+            entities.Add(entity.Id, entity);
         }
         public static void Unregister(RTSBehaviour entity)
         {
-            entities.Remove(entity.id);
+            entities.Remove(entity.Id);
         }
         #endregion
         #region Hovering

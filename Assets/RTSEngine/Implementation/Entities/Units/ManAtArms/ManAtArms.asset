@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: ManAtArms
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1137340246058539085, guid: ce02c9c4a57eeb445885e2cc5a139c95, type: 3}
   properties:
   - {fileID: 11400000, guid: ea4786bd0ef75b64dba899716b490991, type: 2}
   - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}

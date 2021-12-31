@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Spearman
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1137340246058539085, guid: 2435e45bed8a5084ca1d7bbe23a58fe2, type: 3}
   properties:
   - {fileID: 11400000, guid: 12ec68ae2a9420a48b232bcd0139402d, type: 2}
   - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}

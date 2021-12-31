@@ -10,7 +10,7 @@ namespace RTSEngine.Team
         public TeamProperties[] teams;
         private void Awake()
         {
-            Context.teams = teams.OrderBy(t => t.id).ToArray();
+            TeamContext.teams = teams.OrderBy(t => t.id).ToArray();
         }
     }
 }

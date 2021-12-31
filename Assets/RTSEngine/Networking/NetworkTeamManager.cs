@@ -8,16 +8,14 @@ namespace RTSEngine.Team
 {
     public class NetworkTeamManager : NetworkBehaviour
     {
-        [SerializeField] GameObject prefab = null;
+        [SerializeField] RTSEntity entity = null;
         public override void OnNetworkSpawn()
         {
             if (!IsOwner)
                 return;
-            Context.PlayerTeam = (int)NetworkManager.Singleton.LocalClientId;
+            TeamContext.PlayerTeam = (int)NetworkManager.Singleton.LocalClientId;
 
-            RTSBehaviour behaviour = Instantiate(prefab, new Vector3(Random.Range(-45,45),0,Random.Range(-45,45)), Quaternion.identity).GetComponent<RTSBehaviour>();
-            behaviour.id = (int)NetworkManager.Singleton.LocalClientId;
-            behaviour.Team = (int)NetworkManager.Singleton.LocalClientId;
+            entity.Instantiate(new Vector3(Random.Range(-45, 45), 0, Random.Range(-45, 45)), (int)NetworkManager.Singleton.LocalClientId, (int)NetworkManager.Singleton.LocalClientId);
         }
     }
 }

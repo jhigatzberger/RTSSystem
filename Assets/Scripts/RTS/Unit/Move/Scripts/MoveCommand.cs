@@ -16,8 +16,8 @@ public class MoveCommand : Command
     public override void Execute(ICommandable commandable, CommandData command)
     {
         RTSBehaviour entity = commandable.Behaviour;
-        entity.GetComponent<IStateMachine>().ChangeState(state);
-        entity.GetComponent<IMovable>().Enqueue(command.position);
+        entity.GetExtension<IStateMachine>().ChangeState(state);
+        entity.GetExtension<IMovable>().Enqueue(command.position);
     }
     public override CommandData Build(ICommandable entity)
     {

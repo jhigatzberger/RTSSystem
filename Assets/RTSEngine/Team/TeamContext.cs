@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RTSEngine.Team
 {
-    public static class Context
+    public static class TeamContext
     {
         public static bool TeamInitialized { get => PlayerTeam >= 0; }
         public static event Action<int> OnInitializeTeam;

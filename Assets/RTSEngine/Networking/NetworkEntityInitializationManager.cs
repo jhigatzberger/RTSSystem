@@ -32,7 +32,7 @@ namespace RTSEngine.Networking
         [ClientRpc]
         private void BroadCastEntityInitializationClientRPC(InitializationData data)
         {
-            EntityContext.entities[data.spawnID].GetComponent<ISpawner>().AuthorizeID(data.entityID);
+            EntityContext.entities[data.spawnID].GetExtension<ISpawner>().AuthorizeID(data.entityID);
         }
 
         public void RequestEntityInitialization(int spawnID)

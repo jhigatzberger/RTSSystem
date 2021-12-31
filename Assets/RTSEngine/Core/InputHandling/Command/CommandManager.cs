@@ -30,7 +30,7 @@ namespace RTSEngine.Core.InputHandling
         public void DistributeCommand(DistributedCommand command)
         {
             RTSBehaviour entity = EntityContext.entities[command.entity];
-            if (entity != null && entity.TryGetComponent(out ICommandable commandable))
+            if (entity != null && entity.TryGetExtension(out ICommandable commandable))
             {
                 if (command.clearQueueOnEnqeue)
                     commandable.ClearCommands();

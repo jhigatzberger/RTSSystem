@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad893dee7a73ae44aeb9381d9b211a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5325991846260193828, guid: a23371d7e1589c841b79155c9de21869, type: 3}
+  entity: {fileID: 11400000, guid: 2a2501029e9f8be4d9386307ef926911, type: 2}
 --- !u!114 &-1924757439165814627
 MonoBehaviour:
   m_ObjectHideFlags: 0
