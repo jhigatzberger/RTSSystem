@@ -5,6 +5,14 @@ namespace RTSEngine.Core.Selection
 {
     public class SelectableExtension : RTSExtension, ISelectable
     {
+        public Renderer _renderer;
+        public bool Visible => _renderer.isVisible;
+        private int _priority;
+        public int Priority => Behaviour.Team == Team.Context.PlayerTeam ? _priority : _priority + SelectionContext.NULL_PRIORITY;
+        public event Action<bool> OnSelectedUpdate;
+        public bool Selected => SelectionIndex>=0;
+        public int SelectionIndex => _selectionIndex;
+        private int _selectionIndex = -1;
         public SelectableExtension(RTSBehaviour behaviour, int priority, string rendererTag) : base(behaviour)
         {
             foreach (Transform tr in behaviour.transform.parent)
@@ -14,21 +22,6 @@ namespace RTSEngine.Core.Selection
             _renderer.gameObject.AddComponent<SelectableOnScreenObject>().Init(this);
             _priority = priority;
         }
-
-
-        public Renderer _renderer;
-        public bool Visible => _renderer.isVisible;
-
-        private int _priority;
-        public int Priority => Behaviour.Team == Team.Context.PlayerTeam ? _priority : _priority + SelectionContext.NULL_PRIORITY;
-
-        public event Action<bool> OnSelectedUpdate;
-
-        public bool Selected => SelectionIndex>=0;
-
-        public int SelectionIndex => _selectionIndex;
-
-        private int _selectionIndex = -1;
         public void Select(int index)
         {
             if(!Selected)
@@ -45,6 +38,5 @@ namespace RTSEngine.Core.Selection
         {
             SelectionContext.Deselect(this);
         }
-
     }
 }

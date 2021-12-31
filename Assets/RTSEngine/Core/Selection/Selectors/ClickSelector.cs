@@ -25,7 +25,11 @@ namespace RTSEngine.Core.Selection
         public override void InputStop()
         {
             if (Applicable)
+            {
+                print("click");
+                print(EntityContext.FirstOrNullHovered.name);
                 SelectionContext.Select(EntityContext.FirstOrNullHovered.GetExtension<ISelectable>());
+            }
         }
     }
 

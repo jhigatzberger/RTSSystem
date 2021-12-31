@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +8,11 @@ namespace RTSEngine.Core
     public class RTSEntity : ScriptableObject
     {
         public RTSProperty[] properties;
-        public Dictionary<Type, IExtension> Build(RTSBehaviour behaviour)
+        public IExtension[] Build(RTSBehaviour behaviour)
         {
-            Dictionary<Type, IExtension> extensions = new Dictionary<Type, IExtension>();
-            foreach (RTSProperty property in properties)
-            {
-                IExtension extension = property.Build(behaviour);
-                extensions.Add(extension.GetType(), extension);
-            }
+            IExtension[] extensions = new RTSExtension[properties.Length];
+            for (int i = 0; i < extensions.Length; i++)
+                extensions[i] = properties[i].Build(behaviour);
             return extensions;
         }
     }

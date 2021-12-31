@@ -3,29 +3,23 @@ using UnityEngine;
 using System;
 
 namespace RTSEngine.Core
-{   
+{
     [RequireComponent(typeof(Collider))]
     public class RTSBehaviour : MonoBehaviour
     {
         public RTSEntity entity;
 
         public int id;
-        public int _team;
-        public int Team
-        {
-            get => _team;
-            set
-            {
-                if(value != _team)
-                    _team = value;
-            }
-        }
-        private Dictionary<Type, IExtension> extensions = new Dictionary<Type, IExtension>();
+        [SerializeField] private int _team;
+        public int Team { get => _team; set => _team = value;  } 
+        public event Action OnClear;
 
+        private IExtension[] extensions;
         public T GetExtension<T>() where T : IExtension
         {
-            if (extensions.TryGetValue(typeof(T), out IExtension extension))
-                return (T)extension;
+            foreach(IExtension extension in extensions)
+                if(extension is T t)
+                    return t;
             return default;
         }
         private void OnMouseEnter()
@@ -46,7 +40,6 @@ namespace RTSEngine.Core
         {
             OnExitSceneImpl();
         }
-        public event Action OnClear;
         public virtual void Clear()
         {
             OnClear?.Invoke();
@@ -56,10 +49,9 @@ namespace RTSEngine.Core
             extensions = entity.Build(this);
             EntityContext.Register(this);
         }
-
         protected virtual void OnExitSceneImpl()
         {
-            foreach (IExtension extension in extensions.Values)
+            foreach (IExtension extension in extensions)
                 extension.ExitScene();
             EntityContext.hovered.Remove(this);
             EntityContext.Unregister(this);
