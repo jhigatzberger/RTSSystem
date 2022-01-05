@@ -6,7 +6,7 @@ namespace JHiga.RTSEngine.UI
 {
     public class SelectionContextCommandButton : MonoBehaviour
     {
-        private Command command;
+        private CommandProperties command;
         private Image image;
 
         private void Awake()
@@ -19,7 +19,7 @@ namespace JHiga.RTSEngine.UI
             image.sprite = null;
             image.enabled = false;
         }
-        public void Set(Command command)
+        public void Set(CommandProperties command)
         {
             this.command = command;
             image.sprite = command.icon;
@@ -27,13 +27,9 @@ namespace JHiga.RTSEngine.UI
         }
         public void BuildCommand()
         {
-            if (command.Applicable(CommandInput.CachedEntity))
-            {
-                if (!command.requireContext)
-                    CommandInput.DistributeCommandToSelection(command);
-                else
-                    CommandInput.ForcedCommand = command;
-            }
+            CommandInput.Instance.ForcedCommand = command;
+            if (!command.requireContext)
+                CommandInput.Instance.RequestForcedCommand();
         }
     }
 }

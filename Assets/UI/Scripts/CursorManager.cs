@@ -9,7 +9,7 @@ namespace JHiga
 
         private void Awake()
         {
-            JHiga.RTSEngine.CommandPattern.CommandInput.OnContextCommand += CommandInput_OnContextCommand;
+            JHiga.RTSEngine.CommandPattern.CommandInput.Instance.OnContextCommand += CommandInput_OnContextCommand;
             Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
         }
 

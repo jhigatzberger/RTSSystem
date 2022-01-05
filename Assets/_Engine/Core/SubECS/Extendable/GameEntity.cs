@@ -5,12 +5,12 @@ using JHiga.RTSEngine.Team;
 namespace JHiga.RTSEngine
 {
     [RequireComponent(typeof(Collider))]
-    public class PooledEntity : MonoBehaviour, IExtendable
+    public class GameEntity : MonoBehaviour, IExtendable
     {
         #region Initialization
-        private Action<PooledEntity> _returnAction;
+        private Action<GameEntity> _returnAction;
         [SerializeField] private int _id;
-        public void Spawn(Action<PooledEntity> returnAction, int entityId, int playerId)
+        public void Spawn(Action<GameEntity> returnAction, int entityId, int playerId)
         {
             _returnAction = returnAction;
             EntityId = entityId;

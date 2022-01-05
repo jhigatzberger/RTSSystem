@@ -1,26 +1,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using UnityEngine;
-using JHiga.RTSEngine;
 
 namespace JHiga.RTSEngine.CommandPattern
 {
     public class CommandableExtension : Extension, ICommandable
     {
-        public Command[] CommandCompetence => commandCompetence;
-        Queue<CommandData> commandQueue = new Queue<CommandData>();
-        public CommandData? Current { get; set; }
+
+        Queue<CompiledCommand> commandQueue = new Queue<CompiledCommand>();
+        public CompiledCommand? Current { get; set; }
         public event Action OnCommandClear;
-        private Command[] commandCompetence;
-        public CommandableExtension(IExtendable entity, Command[] commandCompetence) : base(entity)
+        public CommandProperties[] CommandCompetence => _commandCompetence;
+        private CommandProperties[] _commandCompetence;
+        public CommandableExtension(IExtendable entity, CommandProperties[] commandCompetence) : base(entity)
         {
-            this.commandCompetence = commandCompetence;
+            _commandCompetence = commandCompetence;
         }
 
-        public void Enqueue(CommandData command)
+        public void Enqueue(CompiledCommand command)
         {
-            if (!commandCompetence.Contains(CommandManager.Commands[command.commandID]))
+            if (!_commandCompetence.Any(c => c.id == command.commandID))
                 return;
             commandQueue.Enqueue(command);
             if (Current == null)
@@ -31,7 +30,7 @@ namespace JHiga.RTSEngine.CommandPattern
             if (commandQueue.Count == 0)
                 return;
             Current = commandQueue.Dequeue();
-            CommandManager.Execute(this, Current.Value);
+            CommandData.Instance.IdToCommand[Current.Value.commandID].Execute(this, Current.Value);
         }
         public override void Clear()
         {
@@ -45,11 +44,11 @@ namespace JHiga.RTSEngine.CommandPattern
             ExecuteFirstCommand();
         }
 
-        public Command FirstApplicableDynamicallyBuildableCommand
+        public CommandProperties FirstApplicableDynamicallyBuildableCommand
         {
             get
             {
-                foreach (Command command in commandCompetence)
+                foreach (CommandProperties command in _commandCompetence)
                     if (command.dynamicallyBuildable && command.Applicable(this))
                         return command;
                 return null;

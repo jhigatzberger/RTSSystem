@@ -22,43 +22,38 @@ namespace JHiga.RTSEngine.CommandPattern
                 confirmationServer.OnAdd = AddCommandClientRPC;
             }
             OnAddCommand += ConfirmCommandServerRPC;
-            CommandContext.OnCommandEnqueue += CommandContext_OnCommandEnqueue;
+            CommandEvents.OnCommandDistributionRequested += DistributeCommand;
             LockStep.OnStep += LockStep_OnStep;
         }
 
         private void LockStep_OnStep()
         {
             while(scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep == LockStep.count)
-                CommandContext.DistributeCommand(scheduledCommands.Dequeue().command);
+                CommandEvents.RequestCommandEnqueue(scheduledCommands.Dequeue().command);
         }
 
-        private void CommandContext_OnCommandEnqueue(DistributedCommand command)
+        private void DistributeCommand(DistributableCommand command)
         {
-            Debug.Log("CommandContext_OnCommandEnqueue");
             AddCommandServerRPC(command);
         }
         [ClientRpc]
         public void DistributeCommandClientRPC(ScheduledCommand command)
         {
-            Debug.Log("DistributeCommandClientRPC");
             scheduledCommands.Enqueue(command);
         }
         [ClientRpc]
         public void AddCommandClientRPC(ulong commandID)
         {
-            Debug.Log("AddCommandClientRPC");
             OnAddCommand?.Invoke(commandID, NetworkManager.LocalClientId);
         }
         [ServerRpc]
         public void ConfirmCommandServerRPC(ulong commandID, ulong clientID)
         {
-            Debug.Log("ConfirmCommandServerRPC");
             confirmationServer.Confirm(commandID, clientID);
         }
         [ServerRpc]
-        public void AddCommandServerRPC(DistributedCommand command)
+        public void AddCommandServerRPC(DistributableCommand command)
         {
-            Debug.Log("AddCommandServerRPC");
             confirmationServer.Add(command);
         }
     }
@@ -71,9 +66,8 @@ namespace JHiga.RTSEngine.CommandPattern
         private ulong lastCommandID = 0;
         private Dictionary<ulong, PendingCommand> pendingCommands = new Dictionary<ulong, PendingCommand>();
 
-        public void Add(DistributedCommand command)
+        public void Add(DistributableCommand command)
         {
-            Debug.Log("CommandConfirmationServer Add");
             pendingCommands.Add(++lastCommandID, new PendingCommand
             {
                 command = command,
@@ -83,7 +77,6 @@ namespace JHiga.RTSEngine.CommandPattern
         }
         public void Confirm(ulong commandID, ulong clientID)
         {
-            Debug.Log("CommandConfirmationServer Confirm");
             PendingCommand pending = pendingCommands[commandID];
             if (pending.Confirm(clientID))
             {
@@ -98,20 +91,19 @@ namespace JHiga.RTSEngine.CommandPattern
 
     public class PendingCommand
     {
-        public DistributedCommand command;
+        public DistributableCommand command;
         public List<ulong> pendingClients;
 
         public bool Confirm(ulong clientID)
         {
             pendingClients.Remove(clientID);
-            Debug.Log("PendingCommand Confirm " + pendingClients.Count);
             return pendingClients.Count == 0;
         }
     }
 
     public struct ScheduledCommand
     {
-        public DistributedCommand command;
+        public DistributableCommand command;
         public ulong scheduledStep;
     }
 

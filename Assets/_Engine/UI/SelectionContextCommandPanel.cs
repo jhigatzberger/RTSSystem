@@ -6,11 +6,11 @@ namespace JHiga.RTSEngine.UI
 {
     public class SelectionContextCommandPanel : MonoBehaviour
     {
-        Command[] _commands;
+        CommandProperties[] _commands;
 
         SelectionContextCommandButton[] commandButtons;
 
-        public Command[] Commands
+        public CommandProperties[] Commands
         {
             get => _commands;
             set
@@ -34,7 +34,7 @@ namespace JHiga.RTSEngine.UI
         void Start()
         {
             commandButtons = GetComponentsInChildren<SelectionContextCommandButton>();
-            CommandInput.OnCommandableSelectionEntity += CommandInput_OnCommandableSelectionEntity;
+            CommandInput.Instance.OnCommandableSelectionEntity += CommandInput_OnCommandableSelectionEntity;
         }
 
         private void CommandInput_OnCommandableSelectionEntity(ICommandable obj)

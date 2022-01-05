@@ -4,19 +4,19 @@ using UnityEngine;
 namespace JHiga.RTSEngine
 {
     [CreateAssetMenu(fileName = "Entity", menuName = "RTS/Entity/Entity")]
-    public class PooledEntityFactory : EntityFactory
+    public class PooledGameEntityFactory : EntityFactory
     {
         public GameObject prefab;
-        private readonly List<PooledEntity> activePool = new List<PooledEntity>();
-        private readonly Queue<PooledEntity> inactivePool = new Queue<PooledEntity>();
+        private readonly List<GameEntity> activePool = new List<GameEntity>();
+        private readonly Queue<GameEntity> inactivePool = new Queue<GameEntity>();
         public ExtensionFactory[] properties;
         public override IExtensionFactory[] ComponentFactories => properties;
-        public PooledEntity Spawn(Vector3 position, int id, int team)
+        public GameEntity Spawn(Vector3 position, int id, int team)
         {
-            PooledEntity entity;
+            GameEntity entity;
             if (inactivePool.Count == 0)
             {
-                entity = Instantiate(prefab, position, Quaternion.identity).GetComponent<PooledEntity>();
+                entity = Instantiate(prefab, position, Quaternion.identity).GetComponent<GameEntity>();
                 entity.ScriptableComponents = Build(entity);
             }
             else
@@ -29,7 +29,7 @@ namespace JHiga.RTSEngine
             activePool.Add(entity);
             return entity;
         }
-        public void ReturnToPool(PooledEntity behaviour)
+        public void ReturnToPool(GameEntity behaviour)
         {
             activePool.Remove(behaviour);
             inactivePool.Enqueue(behaviour);

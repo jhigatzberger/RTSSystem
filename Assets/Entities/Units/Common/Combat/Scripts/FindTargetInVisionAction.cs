@@ -19,7 +19,7 @@ public class FindTargetInVisionAction : Action
             potentialTargets.OrderBy(c => (behaviour.transform.position - c.transform.position).sqrMagnitude);
             foreach (Collider c in potentialTargets)
             {
-                if (c.gameObject.GetComponent<PooledEntity>().TryGetScriptableComponent(out IAttackable target))
+                if (c.gameObject.GetComponent<GameEntity>().TryGetScriptableComponent(out IAttackable target))
                 {
                     attacker.Target = target;
                 }

@@ -1,7 +1,10 @@
+using JHiga.RTSEngine.CommandPattern;
+
 namespace JHiga.RTSEngine.StateMachine
 {
     /// <summary>
-    /// Handles <see cref="State"/> trees
+    /// Handles the <see cref="State"/> trees of unit behaviours.
+    /// Tightly coupled to the <see cref="ICommandable"/>  <see cref="IExtension"/> to allow a seamless notification of <see cref="ICommandable.Finish"/> when a statechain ends.
     /// </summary>
     public interface IStateMachine : IExtension
     {
@@ -14,7 +17,7 @@ namespace JHiga.RTSEngine.StateMachine
         /// Calls the <see cref="State.Exit"/> method of the current <see cref="State"/>.
         /// Calls the <see cref="State.Enter"/> method of the new <see cref="State"/>.
         /// Caches the <see cref="TimeStamp"/>.
-        /// Changing to null invokes <see cref="OnStateChainEnd"/>.
+        /// When the state reaches a null state <see cref="ICommandable.Finish"/> could be notified.
         /// </summary>
         public void ChangeState(State state);        
         

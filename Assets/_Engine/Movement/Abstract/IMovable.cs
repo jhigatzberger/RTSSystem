@@ -32,7 +32,7 @@ namespace JHiga.RTSEngine.Movement
     }
     
     /// <summary>
-    /// Required to Enqueue either a point in the world or an <see cref="PooledEntity"/> that may change position.
+    /// Required to Enqueue either a point in the world or an <see cref="GameEntity"/> that may change position.
     /// </summary>
     public class Destination
     {
@@ -45,7 +45,7 @@ namespace JHiga.RTSEngine.Movement
     }
     
     /// <summary>
-    /// Derivative of <see cref="Destination"/> that holds a reference to a <see cref="PooledEntity"/> position.
+    /// Derivative of <see cref="Destination"/> that holds a reference to a <see cref="GameEntity"/> position.
     /// </summary>
     public class Follow : Destination
     {

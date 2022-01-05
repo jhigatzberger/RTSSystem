@@ -5,7 +5,7 @@ namespace JHiga.RTSEngine.Team
 {
     public class NetworkTeamManager : NetworkBehaviour
     {
-        [SerializeField] PooledEntityFactory entity = null;
+        [SerializeField] PooledGameEntityFactory entity = null;
         public override void OnNetworkSpawn()
         {
             if (!IsOwner)

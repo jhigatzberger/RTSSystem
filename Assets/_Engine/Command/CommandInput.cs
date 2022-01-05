@@ -1,15 +1,24 @@
 using JHiga.RTSEngine.Selection;
-using JHiga.RTSEngine;
 using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace JHiga.RTSEngine.CommandPattern
 {
     public class CommandInput : MonoBehaviour
     {
-        public static Command _contextCommand;
-        public static Command ContextCommand
+        public static CommandInput Instance { get; private set; }
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+        }
+
+        private CommandProperties _contextCommand;
+        public CommandProperties ContextCommand
         {
             get => _contextCommand;
             set
@@ -21,9 +30,8 @@ namespace JHiga.RTSEngine.CommandPattern
                 }
             }
         }
-
-        private static Command _forcedCommand;
-        public static Command ForcedCommand
+        private CommandProperties _forcedCommand;
+        public CommandProperties ForcedCommand
         {
             get => _forcedCommand;
             set
@@ -32,16 +40,16 @@ namespace JHiga.RTSEngine.CommandPattern
                 {
                     SelectionContext.locked = value != null;
 
-                    _forcedCommand = value;
+                    Instance._forcedCommand = value;
                     ContextCommand = value;
                 }
             }
         }
 
-        public static event Action<int> OnContextCommand;
-        public static event Action<ICommandable> OnCommandableSelectionEntity;
-        private static ICommandable _cachedEntity;
-        public static ICommandable CachedEntity
+        public event Action<int> OnContextCommand;
+        public event Action<ICommandable> OnCommandableSelectionEntity;
+        private ICommandable _cachedEntity;
+        public ICommandable CachedEntity
         {
             get { return _cachedEntity; }
             set
@@ -54,49 +62,29 @@ namespace JHiga.RTSEngine.CommandPattern
                 }
             }
         }
-
-        public static bool shouldClearQueueOnInput = true;
+        private bool shouldClearQueueOnInput = true;
         public void SetClearQueueOnInput(bool shouldClearQueueOnInput)
         {
-            CommandInput.shouldClearQueueOnInput = shouldClearQueueOnInput;
+            this.shouldClearQueueOnInput = shouldClearQueueOnInput;
         }
-        public void DistributeContextCommand()
+        public void RequestContextCommand()
         {
             if (ContextCommand == null || ForcedCommand != null)
                 return;
-            DistributeCommandToSelection(ContextCommand);
+            CommandEvents.RequestCommandDistribution(CommandDistributor.DistributableCommandFromSelectionContext(ContextCommand, shouldClearQueueOnInput));
         }
-        public void DistributeForcedCommand()
+        public void RequestForcedCommand()
         {
             if (ForcedCommand == null)
                 return;
-            DistributeCommandToSelection(ForcedCommand);
+            if(ForcedCommand.Applicable(CachedEntity))
+                CommandEvents.RequestCommandDistribution(CommandDistributor.DistributableCommandFromSelectionContext(ForcedCommand, shouldClearQueueOnInput));
             ClearForcedCommand();
         }
         public void ClearForcedCommand()
         {
             ForcedCommand = null;
         }
-
-        public static void DistributeCommandToSelection(Command command)
-        {
-            int playerTeam = TeamContext.PlayerTeam;
-            List<int> entites = new List<int>();
-            foreach (ISelectable selectable in SelectionContext.selection)
-            {
-                if (selectable.Extendable.PlayerId == playerTeam)
-                    entites.Add(selectable.Extendable.EntityId);                          
-            }
-            CommandContext.EnqueueCommand(
-                new DistributedCommand
-                {
-                    data = command.Build(),
-                    clearQueueOnEnqeue = shouldClearQueueOnInput,
-                    entities = entites.ToArray()
-                }
-            );
-        }
-
         private void Update()
         {
             CacheEntity();
@@ -114,11 +102,8 @@ namespace JHiga.RTSEngine.CommandPattern
                 CachedEntity = null;
             else if (CachedEntity == null || CachedEntity.Extendable != SelectionContext.selection[0].Extendable)
             {
-                print(SelectionContext.selection[0].Extendable.PlayerId +" "+ TeamContext.PlayerTeam);
                 if (SelectionContext.selection[0].Extendable.TryGetScriptableComponent(out ICommandable commandable) && SelectionContext.selection[0].Extendable.PlayerId == TeamContext.PlayerTeam)
-                {
                     CachedEntity = commandable;
-                }
                 else
                     CachedEntity = null;
             }

@@ -6,26 +6,26 @@ using UnityEngine;
 namespace JHiga.RTSEngine.Spawning
 {
     [CreateAssetMenu(fileName = "SpawnCommand", menuName = "RTS/AI/Commands/SpawnCommand")]
-    public class SpawnCommand : Command
+    public class SpawnCommand : CommandProperties
     {
         public int cost;
         public float time;
-        public PooledEntityFactory spawn;
+        public PooledGameEntityFactory spawn;
         public override bool Applicable(ICommandable entity)
         {
             return ResourceManager.playerResources >= cost;
         }
 
-        public override CommandData Build()
+        public override CompiledCommand Compile()
         {
             ResourceManager.Spend(cost);
-            return new CommandData
+            return new CompiledCommand
             {
                 commandID = id
             };
         }
 
-        public override void Execute(ICommandable commandable, CommandData data)
+        public override void Execute(ICommandable commandable, CompiledCommand data)
         {
             commandable.Extendable.GetScriptableComponent<ISpawner>().Enqueue(spawn, time);
         }

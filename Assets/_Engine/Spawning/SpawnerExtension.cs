@@ -48,7 +48,7 @@ namespace JHiga.RTSEngine.Spawning
             RequestNext();
             DoSpawn();
         }
-        public void Enqueue(PooledEntityFactory toSpawn, float spawnTime)
+        public void Enqueue(PooledGameEntityFactory toSpawn, float spawnTime)
         {
             spawnQueue.Enqueue(new EntitySpawnData
             {
@@ -61,6 +61,6 @@ namespace JHiga.RTSEngine.Spawning
     public struct EntitySpawnData
     {
         public float time;
-        public PooledEntityFactory toSpawn;
+        public PooledGameEntityFactory toSpawn;
     }
 }

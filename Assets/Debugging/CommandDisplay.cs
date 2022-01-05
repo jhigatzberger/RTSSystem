@@ -9,15 +9,15 @@ public class CommandDisplay : MonoBehaviour
     private void Awake()
     {
         text = GetComponent<Text>();
-        CommandContext.OnCommandEnqueue += DisplayCommandEN;
-        CommandContext.OnCommandDistribute += DisplayCommandEX;
+        CommandEvents.OnCommandDistributionRequested += DisplayCommandEN;
+        CommandEvents.OnCommandEnqueueRequested += DisplayCommandEX;
     }
 
-    public void DisplayCommandEX(DistributedCommand c)
+    public void DisplayCommandEX(DistributableCommand c)
     {
         text.text = "Executing command";
     }
-    public void DisplayCommandEN(DistributedCommand c)
+    public void DisplayCommandEN(DistributableCommand c)
     {
         text.text = "Command in queue";
     }
