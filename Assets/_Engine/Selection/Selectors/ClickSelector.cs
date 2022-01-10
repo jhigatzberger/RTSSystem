@@ -10,8 +10,8 @@ namespace JHiga.RTSEngine.Selection
         {
             get
             {
-                if (startPos.HasValue && EntityManager.FirstOrNullHovered != null && EntityManager.FirstOrNullHovered.GetScriptableComponent<ISelectable>() != null)
-                    return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance && EntityManager.hovered.Count > 0;
+                if (startPos.HasValue && InteractableRegistry.FirstOrNullHovered != null && InteractableRegistry.FirstOrNullHovered.GetScriptableComponent<ISelectable>() != null)
+                    return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance && InteractableRegistry.hovered.Count > 0;
                 return false;
             }
         }
@@ -27,8 +27,8 @@ namespace JHiga.RTSEngine.Selection
         {
             if (Applicable)
             {
-                print(EntityManager.FirstOrNullHovered.name);
-                SelectionContext.Select(EntityManager.FirstOrNullHovered.GetScriptableComponent<ISelectable>());
+                print(InteractableRegistry.FirstOrNullHovered.name);
+                SelectionContext.Select(InteractableRegistry.FirstOrNullHovered.GetScriptableComponent<ISelectable>());
             }
         }
     }

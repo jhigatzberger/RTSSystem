@@ -18,8 +18,8 @@ namespace JHiga.Networking
             if (IsServer)
             {
                 data = new List<InitializationData>();
-                nextID = EntityManager.entities.Count;
-                EntityManager.OnRequireEntityID += RequestEntityInitialization;
+                nextID = InteractableRegistry.entities.Count;
+                InteractableRegistry.OnRequireEntityID += RequestEntityInitialization;
                 LockStep.OnStep += Clear;
             }
         }
@@ -32,9 +32,8 @@ namespace JHiga.Networking
         [ClientRpc]
         private void BroadCastEntityInitializationClientRPC(InitializationData data)
         {
-            EntityManager.entities[data.spawnID].GetScriptableComponent<ISpawner>().AuthorizeID(data.entityID);
+            InteractableRegistry.entities[data.spawnID].GetScriptableComponent<ISpawner>().AuthorizeID(data.entityID);
         }
-
         public void RequestEntityInitialization(int spawnID)
         {
             int entityID;
@@ -43,12 +42,15 @@ namespace JHiga.Networking
             else
                 entityID = nextID++;
 
-            BroadCastEntityInitializationClientRPC(new InitializationData()
-            {
-                spawnID = spawnID,
-                entityID = entityID
-            });
+            BroadCastEntityInitializationClientRPC(
+                    new InitializationData()
+                    {
+                        spawnID = spawnID,
+                        entityID = entityID
+                    }
+                );
         }
+
     }
 
 }

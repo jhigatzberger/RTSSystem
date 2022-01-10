@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7912fcf47ebf0d14eb48ae8c68dfadca, type: 3}
+  m_Name: Humans
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 11400000, guid: faebdcf1b9118ca4ba2ccd770373340b, type: 2}
+  - {fileID: 11400000, guid: e5723b8e224c78d4e86dfc7b964f8d9e, type: 2}
+  - {fileID: 11400000, guid: 1e59812037f0a42488c296d4750e6d19, type: 2}
+  - {fileID: 11400000, guid: fec961b4605111f429fcc0bfa79dccb5, type: 2}

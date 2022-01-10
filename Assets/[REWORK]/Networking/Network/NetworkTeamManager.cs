@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.Team
         {
             if (!IsOwner)
                 return;
-            TeamContext.PlayerTeam = (int)NetworkManager.Singleton.LocalClientId;
+            PlayerContext.PlayerId = (int)NetworkManager.Singleton.LocalClientId;
 
             entity.Spawn(new Vector3(Random.Range(-45, 45), 0, Random.Range(-45, 45)), (int)NetworkManager.Singleton.LocalClientId, (int)NetworkManager.Singleton.LocalClientId);
         }

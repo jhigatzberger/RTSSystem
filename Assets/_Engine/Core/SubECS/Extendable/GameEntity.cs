@@ -1,20 +1,27 @@
 using UnityEngine;
 using System;
-using JHiga.RTSEngine.Team;
 
 namespace JHiga.RTSEngine
 {
+    /// <summary>
+    /// A pooled implementation of <see cref="IExtendableInteractable"/>.
+    /// Gets spawned by <see cref="PooledGameEntityFactory"/>.
+    /// Dependant on <see cref="InteractableRegistry"/> for seamless <see cref="InteractableRegistry.Register(IExtendableInteractable)"/> and <see cref="InteractableRegistry.hovered"/> connections.
+    /// </summary>
     [RequireComponent(typeof(Collider))]
-    public class GameEntity : MonoBehaviour, IExtendable
+    public class GameEntity : MonoBehaviour, IExtendableInteractable
     {
         #region Initialization
         private Action<GameEntity> _returnAction;
         [SerializeField] private int _id;
         public void Spawn(Action<GameEntity> returnAction, int entityId, int playerId)
         {
+            print(entityId + " " + playerId);
             _returnAction = returnAction;
             EntityId = entityId;
             PlayerId = playerId;
+            foreach (IInteractableExtension extension in Extensions)
+                extension.Enable();
         }
         private bool _registered;
         public bool Registered
@@ -25,9 +32,9 @@ namespace JHiga.RTSEngine
                 if(value != _registered)
                 {
                     if (value)
-                        EntityManager.Register(this);
+                        InteractableRegistry.Register(this);
                     else
-                        EntityManager.Unregister(this);
+                        InteractableRegistry.Unregister(this);
                     _registered = value;
                 }
             }
@@ -53,25 +60,25 @@ namespace JHiga.RTSEngine
                 if(_team != value)
                 {
                     _team = value;
-                    gameObject.layer = LayerMask.NameToLayer(TeamContext.teams[value].layerName);
+                    gameObject.layer = LayerMask.NameToLayer(PlayerContext.players[value].layerName);
                 }
             }
         }
         #endregion
         #region Components
-        public IExtension[] ScriptableComponents { get; set; }
+        public IInteractableExtension[] Extensions { get; set; }
         public MonoBehaviour MonoBehaviour => this;
-        public T GetScriptableComponent<T>() where T : IExtension
+        public T GetScriptableComponent<T>() where T : IInteractableExtension
         {
-            foreach (IExtension x in ScriptableComponents)
+            foreach (IInteractableExtension x in Extensions)
                 if (x is T t)
                     return t;
             return default;
         }
-        public bool TryGetScriptableComponent<T>(out T extension) where T : IExtension
+        public bool TryGetScriptableComponent<T>(out T extension) where T : IInteractableExtension
         {
             extension = default;
-            foreach (IExtension x in ScriptableComponents)
+            foreach (IInteractableExtension x in Extensions)
                 if (x is T t)
                 {
                     extension = t;
@@ -84,27 +91,27 @@ namespace JHiga.RTSEngine
         private void OnMouseEnter()
         {
             if(enabled)
-                EntityManager.hovered.Add(this);
+                InteractableRegistry.hovered.Add(this);
         }
         private void OnMouseExit()
         {
             if (enabled)
-                EntityManager.hovered.Remove(this);
+                InteractableRegistry.hovered.Remove(this);
         }
         #endregion
         #region Clean Up
         private void OnDisable()
         {
-            foreach (IExtension extension in ScriptableComponents)
+            foreach (IInteractableExtension extension in Extensions)
                 extension.Disable();
-            EntityManager.hovered.Remove(this);
+            InteractableRegistry.hovered.Remove(this);
             GetComponent<Collider>().enabled = false;
             EntityId = -1;
             _returnAction(this);
         }
         public void Clear()
         {
-            foreach (IExtension extension in ScriptableComponents)
+            foreach (IInteractableExtension extension in Extensions)
                 extension.Clear();
         }
         #endregion

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 256148747}
   - component: {fileID: 256148746}
   - component: {fileID: 256148748}
+  - component: {fileID: 278967561}
   m_Layer: 0
   m_Name: '[COMMAND]'
   m_TagString: Untagged
@@ -59,9 +60,22 @@ MonoBehaviour:
   _commands:
   - {fileID: 11400000, guid: 63561030969b49848977984ea3d0b740, type: 2}
   - {fileID: 11400000, guid: 62ac770852e3e2d4db7c8c70d072c429, type: 2}
-  - {fileID: 11400000, guid: fbae12efa2acbe343848cd6812edb5ac, type: 2}
+  - {fileID: 11400000, guid: e218a2ea03866e041a65c9ba7c7cf078, type: 2}
   - {fileID: 11400000, guid: ef0bf49b295780b4c8650b58c4879c41, type: 2}
-  - {fileID: 11400000, guid: 92b1538a5646ea94aa88d2f74c21187a, type: 2}
+  - {fileID: 11400000, guid: d1d7fa8f1bfee4145983b572621c3763, type: 2}
+  - {fileID: 11400000, guid: 37f738471194f3947bbb76f800058546, type: 2}
+--- !u!114 &278967561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256148745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bf3c40d7c289149877002058ad42b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4904012195124381477
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +90,7 @@ GameObject:
   - component: {fileID: 2421115893824939305}
   - component: {fileID: 6039860497953672755}
   m_Layer: 0
-  m_Name: '[SELECTORS]'
+  m_Name: '[SELECTION]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,6 +175,7 @@ GameObject:
   - component: {fileID: 6511686978195341714}
   - component: {fileID: 1611900044}
   - component: {fileID: 1611900045}
+  - component: {fileID: 278967562}
   m_Layer: 0
   m_Name: '[RTS]'
   m_TagString: Untagged
@@ -176,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6511686978195341712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2857304, y: -0.61773586, z: -2.459358}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2400496813947752193}
@@ -196,10 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cd0c655579a964c87926c5135525e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursors:
-  - {fileID: 2800000, guid: 535c4c0a1a17958498085d2d7c25a8cd, type: 3}
-  - {fileID: 2800000, guid: ac98296d867d34c48b0f49d713cce9a1, type: 3}
-  defaultCursor: {fileID: 2800000, guid: 0a26eba6336f3b64092df16cd3a0dede, type: 3}
+  commandCursors:
+  - {fileID: 11400000, guid: c4feb0c2ec1ad2a4dabd27daff761d1f, type: 2}
+  - {fileID: 11400000, guid: 4a83c5b7e4d94b64290d4327e491ba39, type: 2}
+  defaultCursor: {fileID: 11400000, guid: c5a7e758431f7594095eec3fa657262e, type: 2}
 --- !u!114 &1611900045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,18 +227,183 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f655f5825a03643b8473dbd14f7fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teams:
+  players:
   - id: 0
-    side: 0
-    layerName: Team1
-    color: {r: 0, g: 0, b: 1, a: 0}
+    team: 0
+    layerName: Player1
+    color: {r: 0, g: 0.02782917, b: 1, a: 0}
     enemies:
       serializedVersion: 2
       m_Bits: 2048
+    faction: {fileID: 11400000, guid: b3bf20799d3000a4199096b1a87b87f8, type: 2}
   - id: 1
-    side: 1
-    layerName: Team2
+    team: 1
+    layerName: Player2
     color: {r: 1, g: 0, b: 0, a: 0}
     enemies:
       serializedVersion: 2
       m_Bits: 1024
+    faction: {fileID: 11400000, guid: 8845ab8d45c85804a99b1649edfcd265, type: 2}
+--- !u!114 &278967562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511686978195341712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f090df7504f24d14dadcd8df3951de54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggers:
+  - inputAxis: Fire1
+    triggerValue: 1
+    onInput:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8576600494579461855}
+          m_TargetAssemblyTypeName: RTS.Selectors.SelectorController, Assembly-CSharp
+          m_MethodName: ClearSelectionOnInput
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8576600494579461855}
+          m_TargetAssemblyTypeName: RTS.SelectorController, Assembly-CSharp
+          m_MethodName: BroadcastInputStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onInputStop:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8576600494579461855}
+          m_TargetAssemblyTypeName: RTS.SelectorController, Assembly-CSharp
+          m_MethodName: BroadcastInputStop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 256148746}
+          m_TargetAssemblyTypeName: RTSEngine.Entity.CommandInput, Assembly-CSharp
+          m_MethodName: DistributeForcedCommand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    triggerOverUI: 0
+  - inputAxis: Fire2
+    triggerValue: 1
+    onInput:
+      m_PersistentCalls:
+        m_Calls: []
+    onInputStop:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 256148746}
+          m_TargetAssemblyTypeName: RTSEngine.Entity.CommandInput, Assembly-CSharp
+          m_MethodName: DistributeContextCommand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 256148746}
+          m_TargetAssemblyTypeName: RTSEngine.Entity.CommandInput, Assembly-CSharp
+          m_MethodName: ClearForcedCommand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    triggerOverUI: 0
+  - inputAxis: Fire3
+    triggerValue: 1
+    onInput:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8576600494579461855}
+          m_TargetAssemblyTypeName: RTS.Selectors.SelectorController, Assembly-CSharp
+          m_MethodName: SetClearSelectionOnInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 256148746}
+          m_TargetAssemblyTypeName: RTS.Entity.AI.CommandDistributor, Assembly-CSharp
+          m_MethodName: SetClearQueueOnInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onInputStop:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8576600494579461855}
+          m_TargetAssemblyTypeName: RTS.Selectors.SelectorController, Assembly-CSharp
+          m_MethodName: SetClearSelectionOnInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 256148746}
+          m_TargetAssemblyTypeName: RTS.Entity.AI.CommandDistributor, Assembly-CSharp
+          m_MethodName: SetClearQueueOnInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    triggerOverUI: 1
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

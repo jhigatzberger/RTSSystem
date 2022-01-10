@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 0b5359bc0a0ce4840954212243f4009c, type: 2}
---- !u!114 &40919617 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 256148746, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
-  m_PrefabInstance: {fileID: 278967559}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c669962fb3352f49a0f2227c5e895f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &73613225
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,9 +275,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4904012195124381477, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
-      propertyPath: m_Name
-      value: '[SELECTION]'
+    - target: {fileID: 278967562, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: triggers.Array.data[0].onInputStop.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RequestForcedCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 278967562, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: triggers.Array.data[1].onInputStop.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestContextCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 278967562, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: triggers.Array.data[0].onInputStop.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JHiga.RTSEngine.CommandPattern.CommandInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 278967562, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: triggers.Array.data[1].onInputStop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JHiga.RTSEngine.CommandPattern.CommandInput, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6511686978195341712, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
       propertyPath: m_Name
@@ -338,188 +339,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6653596607186717890, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
---- !u!1 &278967560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6511686978195341712, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
-  m_PrefabInstance: {fileID: 278967559}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &278967561 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8576600494579461855, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
-  m_PrefabInstance: {fileID: 278967559}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e953106f5d0ea94f8759d1c0f6f2b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &278967562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278967560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f090df7504f24d14dadcd8df3951de54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggers:
-  - inputAxis: Fire1
-    triggerValue: 1
-    onInput:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 278967561}
-          m_TargetAssemblyTypeName: RTS.Selectors.SelectorController, Assembly-CSharp
-          m_MethodName: ClearSelectionOnInput
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 278967561}
-          m_TargetAssemblyTypeName: RTS.SelectorController, Assembly-CSharp
-          m_MethodName: BroadcastInputStart
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    onInputStop:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 278967561}
-          m_TargetAssemblyTypeName: RTS.SelectorController, Assembly-CSharp
-          m_MethodName: BroadcastInputStop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 40919617}
-          m_TargetAssemblyTypeName: RTSEngine.Entity.CommandInput, Assembly-CSharp
-          m_MethodName: DistributeForcedCommand
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    triggerOverUI: 0
-  - inputAxis: Fire2
-    triggerValue: 1
-    onInput:
-      m_PersistentCalls:
-        m_Calls: []
-    onInputStop:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 40919617}
-          m_TargetAssemblyTypeName: RTSEngine.Entity.CommandInput, Assembly-CSharp
-          m_MethodName: DistributeContextCommand
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 40919617}
-          m_TargetAssemblyTypeName: RTSEngine.Entity.CommandInput, Assembly-CSharp
-          m_MethodName: ClearForcedCommand
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    triggerOverUI: 0
-  - inputAxis: Fire3
-    triggerValue: 1
-    onInput:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 278967561}
-          m_TargetAssemblyTypeName: RTS.Selectors.SelectorController, Assembly-CSharp
-          m_MethodName: SetClearSelectionOnInput
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 40919617}
-          m_TargetAssemblyTypeName: RTS.Entity.AI.CommandDistributor, Assembly-CSharp
-          m_MethodName: SetClearQueueOnInput
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    onInputStop:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 278967561}
-          m_TargetAssemblyTypeName: RTS.Selectors.SelectorController, Assembly-CSharp
-          m_MethodName: SetClearSelectionOnInput
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 40919617}
-          m_TargetAssemblyTypeName: RTS.Entity.AI.CommandDistributor, Assembly-CSharp
-          m_MethodName: SetClearQueueOnInput
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-    triggerOverUI: 1
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1001 &433374262
 PrefabInstance:
   m_ObjectHideFlags: 0

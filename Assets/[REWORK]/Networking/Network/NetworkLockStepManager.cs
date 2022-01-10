@@ -13,7 +13,7 @@ public class NetworkLockStepManager : NetworkBehaviour
     }
     public void OnGameStart()
     {
-        LockStepServer server = gameObject.AddComponent<LockStepServer>();
+        _LockStepServer server = gameObject.AddComponent<_LockStepServer>();
         server.manager = this;
         server.startTime = Time.time;
         server.stepSize = stepSize;
@@ -28,7 +28,7 @@ public class NetworkLockStepManager : NetworkBehaviour
 
 }
 
-public class LockStepServer : NetworkBehaviour
+public class _LockStepServer : NetworkBehaviour
 {
     internal NetworkLockStepManager manager;
     internal float startTime = 0;

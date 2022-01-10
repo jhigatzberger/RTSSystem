@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: ManAtArms
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1137340246058539085, guid: ce02c9c4a57eeb445885e2cc5a139c95, type: 3}
+  properties:
+  - {fileID: 11400000, guid: 262153be9f2fb9645b2bb0719fde7299, type: 2}
+  - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}
+  - {fileID: 11400000, guid: 490a702209d0d8a458eed2801681f8ec, type: 2}
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: 11400000, guid: c6736fc723a5b9b45aea697f54fb122b, type: 2}
+  - {fileID: 11400000, guid: a4df178e12e057347b1721eb7043e58a, type: 2}
+  - {fileID: 11400000, guid: 2c9522c4cd5eaf54d9b44fdd0af8bd25, type: 2}

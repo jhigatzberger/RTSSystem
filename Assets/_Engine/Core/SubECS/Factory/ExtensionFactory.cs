@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine
 {
-    public abstract class ExtensionFactory : ScriptableObject, IExtensionFactory
+    public abstract class ExtensionFactory : ScriptableObject
     {
-        public abstract IExtension Build(IExtendable extendable);
+        public abstract IInteractableExtension Build(IExtendableInteractable extendable);
     }
 
 }

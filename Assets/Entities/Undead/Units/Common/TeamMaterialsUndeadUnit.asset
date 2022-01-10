@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e77aac27344b146bd6a11cc673751f, type: 3}
+  m_Name: TeamMaterialsUndeadUnit
+  m_EditorClassIdentifier: 
+  changeTexture: {fileID: 2800000, guid: a6a058ba9fc46c342b222074ca724b08, type: 3}
+  playerMaterials:
+  - {fileID: 2100000, guid: 8b43b99ebf8d1b4429955ee76b354fd0, type: 2}
+  - {fileID: 2100000, guid: 9c5b89b99a3e98240b8112a601be1294, type: 2}
