@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7912fcf47ebf0d14eb48ae8c68dfadca, type: 3}
   m_Name: Humans
   m_EditorClassIdentifier: 
+  startEntity: {fileID: 11400000, guid: faebdcf1b9118ca4ba2ccd770373340b, type: 2}
   entities:
   - {fileID: 11400000, guid: faebdcf1b9118ca4ba2ccd770373340b, type: 2}
   - {fileID: 11400000, guid: e5723b8e224c78d4e86dfc7b964f8d9e, type: 2}
