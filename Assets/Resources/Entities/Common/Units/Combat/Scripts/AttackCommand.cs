@@ -1,0 +1,31 @@
+using JHiga.RTSEngine.Combat;
+using JHiga.RTSEngine;
+using JHiga.RTSEngine.CommandPattern;
+using UnityEngine;
+using JHiga.RTSEngine.Selection;
+
+[CreateAssetMenu(fileName = "AttackCommand", menuName = "RTS/Behaviour/Commands/AttackCommand")]
+public class AttackCommand : StateMachineCommandProperties
+{
+    public override bool Applicable(ICommandable entity)
+    {
+        IExtendable hovered = SelectionContext.FirstOrNullHovered;
+        if(hovered != null && hovered.TryGetScriptableComponent(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
+            if (PlayerContext.AreEnenmies(entity.Entity.EntityId.playerIndex, hovered.EntityId.playerIndex))
+                return true;
+        return false;
+    }
+    public override Target PackTarget(ICommandable commandable)
+    {
+        return new Target
+        {
+            position = SelectionContext.FirstOrNullHovered.MonoBehaviour.transform.position,
+            entity = SelectionContext.FirstOrNullHovered
+        };
+    }
+    protected override void BeforeStateChange(ICommandable commandable, Target target)
+    {
+        commandable.Entity.GetScriptableComponent<IAttacker>().Target = target.entity.GetScriptableComponent<IAttackable>();
+    }
+
+}

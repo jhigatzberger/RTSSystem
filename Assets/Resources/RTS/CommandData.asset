@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8363520463363847077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnSpearmanCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8978070177785b348bf6d21e45d25eb6, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  cost: 1
+  time: 1
+  spawn: {fileID: 11400000, guid: fec961b4605111f429fcc0bfa79dccb5, type: 2}
+--- !u!114 &-5840748276129422373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnManAtArmsCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  cost: 1
+  time: 1
+  spawn: {fileID: 11400000, guid: 1e59812037f0a42488c296d4750e6d19, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d15ba5804d4844aa0d1f3e476ba46d, type: 3}
+  m_Name: CommandData
+  m_EditorClassIdentifier: 
+  commands:
+  - {fileID: 6053781840455765175}
+  - {fileID: 1176921838225773690}
+  - {fileID: -8363520463363847077}
+  - {fileID: 7176674067703014830}
+  - {fileID: -5840748276129422373}
+  - {fileID: 6823857285360643638}
+--- !u!114 &1176921838225773690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1fba048d7c73c4d9c14f1cfd37bcbf, type: 3}
+  m_Name: MoveCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: e92d4be15097ec349981436b3095ff31, type: 3}
+  dynamicallyBuildable: 1
+  requireContext: 1
+  state: {fileID: 11400000, guid: bde7e5b7404f6f44baa50db2bd1a9396, type: 2}
+--- !u!114 &6053781840455765175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d7b7ff8fe1e4439c5ba3d5b4afff1, type: 3}
+  m_Name: AttackCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 22e28b19643849e4ba22f88146914faf, type: 3}
+  dynamicallyBuildable: 1
+  requireContext: 1
+  state: {fileID: 11400000, guid: 97390190838547f479a6682df8680520, type: 2}
+--- !u!114 &6823857285360643638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnSkeletonCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  cost: 1
+  time: 1
+  spawn: {fileID: 11400000, guid: 72d6ac3b28318f0408b080142c1b814b, type: 2}
+--- !u!114 &7176674067703014830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnKnightCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: efee6508e03fbcf48a58c946ba9295c8, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  cost: 1
+  time: 1
+  spawn: {fileID: 11400000, guid: e5723b8e224c78d4e86dfc7b964f8d9e, type: 2}
