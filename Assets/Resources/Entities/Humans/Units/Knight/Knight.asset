@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   prefab: {fileID: 8726071526014405772, guid: a363258e59b22cb45a8260e05b1a0de7, type: 3}
-  properties:
+  _properties:
+  - {fileID: 11400000, guid: 1e26c88ecfa07454bac677a8c06e2deb, type: 2}
   - {fileID: 11400000, guid: 70c9047887673ef4bb5794d06d83aa39, type: 2}
   - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}
-  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
-  - {fileID: 11400000, guid: 1e26c88ecfa07454bac677a8c06e2deb, type: 2}
-  - {fileID: 11400000, guid: a4df178e12e057347b1721eb7043e58a, type: 2}
-  - {fileID: 11400000, guid: cc13eaae7af3d464da43fe8c6cfdd0fd, type: 2}
   - {fileID: 11400000, guid: 2c9522c4cd5eaf54d9b44fdd0af8bd25, type: 2}
+  - {fileID: 0}

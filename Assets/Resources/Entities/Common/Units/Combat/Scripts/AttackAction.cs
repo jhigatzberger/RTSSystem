@@ -7,7 +7,7 @@ public class AttackAction : Action
 {
     public override void Enter(IStateMachine stateMachine)
     {
-        stateMachine.Entity.GetScriptableComponent<IAttacker>().Attack();
+        stateMachine.Entity.GetExtension<IAttacker>().Attack();
     }
 
     public override void Exit(IStateMachine entity)

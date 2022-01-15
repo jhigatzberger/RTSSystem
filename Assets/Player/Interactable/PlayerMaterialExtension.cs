@@ -4,7 +4,7 @@ namespace JHiga.RTSEngine
 {
     public class PlayerMaterialExtension : BaseInteractableExtension<PlayerMaterialsProperties>
     {
-        public PlayerMaterialExtension(IExtendable extendable, PlayerMaterialsProperties properties) : base(extendable, properties) { }
+        public PlayerMaterialExtension(IExtendableEntity extendable, PlayerMaterialsProperties properties) : base(extendable, properties) { }
 
         public override void Enable()
         {

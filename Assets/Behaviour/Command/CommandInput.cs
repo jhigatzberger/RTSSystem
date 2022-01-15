@@ -113,7 +113,7 @@ namespace JHiga.RTSEngine.CommandPattern
                 CachedEntity = null;
             else if (CachedEntity == null || CachedEntity.Entity != SelectionContext.selection[0].Entity)
             {
-                if (SelectionContext.selection[0].Entity.TryGetScriptableComponent(out ICommandable commandable) && SelectionContext.selection[0].Entity.EntityId.playerIndex == PlayerContext.PlayerId)
+                if (SelectionContext.selection[0].Entity.TryGetExtension(out ICommandable commandable) && SelectionContext.selection[0].Entity.UniqueID.playerIndex == PlayerContext.PlayerId)
                     CachedEntity = commandable;
                 else
                     CachedEntity = null;

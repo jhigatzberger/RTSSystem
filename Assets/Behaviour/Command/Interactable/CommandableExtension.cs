@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.CommandPattern
         public SingleResolvedCommand? Current { get; set; }
         public event Action OnCommandClear;
         public CommandProperties[] CommandCompetence => Properties.commandCompetence;
-        public CommandableExtension(IExtendable entity, CommandableProperties properties) : base(entity, properties){}
+        public CommandableExtension(IExtendableEntity entity, CommandableProperties properties) : base(entity, properties){}
 
         public void Enqueue(SingleResolvedCommand command)
         {

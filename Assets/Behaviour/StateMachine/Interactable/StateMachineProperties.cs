@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.StateMachine
         public State defaultState;
         public State endState;
         public bool commandable;
-        public override IInteractableExtension Build(IExtendable entity)
+        public override IEntityExtension Build(IExtendableEntity entity)
         {
             return new StateMachineExtension(entity, this);
         }

@@ -15,9 +15,9 @@ namespace JHiga.RTSEngine.AI.Formation
             this.distance = distance;
             this.maxColumns = maxColumns;
         }
-        public override Vector3 GetPosition(Vector3 position, IExtendable entity)
+        public override Vector3 GetPosition(Vector3 position, IExtendableEntity entity)
         {
-            if(entity.TryGetScriptableComponent(out ISelectable selectable))
+            if(entity.TryGetExtension(out ISelectable selectable))
             {
                 int index = selectable.SelectionIndex;
                 int count = SelectionContext.selection.Count;

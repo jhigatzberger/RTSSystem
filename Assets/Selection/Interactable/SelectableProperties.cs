@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.Selection
     {
         public int priority;
 
-        public override IInteractableExtension Build(IExtendable entity)
+        public override IEntityExtension Build(IExtendableEntity entity)
         {
             return new SelectableExtension(entity, this);
         }

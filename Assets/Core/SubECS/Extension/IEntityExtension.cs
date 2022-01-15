@@ -1,8 +1,8 @@
 namespace JHiga.RTSEngine
 {
-    public interface IInteractableExtension
+    public interface IEntityExtension
     {
-        public IExtendable Entity { get; }
+        public IExtendableEntity Entity { get; }
         public void Clear();
         public void Enable();
         public void Disable();

@@ -22,7 +22,7 @@ namespace JHiga.RTSEngine.CommandPattern
             properties = CommandData.Instance.commands[skinnedCommand.commandId];
             references = new ResolvedCommandReferences(skinnedCommand.references);
         }
-        public ResolvedCommand(CommandProperties properties, bool clearQueueOnEnqeue, IExtendable[] entities, ICommandable referenceCommandable)
+        public ResolvedCommand(CommandProperties properties, bool clearQueueOnEnqeue, IExtendableEntity[] entities, ICommandable referenceCommandable)
         {
             this.properties = properties;
             references = new ResolvedCommandReferences
@@ -39,10 +39,9 @@ namespace JHiga.RTSEngine.CommandPattern
         };
         public void Enqueue()
         {
-            foreach(IExtendable entity in references.entities)
+            foreach(IExtendableEntity entity in references.entities)
             {
-                Debug.Log(references.entities.Length + " " + (entity == null) + " " + (references.entities == null));
-                if (entity.TryGetScriptableComponent(out ICommandable commandable))
+                if (entity.TryGetExtension(out ICommandable commandable))
                 {
                     if (references.clearQueueOnEnqeue)
                         commandable.Clear();
@@ -62,16 +61,15 @@ namespace JHiga.RTSEngine.CommandPattern
     }
     public struct ResolvedCommandReferences
     {
-        public IExtendable[] entities;
+        public IExtendableEntity[] entities;
         public bool clearQueueOnEnqeue;
         public Target target;
         public ResolvedCommandReferences(SkinnedCommandReferences skinnedCommandReferences)
         {
-            entities = new IExtendable[skinnedCommandReferences.entities.Length];
+            entities = new IExtendableEntity[skinnedCommandReferences.entities.Length];
             for(int i = 0; i< entities.Length; i++)
             {
-                IExtendable entity = EntityConstants.FindEntityByUniqueId(new UID(skinnedCommandReferences.entities[i]));
-                Debug.Log((entity == null) + " " + skinnedCommandReferences.entities[i]);
+                IExtendableEntity entity = GameEntity.Get(new UID(skinnedCommandReferences.entities[i]));
                 entities[i] = entity;
             }
             clearQueueOnEnqeue = skinnedCommandReferences.clearQueueOnEnqeue;
@@ -80,7 +78,7 @@ namespace JHiga.RTSEngine.CommandPattern
         public SkinnedCommandReferences Skin => new SkinnedCommandReferences {
             clearQueueOnEnqeue = clearQueueOnEnqeue,
             target = target.Skin,
-            entities = entities.Select(e => e.EntityId.uniqueId).ToArray()
+            entities = entities.Select(e => e.UniqueID.uniqueId).ToArray()
         };        
     }
     public struct SkinnedCommand

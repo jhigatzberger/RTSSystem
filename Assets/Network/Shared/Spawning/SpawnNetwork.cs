@@ -30,9 +30,8 @@ namespace JHiga.RTSEngine.Network
         {
             SpawningClient.Instance.SpawnHomeBuilding(position, (int)OwnerClientId);
         }
-
         [ClientRpc]
-        public void BroadCastEntityInitializationClientRpc(InitializationData data)
+        public void BroadCastEntityInitializationClientRpc(SpawnData data)
         {
             SpawningClient.Instance.SendAuthorizedData(data);
         }

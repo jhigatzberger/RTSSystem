@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Movement
 {
     public class MovableExtension : BaseInteractableExtension<MovableProperties>, IMovable
     {
-        public MovableExtension(IExtendable entity, MovableProperties properties) : base(entity, properties)
+        public MovableExtension(IExtendableEntity entity, MovableProperties properties) : base(entity, properties)
         {
             agent = Entity.MonoBehaviour.GetComponent<NavMeshAgent>();
         }

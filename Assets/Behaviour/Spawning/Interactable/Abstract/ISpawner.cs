@@ -1,10 +1,9 @@
 namespace JHiga.RTSEngine.Spawning
 {
-    public interface ISpawner : IInteractableExtension
+    public interface ISpawner : IEntityExtension
     {
         public Target Waypoint { get; set; }
-        public void AuthorizeID(int id);
-        public void Enqueue(int entityType, float time);
+        public void Enqueue(UID uid, float time);
     }
 }
 

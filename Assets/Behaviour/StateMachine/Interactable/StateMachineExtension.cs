@@ -11,12 +11,12 @@ namespace JHiga.RTSEngine.StateMachine
             get
             {
                 if(_commandable==null)
-                    _commandable = Entity.GetScriptableComponent<ICommandable>();
+                    _commandable = Entity.GetExtension<ICommandable>();
                 return _commandable;
             }
         }
         public float TimeStamp { get; set; }
-        public StateMachineExtension(IExtendable entity, StateMachineProperties properties) : base(entity, properties) { }
+        public StateMachineExtension(IExtendableEntity entity, StateMachineProperties properties) : base(entity, properties) { }
         public void ChangeState(State state)
         {
             if (state == currentState)

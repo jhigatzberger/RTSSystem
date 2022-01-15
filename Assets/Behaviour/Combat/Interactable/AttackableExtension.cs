@@ -2,7 +2,7 @@ namespace JHiga.RTSEngine.Combat
 {
     public class AttackableExtension : BaseInteractableExtension<AttackableProperties>, IAttackable
     {
-        public AttackableExtension(IExtendable extendable, AttackableProperties properties) : base(extendable, properties){}
+        public AttackableExtension(IExtendableEntity extendable, AttackableProperties properties) : base(extendable, properties){}
         public override void Enable()
         {
             _health = Properties.health;

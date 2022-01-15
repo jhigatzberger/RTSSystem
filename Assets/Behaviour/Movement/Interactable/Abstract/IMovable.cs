@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine.Movement
 {
-    public interface IMovable : IInteractableExtension
+    public interface IMovable : IEntityExtension
     {        
         /// <summary>
         /// Instantiates a <see cref="Entity.Destination"/> and enqueues it for later <see cref="IMovable.Move"/>, if there is no other <see cref="IMovable.Destination"/> in queue, <see cref="IMovable.Move"/>.

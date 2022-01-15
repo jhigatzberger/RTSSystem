@@ -4,39 +4,40 @@ using System;
 namespace JHiga.RTSEngine
 {
     /// <summary>
-    /// A pooled implementation of <see cref="IExtendable"/>.
-    /// Gets spawned by <see cref="PooledGameEntityFactory"/>.
+    /// Any "Actor" in your RTS Game. Can be a tree that should be fellable, a unit, a building...
+    /// Gets spawned by <see cref="GameEntityFactory"/>.
     /// </summary>
-    public class GameEntity : MonoBehaviour, IExtendable
+    public class GameEntity : MonoBehaviour, IExtendableEntity
     {
-        #region Initialization
+        public static GameEntity Get(UID uid)
+        {
+            return GameEntityFactory.Get(uid).Entities[uid.entityIndex];
+        }
         [SerializeField] private UID _id;
-        public UID EntityId
+        public UID UniqueID
         {
             get => _id;
             internal set
             {
                 _id = value;
                 gameObject.layer = LayerMask.NameToLayer(PlayerContext.players[value.playerIndex].layerName);
-                foreach (IInteractableExtension extension in Extensions)
+                foreach (IEntityExtension extension in Extensions)
                     extension.Enable();
             }
         }
-        #endregion
-        #region Components
-        public IInteractableExtension[] Extensions { get; set; }
+        public IEntityExtension[] Extensions { get; set; }
         public MonoBehaviour MonoBehaviour => this;
-        public T GetScriptableComponent<T>() where T : IInteractableExtension
+        public T GetExtension<T>() where T : IEntityExtension
         {
-            foreach (IInteractableExtension x in Extensions)
+            foreach (IEntityExtension x in Extensions)
                 if (x is T t)
                     return t;
             return default;
         }
-        public bool TryGetScriptableComponent<T>(out T extension) where T : IInteractableExtension
+        public bool TryGetExtension<T>(out T extension) where T : IEntityExtension
         {
             extension = default;
-            foreach (IInteractableExtension x in Extensions)
+            foreach (IEntityExtension x in Extensions)
                 if (x is T t)
                 {
                     extension = t;
@@ -44,18 +45,15 @@ namespace JHiga.RTSEngine
                 }
             return false;
         }
-        #endregion
-        #region Clean Up
-        private void OnDisable()
-        {
-            foreach (IInteractableExtension extension in Extensions)
-                extension.Disable();
-        }
         public void Clear()
         {
-            foreach (IInteractableExtension extension in Extensions)
+            foreach (IEntityExtension extension in Extensions)
                 extension.Clear();
         }
-        #endregion
+        private void OnDisable()
+        {
+            foreach (IEntityExtension extension in Extensions)
+                extension.Disable();
+        }
     }
 }

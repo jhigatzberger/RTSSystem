@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.Selection
         {
             get
             {
-                if (startPos.HasValue && SelectionContext.FirstOrNullHovered != null && SelectionContext.FirstOrNullHovered.GetScriptableComponent<ISelectable>() != null)
+                if (startPos.HasValue && SelectionContext.FirstOrNullHovered != null && SelectionContext.FirstOrNullHovered.GetExtension<ISelectable>() != null)
                     return Vector2.Distance(startPos.Value, Input.mousePosition) < maxMouseDistance && SelectionContext.hovered.Count > 0;
                 return false;
             }
@@ -25,8 +25,8 @@ namespace JHiga.RTSEngine.Selection
         {
             if (Applicable)
             {
-                print(SelectionContext.FirstOrNullHovered.EntityId.uniqueId);
-                SelectionContext.Select(SelectionContext.FirstOrNullHovered.GetScriptableComponent<ISelectable>());
+                print(SelectionContext.FirstOrNullHovered.UniqueID.uniqueId);
+                SelectionContext.Select(SelectionContext.FirstOrNullHovered.GetExtension<ISelectable>());
             }
         }
     }

@@ -7,13 +7,13 @@ namespace JHiga.RTSEngine.Selection
     {
         private Renderer _renderer;
         public bool Visible => _renderer.isVisible;
-        public int Priority => Entity.EntityId.playerIndex == PlayerContext.PlayerId ? Properties.priority : Properties.priority + SelectionContext.NULL_PRIORITY;
+        public int Priority => Entity.UniqueID.playerIndex == PlayerContext.PlayerId ? Properties.priority : Properties.priority + SelectionContext.NULL_PRIORITY;
         public event Action<bool> OnSelectedUpdate;
         public bool Selected => SelectionIndex>=0;
         public int SelectionIndex => _selectionIndex;
         private int _selectionIndex = -1;
         private SelectionBehaviour indicator;
-        public SelectableExtension(IExtendable extendable, SelectableProperties properties) : base(extendable, properties)
+        public SelectableExtension(IExtendableEntity extendable, SelectableProperties properties) : base(extendable, properties)
         {
             indicator = Entity.MonoBehaviour.GetComponentInChildren<SelectionBehaviour>();
             indicator.Selectable = this;

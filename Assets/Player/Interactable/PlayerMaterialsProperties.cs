@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine
     {
         public Texture changeTexture;
         public Material[] playerMaterials;
-        public override IInteractableExtension Build(IExtendable entity)
+        public override IEntityExtension Build(IExtendableEntity entity)
         {
             return new PlayerMaterialExtension(entity, this);
         }

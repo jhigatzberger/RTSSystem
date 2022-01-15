@@ -10,7 +10,6 @@ namespace JHiga.RTSEngine.Spawning
         private EntitySpawnData? next;
         private float timeStamp;
         private UID? nextUID = null;
-
         public Target Waypoint {
             get
             {
@@ -21,58 +20,39 @@ namespace JHiga.RTSEngine.Spawning
             }
             set => throw new System.NotImplementedException();
         }
-
-        public SpawnerExtension(IExtendable entity, SpawnerProperties properties) : base(entity, properties)
+        public SpawnerExtension(IExtendableEntity entity, SpawnerProperties properties) : base(entity, properties)
         {
             LockStep.OnStep += LockStep_OnStep;
-        }
-
-        public void AuthorizeID(int uniqueId)
-        {
-            nextUID = new UID(uniqueId);
-        }
-
-        public void RequestNext()
-        {
-            if (spawnQueue.Count == 0 || next != null || nextUID.HasValue)
-                return;
-            next = spawnQueue.Dequeue();
-            EntityConstants.RequireEntityID(Entity.EntityId.uniqueId);
-            timeStamp = LockStep.time;
-        }
-
-        private void DoSpawn()
-        {
-            if (!nextUID.HasValue || !next.HasValue || next.Value.time > LockStep.time - timeStamp)
-                return;
-
-            next.Value.toSpawn.Spawn(Entity.MonoBehaviour.transform.position + Properties.doorPosition, nextUID.Value.uniqueId);
-            next = null;
-            nextUID = null;
         }
         public override void Disable()
         {
             LockStep.OnStep -= LockStep_OnStep;
         }
-
         private void LockStep_OnStep()
         {
-            RequestNext();
-            DoSpawn();
+            Spawn();
         }
-        public void Enqueue(int entityType, float spawnTime)
+        private void Spawn()
+        {
+            if (!nextUID.HasValue || !next.HasValue || next.Value.time > LockStep.time - timeStamp)
+                return;
+            
+            next.Value.factory.Spawn(Entity.MonoBehaviour.transform.position + Properties.doorPosition, nextUID.Value);
+            next = null;
+            nextUID = null;
+        }
+        public void Enqueue(UID uid, float spawnTime)
         {
             spawnQueue.Enqueue(new EntitySpawnData
             {
-                toSpawn = PlayerContext.players[Entity.EntityId.playerIndex].Factories[entityType],
+                factory = GameEntityFactory.Get(uid),
                 time = spawnTime
             });
         }
     }
-
     public struct EntitySpawnData
     {
         public float time;
-        public EntityFactory<GameEntity> toSpawn;
+        public GameEntityFactory factory;
     }
 }

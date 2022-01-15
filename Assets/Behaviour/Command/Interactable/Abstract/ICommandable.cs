@@ -2,7 +2,7 @@ using JHiga.RTSEngine.StateMachine;
 
 namespace JHiga.RTSEngine.CommandPattern
 {
-    public interface ICommandable : IInteractableExtension
+    public interface ICommandable : IEntityExtension
     {
         public SingleResolvedCommand? Current { get; set; }
         /// <summary>
@@ -12,7 +12,7 @@ namespace JHiga.RTSEngine.CommandPattern
         /// </summary>
         public void Finish();
         /// <summary>
-        /// All <see cref="CommandProperties"/> the <see cref="IExtendable"/> can <see cref="CommandProperties.PackTarget"/>.
+        /// All <see cref="CommandProperties"/> the <see cref="IExtendableEntity"/> can <see cref="CommandProperties.PackTarget"/>.
         /// It is assumed that the lower the index of the element, the more important the command is. 
         /// E.g.: If you hover over an enemy unit you can perform both the attack and the move command, however only the attack command should be performed.
         /// </summary>

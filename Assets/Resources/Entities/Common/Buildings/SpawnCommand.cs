@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.Spawning
     {
         public int cost;
         public float time;
-        public EntityFactory<GameEntity> spawn;
+        public GameEntityFactory spawn;
         public override bool Applicable(ICommandable entity)
         {
             return ResourceManager.playerResources >= cost;
@@ -18,16 +18,14 @@ namespace JHiga.RTSEngine.Spawning
 
         public override Target PackTarget(ICommandable commandable)
         {
-            Debug.Log(spawn.Index + " spawnindex");
+            Debug.Log(spawn.Index + " spawnindex " + spawn.name);
             ResourceManager.Spend(cost);
-            return commandable.Entity.GetScriptableComponent<ISpawner>().Waypoint;
+            return commandable.Entity.GetExtension<ISpawner>().Waypoint;
         }
 
         public override void Execute(ICommandable commandable, Target target)
         {
-            commandable.Entity.GetScriptableComponent<ISpawner>().Enqueue(spawn.Index, time);
-            if (commandable.Entity.TryGetScriptableComponent(out IMovable movable))
-                movable.Destination = target;
+            SpawnEvents.RequestSpawn(new SpawnRequest { time = time, spawnerUID = commandable.Entity.UniqueID.uniqueId });
         }
     }
 }

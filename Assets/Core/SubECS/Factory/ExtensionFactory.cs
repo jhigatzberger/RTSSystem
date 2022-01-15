@@ -4,7 +4,7 @@ namespace JHiga.RTSEngine
 {
     public abstract class ExtensionFactory : ScriptableObject
     {
-        public abstract IInteractableExtension Build(IExtendable extendable);
+        public abstract IEntityExtension Build(IExtendableEntity extendable);
     }
 
 }

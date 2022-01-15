@@ -6,7 +6,7 @@ namespace JHiga.RTSEngine.Combat
     public class AttackableProperties : ExtensionFactory
     {
         public int health;
-        public override IInteractableExtension Build(IExtendable extendable)
+        public override IEntityExtension Build(IExtendableEntity extendable)
         {
             return new AttackableExtension(extendable, this);
         }

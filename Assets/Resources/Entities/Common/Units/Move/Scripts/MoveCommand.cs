@@ -21,7 +21,7 @@ public class MoveCommand : StateMachineCommandProperties
     }
     protected override void BeforeStateChange(ICommandable commandable, Target target)
     {
-        commandable.Entity.GetScriptableComponent<IMovable>().Enqueue(new Target { position = FormationContext.current.GetPosition(target.position, commandable.Entity) });
+        commandable.Entity.GetExtension<IMovable>().Enqueue(new Target { position = FormationContext.current.GetPosition(target.position, commandable.Entity) });
     }
 }
 

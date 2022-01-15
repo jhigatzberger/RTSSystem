@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Movement
     public class MovableProperties : ExtensionFactory
     {
         public float movementSpeed;
-        public override IInteractableExtension Build(IExtendable entity)
+        public override IEntityExtension Build(IExtendableEntity entity)
         {
             return new MovableExtension(entity, this);
         }

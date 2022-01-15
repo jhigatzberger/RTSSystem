@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: UndeadTownHall
   m_EditorClassIdentifier: 
   prefab: {fileID: 1489735120124986376, guid: 24fc79f031ca2c44c91b3b4029d7af47, type: 3}
-  properties:
-  - {fileID: 11400000, guid: 3248c8cf8ad55f74ea7b52ec140b7118, type: 2}
-  - {fileID: 11400000, guid: 2e2fd19630faec043ac65542eb13f208, type: 2}
-  - {fileID: 11400000, guid: 6eef477195f46bc4caaad2a776f55021, type: 2}
-  - {fileID: 11400000, guid: a42d13763830ab140b4377333469f3f1, type: 2}
+  _properties:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

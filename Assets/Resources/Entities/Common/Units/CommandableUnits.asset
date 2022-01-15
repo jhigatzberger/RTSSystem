@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CommandableUnits
   m_EditorClassIdentifier: 
   commandCompetence:
-  - {fileID: 11400000, guid: 63561030969b49848977984ea3d0b740, type: 2}
-  - {fileID: 11400000, guid: 62ac770852e3e2d4db7c8c70d072c429, type: 2}
+  - {fileID: 6053781840455765175, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}

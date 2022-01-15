@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.Combat
         public float visionRange; 
         public float attackRange;
         public float damageDelay;
-        public override IInteractableExtension Build(IExtendable extendable)
+        public override IEntityExtension Build(IExtendableEntity extendable)
         {
             return new AttackerExtension(extendable, this);
         }

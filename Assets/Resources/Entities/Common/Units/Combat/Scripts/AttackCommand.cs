@@ -9,9 +9,9 @@ public class AttackCommand : StateMachineCommandProperties
 {
     public override bool Applicable(ICommandable entity)
     {
-        IExtendable hovered = SelectionContext.FirstOrNullHovered;
-        if(hovered != null && hovered.TryGetScriptableComponent(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
-            if (PlayerContext.AreEnenmies(entity.Entity.EntityId.playerIndex, hovered.EntityId.playerIndex))
+        IExtendableEntity hovered = SelectionContext.FirstOrNullHovered;
+        if(hovered != null && hovered.TryGetExtension(out IAttackable attackable)) // Can be optimized performance wise by using a tag for example
+            if (PlayerContext.AreEnenmies(entity.Entity.UniqueID.playerIndex, hovered.UniqueID.playerIndex))
                 return true;
         return false;
     }
@@ -25,7 +25,7 @@ public class AttackCommand : StateMachineCommandProperties
     }
     protected override void BeforeStateChange(ICommandable commandable, Target target)
     {
-        commandable.Entity.GetScriptableComponent<IAttacker>().Target = target.entity.GetScriptableComponent<IAttackable>();
+        commandable.Entity.GetExtension<IAttacker>().Target = target.entity.GetExtension<IAttackable>();
     }
 
 }

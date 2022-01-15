@@ -7,11 +7,11 @@ namespace JHiga.RTSEngine
     public struct Target
     {
         public Vector3 position;
-        public IExtendable entity;
+        public IExtendableEntity entity;
         public Target(SkinnedTarget skinnedTarget)
         {
             if (skinnedTarget.targetEntity >= 0)
-                entity = EntityConstants.FindEntityByUniqueId(new UID(skinnedTarget.targetEntity));
+                entity = GameEntity.Get(new UID(skinnedTarget.targetEntity));
             else
                 entity = null;
             position = skinnedTarget.position;
@@ -24,7 +24,7 @@ namespace JHiga.RTSEngine
         public SkinnedTarget Skin => new SkinnedTarget
         {
             position = position,
-            targetEntity = entity==null?-1:entity.EntityId.uniqueId
+            targetEntity = entity==null?-1:entity.UniqueID.uniqueId
         };
     }
     public struct SkinnedTarget

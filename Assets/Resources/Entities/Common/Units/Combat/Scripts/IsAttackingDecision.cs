@@ -7,7 +7,7 @@ public class IsAttackingDecision : Decision
 {
     public override bool Decide(IStateMachine stateMachine)
     {
-        return stateMachine.Entity.GetScriptableComponent<IAttacker>().IsAttacking;
+        return stateMachine.Entity.GetExtension<IAttacker>().IsAttacking;
     }
 }
 

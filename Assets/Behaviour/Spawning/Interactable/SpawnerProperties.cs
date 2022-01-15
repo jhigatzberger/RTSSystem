@@ -6,7 +6,7 @@ namespace JHiga.RTSEngine.Spawning
     public class SpawnerProperties : ExtensionFactory
     {
         public Vector3 doorPosition;
-        public override IInteractableExtension Build(IExtendable entity)
+        public override IEntityExtension Build(IExtendableEntity entity)
         {
             return new SpawnerExtension(entity, this);
         }

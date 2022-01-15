@@ -11,7 +11,7 @@ namespace JHiga.RTSEngine.CommandPattern
         public override void Execute(ICommandable commandable, Target target)
         {
             BeforeStateChange(commandable, target);
-            commandable.Entity.GetScriptableComponent<IStateMachine>().ChangeState(state);
+            commandable.Entity.GetExtension<IStateMachine>().ChangeState(state);
         }
         protected abstract void BeforeStateChange(ICommandable commandable, Target target);
     }

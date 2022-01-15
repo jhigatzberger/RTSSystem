@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Combat
     public class AttackerExtension : BaseInteractableExtension<AttackerProperties>, IAttacker
     {
         private Animator anim;
-        public AttackerExtension(IExtendable extendable, AttackerProperties properties) : base(extendable, properties)
+        public AttackerExtension(IExtendableEntity extendable, AttackerProperties properties) : base(extendable, properties)
         {
             anim = Entity.MonoBehaviour.GetComponent<Animator>();
         }

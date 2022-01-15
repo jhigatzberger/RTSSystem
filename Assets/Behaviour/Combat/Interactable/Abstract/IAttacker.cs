@@ -5,7 +5,7 @@ namespace JHiga.RTSEngine.Combat
     /// <summary>
     /// Handles combat with an <see cref="IAttackable"/>
     /// </summary>
-    public interface IAttacker: IInteractableExtension
+    public interface IAttacker: IEntityExtension
     {        
         /// <summary>
         /// The current <see cref="IAttackable"/> target.

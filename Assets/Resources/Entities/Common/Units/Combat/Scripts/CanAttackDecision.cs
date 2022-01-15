@@ -7,7 +7,7 @@ public class CanAttackDecision : Decision
 {
     public override bool Decide(IStateMachine stateMachine)
     {
-        return stateMachine.Entity.GetScriptableComponent<IAttacker>().CanAttack;
+        return stateMachine.Entity.GetExtension<IAttacker>().CanAttack;
     }
 }
 

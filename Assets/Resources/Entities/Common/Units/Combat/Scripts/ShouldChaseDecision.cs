@@ -8,7 +8,7 @@ public class ShouldChaseDecision : Decision
 {
     public override bool Decide(IStateMachine stateMachine)
     {
-        IAttacker attacker = stateMachine.Entity.GetScriptableComponent<IAttacker>();
+        IAttacker attacker = stateMachine.Entity.GetExtension<IAttacker>();
         return attacker.Target != null && attacker.Target.IsAlive && !attacker.IsInRange;
     }
 }

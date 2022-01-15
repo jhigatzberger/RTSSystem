@@ -19,22 +19,21 @@ namespace JHiga.RTSEngine.Network
                 return;
             }
             Instance = this;
-            EntityConstants.OnRequireEntityID += RequestEntityInitialization;
+            SpawnEvents.OnRequestSpawn += RequestEntityInitialization;
         }
         #endregion
         public Vector3 GetPlayerHomePosition()
         {
             return new Vector3(Random.Range(-45, 45), 0, Random.Range(-45, 45));
         }
-        public void RequestEntityInitialization(int spawnID)
+        public void RequestEntityInitialization(SpawnRequest spawnRequest)
         {
-            UID spawnUID = new UID(spawnID);
-            int entityID = PlayerContext.players[spawnUID.playerIndex].Factories[spawnUID.poolIndex].GenerateEntityID();
             SpawnNetwork.Instance.BroadCastEntityInitializationClientRpc(
-                    new InitializationData()
+                    new SpawnData()
                     {
-                        spawnID = spawnID,
-                        entityID = entityID
+                        spawnerUID = spawnRequest.spawnerUID,
+                        entityUID = GameEntityFactory.Get(new UID(spawnRequest.spawnerUID)).GenerateEntityID(),
+                        time = spawnRequest.time
                     }
                 );
         }

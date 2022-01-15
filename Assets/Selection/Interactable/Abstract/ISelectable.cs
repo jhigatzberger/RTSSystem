@@ -3,7 +3,7 @@ using System;
 
 namespace JHiga.RTSEngine.Selection
 {
-    public interface ISelectable : IInteractableExtension
+    public interface ISelectable : IEntityExtension
     {
         public int Priority { get; }
         public bool Selected { get; }

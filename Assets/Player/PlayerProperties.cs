@@ -12,8 +12,8 @@ namespace JHiga.RTSEngine
         public Color color;
         public LayerMask enemies;
         public FactionProperties faction;
-        private EntityFactory<GameEntity>[] _factories;
-        public EntityFactory<GameEntity>[] Factories
+        private GameEntityFactory[] _factories;
+        public GameEntityFactory[] Factories
         {
             get
             {
@@ -21,6 +21,10 @@ namespace JHiga.RTSEngine
                     _factories = faction.GetIndividualInstanceFactories(id);
                 return _factories;
             } 
+        }
+        public static PlayerProperties Get(UID uid)
+        {
+            return PlayerContext.players[uid.playerIndex];
         }
     }
 }

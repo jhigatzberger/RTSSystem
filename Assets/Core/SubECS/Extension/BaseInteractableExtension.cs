@@ -1,10 +1,10 @@
 namespace JHiga.RTSEngine
 {
-    public abstract class BaseInteractableExtension<T> : IInteractableExtension where T : ExtensionFactory
+    public abstract class BaseInteractableExtension<T> : IEntityExtension where T : ExtensionFactory
     {
-        public IExtendable Entity { get; private set; }
+        public IExtendableEntity Entity { get; private set; }
         public T Properties { get; private set; }
-        public BaseInteractableExtension(IExtendable entity, T properties)
+        public BaseInteractableExtension(IExtendableEntity entity, T properties)
         {
             Entity = entity;
             Properties = properties;

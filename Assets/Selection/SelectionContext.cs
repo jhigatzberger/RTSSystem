@@ -30,8 +30,8 @@ namespace JHiga.RTSEngine.Selection
             }
         }
         #region Hovering
-        public static HashSet<IExtendable> hovered = new HashSet<IExtendable>();
-        public static IExtendable FirstOrNullHovered
+        public static HashSet<IExtendableEntity> hovered = new HashSet<IExtendableEntity>();
+        public static IExtendableEntity FirstOrNullHovered
         {
             get
             {

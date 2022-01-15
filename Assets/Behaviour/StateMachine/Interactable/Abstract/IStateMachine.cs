@@ -4,9 +4,9 @@ namespace JHiga.RTSEngine.StateMachine
 {
     /// <summary>
     /// Handles the <see cref="State"/> trees of unit behaviours.
-    /// Tightly coupled to the <see cref="ICommandable"/>  <see cref="IInteractableExtension"/> to allow a seamless notification of <see cref="ICommandable.Finish"/> when a statechain ends.
+    /// Tightly coupled to the <see cref="ICommandable"/>  <see cref="IEntityExtension"/> to allow a seamless notification of <see cref="ICommandable.Finish"/> when a statechain ends.
     /// </summary>
-    public interface IStateMachine : IInteractableExtension
+    public interface IStateMachine : IEntityExtension
     {
         /// <summary>
         /// The <see cref="LockStep"/> time stamp of the last time the <see cref="State"/> has been changed.

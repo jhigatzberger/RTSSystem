@@ -9,17 +9,17 @@ public class ChaseAction : Action
 {
     public override void Enter(IStateMachine stateMachine)
     {
-        IExtendable entity = stateMachine.Entity;
-        IMovable movable = entity.GetScriptableComponent<IMovable>();
+        IExtendableEntity entity = stateMachine.Entity;
+        IMovable movable = entity.GetExtension<IMovable>();
         movable.Clear();
-        IAttacker attacker = entity.GetScriptableComponent<IAttacker>();
+        IAttacker attacker = entity.GetExtension<IAttacker>();
         movable.Enqueue(new Target {entity = attacker.Target.Entity});
     }
 
     public override void Exit(IStateMachine stateMachine)
     {
-        IExtendable entity = stateMachine.Entity;
-        IMovable movable = entity.GetScriptableComponent<IMovable>();
+        IExtendableEntity entity = stateMachine.Entity;
+        IMovable movable = entity.GetExtension<IMovable>();
         movable.Stop();
     }
 }

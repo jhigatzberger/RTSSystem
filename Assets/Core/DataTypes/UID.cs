@@ -13,9 +13,6 @@ namespace JHiga.RTSEngine
             playerIndex = uniqueId / UIDConstants.FIRST_PLAYER_ID;
             poolIndex = (uniqueId - playerIndex * UIDConstants.FIRST_PLAYER_ID) / UIDConstants.FIRST_POOL_ID;
             entityIndex = (uniqueId - playerIndex * UIDConstants.FIRST_PLAYER_ID) - poolIndex * UIDConstants.FIRST_POOL_ID;
-
-            playerIndex--;
-            poolIndex--;
         }
 
         public UID(int playerIndex, int poolIndex, int entityIndex)
@@ -23,7 +20,7 @@ namespace JHiga.RTSEngine
             this.playerIndex = playerIndex;
             this.poolIndex = poolIndex;
             this.entityIndex = entityIndex;
-            uniqueId = UIDConstants.FIRST_PLAYER_ID * (playerIndex+1) + UIDConstants.FIRST_POOL_ID * (poolIndex+1) + entityIndex;
+            uniqueId = UIDConstants.FIRST_PLAYER_ID * playerIndex + UIDConstants.FIRST_POOL_ID * poolIndex + entityIndex;
         }
 
         public override string ToString()
