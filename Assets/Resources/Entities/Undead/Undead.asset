@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7912fcf47ebf0d14eb48ae8c68dfadca, type: 3}
   m_Name: Undead
   m_EditorClassIdentifier: 
-  startEntity: {fileID: 11400000, guid: 8624e51b876e175458480a461947f76a, type: 2}
-  entities:
-  - {fileID: 11400000, guid: 8624e51b876e175458480a461947f76a, type: 2}
-  - {fileID: 11400000, guid: 72d6ac3b28318f0408b080142c1b814b, type: 2}
+  startEntities: []
+  entityGroups:
+  - name: 
+    entities: []

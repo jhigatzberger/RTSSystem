@@ -24,7 +24,7 @@ namespace JHiga.RTSEngine
             }
             else
             {
-                entity = Instantiate(prefab, position, Quaternion.identity).GetComponent<GameEntity>();
+                entity = Instantiate(prefab, position, Quaternion.identity).AddComponent<GameEntity>();
                 entity.Extensions = Build(entity);
                 Entities[uid.entityIndex] = entity;
             }

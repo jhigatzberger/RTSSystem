@@ -15,7 +15,7 @@ namespace JHiga.RTSEngine.Selection
         private SelectionBehaviour indicator;
         public SelectableExtension(IExtendableEntity extendable, SelectableProperties properties) : base(extendable, properties)
         {
-            indicator = Entity.MonoBehaviour.GetComponentInChildren<SelectionBehaviour>();
+            indicator = GameObject.Instantiate(properties.selectionBehaviourPrefab, Entity.MonoBehaviour.transform).GetComponent<SelectionBehaviour>();
             indicator.Selectable = this;
             _renderer = indicator.gameObject.GetComponent<Renderer>();
         }

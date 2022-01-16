@@ -27,10 +27,14 @@ namespace JHiga.RTSEngine.Network
             SpawnNetwork.Instance.RequestPlayerHomePositionEntityServerRpc();
         }
 
-        public void SpawnHomeBuilding(Vector3 position, int playerId)
+        public void SpawnStartEntities(Vector3 position, int playerId)
         {
-            int poolIndex = PlayerContext.players[playerId].faction.startEntityIndex;
-            PlayerContext.players[playerId].Factories[poolIndex].Spawn(position, new UID(playerId, poolIndex, 0));
+            StartEntityData[] startEntities = PlayerContext.players[playerId].faction.startEntities;
+            for (int i = 0; i< startEntities.Length; i++)
+            {
+                UID uid = new UID(playerId, startEntities[i].entity.Index, i);
+                GameEntityFactory.Get(uid).Spawn(position + startEntities[i].offsetPosition, uid);
+            }
         }
 
         public void SendAuthorizedData(SpawnData data)

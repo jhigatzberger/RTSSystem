@@ -9,6 +9,7 @@ namespace JHiga.RTSEngine.Selection
     public class SelectableProperties : ExtensionFactory
     {
         public int priority;
+        public GameObject selectionBehaviourPrefab;
 
         public override IEntityExtension Build(IExtendableEntity entity)
         {

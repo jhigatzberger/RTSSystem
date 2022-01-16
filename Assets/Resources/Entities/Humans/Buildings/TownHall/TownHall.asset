@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: TownHall
   m_EditorClassIdentifier: 
   prefab: {fileID: 1489735120124986376, guid: 83ca73e8b5474b54c83aa19547fca6d7, type: 3}
-  properties:
-  - {fileID: 11400000, guid: 435cdb9985091bb4f8e0815e1714f79a, type: 2}
-  - {fileID: 11400000, guid: e15fc35f0c4cfe542b56165bd0bd85dc, type: 2}
-  - {fileID: 11400000, guid: d5cd80332b38e734eb1bab3b0b491921, type: 2}
-  - {fileID: 11400000, guid: a42d13763830ab140b4377333469f3f1, type: 2}
+  _properties: []

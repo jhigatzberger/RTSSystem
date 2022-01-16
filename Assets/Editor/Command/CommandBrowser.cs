@@ -1,18 +1,13 @@
-using JHiga.RTSEngine.CommandPattern;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using JHiga.RTSEngine.CommandPattern;
 
-public class EditorCommandView : EditorWindow
+public class CommandBrowser : EditorWindow
 {
-    public static EditorCommandView Instance { get; private set; }
-    public static CommandProperties Cache { get; private set; }
-    public static CommandData Container
+    public CommandData Container
     {
         get
         {
@@ -27,8 +22,10 @@ public class EditorCommandView : EditorWindow
     [MenuItem("RTS/Commands")]
     static void Init()
     {
-        Instance = GetWindow<EditorCommandView>();
-        Instance.Show();
+        CommandBrowser window = GetWindow<CommandBrowser>();
+        window.titleContent = new GUIContent("Command Browser");
+        window.UpdateView();
+        window.Show();
     } 
     public void UpdateView()
     {
@@ -40,12 +37,9 @@ public class EditorCommandView : EditorWindow
         {
             Button b = new Button();
             b.text = items[i] == null ? "Create" : "Edit";
-            b.clicked += () =>
-            {
-                Cache = items[i];
-                GetWindow<CommandEditor>().Show();
-            };
+            b.clicked += () => CommandEditor.Show(items[i], this);
             e.Add(b);
+
             if (items[i] != null)
             {
                 Label l = new Label();
@@ -63,7 +57,6 @@ public class EditorCommandView : EditorWindow
         listView.style.flexGrow = 1.0f;
         rootVisualElement.Add(listView);
     }
-
     public void OnEnable()
     {
         UpdateView();

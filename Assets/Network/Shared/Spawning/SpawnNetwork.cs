@@ -28,7 +28,7 @@ namespace JHiga.RTSEngine.Network
         [ClientRpc]
         public void SpawnPlayerHomeEntityClientRpc(Vector3 position)
         {
-            SpawningClient.Instance.SpawnHomeBuilding(position, (int)OwnerClientId);
+            SpawningClient.Instance.SpawnStartEntities(position, (int)OwnerClientId);
         }
         [ClientRpc]
         public void BroadCastEntityInitializationClientRpc(SpawnData data)
