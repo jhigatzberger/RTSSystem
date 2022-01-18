@@ -1,34 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7905483082764335771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
-  m_Name: EntityGroup
-  m_EditorClassIdentifier: 
-  entities:
-  - {fileID: 8818492824722546109}
-  - {fileID: 996202054532174736}
-  - {fileID: 6552546678601281213}
---- !u!114 &-6209939314212257927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
-  m_Name: Units
-  m_EditorClassIdentifier: 
-  entities: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startEntities: []
   entityGroups:
-  - {fileID: -7905483082764335771}
---- !u!114 &996202054532174736
+  - {fileID: 7637677646161024047}
+--- !u!114 &7637677646161024047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,33 +24,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
-  m_Name: TownHall
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Units
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1489735120124986376, guid: 83ca73e8b5474b54c83aa19547fca6d7, type: 3}
---- !u!114 &6552546678601281213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
-  m_Name: GameEntityPool
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 821017916617608991, guid: 0302873b26add524b840b97576494bf1, type: 3}
---- !u!114 &8818492824722546109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
-  m_Name: UndeadTownHall
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 7918981313826021795, guid: a56dfc257ad60804fa9870fefe4c41b8, type: 3}
+  entities:
+  - {fileID: 3582584850213593690, guid: fbb24921ec9c75641869ed554f7088b4, type: 2}

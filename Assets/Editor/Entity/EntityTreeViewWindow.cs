@@ -39,24 +39,25 @@ class EntityTreeViewWindow : EditorWindow
         if (cacheEditor != null)
         {
             cacheEditor.OnInspectorGUI();
-            if (GUILayout.Button("Add to " + cache.name))
+            if (!(treeView.selectedObject is ExtensionFactory) && GUILayout.Button("Add to " + cache.name))
             {
-                if (treeView.selectedObject is FactionProperties)
+                Object selectedObject = treeView.selectedObject;
+                if (selectedObject is FactionProperties)
                 {
-                    FactionProperties faction = (FactionProperties)treeView.selectedObject;
+                    FactionProperties faction = (FactionProperties)selectedObject;
                     GenericCreationWindow.Show<EntityGroup>((g) => faction.entityGroups.Add((EntityGroup)g), faction);
                 }
-                else if (treeView.selectedObject is EntityGroup)
+                else if (selectedObject is EntityGroup)
                 {
-                    EntityGroup group = (EntityGroup)treeView.selectedObject;
+                    EntityGroup group = (EntityGroup)selectedObject;
                     GenericCreationWindow.Show<GameEntityFactory>((e) => group.entities.Add((GameEntityFactory)e), group);
                 }
-                else if (treeView.selectedObject is GameEntityFactory)
+                else if (selectedObject is GameEntityFactory)
                 {
-                    GameEntityFactory entity = (GameEntityFactory)treeView.selectedObject;
+                    GameEntityFactory entity = (GameEntityFactory)selectedObject;
                     GenericCreationWindow.Show<ExtensionFactory>((f) =>
                     {
-                        List<ExtensionFactory> l = entity.ExtensionFactories.ToList();
+                        List<ExtensionFactory> l = entity.ExtensionFactories == null ? new List<ExtensionFactory>() : entity.ExtensionFactories.ToList();
                         l.Add((ExtensionFactory)f);
                         entity.ExtensionFactories = l.ToArray();
                     },
@@ -84,6 +85,7 @@ class EntityTreeViewWindow : EditorWindow
                     }
                 }
                 AssetDatabase.RemoveObjectFromAsset(selectedObject);
+                AssetDatabase.SaveAssets();
                 RenderTree();
             }
         } 

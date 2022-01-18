@@ -61,10 +61,6 @@ public class GenericCreationWindow : EditorWindow
 
     private void CreationTypeGUI()
     {
-        EditorGUILayout.LabelField("Type");
-        int _subTypeIndex = EditorGUILayout.Popup(subTypeIndex, subTypeNames);
-
-        EditorGUILayout.LabelField("Action");
         List<string> creationTypes = new List<string>();
         creationTypes.Add(CreationType.New.ToString());
         if(originals != null && originals.Count > 0)
@@ -72,8 +68,11 @@ public class GenericCreationWindow : EditorWindow
             creationTypes.Add(CreationType.Link.ToString());
             creationTypes.Add(CreationType.Copy.ToString());
         }
-        CreationType _creationType = (CreationType)EditorGUILayout.Popup((int)creationType, creationTypes.ToArray());
 
+        GUILayout.BeginHorizontal();
+        CreationType _creationType = (CreationType)EditorGUILayout.Popup((int)creationType, creationTypes.ToArray());
+        int _subTypeIndex = EditorGUILayout.Popup(subTypeIndex, subTypeNames);
+        GUILayout.EndHorizontal();
 
         if (_creationType != creationType || _subTypeIndex != subTypeIndex)
         {
@@ -100,7 +99,7 @@ public class GenericCreationWindow : EditorWindow
 
     private void CreateCopyGUI()
     {        
-        EditorGUILayout.LabelField("Duplicate");
+        EditorGUILayout.LabelField("Original");
         List<string> templateList = new List<string>(originals.Select(e => e.name));
         string[] templateNames = templateList.ToArray();
         int _index = EditorGUILayout.Popup(index, templateNames);

@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6638207514064989081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120d3dda1089a834abcb7ea268090f06, type: 3}
+  m_Name: AttackableProperties
+  m_EditorClassIdentifier: 
+  health: 0
+--- !u!114 &-4385167757490524306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Units
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 3582584850213593690}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,8 +41,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startEntities: []
   entityGroups:
-  - {fileID: 2088591446960670335}
---- !u!114 &2088591446960670335
+  - {fileID: -4385167757490524306}
+--- !u!114 &3582584850213593690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,7 +51,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
-  m_Name: Units
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: TestEntity
   m_EditorClassIdentifier: 
-  entities: []
+  prefab: {fileID: 1137340246058539085, guid: ce02c9c4a57eeb445885e2cc5a139c95, type: 3}

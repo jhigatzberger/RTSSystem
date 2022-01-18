@@ -51,6 +51,8 @@ class GenericTreeView : TreeView
     }
     public TreeViewItem[] GetTreeViewItems<T>(ICollection<T> source, Func<T, TreeViewItem[]> childrenFunc = null) where T : UnityEngine.Object
     {
+        if (source == null)
+            return new TreeViewItem[]{};
         List<TreeViewItem> items = new List<TreeViewItem>();
         foreach (T t in source)
             items.Add(GetTreeViewItem(t, childrenFunc));
