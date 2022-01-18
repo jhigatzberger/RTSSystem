@@ -11,8 +11,7 @@ namespace JHiga.RTSEngine
         public override GameEntity[] Entities => _entities;
         private readonly GameEntity[] _entities = new GameEntity[UIDConstants.MAX_POOL_SIZE];
 
-        public ExtensionFactory[] _properties;
-        public override ExtensionFactory[] ExtensionFactories {get => _properties; protected set { _properties = value; } }
+        public override ExtensionFactory[] ExtensionFactories { get; set; }
 
         public override GameEntity Spawn(Vector3 position, UID uid)
         {

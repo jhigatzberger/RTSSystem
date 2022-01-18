@@ -18,7 +18,7 @@ namespace JHiga.RTSEngine
             get
             {
                 if (_factories == null)
-                    _factories = faction.GetIndividualInstanceFactories(id);
+                    _factories = faction.CopyEntities(id);
                 return _factories;
             } 
         }

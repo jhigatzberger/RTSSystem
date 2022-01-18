@@ -11,7 +11,7 @@ namespace JHiga.RTSEngine
         public int PlayerId { get; private set; }
         public int Index { get; internal set; }
         public abstract GameEntity[] Entities { get; }
-        public abstract ExtensionFactory[] ExtensionFactories { get; protected set; }
+        public abstract ExtensionFactory[] ExtensionFactories { get; set; }
         public abstract int GenerateEntityID();
         public abstract GameEntity Spawn(Vector3 position, UID uid);
         public static GameEntityFactory CopyForPlayer(GameEntityFactory original, int playerId, ExtensionFactory[] uniqueExtensionFactories)

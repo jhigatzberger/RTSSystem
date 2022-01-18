@@ -13,7 +13,7 @@ namespace JHiga.RTSEngine
         /// Each exact same property however should only be instantiated once per player as to not waste memory.
         /// e.g.: Upgrades
         /// </summary>
-        public GameEntityFactory[] GetIndividualInstanceFactories(int playerId)
+        public GameEntityFactory[] CopyEntities(int playerId)
         {
             Dictionary<ExtensionFactory, ExtensionFactory> extensionFactoryReference = new Dictionary<ExtensionFactory, ExtensionFactory>();
             List<GameEntityFactory> entities = GetEntitiesFromAllGroups();
@@ -32,25 +32,26 @@ namespace JHiga.RTSEngine
                         extensionFactories[ii] = extension;
                     }
                 }
-                entities[i].Index = i;
                 factories[i] = GameEntityFactory.CopyForPlayer(entities[i], playerId, extensionFactories);
             }
             return factories;
         }
-        public List<GameEntityFactory> GetEntitiesFromAllGroups()
+        private List<GameEntityFactory> GetEntitiesFromAllGroups()
         {
+            int index = 0;
             List<GameEntityFactory> entities = new List<GameEntityFactory>();
             foreach (EntityGroup group in entityGroups)
-                entities.AddRange(group.entities);
+            {
+                foreach (GameEntityFactory factory in group.entities)
+                {
+                    factory.Index = index++;
+                    entities.Add(factory);
+                }
+            }
             return entities;
         }
     }
-    [System.Serializable]
-    public class EntityGroup
-    {
-        public string name;
-        public List<GameEntityFactory> entities = new List<GameEntityFactory>();
-    }
+
     [System.Serializable]
     public class StartEntityData
     {

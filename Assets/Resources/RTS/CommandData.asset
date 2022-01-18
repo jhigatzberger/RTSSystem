@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
   m_Name: SpawnSkeletonCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
+  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   dynamicallyBuildable: 0
   requireContext: 0
   cost: 1
