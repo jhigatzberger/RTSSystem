@@ -7,9 +7,7 @@ namespace JHiga.RTSEngine.Spawning
     public class SpawnerExtension : BaseInteractableExtension<SpawnerProperties>, ISpawner
     {
         private Queue<EntitySpawnData> spawnQueue = new Queue<EntitySpawnData>();
-        private EntitySpawnData? next;
         private float timeStamp;
-        private UID? nextUID = null;
         public Target Waypoint {
             get
             {
@@ -34,18 +32,19 @@ namespace JHiga.RTSEngine.Spawning
         }
         private void Spawn()
         {
-            if (!nextUID.HasValue || !next.HasValue || next.Value.time > LockStep.time - timeStamp)
+            if (spawnQueue.Count==0 || spawnQueue.Peek().time > LockStep.time - timeStamp)
                 return;
-            
-            next.Value.factory.Spawn(Entity.MonoBehaviour.transform.position + Properties.doorPosition, nextUID.Value);
-            next = null;
-            nextUID = null;
+
+            EntitySpawnData spawnData = spawnQueue.Dequeue();
+            spawnData.factory.Spawn(Entity.MonoBehaviour.transform.position + Properties.doorPosition, spawnData.uid);
         }
         public void Enqueue(UID uid, float spawnTime)
         {
+            Debug.Log("Enqueue spawn " + uid.uniqueId);
             spawnQueue.Enqueue(new EntitySpawnData
             {
-                factory = GameEntityFactory.Get(uid),
+                factory = GameEntityPool.Get(uid),
+                uid = uid,
                 time = spawnTime
             });
         }
@@ -53,6 +52,7 @@ namespace JHiga.RTSEngine.Spawning
     public struct EntitySpawnData
     {
         public float time;
-        public GameEntityFactory factory;
+        public UID uid;
+        public GameEntityPool factory;
     }
 }

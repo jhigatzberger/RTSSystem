@@ -32,7 +32,6 @@ namespace JHiga.RTSEngine.Network
                 command = command,
                 pendingClients = new List<ulong>(NetworkManager.Singleton.ConnectedClientsIds)
             });
-            Debug.Log(NetworkManager.Singleton.ConnectedClientsIds.Count);
             CommandNetwork.Instance.AddCommandClientRPC(lastCommandID);
         }
         public void Confirm(ulong commandID, ulong clientID)

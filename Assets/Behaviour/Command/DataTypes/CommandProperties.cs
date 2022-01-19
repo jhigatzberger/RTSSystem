@@ -39,6 +39,7 @@ namespace JHiga.RTSEngine.CommandPattern
         };
         public void Enqueue()
         {
+            Debug.Log("enqueue");
             foreach(IExtendableEntity entity in references.entities)
             {
                 if (entity.TryGetExtension(out ICommandable commandable))
@@ -70,6 +71,7 @@ namespace JHiga.RTSEngine.CommandPattern
             for(int i = 0; i< entities.Length; i++)
             {
                 IExtendableEntity entity = GameEntity.Get(new UID(skinnedCommandReferences.entities[i]));
+                Debug.Log("entity " + entity);
                 entities[i] = entity;
             }
             clearQueueOnEnqeue = skinnedCommandReferences.clearQueueOnEnqeue;

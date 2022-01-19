@@ -202,7 +202,7 @@ MonoBehaviour:
     enemies:
       serializedVersion: 2
       m_Bits: 2048
-    faction: {fileID: 11400000, guid: b3bf20799d3000a4199096b1a87b87f8, type: 2}
+    faction: {fileID: 11400000, guid: 2ac561ec85a2a1b45899b64d4be69a5e, type: 2}
   - id: 1
     team: 1
     layerName: Player2
@@ -210,7 +210,7 @@ MonoBehaviour:
     enemies:
       serializedVersion: 2
       m_Bits: 1024
-    faction: {fileID: 11400000, guid: 8845ab8d45c85804a99b1649edfcd265, type: 2}
+    faction: {fileID: 11400000, guid: 2ac561ec85a2a1b45899b64d4be69a5e, type: 2}
 --- !u!114 &278967562
 MonoBehaviour:
   m_ObjectHideFlags: 0

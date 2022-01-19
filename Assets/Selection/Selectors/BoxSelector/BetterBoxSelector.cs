@@ -39,7 +39,7 @@ public class BetterBoxSelector : Selector
     }
     private void UpdateSelectionToBounds(Bounds selectionBounds)
     {
-        foreach (SelectableExtension selectableObject in SelectionContext.onScreen)
+        foreach (ISelectable selectableObject in SelectionContext.onScreen)
         {
             if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.Entity.MonoBehaviour.transform.position)) && SelectionContext.Priority <= selectableObject.Priority)
                SelectionContext.Select(selectableObject);

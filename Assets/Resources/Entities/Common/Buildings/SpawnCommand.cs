@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.Spawning
     {
         public int cost;
         public float time;
-        public GameEntityFactory spawn;
+        public GameEntityPool spawn;
         public override bool Applicable(ICommandable entity)
         {
             return ResourceManager.playerResources >= cost;
@@ -25,7 +25,8 @@ namespace JHiga.RTSEngine.Spawning
 
         public override void Execute(ICommandable commandable, Target target)
         {
-            SpawnEvents.RequestSpawn(new SpawnRequest { time = time, spawnerUID = commandable.Entity.UniqueID.uniqueId });
+            Debug.Log("exectuting!");
+            SpawnEvents.RequestSpawn(new SpawnRequest { time = time, poolIndex = spawn.Index, spawnerUID = commandable.Entity.UniqueID.uniqueId });
         }
     }
 }

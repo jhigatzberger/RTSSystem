@@ -21,11 +21,20 @@ public class CustomEntityEditor : Editor
     }
     void OnEnable()
     {
-        prefab = serializedObject.FindProperty("prefab");      
+        try
+        {
+            prefab = serializedObject.FindProperty("prefab");
+        }
+        catch
+        {
+            prefab = null;
+        }
     }
 
     public override void OnInspectorGUI()
     {
+        if (prefab == null)
+            return;
         serializedObject.Update();
         serializedObject.targetObject.name = EditorGUILayout.TextField("Name: ", serializedObject.targetObject.name);
         if(Texture != null)

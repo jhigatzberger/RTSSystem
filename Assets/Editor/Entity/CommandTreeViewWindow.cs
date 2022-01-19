@@ -52,8 +52,8 @@ class CommandTreeViewWindow : EditorWindow
         var window = GetWindow<CommandTreeViewWindow>();
         window.titleContent = new GUIContent("Command Tree");
         GenericTreeView tv = new GenericTreeView(EntityTreeViewState);
-        tv.RootChildren = tv.GetTreeViewItems(CommandType.LoadAll(),
-            (commandType) => tv.GetTreeViewItems(commandType.commandProperties)
+        tv.RootChildren = tv.CreateTreeViewItems(CommandType.LoadAll(),
+            (commandType) => tv.CreateTreeViewItems(commandType.commandProperties)
         );
         window.m_SimpleTreeView = tv;
         window.Show();        

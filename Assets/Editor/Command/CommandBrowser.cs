@@ -13,7 +13,7 @@ public class CommandBrowser : EditorWindow
         {
             if (CommandData.Instance == null)
             {
-                AssetDatabase.CreateAsset(CreateInstance<CommandData>(), "Assets/Resources/CommandData.asset");
+                AssetDatabase.CreateAsset(CreateInstance<CommandData>(), "Assets/Resources/RTS/CommandData.asset");
                 AssetDatabase.SaveAssets();
             }
             return CommandData.Instance;

@@ -17,7 +17,7 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 1
-  spawn: {fileID: 11400000, guid: fec961b4605111f429fcc0bfa79dccb5, type: 2}
+  spawn: {fileID: 0}
 --- !u!114 &-5840748276129422373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 1
-  spawn: {fileID: 11400000, guid: 1e59812037f0a42488c296d4750e6d19, type: 2}
+  spawn: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 1
-  spawn: {fileID: 11400000, guid: 72d6ac3b28318f0408b080142c1b814b, type: 2}
+  spawn: {fileID: 0}
 --- !u!114 &7176674067703014830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,4 +122,4 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 1
-  spawn: {fileID: 11400000, guid: e5723b8e224c78d4e86dfc7b964f8d9e, type: 2}
+  spawn: {fileID: -1567696490550056608, guid: 2ac561ec85a2a1b45899b64d4be69a5e, type: 2}

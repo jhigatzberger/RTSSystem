@@ -21,6 +21,10 @@ namespace JHiga.RTSEngine.Network
             Instance = this;
             SpawnEvents.OnRequestSpawn += RequestEntityInitialization;
         }
+        private void OnDestroy()
+        {
+            SpawnEvents.OnRequestSpawn -= RequestEntityInitialization;
+        }
         #endregion
         public Vector3 GetPlayerHomePosition()
         {
@@ -28,11 +32,16 @@ namespace JHiga.RTSEngine.Network
         }
         public void RequestEntityInitialization(SpawnRequest spawnRequest)
         {
+            Debug.Log(spawnRequest.spawnerUID + " beforePoolShift");
+            int poolUID = UID.PoolShifted(spawnRequest.spawnerUID, spawnRequest.poolIndex);
+            Debug.Log(poolUID + " poolUID");
+
+            Debug.Log(UID.EntityShifted(poolUID, GameEntityPool.Get(poolUID).GenerateEntityID()) + " entityUID");
             SpawnNetwork.Instance.BroadCastEntityInitializationClientRpc(
                     new SpawnData()
                     {
                         spawnerUID = spawnRequest.spawnerUID,
-                        entityUID = GameEntityFactory.Get(new UID(spawnRequest.spawnerUID)).GenerateEntityID(),
+                        entityUID = UID.EntityShifted(poolUID, GameEntityPool.Get(poolUID).GenerateEntityID()),
                         time = spawnRequest.time
                     }
                 );

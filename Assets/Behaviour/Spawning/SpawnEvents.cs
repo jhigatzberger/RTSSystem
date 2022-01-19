@@ -13,6 +13,7 @@ namespace JHiga.RTSEngine.Spawning
     public struct SpawnRequest
     {
         public int spawnerUID;
+        public int poolIndex;
         public float time;
     }
     public struct SpawnData

@@ -13,11 +13,11 @@ namespace JHiga.RTSEngine
         /// Each exact same property however should only be instantiated once per player as to not waste memory.
         /// e.g.: Upgrades
         /// </summary>
-        public GameEntityFactory[] CopyEntities(int playerId)
+        public GameEntityPool[] CopyEntities(int playerId)
         {
             Dictionary<ExtensionFactory, ExtensionFactory> extensionFactoryReference = new Dictionary<ExtensionFactory, ExtensionFactory>();
-            List<GameEntityFactory> entities = GetEntitiesFromAllGroups();
-            GameEntityFactory[] factories = new GameEntityFactory[entities.Count];
+            List<GameEntityPool> entities = GetAllEntitiesFromAllGroups();
+            GameEntityPool[] factories = new GameEntityPool[entities.Count];
             for (int i = 0; i < entities.Count; i++)
             {
                 ExtensionFactory[] extensionFactories = new ExtensionFactory[entities[i].ExtensionFactories.Length];
@@ -32,17 +32,17 @@ namespace JHiga.RTSEngine
                         extensionFactories[ii] = extension;
                     }
                 }
-                factories[i] = GameEntityFactory.CopyForPlayer(entities[i], playerId, extensionFactories);
+                factories[i] = GameEntityPool.CopyForPlayer(entities[i], playerId, extensionFactories);
             }
             return factories;
         }
-        private List<GameEntityFactory> GetEntitiesFromAllGroups()
+        private List<GameEntityPool> GetAllEntitiesFromAllGroups()
         {
             int index = 0;
-            List<GameEntityFactory> entities = new List<GameEntityFactory>();
+            List<GameEntityPool> entities = new List<GameEntityPool>();
             foreach (EntityGroup group in entityGroups)
             {
-                foreach (GameEntityFactory factory in group.entities)
+                foreach (GameEntityPool factory in group.GetAllEntities())
                 {
                     factory.Index = index++;
                     entities.Add(factory);
@@ -55,7 +55,7 @@ namespace JHiga.RTSEngine
     [System.Serializable]
     public class StartEntityData
     {
-        public GameEntityFactory entity;
+        public GameEntityPool entity;
         public Vector3 offsetPosition;
     }
 }

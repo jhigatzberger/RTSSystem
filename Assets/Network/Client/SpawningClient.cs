@@ -33,12 +33,13 @@ namespace JHiga.RTSEngine.Network
             for (int i = 0; i< startEntities.Length; i++)
             {
                 UID uid = new UID(playerId, startEntities[i].entity.Index, i);
-                GameEntityFactory.Get(uid).Spawn(position + startEntities[i].offsetPosition, uid);
+                GameEntityPool.Get(uid).Spawn(position + startEntities[i].offsetPosition, uid);
             }
         }
 
         public void SendAuthorizedData(SpawnData data)
         {
+            Debug.Log("SendAuthorizedData!");
             GameEntity.Get(new UID(data.spawnerUID)).GetExtension<ISpawner>().Enqueue(new UID(data.entityUID), data.time);
         }
     }

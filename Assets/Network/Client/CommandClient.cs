@@ -20,29 +20,25 @@ namespace JHiga.RTSEngine.Network
             Instance = this;
             LockStep.OnStep += LockStep_OnStep;
             CommandEvents.OnCommandDistributionRequested += DistributeCommand;
-            CommandEvents.OnCommandEnqueueRequested += EnqueueCommand;
         }
 
 
         public void OnDestroy()
         {
             CommandEvents.OnCommandDistributionRequested -= DistributeCommand;
-            CommandEvents.OnCommandEnqueueRequested -= EnqueueCommand;
             LockStep.OnStep -= LockStep_OnStep;
         }
         #endregion
         
         private readonly Queue<ScheduledCommand> scheduledCommands = new Queue<ScheduledCommand>();
-        private void EnqueueCommand(SkinnedCommand command)
-        {
-            new ResolvedCommand(command).Enqueue();
-        }
         private void DistributeCommand(SkinnedCommand command)
         {
+            Debug.Log("distrib");
             CommandNetwork.Instance.AddCommandServerRPC(command);
         }
         public void AddCommand(ulong commandID, ulong clientID)
         {
+            Debug.Log("confirm");
             CommandNetwork.Instance.ConfirmCommandServerRPC(commandID, clientID);
         }
         public void Schedule(ScheduledCommand command)
@@ -52,7 +48,7 @@ namespace JHiga.RTSEngine.Network
         private void LockStep_OnStep()
         {
             while (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep == LockStep.count)
-                CommandEvents.RequestCommandEnqueue(scheduledCommands.Dequeue().command);
+                new ResolvedCommand(scheduledCommands.Dequeue().command).Enqueue();
             if (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep < LockStep.count)
                 Debug.LogError("Desync ya fakin monkey");
         }

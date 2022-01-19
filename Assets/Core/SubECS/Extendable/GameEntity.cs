@@ -11,7 +11,11 @@ namespace JHiga.RTSEngine
     {
         public static GameEntity Get(UID uid)
         {
-            return GameEntityFactory.Get(uid).Entities[uid.entityIndex];
+            return GameEntityPool.Get(uid).Entities[uid.entityIndex];
+        }
+        public static GameEntity Get(int uid)
+        {
+            return GameEntityPool.Get(uid).Entities[UID.GetEntityIndex(uid)];
         }
         [SerializeField] private UID _id;
         public UID UniqueID
