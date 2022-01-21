@@ -5,8 +5,14 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class GenericCreationWindow : EditorWindow
+public class GenericEditWindow : EditorWindow
 {
+    public enum CreationType
+    {
+        New,
+        Reference,
+        Copy
+    }
     private Editor cacheEditor;
     private UnityEngine.Object cache;
     private int index = 0;
@@ -20,7 +26,7 @@ public class GenericCreationWindow : EditorWindow
     private string[] subTypeNames;
     public static void Show<T>(Action<UnityEngine.Object> addToContainerAction, UnityEngine.Object parent = null) where T : UnityEngine.Object
     {
-        GenericCreationWindow window = GetWindow<GenericCreationWindow>();
+        GenericEditWindow window = GetWindow<GenericEditWindow>();
         window.addToContainerAction = addToContainerAction;
         window.parent = parent;
         window.type = typeof(T);
@@ -40,50 +46,59 @@ public class GenericCreationWindow : EditorWindow
         CreationTypeGUI();
         if(creationType == CreationType.New)
             CreateNewGUI();
-        if (creationType == CreationType.Copy)
+        else if (creationType == CreationType.Copy)
             CreateCopyGUI();
-        if (creationType == CreationType.Link)
+        else if(creationType == CreationType.Reference)
             CreateLinkGUI();
 
-        if(creationType != CreationType.Link)
-            cacheEditor.OnInspectorGUI();
-        if (GUILayout.Button("Save"))
+        if (GUILayout.Button("Confirm"))
             Save();
         if (GUILayout.Button("Cancel"))
             Close();
     }
-    public enum CreationType
-    {
-        New,
-        Link,
-        Copy
-    }
 
     private void CreationTypeGUI()
     {
-        List<string> creationTypes = new List<string>();
-        creationTypes.Add(CreationType.New.ToString());
-        if(originals != null && originals.Count > 0)
-        {
-            creationTypes.Add(CreationType.Link.ToString());
-            creationTypes.Add(CreationType.Copy.ToString());
-        }
-
         GUILayout.BeginHorizontal();
-        CreationType _creationType = (CreationType)EditorGUILayout.Popup((int)creationType, creationTypes.ToArray());
-        int _subTypeIndex = EditorGUILayout.Popup(subTypeIndex, subTypeNames);
-        GUILayout.EndHorizontal();
-
-        if (_creationType != creationType || _subTypeIndex != subTypeIndex)
+        bool changed = false;
+        if (subTypes.Length > 1)
+            changed = SubTypeGUI();
+        changed = CreationGUI() || changed;
+        if (changed)
         {
             index = 0;
             cache = null;
         }
-        if (_subTypeIndex != subTypeIndex)
-            originals = Resources.LoadAll("", subTypes[_subTypeIndex]);
-        subTypeIndex = _subTypeIndex;
-        creationType = _creationType;
+        GUILayout.EndHorizontal();
     }
+
+    private bool SubTypeGUI()
+    {
+        bool changed = false;
+        int _subTypeIndex = EditorGUILayout.Popup(subTypeIndex, subTypeNames);
+        if (_subTypeIndex != subTypeIndex)
+        {
+            changed = true;
+            originals = Resources.LoadAll("", subTypes[_subTypeIndex]);
+            subTypeIndex = _subTypeIndex;
+        }
+        return changed;
+    }
+    private bool CreationGUI()
+    {
+        List<string> creationTypes = new List<string>();
+        creationTypes.Add(CreationType.New.ToString());
+        if (originals != null && originals.Count > 0)
+        {
+            creationTypes.Add(CreationType.Reference.ToString());
+            creationTypes.Add(CreationType.Copy.ToString());
+        }
+        CreationType _creationType = (CreationType)EditorGUILayout.Popup((int)creationType, creationTypes.ToArray());
+        bool changed = creationType != _creationType;
+        creationType = _creationType;
+        return changed;
+    }
+
     private void CreateLinkGUI()
     {
         EditorGUILayout.LabelField("Original");
@@ -108,8 +123,9 @@ public class GenericCreationWindow : EditorWindow
             index = _index;
             cache = Instantiate(originals.First(e => e.name.Equals(templateNames[index])));
             cacheEditor = Editor.CreateEditor(cache);
-            cache.name = templateNames[index];            
+            cache.name = templateNames[index];
         }
+        cacheEditor.OnInspectorGUI();
     }
     private void CreateNewGUI()
     {
@@ -119,10 +135,11 @@ public class GenericCreationWindow : EditorWindow
             cacheEditor = Editor.CreateEditor(cache);
             cache.name = subTypeNames[subTypeIndex];
         }
+        cacheEditor.OnInspectorGUI();
     }
     void Save()
     {
-        if (parent != null && creationType != CreationType.Link)
+        if (parent != null && creationType != CreationType.Reference)
         {
             AssetDatabase.AddObjectToAsset(cache, parent);
             AssetDatabase.SaveAssets();
@@ -131,7 +148,6 @@ public class GenericCreationWindow : EditorWindow
         }
         if (addToContainerAction != null)
             addToContainerAction(cache);
-        EntityTreeViewWindow.Instance.RenderTree();
         Close();
     }
 }

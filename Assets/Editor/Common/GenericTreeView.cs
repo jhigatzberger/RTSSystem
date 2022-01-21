@@ -81,12 +81,13 @@ class GenericTreeView : TreeView
     }
     private TreeViewItem GetRecursiveReflectiveTreeViewItem<T, NextElementType>(T o, string childCollectionName, string nextElementCollectionName, Func<NextElementType, TreeViewItem[]> childrenFunc = null)
         where T : UnityEngine.Object
-        where  NextElementType : UnityEngine.Object
+        where NextElementType : UnityEngine.Object
     {
+        Type t = typeof(T);
         TreeViewItem parent = CreateItem(o);
-        foreach ( NextElementType nextElement in (ICollection<NextElementType>)o.GetType().GetField(nextElementCollectionName).GetValue(o))
+        foreach ( NextElementType nextElement in (ICollection<NextElementType>)t.GetField(nextElementCollectionName).GetValue(o))
             parent.AddChild(CreateTreeViewItem(nextElement, childrenFunc));
-        foreach (T c in (ICollection<T>)o.GetType().GetField(childCollectionName).GetValue(o))
+        foreach (T c in (ICollection<T>)t.GetField(childCollectionName).GetValue(o))
             parent.AddChild(GetRecursiveReflectiveTreeViewItem(c, childCollectionName, nextElementCollectionName, childrenFunc));
         return parent;
     }

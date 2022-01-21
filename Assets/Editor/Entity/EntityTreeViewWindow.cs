@@ -39,7 +39,11 @@ class EntityTreeViewWindow : EditorWindow
             EntityGroup selectedGroup = treeView.selectedObject as EntityGroup;
             if (selectedGroup != null)
                 if (GUILayout.Button("Add child group"))
-                    GenericCreationWindow.Show<EntityGroup>((g) => selectedGroup.children.Add((EntityGroup)g), selectedGroup);
+                    GenericEditWindow.Show<EntityGroup>( (g) => {
+                        selectedGroup.children.Add((EntityGroup)g);
+                        RenderTree();
+                    },
+                    selectedGroup);
             if (!(treeView.selectedObject is ExtensionFactory) && GUILayout.Button("Add to " + cache.name))
                 Add(treeView.selectedObject);
             if (GUILayout.Button("Remove " + cache.name))
@@ -53,23 +57,31 @@ class EntityTreeViewWindow : EditorWindow
         FactionProperties f = o as FactionProperties;
         if (f != null)
         {
-            GenericCreationWindow.Show<EntityGroup>((g) => f.entityGroups.Add((EntityGroup)g), f);
+            GenericEditWindow.Show<EntityGroup>((g) =>
+            {
+                f.entityGroups.Add((EntityGroup)g);
+                RenderTree();
+            }, f);
             return;
         }
         EntityGroup g = o as EntityGroup;
         if (g != null)
         {
-            GenericCreationWindow.Show<GameEntityPool>((e) => g.entities.Add((GameEntityPool)e), g);
+            GenericEditWindow.Show<GameEntityPool>((e) => {
+                g.entities.Add((GameEntityPool)e);
+                RenderTree();
+            }, g);
             return;
         }
         GameEntityPool p = o as GameEntityPool;
         if (p != null)
         {
-            GenericCreationWindow.Show<ExtensionFactory>((f) =>
+            GenericEditWindow.Show<ExtensionFactory>((f) =>
             {
                 List<ExtensionFactory> l = p.ExtensionFactories == null ? new List<ExtensionFactory>() : p.ExtensionFactories.ToList();
                 l.Add((ExtensionFactory)f);
                 p.ExtensionFactories = l.ToArray();
+                RenderTree();
             },
             p);
         }

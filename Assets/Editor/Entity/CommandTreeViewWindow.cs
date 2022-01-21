@@ -24,17 +24,17 @@ class CommandTreeViewWindow : EditorWindow
     }
 
     //The TreeView is not serializable, so it should be reconstructed from the tree data.
-    GenericTreeView m_SimpleTreeView;
+    GenericTreeView treeView;
 
     private Editor cacheEditor;
     private UnityEngine.Object cache;
     void OnGUI()
     {
-        m_SimpleTreeView.OnGUI(new Rect(0, 0, position.width/2, position.height));
+        treeView.OnGUI(new Rect(0, 0, position.width/2, position.height));
         
-        if(m_SimpleTreeView.selectedObject != null && cache != m_SimpleTreeView.selectedObject)
+        if(treeView.selectedObject != null && cache != treeView.selectedObject)
         {
-            cache = m_SimpleTreeView.selectedObject;
+            cache = treeView.selectedObject;
             cacheEditor = Editor.CreateEditor(cache);
         }
         GUILayout.BeginHorizontal();
@@ -55,7 +55,7 @@ class CommandTreeViewWindow : EditorWindow
         tv.RootChildren = tv.CreateTreeViewItems(CommandType.LoadAll(),
             (commandType) => tv.CreateTreeViewItems(commandType.commandProperties)
         );
-        window.m_SimpleTreeView = tv;
+        window.treeView = tv;
         window.Show();        
     }
 }
