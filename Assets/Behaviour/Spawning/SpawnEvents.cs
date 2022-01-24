@@ -5,9 +5,9 @@ namespace JHiga.RTSEngine.Spawning
     public static class SpawnEvents
     {
         public static event Action<SpawnRequest> OnRequestSpawn;
-        public static void RequestSpawn(SpawnRequest spawnerUID)
+        public static void RequestSpawn(SpawnRequest spawnRequest)
         {
-            OnRequestSpawn?.Invoke(spawnerUID);
+            OnRequestSpawn?.Invoke(spawnRequest);
         }
     }
     public struct SpawnRequest

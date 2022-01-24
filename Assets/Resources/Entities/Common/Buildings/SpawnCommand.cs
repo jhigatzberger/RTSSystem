@@ -18,15 +18,16 @@ namespace JHiga.RTSEngine.Spawning
 
         public override Target PackTarget(ICommandable commandable)
         {
-            Debug.Log(spawn.Index + " spawnindex " + spawn.name);
-            ResourceManager.Spend(cost);
             return commandable.Entity.GetExtension<ISpawner>().Waypoint;
         }
 
         public override void Execute(ICommandable commandable, Target target)
         {
             Debug.Log("exectuting!");
-            SpawnEvents.RequestSpawn(new SpawnRequest { time = time, poolIndex = spawn.Index, spawnerUID = commandable.Entity.UniqueID.uniqueId });
+            if(ResourceManager.playerResources >= cost)
+            {
+                ResourceManager.Spend(cost, ()=>SpawnEvents.RequestSpawn(new SpawnRequest { time = time, poolIndex = spawn.Index, spawnerUID = commandable.Entity.UniqueID.uniqueId }));
+            }
         }
     }
 }

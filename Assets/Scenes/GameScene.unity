@@ -275,6 +275,90 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].team
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[0].color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[0].color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[0].color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[0].faction
+      value: 
+      objectReference: {fileID: 11400000, guid: 48840c06adc31f94f94c015707683e14, type: 2}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[1].color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[1].color.g
+      value: 0.23403311
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[1].color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[1].faction
+      value: 
+      objectReference: {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].color.g
+      value: 0.008334656
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].faction
+      value: 
+      objectReference: {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[0].layerName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[1].layerName
+      value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].layerName
+      value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[0].enemies.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[1].enemies.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611900045, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
+      propertyPath: players.Array.data[2].enemies.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 6511686978195341712, guid: 03fd5dbe44c2eb542b30ce933944657c, type: 3}
       propertyPath: m_Name
       value: '[INPUT]'
@@ -676,6 +760,54 @@ MonoBehaviour:
   widthLimit: {x: -45, y: 45}
   rotationEnabled: 0
   rotateSpeed: 0
+--- !u!1 &1042273199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1042273201}
+  - component: {fileID: 1042273200}
+  m_Layer: 0
+  m_Name: Marker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1042273200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042273199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f296a2169c4fb2a488fc593c7a8a863c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    entity: {fileID: 553174472893864544, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+    offsetPosition: {x: -7.56, y: 0.59, z: 0.35}
+  faction: {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  toSpawn: {fileID: 553174472893864544, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+--- !u!4 &1042273201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042273199}
+  m_LocalRotation: {x: -0.70042753, y: -0, z: -0, w: 0.71372354}
+  m_LocalPosition: {x: -7.56, y: 0.59, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: -88.923, y: 0, z: 0}
 --- !u!1 &1091492544
 GameObject:
   m_ObjectHideFlags: 0

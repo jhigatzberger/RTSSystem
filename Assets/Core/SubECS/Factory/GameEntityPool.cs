@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,23 @@ namespace JHiga.RTSEngine
     [CreateAssetMenu(fileName = "Entity", menuName = "RTS/Entity/Entity")]
     public class GameEntityPool : ScriptableObject
     {
+        public GameObject prefab;
+        public ExtensionFactory[] properties;
+        private Dictionary<Type, int> _extensionMap;
+        private Dictionary<Type, int> ExtensionMap
+        {
+            get
+            {
+                if(_extensionMap == null)
+                {
+                    _extensionMap = new Dictionary<Type, int>();
+                    for (int i = 0; i < properties.Length; i++)
+                        _extensionMap.Add(properties[i].ExtensionType, i);
+                }
+                return _extensionMap;
+            }
+        }
+        private readonly GameEntity[] _entities = new GameEntity[UIDConstants.MAX_POOL_SIZE];
         public static GameEntityPool Get(UID uid)
         {
             return PlayerProperties.Get(uid).Factories[uid.poolIndex];
@@ -18,18 +36,15 @@ namespace JHiga.RTSEngine
         {
             GameEntityPool factory = Instantiate(original);
             factory.PlayerId = playerId;
-            factory.ExtensionFactories = uniqueExtensionFactories;
+            factory.properties = uniqueExtensionFactories;
             return factory;
         }
-        public GameObject prefab;
-        public ExtensionFactory[] ExtensionFactories { get; set; }
         public int PlayerId { get; private set; }
         public int Index { get; internal set; }
-        public GameEntity[] Entities => _entities;
-        private readonly GameEntity[] _entities = new GameEntity[UIDConstants.MAX_POOL_SIZE];
+        public GameEntity[] entities => _entities;
         public GameEntity Spawn(Vector3 position, UID uid)
         {
-            GameEntity entity = Entities[uid.entityIndex];
+            GameEntity entity = entities[uid.entityIndex];
             if (entity != null)
             {
                 entity.transform.position = position;
@@ -38,28 +53,29 @@ namespace JHiga.RTSEngine
             else
             {
                 entity = Instantiate(prefab, position, Quaternion.identity).AddComponent<GameEntity>();
+                entity.extensionMap = ExtensionMap;
                 entity.Extensions = Build(entity);
-                Entities[uid.entityIndex] = entity;
+                entities[uid.entityIndex] = entity;
             }
             entity.UniqueID = uid;
             return entity;
         }
         public int GenerateEntityID()
         {
-            for (int i = 0; i < Entities.Length; i++)
+            for (int i = 0; i < entities.Length; i++)
             {
-                if (Entities[i] == null)
+                if (entities[i] == null)
                     return i;
-                if (!Entities[i].enabled)
+                if (!entities[i].enabled)
                     return i;
             }
             return -1;            
         }
         public IEntityExtension[] Build(IExtendableEntity entity)
         {
-            IEntityExtension[] extensions = new IEntityExtension[ExtensionFactories.Length];
+            IEntityExtension[] extensions = new IEntityExtension[properties.Length];
             for (int i = 0; i < extensions.Length; i++)
-                extensions[i] = ExtensionFactories[i].Build(entity);
+                extensions[i] = properties[i].Build(entity);
             return extensions;
         }
     }

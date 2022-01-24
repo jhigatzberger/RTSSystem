@@ -29,9 +29,10 @@ public class ResourceManager : NetworkBehaviour
     }
 
 
-    public static void Spend(int amount)
+    public static void Spend(int amount, Action successCallback)
     {
         instance.SpendResourceServerRPC(NetworkManager.Singleton.LocalClientId, -amount);
+        successCallback();
     }
 
     [ClientRpc]

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2044811054315504795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Buildings
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 553174472893864544}
+  children: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7912fcf47ebf0d14eb48ae8c68dfadca, type: 3}
+  m_Name: Humans
+  m_EditorClassIdentifier: 
+  startEntities:
+  - entity: {fileID: 553174472893864544}
+    offsetPosition: {x: -7.56, y: 0.59, z: 0.35}
+  entityGroups:
+  - {fileID: -2044811054315504795}
+--- !u!114 &553174472893864544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Townhall
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1489735120124986376, guid: 83ca73e8b5474b54c83aa19547fca6d7, type: 3}
+  properties:
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}

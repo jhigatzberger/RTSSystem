@@ -20,23 +20,33 @@ namespace JHiga.RTSEngine.Network
             }
             Instance = this;
             SpawnEvents.OnRequestSpawn += RequestEntityInitialization;
+            SpawnStartEntities();
         }
         private void OnDestroy()
         {
             SpawnEvents.OnRequestSpawn -= RequestEntityInitialization;
         }
         #endregion
-        public Vector3 GetPlayerHomePosition()
+        public Vector3 RandomPlayerHomePosition
         {
-            return new Vector3(Random.Range(-45, 45), 0, Random.Range(-45, 45));
+            get
+            {
+                return new Vector3(Random.Range(-45, 45), 0, Random.Range(-45, 45));
+            }
+        }
+        public void SpawnStartEntities()
+        {
+            foreach(PlayerProperties player in PlayerContext.players)
+            {
+                if(player.id == 0)
+                    SpawnNetwork.Instance.SpawnStartEntitiesClientRpc(player.id);
+                else
+                    SpawnNetwork.Instance.SpawnStartEntitiesClientRpc(player.id, RandomPlayerHomePosition);
+            }
         }
         public void RequestEntityInitialization(SpawnRequest spawnRequest)
         {
-            Debug.Log(spawnRequest.spawnerUID + " beforePoolShift");
             int poolUID = UID.PoolShifted(spawnRequest.spawnerUID, spawnRequest.poolIndex);
-            Debug.Log(poolUID + " poolUID");
-
-            Debug.Log(UID.EntityShifted(poolUID, GameEntityPool.Get(poolUID).GenerateEntityID()) + " entityUID");
             SpawnNetwork.Instance.BroadCastEntityInitializationClientRpc(
                     new SpawnData()
                     {

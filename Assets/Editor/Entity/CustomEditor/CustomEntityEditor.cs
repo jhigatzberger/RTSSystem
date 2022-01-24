@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 using JHiga.RTSEngine;
-using System.Linq;
-using System.Collections.Generic;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 [CustomEditor(typeof(GameEntityPool))]
 [CanEditMultipleObjects]
@@ -42,27 +42,30 @@ public class CustomEntityEditor : Editor
         EditorGUILayout.PropertyField(prefab, GUIContent.none, Texture);
         serializedObject.ApplyModifiedProperties();
     }
-
-    const int WIDTH_OFFSET = 10;
-    const int HEIGHT_OFFSET = 120;
-
-    private static int ImageSize
+    private Image preview;
+    public override VisualElement CreateInspectorGUI()
     {
-        get
+        VisualElement inspector = new VisualElement();
+        inspector.Add(new NameField(target));
+        preview = new Image();
+        preview.image = Texture;
+        PropertyField prefabField = new PropertyField();
+        prefabField.Bind(serializedObject);
+        prefabField.BindProperty(prefab);
+        prefabField.RegisterCallback<ChangeEvent<Object>>(e =>
         {
-            if (Screen.width / 2- WIDTH_OFFSET < Screen.height- HEIGHT_OFFSET)
-                return Screen.width/2- WIDTH_OFFSET;
-            else
-                return Screen.height - HEIGHT_OFFSET;
-
-        }
+            preview.image = Texture;
+        });
+        inspector.Add(preview);
+        inspector.Add(prefabField);
+        return inspector;
     }
 
     static Texture2D GetPrefabPreview(string path)
     {
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
         var editor = CreateEditor(prefab);
-        Texture2D tex = editor.RenderStaticPreview(path, null, ImageSize, ImageSize);
+        Texture2D tex = editor.RenderStaticPreview(path, null, 1024, 1024);
         DestroyImmediate(editor);
         return tex;
     }

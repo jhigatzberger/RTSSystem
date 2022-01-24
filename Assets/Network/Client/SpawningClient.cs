@@ -22,24 +22,17 @@ namespace JHiga.RTSEngine.Network
         }
         #endregion
 
-        private void Start()
+        public void SpawnStartEntities(int playerId, Vector3 position = default)
         {
-            SpawnNetwork.Instance.RequestPlayerHomePositionEntityServerRpc();
-        }
-
-        public void SpawnStartEntities(Vector3 position, int playerId)
-        {
-            StartEntityData[] startEntities = PlayerContext.players[playerId].faction.startEntities;
-            for (int i = 0; i< startEntities.Length; i++)
+            List<StartEntityData> startEntities = PlayerContext.players[playerId].faction.startEntities;
+            for (int i = 0; i < startEntities.Count; i++)
             {
                 UID uid = new UID(playerId, startEntities[i].entity.Index, i);
                 GameEntityPool.Get(uid).Spawn(position + startEntities[i].offsetPosition, uid);
             }
         }
-
         public void SendAuthorizedData(SpawnData data)
         {
-            Debug.Log("SendAuthorizedData!");
             GameEntity.Get(new UID(data.spawnerUID)).GetExtension<ISpawner>().Enqueue(new UID(data.entityUID), data.time);
         }
     }

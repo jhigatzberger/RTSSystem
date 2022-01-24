@@ -1,6 +1,7 @@
 ﻿using JHiga.RTSEngine.StateMachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,7 +10,7 @@ public class StateMachineNode : Node
 {
     private static readonly Color borderColor = new Color(0, 0, 0, 0.3f);
     private static readonly int borderWidth = 1;
-    private State state;
+    public State state;
     private Dictionary<Transition, VisualElement> visualTransitions = new Dictionary<Transition, VisualElement>();
     private VisualElement transitionContainer;
     private Dictionary<Action, VisualElement> visualActions = new Dictionary<Action, VisualElement>();
@@ -33,12 +34,18 @@ public class StateMachineNode : Node
         RefreshPorts();
     }
 
+    public Port GenerateOutputPort(Transition transition, bool decisionResult)
+    {
+        Port p = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(float));
+        //p.AddManipulator(new EdgeConnector<Edge>(new UpdateStateEdgeConnectorListener(decisionResult, transition)));
+        return p;
+    }
     private void InitActions()
     {
         actionContainer = new VisualElement();
         foreach (Action a in state.actions)
             AddAction(a);
-        Button createAction = new Button(() => GenericEditWindow.Show<Action>(AddNewAction));
+        Button createAction = new Button(() => TypePickerWindow.Show<Action>(AddNewAction));
         createAction.text = "New Action";
         inputContainer.Add(actionContainer);
         inputContainer.Add(createAction);
@@ -124,7 +131,7 @@ public class StateMachineNode : Node
         foreach (Transition t in state.transitions)
             AddTransition(t);
         outputContainer.Add(transitionContainer);
-        Button createTransition = new Button(() => GenericEditWindow.Show<Transition>(AddNewTransition));
+        Button createTransition = new Button(() => TypePickerWindow.Show<Transition>(AddNewTransition));
         createTransition.text = "New Transition";
         outputContainer.Add(createTransition);
     }
@@ -167,8 +174,8 @@ public class StateMachineNode : Node
 
         container.Add(new Label(transition.decision.name));
 
-        Port trueState = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(float));
-        Port falseState = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(float));
+        Port trueState = GenerateOutputPort(transition, true);
+        Port falseState = GenerateOutputPort(transition, false);
 
         trueState.portName = "True";
         falseState.portName = "False";
@@ -225,3 +232,33 @@ public class StateMachineNode : Node
 
     public bool entryPoint;
 }
+/*
+internal class UpdateStateEdgeConnectorListener : IEdgeConnectorListener
+{
+    private bool decisionResult;
+    private Transition transition;
+    public UpdateStateEdgeConnectorListener(bool decisionResult, Transition transition)
+    {
+        this.decisionResult = decisionResult;
+        this.transition = transition;
+    }
+
+    public void OnDrop(GraphView graphView, Edge edge)
+    {
+        Debug.Log("drop ");
+        StateMachineNode inputNode = ((StateMachineNode)edge.input.node);
+        StateMachineNode outputNode = ((StateMachineNode)edge.output.node);
+        if (decisionResult)
+            outputNode.state.transitions.First(t => t.Equals(transition)).trueState = inputNode.state;
+        else
+            outputNode.state.transitions.First(t => t.Equals(transition)).falseState = inputNode.state;
+    }
+
+    public void OnDropOutsidePort(Edge edge, Vector2 position)
+    {
+        StateMachineNode outputNode = ((StateMachineNode)edge.output.node);
+        Debug.Log("drop outside ");
+        if (decisionResult)
+            outputNode.state.transitions.First(t => t.Equals(transition)).trueState = outputNode.state;
+    }
+}*/

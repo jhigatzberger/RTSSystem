@@ -14,7 +14,7 @@ namespace JHiga.RTSEngine.CommandPattern
         {
             get
             {
-                if (_instance == null) _instance = Resources.Load<CommandData>("RTS/CommandData");
+                if (_instance == null) _instance = Resources.Load<CommandData>(Path.Generate<CommandData>());
                 return _instance;
             }
         }

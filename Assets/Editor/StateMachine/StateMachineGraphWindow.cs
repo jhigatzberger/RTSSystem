@@ -41,12 +41,20 @@ public class StateMachineGraphWindow : EditorWindow
     {
         Toolbar toolbar = new Toolbar();
 
+        Button createStateButton = new Button(() =>
+        {
+            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.New, TypePickerWindow.EditType.Copy });
+        });
+        createStateButton.text = "New State";
+        toolbar.Add(createStateButton);
+
         Button loadStateButton = new Button(() =>
         {
-            GenericEditWindow.Show<State>(CreateStateNode);            
+            TypePickerWindow.Show<State>(CreateStateNode);
         });
         loadStateButton.text = "Load State";
         toolbar.Add(loadStateButton);
+
         rootVisualElement.Add(toolbar);
     }
 

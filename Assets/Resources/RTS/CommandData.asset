@@ -35,7 +35,7 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 1
-  spawn: {fileID: 0}
+  spawn: {fileID: -7128857001946022281, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,4 +122,4 @@ MonoBehaviour:
   requireContext: 0
   cost: 1
   time: 1
-  spawn: {fileID: -1567696490550056608, guid: 2ac561ec85a2a1b45899b64d4be69a5e, type: 2}
+  spawn: {fileID: -8227836539704456675, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}

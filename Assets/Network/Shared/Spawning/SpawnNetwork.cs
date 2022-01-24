@@ -20,15 +20,10 @@ namespace JHiga.RTSEngine.Network
         }
         #endregion
 
-        [ServerRpc]
-        public void RequestPlayerHomePositionEntityServerRpc()
-        {
-            SpawnPlayerHomeEntityClientRpc(SpawningServer.Instance.GetPlayerHomePosition());
-        }
         [ClientRpc]
-        public void SpawnPlayerHomeEntityClientRpc(Vector3 position)
+        public void SpawnStartEntitiesClientRpc(int playerID, Vector3 position = default)
         {
-            SpawningClient.Instance.SpawnStartEntities(position, (int)OwnerClientId);
+            SpawningClient.Instance.SpawnStartEntities(playerID, position);
         }
         [ClientRpc]
         public void BroadCastEntityInitializationClientRpc(SpawnData data)

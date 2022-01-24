@@ -25,6 +25,7 @@ public class StateMachineGraphView : GraphView
         g.StretchToParentSize();
         nullNode = GenerateEntryPointNode();
         AddElement(nullNode);
+        graphViewChanged = OnGraphChange;
     }
 
     private Port GeneratePort(StateMachineNode node, Direction portDirection, Port.Capacity capacity = Port.Capacity.Single)
@@ -49,7 +50,7 @@ public class StateMachineGraphView : GraphView
         node.RefreshExpandedState();
         node.RefreshPorts();
 
-        node.SetPosition(new Rect(0, 0, 100, 150));
+        node.SetPosition(new Rect(100, 200, 100, 150));
         return node;
     }
 
@@ -72,4 +73,40 @@ public class StateMachineGraphView : GraphView
         AddElement(node);        
         return node;
     }
+
+    private GraphViewChange OnGraphChange(GraphViewChange change)
+    {
+        if (change.edgesToCreate != null)
+        {
+            foreach (Edge edge in change.edgesToCreate)
+            {
+                Debug.Log("Implement new connection stuff");
+            }
+        }
+
+        if (change.elementsToRemove != null)
+        {
+            foreach (GraphElement e in change.elementsToRemove)
+            {
+                if (e.GetType() == typeof(Edge))
+                {
+                    Debug.Log("Implement remove connections and states stuff");
+                }
+            }
+        }
+
+        if (change.movedElements != null)
+        {
+            foreach (GraphElement e in change.movedElements)
+            {
+                if (e.GetType() == typeof(Node))
+                {
+                    Debug.Log("Dont really care about moving (DONT FORGET TO REMOVE CONNECTION FROM TRANSITION (TRUE -> NULL IN ATTACKIDLE)");
+                }
+            }
+        }
+
+        return change;
+    }
+
 }

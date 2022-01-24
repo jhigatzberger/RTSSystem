@@ -1,12 +1,10 @@
-
-using JHiga.RTSEngine.Spawning;
 using System;
 
 namespace JHiga.RTSEngine
 {
     public static class UIDConstants
     {
-        public const int MAX_PLAYERS = 8;
+        public const int MAX_PLAYERS = 9; // Player 0 = GAIA!
         public const int MAX_POOL_SIZE = 999;
         public const int MAX_POOLS = 999;
 

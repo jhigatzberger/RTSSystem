@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace JHiga.RTSEngine
 {
@@ -11,11 +12,11 @@ namespace JHiga.RTSEngine
     {
         public static GameEntity Get(UID uid)
         {
-            return GameEntityPool.Get(uid).Entities[uid.entityIndex];
+            return GameEntityPool.Get(uid).entities[uid.entityIndex];
         }
         public static GameEntity Get(int uid)
         {
-            return GameEntityPool.Get(uid).Entities[UID.GetEntityIndex(uid)];
+            return GameEntityPool.Get(uid).entities[UID.GetEntityIndex(uid)];
         }
         [SerializeField] private UID _id;
         public UID UniqueID
@@ -29,24 +30,22 @@ namespace JHiga.RTSEngine
                     extension.Enable();
             }
         }
-        public IEntityExtension[] Extensions { get; set; }
         public MonoBehaviour MonoBehaviour => this;
+
+        public Dictionary<Type, int> extensionMap;
+        public IEntityExtension[] Extensions { get; set; }
         public T GetExtension<T>() where T : IEntityExtension
         {
-            foreach (IEntityExtension x in Extensions)
-                if (x is T t)
-                    return t;
-            return default;
+            return (T)Extensions[extensionMap[typeof(T)]];
         }
         public bool TryGetExtension<T>(out T extension) where T : IEntityExtension
         {
             extension = default;
-            foreach (IEntityExtension x in Extensions)
-                if (x is T t)
-                {
-                    extension = t;
-                    return true;
-                }
+            if (extensionMap.TryGetValue(typeof(T), out int x))
+            {
+                extension = (T)Extensions[x];
+                return true;
+            }
             return false;
         }
         public void Clear()

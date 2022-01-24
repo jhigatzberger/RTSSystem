@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace JHiga.RTSEngine.Combat
 {
@@ -6,6 +7,9 @@ namespace JHiga.RTSEngine.Combat
     public class AttackableProperties : ExtensionFactory
     {
         public int health;
+
+        public override Type ExtensionType => typeof(IAttackable);
+
         public override IEntityExtension Build(IExtendableEntity extendable)
         {
             return new AttackableExtension(extendable, this);

@@ -36,7 +36,7 @@ namespace JHiga.RTSEngine.Network
 
         public void StartGame()
         {
-            PlayerContext.PlayerId = (int)NetworkManager.LocalClientId;
+            PlayerContext.PlayerId = (int)NetworkManager.LocalClientId+1;
             SceneManager.LoadScene(2);
         }
 
