@@ -24,7 +24,7 @@ namespace JHiga.RTSEngine.Network
 
         public void SpawnStartEntities(int playerId, Vector3 position = default)
         {
-            List<StartEntityData> startEntities = PlayerContext.players[playerId].faction.startEntities;
+            List<StartEntityData> startEntities = PlayerContext.players[playerId].StartEntities;
             for (int i = 0; i < startEntities.Count; i++)
             {
                 UID uid = new UID(playerId, startEntities[i].entity.Index, i);
