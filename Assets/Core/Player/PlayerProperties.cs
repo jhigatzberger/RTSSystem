@@ -10,18 +10,33 @@ namespace JHiga.RTSEngine
         public int team;
         public string layerName;
         public Color color;
-        public LayerMask enemies;
-        public FactionProperties faction;
+        public LayerMask enemies;        
+        public FactionProperties faction;        
+        private List<StartEntityData> _startEntites;
+        public List<StartEntityData> StartEntities
+        {
+            get
+            {
+                if(_startEntites == null)
+                    InitPlayer();
+                return StartEntities;
+            }
+        }            
         private GameEntityPool[] _factories;
         public GameEntityPool[] Factories
         {
             get
             {
                 if (_factories == null)
-                    _factories = faction.CopyEntities(id);
+                    InitPlayer();
                 return _factories;
             }
-        }
+        }        
+        private void InitPlayer()
+        {
+            _factories = faction.CopyEntities(id);
+            _startEntites = new List<StartEntityData>(faction.startEntities);            
+        }        
         public static PlayerProperties Get(UID uid)
         {
             return PlayerContext.players[uid.playerIndex];
