@@ -25,7 +25,7 @@ public class SOContainer : ScriptableObject
             container.typeName = typeof(T).Name;
             container.Load();
             EditorUtility.SetDirty(container);
-            AssetDatabase.CreateAsset(container, Path.Generate<T>(suffix: "Container"));
+            AssetDatabase.CreateAsset(container, Path.GenerateFull<T>(suffix: "Container"));
             AssetDatabase.SaveAssets();
         }
         return container;

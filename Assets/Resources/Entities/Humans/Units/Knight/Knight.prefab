@@ -1961,7 +1961,6 @@ GameObject:
   - component: {fileID: 8726071526014243180}
   - component: {fileID: 8726071526004899572}
   - component: {fileID: 3802039571429992658}
-  - component: {fileID: 6082585624988479143}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -2050,19 +2049,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
---- !u!65 &6082585624988479143
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8726071526014405772}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.1554253, z: 2.19074}
-  m_Center: {x: 0, y: 1.0303091, z: 0.22289336}
 --- !u!1 &8726071526014405776
 GameObject:
   m_ObjectHideFlags: 0

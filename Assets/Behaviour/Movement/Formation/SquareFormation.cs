@@ -27,7 +27,7 @@ namespace JHiga.RTSEngine.AI.Formation
 
                 int columns;
                 if (maxColumns == 0)
-                    columns = (int)Mathf.Floor(Mathf.Sqrt(count));
+                    columns = Mathf.CeilToInt(Mathf.Floor(Mathf.Sqrt(count)));
                 else
                     columns = Mathf.Clamp(count, 0, maxColumns);
 

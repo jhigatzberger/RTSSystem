@@ -789,10 +789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f296a2169c4fb2a488fc593c7a8a863c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    entity: {fileID: 553174472893864544, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
-    offsetPosition: {x: -7.56, y: 0.59, z: 0.35}
-  faction: {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  factions:
+  - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  players: 0100000002000000
   toSpawn: {fileID: 553174472893864544, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
 --- !u!4 &1042273201
 Transform:

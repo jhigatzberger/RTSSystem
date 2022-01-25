@@ -24,13 +24,14 @@ namespace JHiga.RTSEngine
             }
         }
         private readonly GameEntity[] _entities = new GameEntity[UIDConstants.MAX_POOL_SIZE];
+        private HashSet<int> pendingPoolIds = new HashSet<int>();
         public static GameEntityPool Get(UID uid)
         {
             return PlayerProperties.Get(uid).Factories[uid.poolIndex];
         }
         public static GameEntityPool Get(int uid)
         {
-            return PlayerProperties.Get(UID.GetPlayerIndex(uid)).Factories[UID.GetPoolIndex(uid)];
+            return PlayerProperties.Get(uid).Factories[UID.GetPoolIndex(uid)];
         }
         public static GameEntityPool CopyForPlayer(GameEntityPool original, int playerId, ExtensionFactory[] uniqueExtensionFactories)
         {
@@ -58,16 +59,18 @@ namespace JHiga.RTSEngine
                 entities[uid.entityIndex] = entity;
             }
             entity.UniqueID = uid;
+            pendingPoolIds.Remove(uid.entityIndex);
             return entity;
         }
         public int GenerateEntityID()
         {
             for (int i = 0; i < entities.Length; i++)
-            {
-                if (entities[i] == null)
+            {                
+                if ((entities[i] == null || !entities[i]) && !pendingPoolIds.Contains(i))
+                {
+                    pendingPoolIds.Add(i);
                     return i;
-                if (!entities[i].enabled)
-                    return i;
+                }
             }
             return -1;            
         }

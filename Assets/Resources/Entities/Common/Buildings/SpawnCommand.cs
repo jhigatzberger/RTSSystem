@@ -1,6 +1,7 @@
 using JHiga.RTSEngine;
 using JHiga.RTSEngine.CommandPattern;
 using JHiga.RTSEngine.Movement;
+using System.Linq;
 using UnityEngine;
 
 namespace JHiga.RTSEngine.Spawning
@@ -19,6 +20,17 @@ namespace JHiga.RTSEngine.Spawning
         public override Target PackTarget(ICommandable commandable)
         {
             return commandable.Entity.GetExtension<ISpawner>().Waypoint;
+        }
+
+        public override ResolvedCommand Build(ICommandable reference, IExtendableEntity[] selection, bool clearQueueOnEnqeue)
+        {
+            ISpawner lowest = null;
+            foreach(IExtendableEntity entity in selection)
+            {
+                if (entity.TryGetExtension(out ISpawner spawner) && lowest == null || lowest.QueueSize > spawner.QueueSize)
+                    lowest = spawner;
+            }
+            return base.Build(reference, new IExtendableEntity[] { lowest.Entity },clearQueueOnEnqeue);
         }
 
         public override void Execute(ICommandable commandable, Target target)

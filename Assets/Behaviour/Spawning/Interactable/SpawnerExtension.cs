@@ -18,6 +18,9 @@ namespace JHiga.RTSEngine.Spawning
             }
             set => throw new System.NotImplementedException();
         }
+
+        public int QueueSize => spawnQueue.Count;
+
         public SpawnerExtension(IExtendableEntity entity, SpawnerProperties properties) : base(entity, properties)
         {
             LockStep.OnStep += LockStep_OnStep;

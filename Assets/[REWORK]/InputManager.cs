@@ -12,7 +12,12 @@ namespace JHiga.RTSEngine.InputHandling
         public static Vector3? worldPointerPosition;
         [SerializeField] private InputTrigger[] triggers;
 
-        public LayerMask groundLayerMask;
+        
+        private LayerMask groundLayerMask;
+        private void Start()
+        {
+            groundLayerMask = RTSWorldData.Instance.groundLayerMask;
+        }
 
         void Update()
         {

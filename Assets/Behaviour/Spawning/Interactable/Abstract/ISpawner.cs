@@ -4,6 +4,7 @@ namespace JHiga.RTSEngine.Spawning
     {
         public Target Waypoint { get; set; }
         public void Enqueue(UID uid, float time);
+        public int QueueSize { get; }
     }
 }
 

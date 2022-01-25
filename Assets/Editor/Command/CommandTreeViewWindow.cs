@@ -114,7 +114,7 @@ class CommandTreeViewWindow : EditorWindow
         {
             if (CommandData.Instance == null)
             {
-                AssetDatabase.CreateAsset(CreateInstance<CommandData>(), Path.Generate<CommandData>());
+                AssetDatabase.CreateAsset(CreateInstance<CommandData>(), Path.GenerateFull<CommandData>());
                 AssetDatabase.SaveAssets();
             }
             return CommandData.Instance;

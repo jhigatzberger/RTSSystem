@@ -19,7 +19,7 @@ namespace JHiga.RTSEngine
             {
                 if(_startEntites == null)
                     InitPlayer();
-                return StartEntities;
+                return _startEntites;
             }
         }            
         private GameEntityPool[] _factories;
@@ -35,6 +35,7 @@ namespace JHiga.RTSEngine
         private void InitPlayer()
         {
             _factories = faction.CopyEntities(id);
+            Debug.Log("done: " + id + " " + _factories.Length);
             _startEntites = new List<StartEntityData>(faction.startEntities);            
         }        
         public static PlayerProperties Get(UID uid)

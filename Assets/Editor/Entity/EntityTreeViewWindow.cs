@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine.UIElements;
+using System.Collections;
+using System.Threading.Tasks;
 
 class EntityTreeViewWindow : EditorWindow
 { 
@@ -43,6 +45,7 @@ class EntityTreeViewWindow : EditorWindow
             }
         }
     }
+
     private UnityEngine.Object _cache;
     private UnityEngine.Object Cache
     {

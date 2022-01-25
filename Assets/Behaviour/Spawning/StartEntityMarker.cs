@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 
 namespace JHiga.RTSEngine.Spawning
 {
     public class StartEntityMarker : MonoBehaviour
-    { 
+    {
         [SerializeField] private FactionProperties[] factions;
         [SerializeField] private int[] players;
-        [SerializeField] private EntityPool toSpawn;        
+        [SerializeField] private GameEntityPool toSpawn;        
         private void Awake()
         {         
             StartEntityData data = new StartEntityData
@@ -26,7 +27,7 @@ namespace JHiga.RTSEngine.Spawning
             if(toSpawn != null && toSpawn.prefab != null)
             {
                 foreach(MeshFilter mf in toSpawn.prefab.GetComponentsInChildren<MeshFilter>())
-                    Gizmos.DrawWireMesh(mf.sharedMesh, -1, transform.position, prefab.transform.rotation, prefab.transform.localScale);
+                    Gizmos.DrawWireMesh(mf.sharedMesh, -1, transform.position, toSpawn.prefab.transform.rotation, toSpawn.prefab.transform.localScale);
             }
         }
     }

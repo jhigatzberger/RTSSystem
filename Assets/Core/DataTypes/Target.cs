@@ -14,7 +14,7 @@ namespace JHiga.RTSEngine
                 entity = GameEntity.Get(new UID(skinnedTarget.targetEntity));
             else
                 entity = null;
-            position = skinnedTarget.position;
+            position = Vector2ToVector3(skinnedTarget.position);
         }
         public Vector3 Point => entity == null ? position : entity.MonoBehaviour.transform.position;
         public float Distance(Vector3 point)
@@ -23,13 +23,19 @@ namespace JHiga.RTSEngine
         }
         public SkinnedTarget Skin => new SkinnedTarget
         {
-            position = position,
+            position = new Vector2(position.x, position.z),
             targetEntity = entity==null?-1:entity.UniqueID.uniqueId
         };
+        public static Vector3 Vector2ToVector3(Vector2 vector2)
+        {
+            if(Physics.Raycast(new Vector3(vector2.x, RTSWorldData.Instance.maxMapHight, vector2.y), Vector3.down, out RaycastHit hit, RTSWorldData.Instance.groundLayerMask))
+                return hit.point;
+            throw new System.Exception("Target position out of map!");
+        }
     }
     public struct SkinnedTarget
     {
-        public Vector3 position;
+        public Vector2 position;
         public int targetEntity;
     }
 }

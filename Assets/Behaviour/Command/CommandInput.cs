@@ -63,33 +63,24 @@ namespace JHiga.RTSEngine.CommandPattern
                 }
             }
         }
-        private bool shouldClearQueueOnInput = true;
+        public bool shouldClearQueueOnInput = true;
         public void SetClearQueueOnInput(bool shouldClearQueueOnInput)
         {
             this.shouldClearQueueOnInput = shouldClearQueueOnInput;
         }
-        private ResolvedCommand BuildCommandFromSelection(CommandProperties command)
-        {
-            return new ResolvedCommand
-                (
-                    command,
-                    shouldClearQueueOnInput,
-                    SelectionContext.selection.Select(s => s.Entity).ToArray(),
-                    CachedEntity
-                );
-        }
+
         public void RequestContextCommand()
         {
             if (ContextCommand == null || ForcedCommand != null)
                 return;
-            CommandEvents.RequestCommandDistribution(BuildCommandFromSelection(ContextCommand).Skin);
+            CommandEvents.RequestCommandDistribution(ContextCommand.Build(CachedEntity, SelectionContext.selection.Select(s=>s.Entity).ToArray(), shouldClearQueueOnInput).Skin);
         }
         public void RequestForcedCommand()
         {
             if (ForcedCommand == null)
                 return;
             if(ForcedCommand.Applicable(CachedEntity))
-                CommandEvents.RequestCommandDistribution(BuildCommandFromSelection(ForcedCommand).Skin);
+                CommandEvents.RequestCommandDistribution(ForcedCommand.Build(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput).Skin);
             ClearForcedCommand();
         }
         public void ClearForcedCommand()
