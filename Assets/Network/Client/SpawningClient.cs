@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using JHiga.RTSEngine.Spawning;
+using System.Linq;
 
 namespace JHiga.RTSEngine.Network
 {
@@ -24,7 +25,7 @@ namespace JHiga.RTSEngine.Network
 
         public void SpawnStartEntities(int playerId, Vector3 position = default)
         {
-            List<StartEntityData> startEntities = PlayerContext.players[playerId].StartEntities;
+            List<StartEntityData> startEntities = PlayerContext.players[playerId].StartEntities.OrderBy(s => s.offsetPosition).ToList();
             for (int i = 0; i < startEntities.Count; i++)
             {
                 UID uid = new UID(playerId, startEntities[i].entity.Index, i);
