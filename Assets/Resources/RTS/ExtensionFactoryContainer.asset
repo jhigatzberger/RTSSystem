@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: New SelectableProperties
   m_EditorClassIdentifier: 
   priority: 10
-  scale: 1
+  scale: 2
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
 --- !u!114 &7468925666206086494
 MonoBehaviour:
