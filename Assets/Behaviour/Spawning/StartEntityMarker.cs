@@ -4,7 +4,8 @@ namespace JHiga.RTSEngine.Spawning
 {
     public class StartEntityMarker : MonoBehaviour
     { 
-        [SerializeField] private FactionProperties faction;
+        [SerializeField] private FactionProperties[] factions;
+        [SerializeField] private int[] players;
         [SerializeField] private EntityPool toSpawn;        
         private void Awake()
         {         
@@ -13,7 +14,11 @@ namespace JHiga.RTSEngine.Spawning
                 entity = toSpawn,
                 offsetPosition = transform.position
             };
-            faction.startEntities.Add(data); 
+            foreach(int i in players)
+            {   
+                if (PlayerContext.players.Length > i && Array.IndexOf(factions, PlayerContext.players[i].faction) > -1)
+                    PlayerContext.players[i].StartEntities.Add(data);
+            }
             Destroy(gameObject);
         }
         private void OnDrawGizmos()
@@ -24,6 +29,5 @@ namespace JHiga.RTSEngine.Spawning
                     Gizmos.DrawWireMesh(mf.sharedMesh, -1, transform.position, prefab.transform.rotation, prefab.transform.localScale);
             }
         }
-
     }
 }
