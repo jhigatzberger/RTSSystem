@@ -49,7 +49,10 @@ namespace JHiga.RTSEngine.Spawning
         private void OnDrawGizmos()
         {
             if(toSpawn != null && toSpawn.prefab != null)
-                Gizmos.DrawWireMesh(toSpawn.prefab.GetComponentInChildren<MeshFilter>().sharedMesh, -1, transform.position, transform.rotation, transform.localScale);
+            {
+                foreach(MeshFilter mf in toSpawn.prefab.GetComponentsInChildren<MeshFilter>())
+                    Gizmos.DrawWireMesh(mf.sharedMesh, -1, transform.position, transform.rotation, transform.localScale);
+            }
         }
 
     }
