@@ -8,6 +8,6 @@ public class LobbyUI : MonoBehaviour
 {
     public void ClickStart()
     {
-        NetworkGameManager.Instance.StartGame();
+        NetworkGameManager.Instance.ChangeState(NetworkState.NetworkStateType.GameState); // ONLY ON SERVER!
     }
 }

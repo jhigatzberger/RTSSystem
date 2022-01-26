@@ -87,7 +87,7 @@ namespace JHiga.RTSEngine.CommandPattern
     }
     public struct SkinnedCommand
     {
-        public int commandId;
+        public ushort commandId;
         public SkinnedCommandReferences references;
     }
     public struct SkinnedCommandReferences

@@ -15,9 +15,9 @@ namespace JHiga.RTSEngine.CommandPattern
             }
         }
         public List<CommandProperties> commands = new List<CommandProperties>();
-        private Dictionary<int, CommandProperties> commandMap;
-        private Dictionary<CommandProperties, int> reverseCommandMap;
-        public Dictionary<int, CommandProperties> IdToCommand
+        private Dictionary<ushort, CommandProperties> commandMap;
+        private Dictionary<CommandProperties, ushort> reverseCommandMap;
+        public Dictionary<ushort, CommandProperties> IdToCommand
         {
             get
             {
@@ -26,7 +26,7 @@ namespace JHiga.RTSEngine.CommandPattern
                 return commandMap;
             }
         }
-        public Dictionary<CommandProperties, int> CommandToId
+        public Dictionary<CommandProperties, ushort> CommandToId
         {
             get
             {
@@ -38,11 +38,11 @@ namespace JHiga.RTSEngine.CommandPattern
 
         private void InitMaps()
         {
-            commandMap = new Dictionary<int, CommandProperties>();
-            for (int i = 0; i < commands.Count; i++)
+            commandMap = new Dictionary<ushort, CommandProperties>();
+            for (ushort i = 0; i < commands.Count; i++)
                 commandMap.Add(i, commands[i]);
-            reverseCommandMap = new Dictionary<CommandProperties, int>();
-            for (int i = 0; i < commands.Count; i++)
+            reverseCommandMap = new Dictionary<CommandProperties, ushort>();
+            for (ushort i = 0; i < commands.Count; i++)
                 reverseCommandMap.Add(commands[i], i);
         }
     }

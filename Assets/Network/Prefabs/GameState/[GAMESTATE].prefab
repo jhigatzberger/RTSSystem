@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2157463930794601849}
   - component: {fileID: -4162048711153446702}
+  - component: {fileID: -5200487251766452388}
   - component: {fileID: 846142587736773085}
   - component: {fileID: -8017730722853966591}
   - component: {fileID: 1153235108835804664}
   - component: {fileID: 7133461253575033460}
   m_Layer: 0
-  m_Name: '[RTS NET]'
+  m_Name: '[GAMESTATE]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +52,21 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-5200487251766452388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308711417118596043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2fe5f3cb1d3b44696db0e859e5acbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSceneName: GameScene
+  serverPrefab: {fileID: 2299119827792649673, guid: 1a0206bce0022cb4481002e9ac36ab12, type: 3}
+  clientPrefab: {fileID: 8991955814265393906, guid: af155959ec6229c4390402574626ab6b, type: 3}
 --- !u!114 &846142587736773085
 MonoBehaviour:
   m_ObjectHideFlags: 0
