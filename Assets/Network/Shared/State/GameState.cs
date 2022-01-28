@@ -7,32 +7,24 @@ namespace JHiga.RTSEngine.Network
     //https://docs.unity3d.com/Manual/UNetManager.html
     public class GameState : NetworkState
     {
-        [SerializeField] private string gameSceneName;
-        [SerializeField] private GameObject serverPrefab;
-        [SerializeField] private GameObject clientPrefab;
-        public override NetworkStateType Type => NetworkStateType.GameState;
-        public override void OnNetworkSpawn()
+        public override State Type => State.Game;
+        public NetworkGameData gameData;
+        public override object GetData => gameData;
+
+        public override void OnCollectiveActive()
         {
-            base.OnNetworkSpawn();
-            NetworkManager.SceneManager.OnLoadComplete += SceneManager_OnLoadComplete;
-            NetworkManager.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);            
+            throw new System.NotImplementedException();
         }
-        private void SceneManager_OnLoadComplete(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+
+
+        public override void OnExit()
         {
-            if(gameSceneName.Equals(sceneName))
-                LoadGame();
+            throw new System.NotImplementedException();
         }
-        private void LoadGame()
-        {
-            if (IsServer)
-                Instantiate(serverPrefab, transform);
-            if (IsClient)
-                Instantiate(clientPrefab, transform);
-        }
-        public void EndGame()
-        {
-            foreach (Transform t in transform)
-                Destroy(t);
-        }
+    }
+
+    public struct NetworkGameData
+    {
+
     }
 }

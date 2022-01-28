@@ -14,10 +14,11 @@ namespace JHiga.RTSEngine
                 return _instance;
             }
         }
-
         public LayerMask groundLayerMask;
         public int maxMapHight;
         public Rect mapDimensions;
+        public string[] mapNames = new string[] { "GameScene" };
+        public FactionProperties[] playableFactions;
     }
 
 }

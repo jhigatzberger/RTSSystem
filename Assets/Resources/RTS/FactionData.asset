@@ -9,21 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f254bc5f29a81564bbff8b89f43fcf26, type: 3}
-  m_Name: RTSWorldData
+  m_Script: {fileID: 11500000, guid: 2450b68a9ab33384c9b62f80f6cc5e62, type: 3}
+  m_Name: FactionData
   m_EditorClassIdentifier: 
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  maxMapHight: 45
-  mapDimensions:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  mapNames:
-  - GameScene
-  playableFactions:
+  factions:
   - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
   - {fileID: 11400000, guid: 48840c06adc31f94f94c015707683e14, type: 2}

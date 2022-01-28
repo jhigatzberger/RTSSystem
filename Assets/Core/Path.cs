@@ -16,6 +16,6 @@ public static class Path
     }
     public static string GenerateFull<T>(string prefix = "", string suffix = "")
     {
-        return Generate(prefix + typeof(T).Name + suffix);
+        return GenerateFull(prefix + typeof(T).Name + suffix);
     }
 }

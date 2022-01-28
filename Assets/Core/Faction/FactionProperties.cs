@@ -6,8 +6,10 @@ namespace JHiga.RTSEngine
     [CreateAssetMenu(fileName = "Faction", menuName = "RTS/Faction")]
     public class FactionProperties : ScriptableObject
     {
-        public List<StartEntityData> startEntities = new List<StartEntityData>(); // fix spawning for this
+        public short id;
+        public List<StartEntityData> startEntities = new List<StartEntityData>();
         public List<EntityGroup> entityGroups = new List<EntityGroup>();
+
         /// <summary>
         /// Instantiates each factory to allow different properties for each player that do not persist after the match.
         /// Each exact same property however should only be instantiated once per player as to not waste memory.
