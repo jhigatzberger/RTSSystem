@@ -46,6 +46,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandCompetence:
   - {fileID: 7176674067703014830, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: -5840748276129422373, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+--- !u!114 &-2837799192545829897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
+  m_Name: New StateMachineProperties
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: 11400000, guid: fcf90ec97d72c6e4cb2c122bbd718f76, type: 2}
+  endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
+  commandable: 1
+--- !u!114 &-2411329918141127710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e77aac27344b146bd6a11cc673751f, type: 3}
+  m_Name: New PlayerMaterialsProperties
+  m_EditorClassIdentifier: 
+  changeTexture: {fileID: 2800000, guid: b1bea199497829948b7dba86a660462d, type: 3}
+  playerMaterials:
+  - {fileID: 2100000, guid: 9062d548f8941e441a84508fe9cf35c9, type: 2}
+  - {fileID: 2100000, guid: 5070db5067422e041a6bb8c1681020b8, type: 2}
+  - {fileID: 2100000, guid: dc851844264c22f4c81c45df6c05894f, type: 2}
 --- !u!114 &-651756653242385588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,21 +105,6 @@ MonoBehaviour:
   m_Name: ExtensionFactoryContainer
   m_EditorClassIdentifier: 
   typeName: ExtensionFactory
---- !u!114 &54447154342663694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f006c6e48d9df469ac125617a11af2, type: 3}
-  m_Name: New CommandableProperties
-  m_EditorClassIdentifier: 
-  commandCompetence:
-  - {fileID: 6053781840455765175, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
-  - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
 --- !u!114 &56055710012726646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +118,7 @@ MonoBehaviour:
   m_Name: TownhallSpawnerProperties
   m_EditorClassIdentifier: 
   doorPosition: {x: 5, y: 0, z: 0}
---- !u!114 &2192849357231188996
+--- !u!114 &5301972228035785663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,11 +127,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d3dda1089a834abcb7ea268090f06, type: 3}
-  m_Name: New AttackableProperties
+  m_Script: {fileID: 11500000, guid: bc43eecc3faa0964db4051cf0a1b79d9, type: 3}
+  m_Name: New MovableProperties
   m_EditorClassIdentifier: 
-  health: 80
---- !u!114 &6868471639858760901
+  movementSpeed: 5
+--- !u!114 &8728924246521804952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,23 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2093714405f1a184384a850f4b86d8ce, type: 3}
   m_Name: New SelectableProperties
   m_EditorClassIdentifier: 
-  priority: 10
+  priority: 0
   scale: 2
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
---- !u!114 &7468925666206086494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02cb83c6e88c2d845b42a8493be3ef3a, type: 3}
-  m_Name: New AttackerProperties
-  m_EditorClassIdentifier: 
-  damage: 5
-  attackCoolDown: 1
-  visionRange: 4
-  attackRange: 2
-  damageDelay: 1

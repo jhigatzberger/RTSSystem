@@ -8,7 +8,7 @@ namespace JHiga.RTSEngine.Network
 
     public abstract class NetworkState : NetworkBehaviour
     {
-        public abstract object GetData { get; }
+        public abstract object StateData { get; }
         public GameObject serverPrefab;
         public GameObject clientPrefab;
         public enum State

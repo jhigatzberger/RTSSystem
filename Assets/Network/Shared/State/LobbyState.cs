@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -15,18 +16,21 @@ namespace JHiga.RTSEngine.Network
         {
             get
             {
+                IReadOnlyList<ulong> clients = NetworkManager.Singleton.ConnectedClientsIds;
                 LobbyData data = new LobbyData
                 {
                     mapName = RTSWorldData.Instance.mapNames[0],
-                    players = new List<PlayerData>()
+                    players = new PlayerData[clients.Count]
                 };
-                foreach (ulong client in NetworkManager.Singleton.ConnectedClientsIds)
-                    data.players.Add(new PlayerData
+                for (int i = 0; i < clients.Count; i++)
+                {
+                    data.players[i] = (new PlayerData
                     {
-                        name = "Player" + client.ToString(),
-                        clientId = client,
+                        name = "Player" + clients[i].ToString(),
+                        clientId = clients[i],
                         factionId = 0
                     });
+                }                    
                 return data;
             }
         }
@@ -48,7 +52,7 @@ namespace JHiga.RTSEngine.Network
 
         public override State Type => State.Lobby;
 
-        public override object GetData => _data;
+        public override object StateData => _data;
 
         public static event Action<LobbyData> OnData;
 
@@ -59,6 +63,7 @@ namespace JHiga.RTSEngine.Network
                 Data = DefaultData;
             else
                 RequestSynchronizeLobbyDataServerRpc(OwnerClientId);
+            PlayerContext.PlayerId = (int)NetworkManager.LocalClientId + 1;
         }
 
         public void ChooseFaction(int faction)
@@ -75,7 +80,7 @@ namespace JHiga.RTSEngine.Network
         [ClientRpc]
         private void ChooseFactionClientRpc(ulong client, short faction)
         {
-            Data.players.Find(p => p.clientId == client).factionId = faction;
+            Data.players.First(p => p.clientId == client).factionId = faction;
         }
 
         [ServerRpc]
@@ -98,16 +103,48 @@ namespace JHiga.RTSEngine.Network
         }
     }
     
-    public class LobbyData
+    public class LobbyData : INetworkSerializable
     {
         public string mapName;
-        public List<PlayerData> players;
+        public PlayerData[] players;
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        { 
+            int length = 0;
+
+            if (!serializer.IsReader)
+            {
+                length = players.Length;
+            }
+
+            serializer.SerializeValue(ref length);
+            serializer.SerializeValue(ref mapName);
+
+            if (serializer.IsReader)
+            {
+                players = new PlayerData[length];
+            }
+
+            for (int n = 0; n < length; ++n)
+            {
+                serializer.SerializeNetworkSerializable(ref players[n]);
+            }
+        }
     }
 
-    public class PlayerData
+    public class PlayerData : INetworkSerializable
     {
         public ulong clientId;
         public string name;
         public short factionId;
+        public int team;
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            serializer.SerializeValue(ref clientId);
+            serializer.SerializeValue(ref name);
+            serializer.SerializeValue(ref factionId);
+            serializer.SerializeValue(ref team);
+        }
     }
 }

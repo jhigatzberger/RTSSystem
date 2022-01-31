@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Network
 {
     public enum ClientStatus : byte
     {
-        Pending,
+        Inactive,
         Waiting,
         Active,
         Finished
@@ -33,7 +33,6 @@ namespace JHiga.RTSEngine.Network
             foreach (NetworkState entry in states)
                 stateMap.Add(entry.Type, entry);
 
-            PlayerContext.PlayerId = (int)NetworkManager.LocalClientId + 1;
             NetworkManager.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
             clientStatusMap = new Dictionary<ulong, ClientStatus>();
             ChangeState(NetworkState.State.Lobby);
@@ -54,19 +53,15 @@ namespace JHiga.RTSEngine.Network
         [ServerRpc]
         private void SetStatusServerRpc(ulong client, ClientStatus status)
         {
-            ClientStatus p_Status = CollectiveStatus;
             clientStatusMap[client] = status;
             SetStatusClientRpc(client, status);
             ClientStatus c_Status = CollectiveStatus;
-
-            Debug.Log(p_Status + " " + c_Status);
-            if (p_Status == c_Status)
+            if (status > c_Status)
                 return;
-
             switch (c_Status)
             {
                 case ClientStatus.Waiting:
-                    currentState.CollectiveActive();
+                    ActivateStateClientRpc();
                     break;
                 case ClientStatus.Finished:
                     ChangeStateClientRpc((NetworkState.State)(((int)currentState.Type + 1) % Enum.GetValues(typeof(NetworkState.State)).Length));
@@ -121,7 +116,7 @@ namespace JHiga.RTSEngine.Network
             {
                 if (stateType == currentState.Type)
                     return;
-                stateData[currentState.Type] = currentState.GetData;
+                stateData[currentState.Type] = currentState.StateData;
                 currentState.Exit();
             }
             currentState = Instantiate(stateMap[stateType].gameObject).GetComponent<NetworkState>();

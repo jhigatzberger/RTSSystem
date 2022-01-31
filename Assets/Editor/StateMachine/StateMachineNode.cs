@@ -11,7 +11,7 @@ public class StateMachineNode : Node
     private static readonly Color borderColor = new Color(0, 0, 0, 0.3f);
     private static readonly int borderWidth = 1;
     public State state;
-    private Dictionary<Transition, VisualElement> visualTransitions = new Dictionary<Transition, VisualElement>();
+    public Dictionary<Transition, VisualTransition> visualTransitions = new Dictionary<Transition, VisualTransition>();
     private VisualElement transitionContainer;
     private Dictionary<Action, VisualElement> visualActions = new Dictionary<Action, VisualElement>();
     private VisualElement actionContainer;
@@ -34,12 +34,6 @@ public class StateMachineNode : Node
         RefreshPorts();
     }
 
-    public Port GenerateOutputPort(Transition transition, bool decisionResult)
-    {
-        Port p = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(float));
-        //p.AddManipulator(new EdgeConnector<Edge>(new UpdateStateEdgeConnectorListener(decisionResult, transition)));
-        return p;
-    }
     private void InitActions()
     {
         actionContainer = new VisualElement();
@@ -157,70 +151,14 @@ public class StateMachineNode : Node
 
     public void AddTransition(Transition transition)
     {
-        
-        VisualElement container = new VisualElement();
-        container.style.justifyContent = Justify.Center;
-        container.style.marginBottom = 5;
+        VisualTransition t = new VisualTransition(this, transition);
 
-        SetBorder(container, bottom: true);
-
-        VisualElement titleContainer = new VisualElement();
-        titleContainer.Add(GenerateRemoveButton(() => RemoveTransition(transition)));
-        Label transitionTitle = new Label(transition.name);
-        transitionTitle.style.unityFontStyleAndWeight = FontStyle.Bold;
-        titleContainer.Add(transitionTitle);        
-        titleContainer.style.flexDirection = FlexDirection.RowReverse;
-        container.Add(titleContainer);
-
-        container.Add(new Label(transition.decision.name));
-
-        Port trueState = GenerateOutputPort(transition, true);
-        Port falseState = GenerateOutputPort(transition, false);
-
-        trueState.portName = "True";
-        falseState.portName = "False";
-
-        container.Add(trueState);
-        container.Add(falseState);
-
-        visualTransitions.Add(transition, container);
-        transitionContainer.Add(container);
-
-        if (transition.trueState != null)
-        {
-            if (!graphView.statesToNodes.TryGetValue(transition.trueState, out StateMachineNode trueStateNode))
-                trueStateNode = graphView.CreateStateNode(transition.trueState);
-            if(trueStateNode!=this)
-                LinkNodes(trueState, trueStateNode.input);
-        }
-        else
-            LinkNodes(trueState, graphView.nullNode.input);
-        if (transition.falseState != null)
-        {
-            if (!graphView.statesToNodes.TryGetValue(transition.falseState, out StateMachineNode falseStateNode))
-                falseStateNode = graphView.CreateStateNode(transition.falseState);
-            if (falseStateNode != this)
-                LinkNodes(falseState, falseStateNode.input);
-        }
-        else
-            LinkNodes(falseState, graphView.nullNode.input);
+        visualTransitions.Add(transition, t);
+        transitionContainer.Add(t);
 
         RefreshExpandedState();
         RefreshPorts();
     }
-
-    private void LinkNodes(Port output, Port input)
-    {
-        Edge edge = new Edge
-        {
-            output = output,
-            input = input
-        };
-        output.Connect(edge);
-        input.Connect(edge);
-        graphView.Add(edge);
-    }
-
 
     public StateMachineNode()
     {
@@ -231,34 +169,68 @@ public class StateMachineNode : Node
     public string placeHolder;
 
     public bool entryPoint;
+    public class VisualTransition : VisualElement
+    {
+        public Port truePort;
+        public Port falsePort;
+        private VisualElement container;
+        private StateMachineNode node;
+        private Transition transition;
+        public VisualTransition(StateMachineNode node, Transition transition)
+        {
+            this.transition = transition;
+            this.node = node;
+            container = InstantiateContainer();
+            Add(container);
+        }
+        private VisualElement InstantiateContainer()
+        {
+            container = new VisualElement();
+            container.Add(InstantiateTitleContainer());
+            container.Add(new Label(transition.decision.name));
+            container.Add(InstantiatePort(transition.trueState, "True"));
+            container.Add(InstantiatePort(transition.falseState, "False"));
+            container.style.justifyContent = Justify.Center;
+            container.style.marginBottom = 5;
+            SetBorder(container, bottom: true);
+            return container;
+        }
+        private VisualElement InstantiateTitleContainer()
+        {
+            VisualElement titleContainer = new VisualElement();
+            titleContainer.Add(GenerateRemoveButton(() => node.RemoveTransition(transition)));
+            Label transitionTitle = new Label(transition.name);
+            transitionTitle.style.unityFontStyleAndWeight = FontStyle.Bold;
+            titleContainer.Add(transitionTitle);
+            titleContainer.style.flexDirection = FlexDirection.RowReverse;
+            return titleContainer;
+        }
+        private Port InstantiatePort(State state, string name)
+        {
+            Port p = node.InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(float));
+            if (state != null)
+            {
+                if (!node.graphView.statesToNodes.TryGetValue(state, out StateMachineNode stateNode))
+                    stateNode = node.graphView.CreateStateNode(state);
+                if (stateNode != node)
+                    LinkNodes(p, stateNode.input);
+            }
+            else
+                LinkNodes(p, node.graphView.nullNode.input);
+            p.portName = name;
+            return p;
+        }
+        private void LinkNodes(Port output, Port input)
+        {
+            Edge edge = new Edge
+            {
+                output = output,
+                input = input
+            };
+            output.Connect(edge);
+            input.Connect(edge);
+            node.graphView.Add(edge);
+        }
+    }
 }
-/*
-internal class UpdateStateEdgeConnectorListener : IEdgeConnectorListener
-{
-    private bool decisionResult;
-    private Transition transition;
-    public UpdateStateEdgeConnectorListener(bool decisionResult, Transition transition)
-    {
-        this.decisionResult = decisionResult;
-        this.transition = transition;
-    }
 
-    public void OnDrop(GraphView graphView, Edge edge)
-    {
-        Debug.Log("drop ");
-        StateMachineNode inputNode = ((StateMachineNode)edge.input.node);
-        StateMachineNode outputNode = ((StateMachineNode)edge.output.node);
-        if (decisionResult)
-            outputNode.state.transitions.First(t => t.Equals(transition)).trueState = inputNode.state;
-        else
-            outputNode.state.transitions.First(t => t.Equals(transition)).falseState = inputNode.state;
-    }
-
-    public void OnDropOutsidePort(Edge edge, Vector2 position)
-    {
-        StateMachineNode outputNode = ((StateMachineNode)edge.output.node);
-        Debug.Log("drop outside ");
-        if (decisionResult)
-            outputNode.state.transitions.First(t => t.Equals(transition)).trueState = outputNode.state;
-    }
-}*/

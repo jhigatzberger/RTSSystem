@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2093714405f1a184384a850f4b86d8ce, type: 3}
   m_Name: SelectableUnits
   m_EditorClassIdentifier: 
-  rendererTag: SelectableObjectRenderer
   priority: 10
+  scale: 1
+  selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}

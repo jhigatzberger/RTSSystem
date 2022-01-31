@@ -1,7 +1,7 @@
 using JHiga.RTSEngine.StateMachine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -76,37 +76,52 @@ public class StateMachineGraphView : GraphView
 
     private GraphViewChange OnGraphChange(GraphViewChange change)
     {
-        if (change.edgesToCreate != null)
-        {
-            foreach (Edge edge in change.edgesToCreate)
-            {
-                Debug.Log("Implement new connection stuff");
-            }
-        }
-
         if (change.elementsToRemove != null)
         {
             foreach (GraphElement e in change.elementsToRemove)
             {
-                if (e.GetType() == typeof(Edge))
+                Edge edge = e as Edge;
+                if (edge != null)
                 {
-                    Debug.Log("Implement remove connections and states stuff");
+                    StateMachineNode outputNode = ((StateMachineNode)edge.output.node);
+                    foreach (var kvp in outputNode.visualTransitions)
+                    {
+                        if (kvp.Value.truePort == edge.output)
+                        {
+                            kvp.Key.trueState = outputNode.state;
+                            break;
+                        }
+                        if (kvp.Value.falsePort == edge.output)
+                        {
+                            kvp.Key.falseState = outputNode.state;
+                            break;
+                        }
+                    }
                 }
             }
         }
-
-        if (change.movedElements != null)
+        if (change.edgesToCreate != null)
         {
-            foreach (GraphElement e in change.movedElements)
+            foreach (Edge edge in change.edgesToCreate)
             {
-                if (e.GetType() == typeof(Node))
+                StateMachineNode inputNode = ((StateMachineNode)edge.input.node);
+                StateMachineNode outputNode = ((StateMachineNode)edge.output.node);
+                foreach (var kvp in outputNode.visualTransitions)
                 {
-                    Debug.Log("Dont really care about moving (DONT FORGET TO REMOVE CONNECTION FROM TRANSITION (TRUE -> NULL IN ATTACKIDLE)");
+                    if (kvp.Value.truePort == edge.output)
+                    {
+                        kvp.Key.trueState = inputNode.state;
+                        break;
+                    }
+                    if (kvp.Value.falsePort == edge.output)
+                    {
+                        kvp.Key.falseState = inputNode.state;
+                        break;
+                    }
                 }
             }
         }
-
+        AssetDatabase.SaveAssets();
         return change;
     }
-
 }

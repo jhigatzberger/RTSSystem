@@ -9,17 +9,15 @@ namespace JHiga.RTSEngine.Network
     {
         public override State Type => State.Game;
         public NetworkGameData gameData;
-        public override object GetData => gameData;
+        public override object StateData => gameData;
 
         public override void OnCollectiveActive()
         {
-            throw new System.NotImplementedException();
         }
 
 
         public override void OnExit()
         {
-            throw new System.NotImplementedException();
         }
     }
 

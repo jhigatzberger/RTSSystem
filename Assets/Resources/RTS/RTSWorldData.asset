@@ -26,4 +26,4 @@ MonoBehaviour:
   - GameScene
   playableFactions:
   - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
-  - {fileID: 11400000, guid: 48840c06adc31f94f94c015707683e14, type: 2}
+  - {fileID: 11400000, guid: 17bb950129695e74abc310459710d157, type: 2}

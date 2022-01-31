@@ -1,6 +1,4 @@
 using JHiga.RTSEngine.StateMachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -43,16 +41,23 @@ public class StateMachineGraphWindow : EditorWindow
 
         Button createStateButton = new Button(() =>
         {
-            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.New, TypePickerWindow.EditType.Copy });
+            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.New });
         });
-        createStateButton.text = "New State";
+        createStateButton.text = "New";
         toolbar.Add(createStateButton);
+
+        Button copyStateButton = new Button(() =>
+        {
+            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.Copy });
+        });
+        copyStateButton.text = "Copy";
+        toolbar.Add(copyStateButton);
 
         Button loadStateButton = new Button(() =>
         {
-            TypePickerWindow.Show<State>(CreateStateNode);
+            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.Reference });
         });
-        loadStateButton.text = "Load State";
+        loadStateButton.text = "Load";
         toolbar.Add(loadStateButton);
 
         rootVisualElement.Add(toolbar);

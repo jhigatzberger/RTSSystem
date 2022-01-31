@@ -27,7 +27,7 @@ public class LobbyUI : MonoBehaviour
 
     private void Instance_OnData(LobbyData data)
     {
-        Debug.Log(data.players.Find(p=>p.clientId == NetworkManager.Singleton.LocalClientId));
+        Debug.Log(data.players.First(p=>p.clientId == NetworkManager.Singleton.LocalClientId));
     }
 
     private void ChangeEvent(int value)

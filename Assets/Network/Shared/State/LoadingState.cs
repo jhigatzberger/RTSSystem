@@ -9,7 +9,7 @@ namespace JHiga.RTSEngine.Network
     {
         public override State Type => State.Loading;
 
-        public override object GetData => null;
+        public override object StateData => null;
 
         public override void OnCollectiveActive()
         {

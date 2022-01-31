@@ -20,5 +20,4 @@ namespace JHiga.RTSEngine
         public string[] mapNames = new string[] { "GameScene" };
         public FactionProperties[] playableFactions;
     }
-
 }

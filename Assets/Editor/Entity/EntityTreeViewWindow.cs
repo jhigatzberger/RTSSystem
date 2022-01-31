@@ -176,11 +176,13 @@ class EntityTreeViewWindow : EditorWindow
     private void Remove(FactionProperties faction)
     {
         foreach (EntityGroup group in new List<EntityGroup>(faction.entityGroups))
-            Remove(group, faction);
+            Remove(group, faction, true);
         RemoveCleanup(faction);
     }
-    private void Remove(EntityGroup group, UnityEngine.Object parent)
+    private void Remove(EntityGroup group, UnityEngine.Object parent, bool cascaded = false)
     {
+        if (cascaded && (TreeView.duplicateMap.TryGetValue(parent, out int value) && value > 1))
+            return;
         FactionProperties f = parent as FactionProperties;
         if (f != null)
             f.entityGroups.Remove(group);
@@ -190,21 +192,25 @@ class EntityTreeViewWindow : EditorWindow
             g.children.Remove(group);
         }
         foreach (EntityGroup g in new List<EntityGroup>(group.children))
-            Remove(g, group);
+            Remove(g, group, true);
         foreach (GameEntityPool e in new List<GameEntityPool>(group.entities))
-            Remove(e, group);
+            Remove(e, group, true);
         RemoveCleanup(group, parent);
     }
-    private void Remove(GameEntityPool gameEntityPool, EntityGroup parent)
+    private void Remove(GameEntityPool gameEntityPool, EntityGroup parent, bool cascaded = false)
     {
+        if (cascaded && (TreeView.duplicateMap.TryGetValue(parent, out int value) && value > 1))
+            return;
         parent.entities.Remove(gameEntityPool);
         if(gameEntityPool.properties != null)
             foreach (ExtensionFactory property in new List<ExtensionFactory>(gameEntityPool.properties))
-                Remove(property, gameEntityPool);
+                Remove(property, gameEntityPool, true);
         RemoveCleanup(gameEntityPool, parent);
     }
-    private void Remove(ExtensionFactory property, GameEntityPool parent)
+    private void Remove(ExtensionFactory property, GameEntityPool parent, bool cascaded = false)
     {
+        if (cascaded && (TreeView.duplicateMap.TryGetValue(parent, out int value) && value > 1))
+            return;
         List<ExtensionFactory> l = new List<ExtensionFactory>(parent.properties);
         l.Remove(property);
         parent.properties = l.ToArray();

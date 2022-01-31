@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2157463930794601849}
   - component: {fileID: -4162048711153446702}
-  - component: {fileID: 5737348424461738668}
+  - component: {fileID: -8046322377367354530}
   m_Layer: 0
-  m_Name: '[NETWORKGAMEMANAGER]'
+  m_Name: '[LOADINGSTATE]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5737348424461738668
+--- !u!114 &-8046322377367354530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,10 +57,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1308711417118596043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d0ad5836516114e93f87f248e4e65b, type: 3}
+  m_Script: {fileID: 11500000, guid: 42f07e70f7c4cb04cb913f863cf39c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states:
-  - {fileID: -3633612387783058977, guid: bf71d0ecb0028224983d2e365157aab8, type: 3}
-  - {fileID: -8046322377367354530, guid: b0b9077cb8321de43bb06bd9b528c234, type: 3}
-  - {fileID: -5200487251766452388, guid: 85f787b68012bf94a85cc22c53a5dd4c, type: 3}
+  serverPrefab: {fileID: 0}
+  clientPrefab: {fileID: 0}
