@@ -1,42 +1,56 @@
-using JHiga.RTSEngine;
 using JHiga.RTSEngine.Network;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.UI.Dropdown;
 
 public class LobbyUI : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
 
-    private Dictionary<ulong, GameObject> players;
+    private Dictionary<ulong, LobbyPlayer> players = new Dictionary<ulong, LobbyPlayer>();
 
-    public Dropdown factionDropdown;
 
     private void Start()
     {
-        factionDropdown.options = RTSWorldData.Instance.playableFactions.Select(f => new OptionData
+        NetworkGameManager.Instance.playerData.OnListChanged += PlayerData_OnListChanged;
+        HandleLobbyPlayerUI();
+    }
+
+
+    private void OnDestroy()
+    {
+        NetworkGameManager.Instance.playerData.OnListChanged -= PlayerData_OnListChanged;
+    }
+
+    void HandleLobbyPlayerUI()
+    {
+        var playerData = NetworkGameManager.Instance.playerData;
+        HashSet<ulong> oldPlayerIds = new HashSet<ulong>(players.Keys);
+        foreach (PlayerState p in playerData)
         {
-            text = f.name
-        }).ToList();
-        factionDropdown.onValueChanged.AddListener(ChangeEvent);
-        LobbyState.OnData += Instance_OnData;
+            oldPlayerIds.Remove(p.clientId);
+            if (!players.TryGetValue(p.clientId, out LobbyPlayer lobbyPlayer))
+            {
+                lobbyPlayer = Instantiate(playerPrefab, transform).GetComponent<LobbyPlayer>();
+                players[p.clientId] = lobbyPlayer;
+                lobbyPlayer.transform.Translate(Vector3.down * p.clientId * 50);
+            }
+            lobbyPlayer.Display(p);
+        }
+        foreach (ulong id in oldPlayerIds)
+        {
+            LobbyPlayer lp = players[id];
+            players[id] = null;
+            Destroy(lp.gameObject);
+        }
     }
 
-    private void Instance_OnData(LobbyData data)
+    private void PlayerData_OnListChanged(NetworkListEvent<PlayerState> changeEvent)
     {
-        Debug.Log(data.players.First(p=>p.clientId == NetworkManager.Singleton.LocalClientId));
+        HandleLobbyPlayerUI();
     }
-
-    private void ChangeEvent(int value)
-    {
-        LobbyState.Instance.ChooseFaction(value);
-    }
-
     public void ClickReady()
     {
-        NetworkGameManager.Instance.Status = ClientStatus.Finished;
+        NetworkGameManager.Instance.Status = PlayerStatus.Ready;
     }
 }

@@ -9,23 +9,15 @@ namespace JHiga.RTSEngine.Network
     {
         public override State Type => State.Loading;
 
-        public override object StateData => null;
-
-        public override void OnCollectiveActive()
+        private void Start()
         {
-            string scene = ((LobbyData)NetworkGameManager.Instance.stateData[State.Lobby]).mapName;
+            string scene = RTSWorldData.Instance.mapNames[NetworkGameManager.Instance.sessionData.Value.mapIndex];
             AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
             operation.completed += Operation_completed;
         }
-
         private void Operation_completed(AsyncOperation asyncOperation)
         {
             Finish();
         }
-
-        public override void OnExit()
-        {
-        }
-
     }
 }

@@ -5,124 +5,129 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine.Network
 {
-    public enum ClientStatus : byte
-    {
-        Inactive,
-        Waiting,
-        Active,
-        Finished
-    }
+
     public class NetworkGameManager : NetworkBehaviour
     {
-        #region Init
         public static NetworkGameManager Instance { get; private set; }
+
+        public NetworkVariable<SessionData> sessionData = new NetworkVariable<SessionData>();
+        public NetworkList<PlayerState> playerData;
+        public NetworkVariable<NetworkState.State> currentState = new NetworkVariable<NetworkState.State>();
+        [SerializeField] private NetworkState[] states;
+        private Dictionary<NetworkState.State, NetworkState> stateMap;
         private void Awake()
         {
-            if (Instance != null || !IsOwner)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
             DontDestroyOnLoad(this);
         }
         public override void OnNetworkSpawn()
         {
-            stateMap = new Dictionary<NetworkState.State, NetworkState>();
-            stateData = new Dictionary<NetworkState.State, object>();
-            foreach (NetworkState entry in states)
-                stateMap.Add(entry.Type, entry);
+            if (IsServer)
+            {
+                stateMap = new Dictionary<NetworkState.State, NetworkState>();
+                foreach (NetworkState entry in states)
+                    stateMap.Add(entry.Type, entry);
+                NetworkManager.OnClientDisconnectCallback += OnClientDisconnect;
+                NetworkManager.OnClientConnectedCallback += OnClientConnect;
+                OnClientConnect(OwnerClientId);
+                ChangeStateServerRpc(NetworkState.State.Lobby);
+            }
+        }
 
-            NetworkManager.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
-            clientStatusMap = new Dictionary<ulong, ClientStatus>();
-            ChangeState(NetworkState.State.Lobby);
+        private void OnClientConnect(ulong client)
+        {
+            playerData.Add(new PlayerState
+            {
+                clientId = client,
+                team = 0,
+                factionId = 0,
+                status = PlayerStatus.Pending
+            });
         }
 
         public override void OnNetworkDespawn()
         {
-            NetworkManager.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
+            NetworkManager.OnClientDisconnectCallback -= OnClientDisconnect;
+            NetworkManager.OnClientConnectedCallback -= OnClientConnect;
         }
 
-        private void NetworkManager_OnClientDisconnectCallback(ulong client)
+        private void OnClientDisconnect(ulong client)
         {
-            clientStatusMap.Remove(client);
+            for (int i = 0; i < playerData.Count; i++)
+            {
+                if (playerData[i].clientId == client)
+                {
+                    playerData.RemoveAt(i);
+                    return;
+                }
+            }
         }
-
-        #endregion
-        #region ClientStatus
         [ServerRpc]
-        private void SetStatusServerRpc(ulong client, ClientStatus status)
+        private void SetStatusServerRpc(PlayerStatus status, ServerRpcReceiveParams receiveParams = default)
         {
-            clientStatusMap[client] = status;
-            SetStatusClientRpc(client, status);
-            ClientStatus c_Status = CollectiveStatus;
+            for (int i = 0; i < playerData.Count; i++)
+            {
+                if (playerData[i].clientId == receiveParams.SenderClientId)
+                    playerData[i] = new PlayerState
+                    {
+                        status = status,
+                        clientId = playerData[i].clientId,
+                        factionId = playerData[i].factionId,
+                        team = playerData[i].team
+                    };
+            }
+            
+            PlayerStatus c_Status = CollectiveStatus;
             if (status > c_Status)
                 return;
             switch (c_Status)
             {
-                case ClientStatus.Waiting:
-                    ActivateStateClientRpc();
-                    break;
-                case ClientStatus.Finished:
-                    ChangeStateClientRpc((NetworkState.State)(((int)currentState.Type + 1) % Enum.GetValues(typeof(NetworkState.State)).Length));
+                case PlayerStatus.Ready:
+                    ChangeStateServerRpc((NetworkState.State)(((int)currentState.Value + 1) % Enum.GetValues(typeof(NetworkState.State)).Length));
                     break;
             }
         }
-        [ClientRpc]
-        private void SetStatusClientRpc(ulong client, ClientStatus status)
-        {
-            clientStatusMap[client] = status;
-        }
-        public ClientStatus Status {
-            get => clientStatusMap[OwnerClientId];
-            set
-            {
-                SetStatusServerRpc(OwnerClientId, value);
-            }
-        }
-        public ClientStatus CollectiveStatus
+        public PlayerStatus Status
         {
             get
             {
-                ClientStatus lowestStatus = ClientStatus.Finished;
-                foreach (var kvp in clientStatusMap)
-                    if (kvp.Value < lowestStatus)
-                        lowestStatus = kvp.Value;
+                for (int i = 0; i < playerData.Count; i++)
+                {
+                    if (playerData[i].clientId == NetworkManager.LocalClientId)
+                        return playerData[i].status;
+                }
+                return PlayerStatus.Pending;
+            }            
+            set
+            {
+                SetStatusServerRpc(value);
+            }
+        }
+        public PlayerStatus CollectiveStatus
+        {
+            get
+            {
+                PlayerStatus lowestStatus = PlayerStatus.Finished;
+                foreach (PlayerState p in playerData)
+                    if (p.status < lowestStatus)
+                        lowestStatus = p.status;
                 return lowestStatus;
             }
         }
-        private Dictionary<ulong, ClientStatus> clientStatusMap;
-        #endregion
-        #region StateMachine
-        [SerializeField] private NetworkState[] states;
-        private Dictionary<NetworkState.State, NetworkState> stateMap;
-        public Dictionary<NetworkState.State, object> stateData;
-        private NetworkState currentState;
-
-        [ClientRpc]
-        public void ChangeStateClientRpc(NetworkState.State stateType)
+        [ServerRpc]
+        public void ChangeStateServerRpc(NetworkState.State stateType)
         {
-            ChangeState(stateType);
-        }
-        [ClientRpc]
-        public void ActivateStateClientRpc()
-        {
-            currentState.CollectiveActive();
-        }
-        private void ChangeState(NetworkState.State stateType)
-        {
-            Debug.Log("ChangeState " + stateType);
-            if (currentState != null)
+            Debug.Log(currentState.Value + " ChangeStateServerRpc " + stateType.ToString());
+            if (currentState.Value != NetworkState.State.None)
             {
-                if (stateType == currentState.Type)
+                if (stateType == currentState.Value)
                     return;
-                stateData[currentState.Type] = currentState.StateData;
-                currentState.Exit();
+                Debug.Log("Despawn");
+                FindObjectOfType<NetworkState>().GetComponent<NetworkObject>().Despawn();
             }
-            currentState = Instantiate(stateMap[stateType].gameObject).GetComponent<NetworkState>();
-            currentState.GetComponent<NetworkObject>().Spawn();
-            Status = ClientStatus.Waiting;
+            currentState.Value = stateType;
+            NetworkState newState = Instantiate(stateMap[stateType].gameObject).GetComponent<NetworkState>();
+            newState.GetComponent<NetworkObject>().Spawn();
         }
-        #endregion
     }
 }

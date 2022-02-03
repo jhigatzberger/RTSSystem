@@ -1,13 +1,13 @@
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.SceneManagement;
 
 public class HostServer : MonoBehaviour
 {
+    [SerializeField] private GameObject networkGameManager;
     public void OnClick()
     {
         NetworkManager.Singleton.StartHost();
-        SceneManager.LoadScene(1);
+        Instantiate(networkGameManager).GetComponent<NetworkObject>().Spawn();
     }
 
 }

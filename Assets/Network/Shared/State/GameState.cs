@@ -7,22 +7,17 @@ namespace JHiga.RTSEngine.Network
     //https://docs.unity3d.com/Manual/UNetManager.html
     public class GameState : NetworkState
     {
+        public GameObject serverPrefab;
+        public GameObject clientPrefab;
         public override State Type => State.Game;
-        public NetworkGameData gameData;
-        public override object StateData => gameData;
 
-        public override void OnCollectiveActive()
+        private void Start()
         {
-        }
-
-
-        public override void OnExit()
-        {
+            if (IsServer && serverPrefab != null)
+                Instantiate(serverPrefab, transform);
+            if (IsClient && clientPrefab != null)
+                Instantiate(clientPrefab, transform);
         }
     }
 
-    public struct NetworkGameData
-    {
-
-    }
 }

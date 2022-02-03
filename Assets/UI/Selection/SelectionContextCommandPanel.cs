@@ -1,5 +1,3 @@
-using JHiga.RTSEngine;
-using JHiga.RTSEngine.InputHandling;
 using JHiga.RTSEngine.CommandPattern;
 using UnityEngine;
 namespace JHiga.RTSEngine.UI

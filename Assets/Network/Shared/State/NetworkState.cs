@@ -8,38 +8,29 @@ namespace JHiga.RTSEngine.Network
 
     public abstract class NetworkState : NetworkBehaviour
     {
-        public abstract object StateData { get; }
-        public GameObject serverPrefab;
-        public GameObject clientPrefab;
         public enum State
         {
+            None,
             Lobby,
             Loading,
             Game,
             PostGame
         }
         public abstract State Type { get; }
-        public void CollectiveActive()
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start()
         {
             Debug.Log("enter: " + Type);
-            NetworkGameManager.Instance.Status = ClientStatus.Active;
-            OnCollectiveActive();
-            DontDestroyOnLoad(gameObject);
-            if (IsServer && serverPrefab != null)
-                Instantiate(serverPrefab, transform);
-            if (IsClient && clientPrefab != null)
-                Instantiate(clientPrefab, transform);
+            NetworkGameManager.Instance.Status = PlayerStatus.Pending;
         }
-        public abstract void OnCollectiveActive();
-        public void Exit()
-        {
-            OnExit();
-            Destroy(gameObject);
-        }
-        public virtual void OnExit() { }
         public void Finish()
         {
-            NetworkGameManager.Instance.Status = ClientStatus.Finished;
+            NetworkGameManager.Instance.Status = PlayerStatus.Ready;
         }
     }
 }
