@@ -12,9 +12,12 @@ namespace JHiga.RTSEngine.Network
 
         public NetworkVariable<SessionData> sessionData = new NetworkVariable<SessionData>();
         public NetworkList<PlayerState> playerData;
+
         public NetworkVariable<NetworkState.State> currentState = new NetworkVariable<NetworkState.State>();
+
         [SerializeField] private NetworkState[] states;
         private Dictionary<NetworkState.State, NetworkState> stateMap;
+
         private void Awake()
         {
             Instance = this;
@@ -62,12 +65,12 @@ namespace JHiga.RTSEngine.Network
                 }
             }
         }
-        [ServerRpc]
-        private void SetStatusServerRpc(PlayerStatus status, ServerRpcReceiveParams receiveParams = default)
+        [ServerRpc(RequireOwnership = false)]
+        private void SetStatusServerRpc(PlayerStatus status, ulong clientId)
         {
             for (int i = 0; i < playerData.Count; i++)
             {
-                if (playerData[i].clientId == receiveParams.SenderClientId)
+                if (playerData[i].clientId == clientId)
                     playerData[i] = new PlayerState
                     {
                         status = status,
@@ -100,7 +103,7 @@ namespace JHiga.RTSEngine.Network
             }            
             set
             {
-                SetStatusServerRpc(value);
+                SetStatusServerRpc(value, NetworkManager.LocalClientId);
             }
         }
         public PlayerStatus CollectiveStatus

@@ -27,3 +27,8 @@ MonoBehaviour:
   playableFactions:
   - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
   - {fileID: 11400000, guid: 17bb950129695e74abc310459710d157, type: 2}
+  playerColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0.049153328, b: 1, a: 1}
+  - {r: 1, g: 0.09661572, b: 0, a: 1}
+  - {r: 1, g: 0.9990684, b: 0, a: 1}

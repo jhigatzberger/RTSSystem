@@ -19,5 +19,6 @@ namespace JHiga.RTSEngine
         public Rect mapDimensions;
         public string[] mapNames = new string[] { "GameScene" };
         public FactionProperties[] playableFactions;
+        public Color[] playerColors;
     }
 }

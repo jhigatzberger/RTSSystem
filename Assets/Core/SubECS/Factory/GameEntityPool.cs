@@ -27,11 +27,11 @@ namespace JHiga.RTSEngine
         private HashSet<int> pendingPoolIds = new HashSet<int>();
         public static GameEntityPool Get(UID uid)
         {
-            return PlayerProperties.Get(uid).Factories[uid.poolIndex];
+            return PlayerProperties.Get(uid).factories[uid.poolIndex];
         }
         public static GameEntityPool Get(int uid)
         {
-            return PlayerProperties.Get(uid).Factories[UID.GetPoolIndex(uid)];
+            return PlayerProperties.Get(uid).factories[UID.GetPoolIndex(uid)];
         }
         public static GameEntityPool CopyForPlayer(GameEntityPool original, int playerId, ExtensionFactory[] uniqueExtensionFactories)
         {

@@ -18,7 +18,7 @@ namespace JHiga.RTSEngine.Spawning
             foreach(int i in players)
             {   
                 if (PlayerContext.players.Length > i && Array.IndexOf(factions, PlayerContext.players[i].faction) > -1)
-                    PlayerContext.players[i].StartEntities.Add(data);
+                    PlayerContext.players[i].startEntities.Add(data);
             }
             Destroy(gameObject);
         }

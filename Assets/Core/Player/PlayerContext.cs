@@ -5,8 +5,6 @@ namespace JHiga.RTSEngine
     public static class PlayerContext
     {
         public static int PlayerId { get; set; }
-        public static PlayerProperties PlayerTeamData { get => players[PlayerId]; }
-
         public static PlayerProperties[] players;
         public static bool AreEnenmies(int p1, int p2)
         {

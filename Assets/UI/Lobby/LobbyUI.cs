@@ -34,6 +34,7 @@ public class LobbyUI : MonoBehaviour
                 lobbyPlayer = Instantiate(playerPrefab, transform).GetComponent<LobbyPlayer>();
                 players[p.clientId] = lobbyPlayer;
                 lobbyPlayer.transform.Translate(Vector3.down * p.clientId * 50);
+                lobbyPlayer.IsActivePlayer = p.clientId == NetworkManager.Singleton.LocalClientId;
             }
             lobbyPlayer.Display(p);
         }

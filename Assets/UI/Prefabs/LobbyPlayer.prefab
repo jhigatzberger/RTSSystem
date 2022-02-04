@@ -507,6 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02217ae8f1f859428e6e7c818964c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: {fileID: 6012074542380611372}
+  playerColor: {fileID: 6012074541753804434}
   factionDropdown: {fileID: 6012074542590170807}
 --- !u!1 &6012074541698480830
 GameObject:

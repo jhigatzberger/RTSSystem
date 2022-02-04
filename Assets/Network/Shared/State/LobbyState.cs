@@ -17,22 +17,23 @@ namespace JHiga.RTSEngine.Network
         private void Start()
         {
             Instance = this;
-            PlayerContext.PlayerId = (int)NetworkManager.LocalClientId + 1;
             SceneManager.LoadScene(1);
         }             
 
         public void ChooseFaction(short faction)
         {
-            ChooseFactionServerRpc(faction);
+            Debug.Log("choosing faction: " + faction + " " + NetworkManager.LocalClientId);
+
+            ChooseFactionServerRpc(faction, NetworkManager.LocalClientId);
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void ChooseFactionServerRpc(short faction, ServerRpcReceiveParams receiveParams = default)
+        private void ChooseFactionServerRpc(short faction, ulong clientId)
         {
             var playerData = NetworkGameManager.Instance.playerData;
             for (int i = 0; i < playerData.Count; i++)
             {
-                if (playerData[i].clientId == receiveParams.SenderClientId)
+                if (playerData[i].clientId == clientId)
                     playerData[i] = new PlayerState
                     {
                         factionId = faction,
