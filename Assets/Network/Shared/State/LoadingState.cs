@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,9 +11,10 @@ namespace JHiga.RTSEngine.Network
         {
             var playerData = NetworkGameManager.Instance.playerData;
             PlayerContext.PlayerId = (int)NetworkManager.LocalClientId + 1;
-            PlayerContext.players = new PlayerProperties[playerData.Count];
-            for (int i = 0; i < PlayerContext.players.Length; i++)
-                PlayerContext.players[i] = new PlayerProperties(playerData[i].Skin);
+            PlayerContext.players = new PlayerProperties[playerData.Count + 1];
+            PlayerContext.players[0] = PlayerProperties.GenerateGaia(RTSWorldData.Instance);
+            for (int i = 0; i < playerData.Count; i++)
+                PlayerContext.players[playerData[i].PlayerId] = new PlayerProperties(playerData[i].Skin);
             LoadScene();
         }
 

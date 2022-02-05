@@ -18,15 +18,11 @@ namespace JHiga.RTSEngine.Network
         {
             Instance = this;
             SceneManager.LoadScene(1);
-        }             
-
+        }
         public void ChooseFaction(short faction)
         {
-            Debug.Log("choosing faction: " + faction + " " + NetworkManager.LocalClientId);
-
             ChooseFactionServerRpc(faction, NetworkManager.LocalClientId);
         }
-
         [ServerRpc(RequireOwnership = false)]
         private void ChooseFactionServerRpc(short faction, ulong clientId)
         {
@@ -34,16 +30,22 @@ namespace JHiga.RTSEngine.Network
             for (int i = 0; i < playerData.Count; i++)
             {
                 if (playerData[i].clientId == clientId)
-                    playerData[i] = new PlayerState
-                    {
-                        factionId = faction,
-                        status = playerData[i].status,
-                        clientId = playerData[i].clientId,
-                        team = playerData[i].team
-                    };
+                    playerData[i] = PlayerState.Update(playerData[i], faction, PlayerState.ReplaceType.FactionId);
             }
-
         }
-    }    
-
+        public void ChooseTeam(short value)
+        {
+            ChooseTeamServerRpc(value, NetworkManager.LocalClientId);
+        }
+        [ServerRpc(RequireOwnership = false)]
+        private void ChooseTeamServerRpc(short team, ulong clientId)
+        {
+            var playerData = NetworkGameManager.Instance.playerData;
+            for (int i = 0; i < playerData.Count; i++)
+            {
+                if (playerData[i].clientId == clientId)
+                    playerData[i] = PlayerState.Update(playerData[i], team, PlayerState.ReplaceType.Team);
+            }
+        }
+    }
 }

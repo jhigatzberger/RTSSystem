@@ -18,11 +18,27 @@ namespace JHiga.RTSEngine
         {
             id = skinnedPlayer.id;
             team = skinnedPlayer.team;
+            color = RTSWorldData.Instance.playerColors[id];
             layerName = "Player" + id;
             enemies = GetEnemyLayer();
             faction = RTSWorldData.Instance.playableFactions[skinnedPlayer.faction];
             factories = faction.CopyEntities(id);
             startEntities = new List<StartEntityData>(faction.startEntities);
+        }
+        private PlayerProperties(RTSWorldData data)
+        {
+            id = 0;
+            team = data.mapTeam;
+            color = data.playerColors[0];
+            layerName = "Gaia";
+            enemies = GetEnemyLayer();
+            faction = data.mapFaction;
+            factories = data.mapFaction.CopyEntities(0);
+            startEntities = new List<StartEntityData>(data.mapFaction.startEntities);
+        }
+        public static PlayerProperties GenerateGaia(RTSWorldData data)
+        {
+            return new PlayerProperties(data);
         }
         public LayerMask GetEnemyLayer()
         {

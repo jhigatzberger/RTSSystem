@@ -18,7 +18,10 @@ namespace JHiga.RTSEngine
         public int maxMapHight;
         public Rect mapDimensions;
         public string[] mapNames = new string[] { "GameScene" };
+        public FactionProperties mapFaction;
         public FactionProperties[] playableFactions;
         public Color[] playerColors;
+        public short mapTeam;
+        public short[] playableTeams = new short[]{ 1,2,3,4,5,6,7,8 };
     }
 }
