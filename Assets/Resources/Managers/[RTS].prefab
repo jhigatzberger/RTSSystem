@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c669962fb3352f49a0f2227c5e895f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldClearQueueOnInput: 1
 --- !u!114 &32239761750958535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +158,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6511686978195341714}
-  - component: {fileID: 1611900045}
   - component: {fileID: 278967562}
   m_Layer: 0
   m_Name: '[RTS]'
@@ -182,35 +182,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1611900045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6511686978195341712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7f655f5825a03643b8473dbd14f7fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players:
-  - id: 0
-    team: 0
-    layerName: Player1
-    color: {r: 0, g: 0.02782917, b: 1, a: 0}
-    enemies:
-      serializedVersion: 2
-      m_Bits: 2048
-    faction: {fileID: 11400000, guid: 2ac561ec85a2a1b45899b64d4be69a5e, type: 2}
-  - id: 1
-    team: 1
-    layerName: Player2
-    color: {r: 1, g: 0, b: 0, a: 0}
-    enemies:
-      serializedVersion: 2
-      m_Bits: 1024
-    faction: {fileID: 11400000, guid: 2ac561ec85a2a1b45899b64d4be69a5e, type: 2}
 --- !u!114 &278967562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +344,3 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
     triggerOverUI: 1
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64

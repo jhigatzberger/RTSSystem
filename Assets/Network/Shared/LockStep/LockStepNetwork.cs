@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
 
+/// <summary>
+/// TODO: DELETE!
+/// </summary>
 public class LockStepNetwork : NetworkBehaviour
 {
     #region Singleton
     public static LockStepNetwork Instance { get; private set; }
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
         Instance = this;
     }
     #endregion

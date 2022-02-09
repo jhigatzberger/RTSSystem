@@ -9,11 +9,6 @@ namespace JHiga.RTSEngine.Network
         public static CommandNetwork Instance { get; private set; }
         private void Awake()
         {
-            if (Instance != null || !IsOwner)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
         }
         #endregion
@@ -24,16 +19,16 @@ namespace JHiga.RTSEngine.Network
             CommandClient.Instance.Schedule(command);
         }
         [ClientRpc]
-        public void AddCommandClientRPC(ulong commandID)
+        public void AddCommandClientRPC(short commandID)
         {
-            CommandClient.Instance.AddCommand(commandID, OwnerClientId);
+            CommandClient.Instance.AddCommand(commandID, NetworkManager.LocalClientId);
         }
-        [ServerRpc]
-        public void ConfirmCommandServerRPC(ulong commandID, ulong clientID)
+        [ServerRpc(RequireOwnership = false)]
+        public void ConfirmCommandServerRPC(short commandID, ulong clientID)
         {
              CommandServer.Instance.Confirm(commandID, clientID);
         }
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
         public void AddCommandServerRPC(SkinnedCommand command)
         {
             CommandServer.Instance.Add(command);

@@ -12,16 +12,10 @@ namespace JHiga.RTSEngine.Network
         public static CommandClient Instance { get; private set; }
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
             LockStep.OnStep += LockStep_OnStep;
             CommandEvents.OnCommandDistributionRequested += DistributeCommand;
         }
-
 
         public void OnDestroy()
         {
@@ -33,24 +27,25 @@ namespace JHiga.RTSEngine.Network
         private readonly Queue<ScheduledCommand> scheduledCommands = new Queue<ScheduledCommand>();
         private void DistributeCommand(SkinnedCommand command)
         {
-            Debug.Log("distrib");
+            Debug.Log("distrib " + command.references.entities.Length);
             CommandNetwork.Instance.AddCommandServerRPC(command);
         }
-        public void AddCommand(ulong commandID, ulong clientID)
+        public void AddCommand(short commandID, ulong clientID)
         {
             Debug.Log("confirm");
             CommandNetwork.Instance.ConfirmCommandServerRPC(commandID, clientID);
         }
-        public void Schedule(ScheduledCommand command)
+        public void Schedule(ScheduledCommand scheduledCommand)
         {
-            scheduledCommands.Enqueue(command);
+            Debug.Log("sched " + scheduledCommand.command.references.entities.Length);
+            scheduledCommands.Enqueue(scheduledCommand);
         }
         private void LockStep_OnStep()
         {
-            while (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep == LockStep.count)
-                new ResolvedCommand(scheduledCommands.Dequeue().command).Enqueue();
             if (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep < LockStep.count)
                 Debug.LogError("Desync ya fakin monkey");
+            while (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep <= LockStep.count)
+                new ResolvedCommand(scheduledCommands.Dequeue().command).Enqueue();
         }
     }
 }

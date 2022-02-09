@@ -16,8 +16,6 @@ public class ResourceManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner)
-            return;
         instance = this;
         if (IsServer)
         {
@@ -42,7 +40,7 @@ public class ResourceManager : NetworkBehaviour
         OnResourceUpdate?.Invoke(amount);
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void SpendResourceServerRPC(ulong clientID, int amount)
     {
         if (amount > 0)

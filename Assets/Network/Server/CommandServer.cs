@@ -13,17 +13,12 @@ namespace JHiga.RTSEngine.Network
 
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
         }
         #endregion
 
-        private ulong lastCommandID = 0;
-        private readonly Dictionary<ulong, PendingCommand> pendingCommands = new Dictionary<ulong, PendingCommand>();
+        private short lastCommandID = 0;
+        private readonly Dictionary<short, PendingCommand> pendingCommands = new Dictionary<short, PendingCommand>();
 
         public void Add(SkinnedCommand command)
         {
@@ -32,10 +27,13 @@ namespace JHiga.RTSEngine.Network
                 command = command,
                 pendingClients = new List<ulong>(NetworkManager.Singleton.ConnectedClientsIds)
             });
+            Debug.Log("server Add clearQueueOnEnqeue" + command.references.clearQueueOnEnqeue);
+            Debug.Log("server Add entities" + command.references.entities.Length);
             CommandNetwork.Instance.AddCommandClientRPC(lastCommandID);
         }
-        public void Confirm(ulong commandID, ulong clientID)
+        public void Confirm(short commandID, ulong clientID)
         {
+            Debug.Log("Confirm " + commandID + " client " + clientID);
             PendingCommand pending = pendingCommands[commandID];
             if (pending.Confirm(clientID))
             {

@@ -13,11 +13,6 @@ namespace JHiga.RTSEngine.Network
         public static SpawningServer Instance { get; private set; }
         private void Start()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
             SpawnEvents.OnRequestSpawn += RequestEntityInitialization;
             SpawnStartEntities();
@@ -46,6 +41,7 @@ namespace JHiga.RTSEngine.Network
         }
         public void RequestEntityInitialization(SpawnRequest spawnRequest)
         {
+            Debug.Log("RequestEntityInitialization");
             int poolUID = UID.PoolShifted(spawnRequest.spawnerUID, spawnRequest.poolIndex);
             SpawnNetwork.Instance.BroadCastEntityInitializationClientRpc(
                     new SpawnData()

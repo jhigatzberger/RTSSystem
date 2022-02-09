@@ -8,14 +8,8 @@ namespace JHiga.RTSEngine.Network
     {
         #region Singleton
         public static SpawnNetwork Instance { get; private set; }
-
         private void Awake()
         {
-            if (Instance != null || !IsServer || !IsOwner)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
         }
         #endregion
@@ -28,6 +22,7 @@ namespace JHiga.RTSEngine.Network
         [ClientRpc]
         public void BroadCastEntityInitializationClientRpc(SpawnData data)
         {
+            Debug.Log("BroadCastEntityInitializationClientRpc");
             SpawningClient.Instance.SendAuthorizedData(data);
         }
     }

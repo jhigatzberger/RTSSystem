@@ -32,6 +32,7 @@ namespace JHiga.RTSEngine.Network
         }
         public void SendAuthorizedData(SpawnData data)
         {
+            Debug.Log("SendAuthorizedData");
             GameEntity.Get(new UID(data.spawnerUID)).GetExtension<ISpawner>().Enqueue(new UID(data.entityUID), data.time);
         }
     }
