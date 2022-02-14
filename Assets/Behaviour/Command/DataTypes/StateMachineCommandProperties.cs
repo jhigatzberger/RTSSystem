@@ -8,12 +8,12 @@ namespace JHiga.RTSEngine.CommandPattern
     public abstract class StateMachineCommandProperties : CommandProperties
     {
         public State state;
-        public override void Execute(ICommandable commandable, Target target)
+        public override void Execute(ICommandable commandable, ResolvedCommandReferences references)
         {
-            BeforeStateChange(commandable, target);
+            BeforeStateChange(commandable, references);
             commandable.Entity.GetExtension<IStateMachine>().ChangeState(state);
         }
-        protected abstract void BeforeStateChange(ICommandable commandable, Target target);
+        protected abstract void BeforeStateChange(ICommandable commandable, ResolvedCommandReferences references);
     }
 
 }

@@ -29,7 +29,7 @@ namespace JHiga.RTSEngine.Network
              CommandServer.Instance.Confirm(commandID, clientID);
         }
         [ServerRpc(RequireOwnership = false)]
-        public void AddCommandServerRPC(SkinnedCommand command)
+        public void AddCommandServerRPC(NetworkSerializableCommandData command)
         {
             CommandServer.Instance.Add(command);
         }

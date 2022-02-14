@@ -23,9 +23,9 @@ public class AttackCommand : StateMachineCommandProperties
             entity = SelectionContext.FirstOrNullHovered
         };
     }
-    protected override void BeforeStateChange(ICommandable commandable, Target target)
+    protected override void BeforeStateChange(ICommandable commandable, ResolvedCommandReferences references)
     {
-        commandable.Entity.GetExtension<IAttacker>().Target = target.entity.GetExtension<IAttackable>();
+        commandable.Entity.GetExtension<IAttacker>().Target = references.target.entity.GetExtension<IAttackable>();
     }
 
 }

@@ -14,6 +14,7 @@ namespace JHiga.RTSEngine
                 return _instance;
             }
         }
+        public LayerMask selectableLayerMask;
         public LayerMask groundLayerMask;
         public int maxMapHight;
         public Rect mapDimensions;
@@ -22,6 +23,7 @@ namespace JHiga.RTSEngine
         public FactionProperties[] playableFactions;
         public Color[] playerColors;
         public short mapTeam;
-        public short[] playableTeams = new short[]{ 1,2,3,4,5,6,7,8 };
+        public short[] playableTeams = new short[]{ 1, 2, 3, 4, 5, 6, 7, 8 };
+        public int[] teamLayers = new int[] { 10, 11, 12, 13, 14, 15, 16, 17 };
     }
 }

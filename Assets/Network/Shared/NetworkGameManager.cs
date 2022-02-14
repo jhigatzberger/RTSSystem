@@ -42,7 +42,7 @@ namespace JHiga.RTSEngine.Network
             playerData.Add(new PlayerState
             {
                 clientId = client,
-                team = 0,
+                team = RTSWorldData.Instance.playableTeams[client],
                 factionId = 0,
                 status = PlayerStatus.Pending
             });

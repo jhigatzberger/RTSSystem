@@ -25,7 +25,7 @@ namespace JHiga.RTSEngine
             internal set
             {
                 _id = value;
-                gameObject.layer = LayerMask.NameToLayer(PlayerContext.players[value.playerIndex].layerName);
+                gameObject.layer = PlayerContext.players[value.playerIndex].ownLayer;
                 foreach (IEntityExtension extension in Extensions)
                     extension.Enable();
             }

@@ -20,15 +20,15 @@ namespace JHiga.RTSEngine.Network
         private short lastCommandID = 0;
         private readonly Dictionary<short, PendingCommand> pendingCommands = new Dictionary<short, PendingCommand>();
 
-        public void Add(SkinnedCommand command)
+        public void Add(NetworkSerializableCommandData command)
         {
             pendingCommands.Add(++lastCommandID, new PendingCommand
             {
                 command = command,
                 pendingClients = new List<ulong>(NetworkManager.Singleton.ConnectedClientsIds)
             });
-            Debug.Log("server Add clearQueueOnEnqeue" + command.references.clearQueueOnEnqeue);
-            Debug.Log("server Add entities" + command.references.entities.Length);
+            Debug.Log("server Add clearQueueOnEnqeue" + command.clearQueueOnEnqueue);
+            Debug.Log("server Add entities" + command.entities.Length);
             CommandNetwork.Instance.AddCommandClientRPC(lastCommandID);
         }
         public void Confirm(short commandID, ulong clientID)

@@ -5,6 +5,6 @@ namespace JHiga.RTSEngine.AI.Formation
 {
     public abstract class BaseFormation
     {
-        public abstract Vector3 GetPosition(Vector3 destination, IExtendableEntity entity);
+        public abstract Vector3 GetPosition(Vector3 destination, IExtendableEntity entity, int index, int count);
     }
 }

@@ -2,20 +2,15 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine.Network
 {
-    public class LockStepClient : MonoBehaviour
+    public class LockStepServer : MonoBehaviour
     {
         #region Initialization
         private bool started;
         private float startTime = 0;
         [SerializeField] private float stepSize = 1f;
-        public static LockStepClient Instance { get; private set; }
+        public static LockStepServer Instance { get; private set; }
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
             Instance = this;
             NetworkGameManager.Instance.currentState.OnValueChanged += OnGameStateChange;
         }
@@ -37,14 +32,14 @@ namespace JHiga.RTSEngine.Network
         #endregion
         private ulong count;
         private float time;
-        private void FixedUpdate()
+        private void Update()
         {
             if (!started)
                 return;
             if (Time.time - startTime - time > stepSize)
             {
                 time = Time.time - startTime;
-                LockStep.Step(time, count++);
+                LockStepNetwork.Instance.StepClientRPC(time, count++);
             }
         }
     }

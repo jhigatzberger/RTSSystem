@@ -6,13 +6,13 @@ namespace JHiga.RTSEngine.CommandPattern
 {
     public class CommandableExtension : BaseInteractableExtension<CommandableProperties>, ICommandable
     {
-        Queue<SingleResolvedCommand> commandQueue = new Queue<SingleResolvedCommand>();
-        public SingleResolvedCommand? Current { get; set; }
+        Queue<ResolvedCommand> commandQueue = new Queue<ResolvedCommand>();
+        public ResolvedCommand? Current { get; set; }
         public event Action OnCommandClear;
         public CommandProperties[] CommandCompetence => Properties.commandCompetence;
         public CommandableExtension(IExtendableEntity entity, CommandableProperties properties) : base(entity, properties){}
 
-        public void Enqueue(SingleResolvedCommand command)
+        public void Enqueue(ResolvedCommand command)
         {
             if (!CommandCompetence.Any(c => c == command.properties))
                 return;
@@ -25,7 +25,7 @@ namespace JHiga.RTSEngine.CommandPattern
             if (commandQueue.Count == 0)
                 return;
             Current = commandQueue.Dequeue();
-            Current.Value.properties.Execute(this, Current.Value.target);
+            Current.Value.properties.Execute(this, Current.Value.references);
         }
         public override void Clear()
         {

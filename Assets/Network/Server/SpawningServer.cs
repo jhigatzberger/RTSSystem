@@ -26,7 +26,7 @@ namespace JHiga.RTSEngine.Network
         {
             get
             {
-                return new Vector3(Random.Range(-45, 45), 0, Random.Range(-45, 45));
+                return new Vector3(Random.Range(-35, 35), 0, Random.Range(-35, 35));
             }
         }
         public void SpawnStartEntities()

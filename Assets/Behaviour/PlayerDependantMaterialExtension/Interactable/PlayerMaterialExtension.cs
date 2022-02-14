@@ -8,6 +8,7 @@ namespace JHiga.RTSEngine
 
         public override void Enable()
         {
+            Debug.Log("SETTING MATERIAL " + Entity.UniqueID.playerIndex);
             Material mat = Properties.playerMaterials[Entity.UniqueID.playerIndex];
             foreach (Renderer r in Entity.MonoBehaviour.GetComponentsInChildren<Renderer>())
                 if (r.material.mainTexture == Properties.changeTexture)

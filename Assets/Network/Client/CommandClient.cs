@@ -28,7 +28,7 @@ namespace JHiga.RTSEngine.Network
         private void DistributeCommand(SkinnedCommand command)
         {
             Debug.Log("distrib " + command.references.entities.Length);
-            CommandNetwork.Instance.AddCommandServerRPC(command);
+            CommandNetwork.Instance.AddCommandServerRPC(new NetworkSerializableCommandData(command));
         }
         public void AddCommand(short commandID, ulong clientID)
         {
@@ -37,7 +37,7 @@ namespace JHiga.RTSEngine.Network
         }
         public void Schedule(ScheduledCommand scheduledCommand)
         {
-            Debug.Log("sched " + scheduledCommand.command.references.entities.Length);
+            Debug.Log("sched " + scheduledCommand.command.entities.Length);
             scheduledCommands.Enqueue(scheduledCommand);
         }
         private void LockStep_OnStep()
@@ -45,7 +45,7 @@ namespace JHiga.RTSEngine.Network
             if (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep < LockStep.count)
                 Debug.LogError("Desync ya fakin monkey");
             while (scheduledCommands.Count > 0 && scheduledCommands.Peek().scheduledStep <= LockStep.count)
-                new ResolvedCommand(scheduledCommands.Dequeue().command).Enqueue();
+                new ResolvedCommand(scheduledCommands.Dequeue().command.Skin).Enqueue();
         }
     }
 }

@@ -4,6 +4,7 @@ using JHiga.RTSEngine.Movement;
 using JHiga.RTSEngine.CommandPattern;
 using UnityEngine;
 using JHiga.RTSEngine;
+using System;
 
 [CreateAssetMenu(fileName = "MoveCommand", menuName = "RTS/Behaviour/Commands/MoveCommand")]
 public class MoveCommand : StateMachineCommandProperties
@@ -19,9 +20,9 @@ public class MoveCommand : StateMachineCommandProperties
             position = InputManager.worldPointerPosition.Value,
         };
     }
-    protected override void BeforeStateChange(ICommandable commandable, Target target)
+    protected override void BeforeStateChange(ICommandable commandable, ResolvedCommandReferences references)
     {
-        commandable.Entity.GetExtension<IMovable>().Enqueue(new Target { position = FormationContext.current.GetPosition(target.position, commandable.Entity) });
+        commandable.Entity.GetExtension<IMovable>().Enqueue(new Target { position = FormationContext.current.GetPosition(references.target.position, commandable.Entity, Array.IndexOf(references.entities, commandable.Entity), references.entities.Length) });
     }
 }
 

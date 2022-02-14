@@ -30,17 +30,8 @@ namespace JHiga.RTSEngine.Selection
             }
         }
         #region Hovering
-        public static HashSet<IExtendableEntity> hovered = new HashSet<IExtendableEntity>();
-        public static IExtendableEntity FirstOrNullHovered
-        {
-            get
-            {
-                if (hovered.Count < 1)
-                    return null;
-                else
-                    return hovered.First();
-            }
-        }
+        public static IExtendableEntity hovered;
+        public static IExtendableEntity FirstOrNullHovered => hovered;
         #endregion
 
         private static int FindPriority()
@@ -68,7 +59,6 @@ namespace JHiga.RTSEngine.Selection
             selection.Add(selectable);
             selectable.Select(selection.Count - 1);
         }
-
         public static void Select(ISelectable selectable)
         {
             if (locked)

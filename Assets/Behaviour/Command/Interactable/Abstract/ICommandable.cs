@@ -4,7 +4,7 @@ namespace JHiga.RTSEngine.CommandPattern
 {
     public interface ICommandable : IEntityExtension
     {
-        public SingleResolvedCommand? Current { get; set; }
+        public ResolvedCommand? Current { get; set; }
         /// <summary>
         /// Gets called when a command has been fully performed.
         /// Resets <see cref="Current"/> and calls <see cref="ExecuteFirstCommand"/> to work the command queue down.
@@ -18,7 +18,7 @@ namespace JHiga.RTSEngine.CommandPattern
         /// </summary>
         public CommandProperties[] CommandCompetence { get; }
         public CommandProperties FirstApplicableDynamicallyBuildableCommand { get; }
-        public void Enqueue(SingleResolvedCommand command);
+        public void Enqueue(ResolvedCommand command);
         public void ExecuteFirstCommand();
     }
 

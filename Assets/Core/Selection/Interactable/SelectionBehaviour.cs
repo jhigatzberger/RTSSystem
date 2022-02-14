@@ -4,7 +4,7 @@ namespace JHiga.RTSEngine.Selection
 {
     [RequireComponent(typeof(Renderer))]
     [RequireComponent(typeof(Collider))]
-    public class SelectionBehaviour : MonoBehaviour
+    public class SelectionBehaviour : MonoBehaviour, ISelectionBehaviour
     {
         private Renderer _renderer;
         private ISelectable _selectable;
@@ -13,7 +13,7 @@ namespace JHiga.RTSEngine.Selection
             get => _selectable;
             set
             {
-                if(_selectable == null)
+                if (_selectable == null)
                 {
                     _selectable = value;
                     _renderer = GetComponent<Renderer>();
@@ -31,36 +31,18 @@ namespace JHiga.RTSEngine.Selection
         {
             SelectionContext.onScreen.Remove(Selectable);
         }
-
         private Color GetColor(bool selected)
         {
-            if(!selected)
+            if (!selected)
                 return new Color(0, 0, 0, 0);
             if (Selectable.Entity.UniqueID.playerIndex == PlayerContext.PlayerId)
-               return new Color(0, 1, 0, 0.7f);
+                return new Color(0, 1, 0, 0.7f);
             else
                 return new Color(1, 1, 1, 0.7f);
         }
-
         public void UpdateVisuals(bool selected)
-        {            
+        {
             _renderer.material.color = GetColor(selected);
-        }
-
-        private void OnMouseEnter()
-        {
-            if (enabled)
-                SelectionContext.hovered.Add(Selectable.Entity);
-        }
-        private void OnMouseExit()
-        {
-            if (enabled)
-                SelectionContext.hovered.Remove(Selectable.Entity);
-        }
-
-        private void OnDisable()
-        {
-            SelectionContext.hovered.Remove(Selectable.Entity);
         }
     }
 }

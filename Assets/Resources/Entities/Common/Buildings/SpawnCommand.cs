@@ -33,7 +33,7 @@ namespace JHiga.RTSEngine.Spawning
             return base.Build(reference, new IExtendableEntity[] { lowest.Entity },clearQueueOnEnqeue);
         }
 
-        public override void Execute(ICommandable commandable, Target target)
+        public override void Execute(ICommandable commandable, ResolvedCommandReferences references)
         {
             Debug.Log("exectuting!");
             if(ResourceManager.playerResources >= cost)

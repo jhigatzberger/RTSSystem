@@ -14,6 +14,6 @@ public class StepDisplay : MonoBehaviour
 
     public void DisplayStep()
     {
-        text.text = LockStep.time.ToString();
+        text.text = LockStep.count.ToString();
     }
 }

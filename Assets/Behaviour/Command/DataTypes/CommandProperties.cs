@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.CommandPattern
         public bool requireContext;
         public abstract bool Applicable(ICommandable entity);
         public abstract Target PackTarget(ICommandable commandable);
-        public abstract void Execute(ICommandable commandable, Target target);
+        public abstract void Execute(ICommandable commandable, ResolvedCommandReferences references);
         public virtual ResolvedCommand Build(ICommandable reference, IExtendableEntity[] selection, bool clearQueueOnEnqeue)
         {
             return new ResolvedCommand(this, new ResolvedCommandReferences(selection, PackTarget(reference), clearQueueOnEnqeue));
@@ -43,19 +43,10 @@ namespace JHiga.RTSEngine.CommandPattern
                 {
                     if (references.clearQueueOnEnqeue)
                         commandable.Clear();
-                    commandable.Enqueue(new SingleResolvedCommand
-                    {
-                        properties = properties,
-                        target = references.target
-                    });
+                    commandable.Enqueue(this);
                 }
             }
         }
-    }
-    public struct SingleResolvedCommand
-    {
-        public CommandProperties properties;
-        public Target target;
     }
     public struct ResolvedCommandReferences
     {
@@ -70,7 +61,7 @@ namespace JHiga.RTSEngine.CommandPattern
                 IExtendableEntity entity = GameEntity.Get(new UID(skinnedCommandReferences.entities[i]));
                 entities[i] = entity;
             }
-            clearQueueOnEnqeue = skinnedCommandReferences.clearQueueOnEnqeue;
+            clearQueueOnEnqeue = skinnedCommandReferences.clearQueueOnEnqueue;
             target = new Target(skinnedCommandReferences.target);
         }
         public ResolvedCommandReferences(IExtendableEntity[] entities, Target target, bool clearQueueOnEnqeue)
@@ -80,7 +71,7 @@ namespace JHiga.RTSEngine.CommandPattern
             this.clearQueueOnEnqeue = clearQueueOnEnqeue;
         }
         public SkinnedCommandReferences Skin => new SkinnedCommandReferences {
-            clearQueueOnEnqeue = clearQueueOnEnqeue,
+            clearQueueOnEnqueue = clearQueueOnEnqeue,
             target = target.Skin,
             entities = entities.Select(e => e.UniqueID.uniqueId).ToArray()
         };        
@@ -93,7 +84,7 @@ namespace JHiga.RTSEngine.CommandPattern
     public struct SkinnedCommandReferences
     {
         public int[] entities;
-        public bool clearQueueOnEnqeue;
+        public bool clearQueueOnEnqueue;
         public SkinnedTarget target;
     }
 }

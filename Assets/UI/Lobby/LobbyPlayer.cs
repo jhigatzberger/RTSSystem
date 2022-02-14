@@ -26,7 +26,7 @@ public class LobbyPlayer : MonoBehaviour
             }
         }
     }
-    private int _playerTeam = 0;
+    private int _playerTeam = 1;
     private int PlayerTeam
     {
         set

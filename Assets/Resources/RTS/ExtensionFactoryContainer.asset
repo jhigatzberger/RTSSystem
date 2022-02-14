@@ -56,13 +56,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02cb83c6e88c2d845b42a8493be3ef3a, type: 3}
-  m_Name: New AttackerProperties
+  m_Name: AttackerKnight
   m_EditorClassIdentifier: 
   damage: 10
-  attackCoolDown: 10
+  attackCoolDown: 1
   visionRange: 10
-  attackRange: 10
-  damageDelay: 10
+  attackRange: 2
+  damageDelay: 1
 --- !u!114 &-2837799192545829897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
-  m_Name: New StateMachineProperties
+  m_Name: AggressiveStateMachine
   m_EditorClassIdentifier: 
   defaultState: {fileID: 11400000, guid: fcf90ec97d72c6e4cb2c122bbd718f76, type: 2}
   endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39e77aac27344b146bd6a11cc673751f, type: 3}
-  m_Name: New PlayerMaterialsProperties
+  m_Name: UnitMaterials
   m_EditorClassIdentifier: 
   changeTexture: {fileID: 2800000, guid: b1bea199497829948b7dba86a660462d, type: 3}
   playerMaterials:
@@ -134,6 +134,19 @@ MonoBehaviour:
   m_Name: TownhallSpawnerProperties
   m_EditorClassIdentifier: 
   doorPosition: {x: 5, y: 0, z: 0}
+--- !u!114 &1638664395756096486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120d3dda1089a834abcb7ea268090f06, type: 3}
+  m_Name: AttackableKnight
+  m_EditorClassIdentifier: 
+  health: 50
 --- !u!114 &5301972228035785663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +157,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc43eecc3faa0964db4051cf0a1b79d9, type: 3}
-  m_Name: New MovableProperties
+  m_Name: MovableKnight
   m_EditorClassIdentifier: 
   movementSpeed: 5
 --- !u!114 &8728924246521804952
