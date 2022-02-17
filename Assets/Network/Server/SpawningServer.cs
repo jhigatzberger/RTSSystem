@@ -31,7 +31,7 @@ namespace JHiga.RTSEngine.Network
         }
         public void SpawnStartEntities()
         {
-            foreach(PlayerProperties player in PlayerContext.players)
+            foreach(PlayerData player in PlayerContext.players)
             {
                 if(player.id == 0)
                     SpawnNetwork.Instance.SpawnStartEntitiesClientRpc(player.id);

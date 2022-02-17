@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -11,6 +12,10 @@ namespace JHiga.RTSEngine.CommandPattern
         public abstract bool Applicable(ICommandable entity);
         public abstract Target PackTarget(ICommandable commandable);
         public abstract void Execute(ICommandable commandable, ResolvedCommandReferences references);
+        public virtual void Request(ICommandable reference, IExtendableEntity[] selection, bool clearQueueOnEnqeue, Action<SkinnedCommand> callback)
+        {
+            callback(Build(reference, selection, clearQueueOnEnqeue).Skin);
+        }
         public virtual ResolvedCommand Build(ICommandable reference, IExtendableEntity[] selection, bool clearQueueOnEnqeue)
         {
             return new ResolvedCommand(this, new ResolvedCommandReferences(selection, PackTarget(reference), clearQueueOnEnqeue));

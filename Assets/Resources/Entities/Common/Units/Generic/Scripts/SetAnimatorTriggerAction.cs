@@ -12,6 +12,7 @@ public class SetAnimatorTriggerAction : Action
 
     public override void Enter(IStateMachine stateMachine)
     {
+        Debug.Log("enter anim trigga " + enterParameter);
         if(onEnter)
             stateMachine.Entity.MonoBehaviour.GetComponent<Animator>().SetTrigger(enterParameter);
     }

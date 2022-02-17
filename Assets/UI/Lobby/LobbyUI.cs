@@ -22,9 +22,10 @@ public class LobbyUI : MonoBehaviour
         NetworkGameManager.Instance.playerData.OnListChanged -= PlayerData_OnListChanged;
     }
 
-    void HandleLobbyPlayerUI()
+    private void HandleLobbyPlayerUI()
     {
         var playerData = NetworkGameManager.Instance.playerData;
+        Debug.Log(playerData.Count + " playercount");
         HashSet<ulong> oldPlayerIds = new HashSet<ulong>(players.Keys);
         foreach (PlayerState p in playerData)
         {
@@ -36,6 +37,7 @@ public class LobbyUI : MonoBehaviour
                 lobbyPlayer.transform.Translate(Vector3.down * p.clientId * 50);
                 lobbyPlayer.IsActivePlayer = p.clientId == NetworkManager.Singleton.LocalClientId;
             }
+            Debug.Log(p.playableTeamIndex + " TEAM INDEX! " + p.PlayerId);
             lobbyPlayer.Display(p);
         }
         foreach (ulong id in oldPlayerIds)

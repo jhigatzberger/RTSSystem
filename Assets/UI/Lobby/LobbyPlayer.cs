@@ -1,5 +1,6 @@
 using JHiga.RTSEngine;
 using JHiga.RTSEngine.Network;
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,12 +22,11 @@ public class LobbyPlayer : MonoBehaviour
                 _playerFaction = value;
                 if (IsActivePlayer)
                     LobbyState.Instance.ChooseFaction((short)value);
-                else
-                    factionDropdown.value = value;
+                factionDropdown.value = value;
             }
         }
     }
-    private int _playerTeam = 1;
+    private int _playerTeam = 0;
     private int PlayerTeam
     {
         set
@@ -35,9 +35,8 @@ public class LobbyPlayer : MonoBehaviour
             {
                 _playerTeam = value;
                 if (IsActivePlayer)
-                    LobbyState.Instance.ChooseTeam(RTSWorldData.Instance.playableTeams[value]);
-                else
-                    teamDropdown.value = value;
+                    LobbyState.Instance.ChooseTeam((short)value);
+                teamDropdown.value = value;
             }
         }
     }
@@ -49,10 +48,11 @@ public class LobbyPlayer : MonoBehaviour
         {
             _isActivePlayer = value;
             factionDropdown.interactable = value;
+            teamDropdown.interactable = value;
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         factionDropdown.options = RTSWorldData.Instance.playableFactions.Select(f => new OptionData
         {
@@ -78,7 +78,9 @@ public class LobbyPlayer : MonoBehaviour
 
     public void Display(PlayerState playerData)
     {
+        Debug.Log("display " + playerData.playableTeamIndex + " " + playerData.PlayerId);
         PlayerFaction = playerData.factionId;
+        PlayerTeam = playerData.playableTeamIndex;
         playerName.text = "Player " + playerData.PlayerId;
         playerColor.color = RTSWorldData.Instance.playerColors[playerData.PlayerId];
     }

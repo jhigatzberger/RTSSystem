@@ -147,6 +147,21 @@ MonoBehaviour:
   m_Name: AttackableKnight
   m_EditorClassIdentifier: 
   health: 50
+--- !u!114 &1987216394735253265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2093714405f1a184384a850f4b86d8ce, type: 3}
+  m_Name: SelectableTree
+  m_EditorClassIdentifier: 
+  priority: 0
+  scale: 1
+  selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
 --- !u!114 &5301972228035785663
 MonoBehaviour:
   m_ObjectHideFlags: 0

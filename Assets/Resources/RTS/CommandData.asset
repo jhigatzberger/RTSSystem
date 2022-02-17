@@ -15,7 +15,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8978070177785b348bf6d21e45d25eb6, type: 3}
   dynamicallyBuildable: 0
   requireContext: 0
-  cost: 1
+  resourceEffect:
+    resourceType: 0
+    amount: 0
   time: 1
   spawn: {fileID: 0}
 --- !u!114 &-5840748276129422373
@@ -33,7 +35,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
   dynamicallyBuildable: 0
   requireContext: 0
-  cost: 1
+  resourceEffect:
+    resourceType: 0
+    amount: 0
   time: 1
   spawn: {fileID: 0}
 --- !u!114 &11400000
@@ -102,7 +106,9 @@ MonoBehaviour:
   icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   dynamicallyBuildable: 0
   requireContext: 0
-  cost: 1
+  resourceEffect:
+    resourceType: 0
+    amount: 0
   time: 1
   spawn: {fileID: 0}
 --- !u!114 &7176674067703014830
@@ -120,6 +126,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: efee6508e03fbcf48a58c946ba9295c8, type: 3}
   dynamicallyBuildable: 0
   requireContext: 0
-  cost: 1
+  resourceEffect:
+    resourceType: 0
+    amount: -50
   time: 1
   spawn: {fileID: -8998922325877018594, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}

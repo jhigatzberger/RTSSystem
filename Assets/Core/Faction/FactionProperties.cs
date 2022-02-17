@@ -6,7 +6,7 @@ namespace JHiga.RTSEngine
     [CreateAssetMenu(fileName = "Faction", menuName = "RTS/Faction")]
     public class FactionProperties : ScriptableObject
     {
-        public short id;
+        public int id;
         public List<StartEntityData> startEntities = new List<StartEntityData>();
         public List<EntityGroup> entityGroups = new List<EntityGroup>();
 

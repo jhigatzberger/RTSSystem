@@ -73,14 +73,14 @@ namespace JHiga.RTSEngine.CommandPattern
         {
             if (ContextCommand == null || ForcedCommand != null)
                 return;
-            CommandEvents.RequestCommandDistribution(ContextCommand.Build(CachedEntity, SelectionContext.selection.Select(s=>s.Entity).ToArray(), shouldClearQueueOnInput).Skin);
+            ContextCommand.Request(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput, CommandEvents.RequestCommandDistribution);
         }
         public void RequestForcedCommand()
         {
             if (ForcedCommand == null)
                 return;
             if(ForcedCommand.Applicable(CachedEntity))
-                CommandEvents.RequestCommandDistribution(ForcedCommand.Build(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput).Skin);
+                ForcedCommand.Request(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput, CommandEvents.RequestCommandDistribution);
             ClearForcedCommand();
         }
         public void ClearForcedCommand()

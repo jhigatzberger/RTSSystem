@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f254bc5f29a81564bbff8b89f43fcf26, type: 3}
   m_Name: RTSWorldData
   m_EditorClassIdentifier: 
+  resourceTypes:
+  - {fileID: 11400000, guid: 04c96c3dca274384abcaffc16147f642, type: 2}
+  selectableLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -33,5 +38,11 @@ MonoBehaviour:
   - {r: 0, g: 0.12997723, b: 1, a: 1}
   - {r: 1, g: 0.08789876, b: 0, a: 1}
   - {r: 0.96996236, g: 1, b: 0, a: 1}
+  - {r: 0.268533, g: 1, b: 0, a: 1}
+  - {r: 0.73393774, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.6640479, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.9193516, a: 1}
+  - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   mapTeam: 0
   playableTeams: 01000200030004000500060007000800
+  teamLayers: 0a0000000b0000000c0000000d0000000e0000000f0000001000000011000000

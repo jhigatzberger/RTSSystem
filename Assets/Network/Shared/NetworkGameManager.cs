@@ -32,20 +32,26 @@ namespace JHiga.RTSEngine.Network
                     stateMap.Add(entry.Type, entry);
                 NetworkManager.OnClientDisconnectCallback += OnClientDisconnect;
                 NetworkManager.OnClientConnectedCallback += OnClientConnect;
-                OnClientConnect(OwnerClientId);
+                RegisterPlayer(OwnerClientId);
                 ChangeStateServerRpc(NetworkState.State.Lobby);
             }
         }
 
-        private void OnClientConnect(ulong client)
+        private void RegisterPlayer(ulong client)
         {
             playerData.Add(new PlayerState
             {
                 clientId = client,
-                team = RTSWorldData.Instance.playableTeams[client],
+                playableTeamIndex = (short)client,
                 factionId = 0,
                 status = PlayerStatus.Pending
             });
+        }
+        private void OnClientConnect(ulong client)
+        {
+            if (client == 0)
+                return;
+            RegisterPlayer(client);
         }
 
         public override void OnNetworkDespawn()
@@ -76,7 +82,7 @@ namespace JHiga.RTSEngine.Network
                         status = status,
                         clientId = playerData[i].clientId,
                         factionId = playerData[i].factionId,
-                        team = playerData[i].team
+                        playableTeamIndex = playerData[i].playableTeamIndex
                     };
             }
             

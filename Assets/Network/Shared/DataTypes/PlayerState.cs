@@ -14,11 +14,12 @@ namespace JHiga.RTSEngine.Network
         }
 
         public short PlayerId => (short)(clientId + 1);
+        public short Team => RTSWorldData.Instance.playableTeams[playableTeamIndex];
         public ulong clientId;
         public short factionId;
-        public short team;
+        public short playableTeamIndex;
         public PlayerStatus status;
-        public SkinnedPlayer Skin => new SkinnedPlayer(PlayerId, team, factionId);
+        public SkinnedPlayer Skin => new SkinnedPlayer(PlayerId, Team, factionId);
         public static PlayerState Update(PlayerState original, object value, ReplaceType replaceType)
         {
             return new PlayerState(original, value, replaceType);
@@ -28,22 +29,22 @@ namespace JHiga.RTSEngine.Network
             clientId = replaceType == ReplaceType.ClientId ? (ulong)value : original.clientId;
             factionId = replaceType == ReplaceType.FactionId ? (short)value : original.factionId;
             status = replaceType == ReplaceType.Status ? (PlayerStatus)value : original.status;
-            team = replaceType == ReplaceType.Team ? (short)value : original.team;
+            playableTeamIndex = replaceType == ReplaceType.Team ? (short)value : original.playableTeamIndex;
         }
         public bool Equals(PlayerState other)
         {
-            return other.clientId.Equals(clientId) && other.factionId.Equals(factionId) && other.team.Equals(team);
+            return other.clientId.Equals(clientId) && other.factionId.Equals(factionId) && other.playableTeamIndex.Equals(playableTeamIndex);
         }
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
             serializer.SerializeValue(ref clientId);
             serializer.SerializeValue(ref factionId);
-            serializer.SerializeValue(ref team);
+            serializer.SerializeValue(ref playableTeamIndex);
             serializer.SerializeValue(ref status);
         }
         public override string ToString()
         {
-            return $"PlayerState {clientId}: {factionId} {team} {status}";
+            return $"PlayerState {clientId}: {factionId} {playableTeamIndex} {status}";
         }
     }
 }

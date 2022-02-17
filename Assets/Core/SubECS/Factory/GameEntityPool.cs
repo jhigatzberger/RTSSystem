@@ -27,11 +27,11 @@ namespace JHiga.RTSEngine
         private HashSet<int> pendingPoolIds = new HashSet<int>();
         public static GameEntityPool Get(UID uid)
         {
-            return PlayerProperties.Get(uid).factories[uid.poolIndex];
+            return PlayerData.Get(uid).factories[uid.poolIndex];
         }
         public static GameEntityPool Get(int uid)
         {
-            return PlayerProperties.Get(uid).factories[UID.GetPoolIndex(uid)];
+            return PlayerData.Get(uid).factories[UID.GetPoolIndex(uid)];
         }
         public static GameEntityPool CopyForPlayer(GameEntityPool original, int playerId, ExtensionFactory[] uniqueExtensionFactories)
         {
@@ -74,7 +74,7 @@ namespace JHiga.RTSEngine
             }
             return -1;            
         }
-        public IEntityExtension[] Build(IExtendableEntity entity)
+        private IEntityExtension[] Build(IExtendableEntity entity)
         {
             IEntityExtension[] extensions = new IEntityExtension[properties.Length];
             for (int i = 0; i < extensions.Length; i++)

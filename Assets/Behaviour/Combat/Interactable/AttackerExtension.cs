@@ -82,6 +82,17 @@ namespace JHiga.RTSEngine.Combat
             }
         }
 
+        public override void Disable()
+        {
+            anim.SetLayerWeight(1, 0);
+            _target = null;
+            if (attackCoroutine != null)
+            {
+                Entity.MonoBehaviour.StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+        }
+
         private IEnumerator TransitionCombatAnimLayer(float startWeight, float endWeight, float speed) // maybe remove! performance ^^
         {
             float weight = startWeight;

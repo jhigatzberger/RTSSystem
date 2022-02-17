@@ -25,13 +25,15 @@ namespace JHiga.RTSEngine
             internal set
             {
                 _id = value;
-                gameObject.layer = PlayerContext.players[value.playerIndex].ownLayer;
+                gameObject.layer = PlayerContext.players[value.playerIndex].ownMask;
+
+                if (TryGetComponent(out Collider coll))
+                    coll.enabled = true;
                 foreach (IEntityExtension extension in Extensions)
                     extension.Enable();
             }
         }
         public MonoBehaviour MonoBehaviour => this;
-
         public Dictionary<Type, int> extensionMap;
         public IEntityExtension[] Extensions { get; set; }
         public T GetExtension<T>() where T : IEntityExtension
@@ -55,6 +57,8 @@ namespace JHiga.RTSEngine
         }
         private void OnDisable()
         {
+            if(TryGetComponent(out Collider coll))
+                coll.enabled = false;
             foreach (IEntityExtension extension in Extensions)
                 extension.Disable();
         }

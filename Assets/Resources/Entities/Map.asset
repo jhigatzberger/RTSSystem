@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8121613573877684937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Resources
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 2500089482278810806}
+  children: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,5 +27,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7912fcf47ebf0d14eb48ae8c68dfadca, type: 3}
   m_Name: Map
   m_EditorClassIdentifier: 
+  id: 0
   startEntities: []
-  entityGroups: []
+  entityGroups:
+  - {fileID: -8121613573877684937}
+--- !u!114 &2500089482278810806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Tree
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4104074141718744808, guid: ba0eaa49c138123459421aef2aa2b814, type: 3}
+  properties:
+  - {fileID: 1987216394735253265, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}

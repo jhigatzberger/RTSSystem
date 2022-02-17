@@ -4,43 +4,44 @@ using UnityEngine;
 namespace JHiga.RTSEngine
 {
     [System.Serializable]
-    public class PlayerProperties
+    public class PlayerData
     {
         public int id;
         public int team;
         public Color color;
-        public LayerMask ownLayer;
-        public LayerMask enemyLayer;
+        public int ownMask;
+        public int enemyMask;
         public FactionProperties faction;
         public GameEntityPool[] factories;
         public List<StartEntityData> startEntities;
-        public PlayerProperties(SkinnedPlayer skinnedPlayer)
+        public PlayerData(SkinnedPlayer skinnedPlayer)
         {
             id = skinnedPlayer.id;
             team = skinnedPlayer.team;
             color = RTSWorldData.Instance.playerColors[id];
-            ownLayer = RTSWorldData.Instance.teamLayers[team-1];
-            enemyLayer = GenerateEnemyLayer();
+            ownMask = RTSWorldData.Instance.teamLayers[team-1];
+            enemyMask = GenerateEnemyMask();
             faction = RTSWorldData.Instance.playableFactions[skinnedPlayer.faction];
             factories = faction.CopyEntities(id);
             startEntities = new List<StartEntityData>(faction.startEntities);
         }
-        private PlayerProperties(RTSWorldData data)
+        private PlayerData()
         {
+            RTSWorldData data = RTSWorldData.Instance;
             id = 0;
             team = data.mapTeam;
             color = data.playerColors[0];
-            ownLayer = 1;
-            enemyLayer = 0;
+            ownMask = 1;
+            enemyMask = 0;
             faction = data.mapFaction;
             factories = data.mapFaction.CopyEntities(0);
             startEntities = new List<StartEntityData>(data.mapFaction.startEntities);
         }
-        public static PlayerProperties GenerateGaia(RTSWorldData data)
+        public static PlayerData GenerateGaia()
         {
-            return new PlayerProperties(data);
+            return new PlayerData();
         }
-        private LayerMask GenerateEnemyLayer()
+        private int GenerateEnemyMask()
         {
             int layer = 0;
             for (int i = 0; i < RTSWorldData.Instance.teamLayers.Length; i++)
@@ -50,11 +51,11 @@ namespace JHiga.RTSEngine
             }
             return layer;
         }      
-        public static PlayerProperties Get(UID uid)
+        public static PlayerData Get(UID uid)
         {
             return PlayerContext.players[uid.playerIndex];
         }
-        public static PlayerProperties Get(int uid)
+        public static PlayerData Get(int uid)
         {
             return PlayerContext.players[UID.GetPlayerIndex(uid)];
         }

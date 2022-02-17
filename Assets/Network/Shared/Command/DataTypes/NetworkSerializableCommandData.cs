@@ -1,9 +1,4 @@
 ﻿using JHiga.RTSEngine.CommandPattern;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -58,7 +53,6 @@ namespace JHiga.RTSEngine.Network
 
             for (int n = 0; n < length; ++n)
                 serializer.SerializeValue(ref entities[n]);
-            Debug.Log("serializin " + entities.Length);
         }
     }
 }

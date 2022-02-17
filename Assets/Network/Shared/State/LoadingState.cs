@@ -13,11 +13,11 @@ namespace JHiga.RTSEngine.Network
         {
             var playerData = NetworkGameManager.Instance.playerData;
             PlayerContext.PlayerId = (int)NetworkManager.LocalClientId + 1;
-            PlayerContext.players = new PlayerProperties[playerData.Count + 1];
-            PlayerContext.players[0] = PlayerProperties.GenerateGaia(RTSWorldData.Instance);
+            PlayerContext.players = new PlayerData[playerData.Count + 1];
+            PlayerContext.players[0] = PlayerData.GenerateGaia();
             for (int i = 0; i < playerData.Count; i++)
-                PlayerContext.players[playerData[i].PlayerId] = new PlayerProperties(playerData[i].Skin);
-            Invoke("LoadScene", 5);
+                PlayerContext.players[playerData[i].PlayerId] = new PlayerData(playerData[i].Skin);
+            LoadScene();
         }
 
         private void LoadScene()
@@ -33,7 +33,7 @@ namespace JHiga.RTSEngine.Network
                 Instantiate(serverPrefab);
             if (IsClient && clientPrefab != null)
                 Instantiate(clientPrefab);
-            Debug.Log(SceneManager.GetActiveScene().name); Invoke("Finish", 5);
+            Finish();
         }
     }
 }

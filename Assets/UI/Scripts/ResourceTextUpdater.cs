@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using JHiga.RTSEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResourceTextUpdater : MonoBehaviour
 {
-    private Text resourceText;
+    [SerializeField] private Text[] resourceTexts;
     void Start()
     {
-        resourceText = GetComponent<Text>();
-        resourceText.text = ResourceManager.playerResources.ToString();
-        ResourceManager.OnResourceUpdate += ResourceManager_OnResourceUpdate;
+        for (int i = 0; i < resourceTexts.Length; i++)
+            resourceTexts[i].text = LocalPlayerResources.Instance.resources[i].ToString();
+        ResourceEvents.OnUpdateResource += ResourceEvents_OnUpdateResource;
     }
 
-    private void ResourceManager_OnResourceUpdate(int obj)
+    private void ResourceEvents_OnUpdateResource(ResourceData obj)
     {
-        resourceText.text = obj.ToString();
+        resourceTexts[obj.resourceType].text = obj.amount.ToString();
     }
 }

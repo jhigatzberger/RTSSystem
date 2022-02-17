@@ -44,5 +44,14 @@ namespace JHiga.RTSEngine.Selection
         {
             _renderer.material.color = GetColor(selected);
         }
+
+        void OnDisable()
+        {
+            GetComponent<Collider>().enabled = false;
+        }
+        void OnEnable()
+        {
+            GetComponent<Collider>().enabled = true;
+        }
     }
 }

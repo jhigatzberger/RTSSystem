@@ -25,7 +25,6 @@ namespace JHiga.RTSEngine.Network
 
         private void Start()
         {
-            Debug.Log("enter: " + Type);
             NetworkGameManager.Instance.Status = PlayerStatus.Pending;
         }
         public void Finish()

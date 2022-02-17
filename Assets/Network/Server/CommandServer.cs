@@ -1,5 +1,3 @@
-using JHiga.RTSEngine.CommandPattern;
-using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -8,18 +6,13 @@ namespace JHiga.RTSEngine.Network
 {
     public class CommandServer : MonoBehaviour
     {
-        #region Singleton
         public static CommandServer Instance { get; private set; }
-
+        private short lastCommandID = 0;
+        private readonly Dictionary<short, PendingCommand> pendingCommands = new Dictionary<short, PendingCommand>();
         private void Awake()
         {
             Instance = this;
         }
-        #endregion
-
-        private short lastCommandID = 0;
-        private readonly Dictionary<short, PendingCommand> pendingCommands = new Dictionary<short, PendingCommand>();
-
         public void Add(NetworkSerializableCommandData command)
         {
             pendingCommands.Add(++lastCommandID, new PendingCommand
@@ -27,13 +20,10 @@ namespace JHiga.RTSEngine.Network
                 command = command,
                 pendingClients = new List<ulong>(NetworkManager.Singleton.ConnectedClientsIds)
             });
-            Debug.Log("server Add clearQueueOnEnqeue" + command.clearQueueOnEnqueue);
-            Debug.Log("server Add entities" + command.entities.Length);
             CommandNetwork.Instance.AddCommandClientRPC(lastCommandID);
         }
         public void Confirm(short commandID, ulong clientID)
         {
-            Debug.Log("Confirm " + commandID + " client " + clientID);
             PendingCommand pending = pendingCommands[commandID];
             if (pending.Confirm(clientID))
             {
