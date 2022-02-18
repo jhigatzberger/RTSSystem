@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7301041512075372971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: WorkGatherableState
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions:
+  - {fileID: -1179576439048803181, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &-2882649675405381954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: MoveToGatherable
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 398a64fc60d166847b94ff3705956cf9, type: 2}
+  transitions:
+  - {fileID: 5111644768961962819, guid: d706f089d43d51341a0523413b93e755, type: 2}
+  - {fileID: 5681330678951283699, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831e9c3a3c11f7d4cb25b525dc7f6d24, type: 3}
+  m_Name: StateContainer
+  m_EditorClassIdentifier: 
+  typeName: State
+--- !u!114 &5797817315298483141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: DeliverState
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions:
+  - {fileID: -6759875159776168003, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &6544760059276826981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: DropoffState
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
+--- !u!114 &7922906760879440582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: GatherState
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 4216369374091191888, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  transitions:
+  - {fileID: -1475425872228910403, guid: d706f089d43d51341a0523413b93e755, type: 2}
+  - {fileID: -4295260833644693234, guid: d706f089d43d51341a0523413b93e755, type: 2}

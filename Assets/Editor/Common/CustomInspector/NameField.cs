@@ -12,6 +12,7 @@ public class NameField : VisualElement
         {
             target.name = e.newValue;
             EditorUtility.SetDirty(target);
+            AssetDatabase.SaveAssets();
         });
         Add(nameField);
     }

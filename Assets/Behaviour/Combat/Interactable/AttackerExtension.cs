@@ -11,14 +11,22 @@ namespace JHiga.RTSEngine.Combat
         {
             anim = Entity.MonoBehaviour.GetComponent<Animator>();
         }
-
+        public override void Enable()
+        {
+            targeter = Entity.GetExtension<ITargeter>();
+        }
         #region Stats
         public int Damage { get => Properties.damage; }
         public float AttackCooldown { get => Properties.attackCoolDown; }
         public float VisionRange { get => Properties.visionRange; }
         public float AttackRange { get => Properties.attackRange; }
         public float DamageDelay => Properties.damageDelay;
-        public bool IsInRange { get => Target != null && Target.IsAlive && Vector3.Distance(Entity.MonoBehaviour.transform.position, Target.Entity.MonoBehaviour.transform.position) <= AttackRange; }
+        public bool IsInRange {
+            get =>
+                Target != null &&
+                Target.Value.HasActiveEntity &&
+                Target.Value.IsInRange(Entity.MonoBehaviour.transform.position, AttackRange);
+        }
         #endregion
 
         #region Attack
@@ -47,26 +55,31 @@ namespace JHiga.RTSEngine.Combat
             anim.SetTrigger("Attack");
             lastAttack = LockStep.time;
             yield return new WaitForSeconds(DamageDelay);
-            if (Target != null && Target.IsAlive)
+            if(Target.HasValue)
             {
-                Target.Health -= Damage;
+                IAttackable attackable = Target.Value.entity.GetExtension<IAttackable>();
+                if (attackable.IsAlive)
+                {
+                    attackable.Health -= Damage;
+                }
+                else
+                    Target = null;
             }
-            else
-                Target = null;
+
             attackCoroutine = null;
         }
         #endregion
 
         #region Target
-        private IAttackable _target;
-        public IAttackable Target
+        private ITargeter targeter;
+        public Target? Target
         {
-            get => _target;
+            get => targeter.Target;
             set
             {
-                if (value != _target)
+                if (!value.Equals(targeter.Target))
                 {
-                    _target = value;
+                    targeter.Target = value;
                     if (Entity.MonoBehaviour.enabled && Entity.MonoBehaviour.gameObject.activeSelf)
                         Entity.MonoBehaviour.StartCoroutine(TransitionCombatAnimLayer(value == null ? 1 : 0, value == null ? 0 : 1, 3));
                 }
@@ -81,18 +94,16 @@ namespace JHiga.RTSEngine.Combat
                 attackCoroutine = null;
             }
         }
-
         public override void Disable()
         {
             anim.SetLayerWeight(1, 0);
-            _target = null;
+            targeter.Target = null;
             if (attackCoroutine != null)
             {
                 Entity.MonoBehaviour.StopCoroutine(attackCoroutine);
                 attackCoroutine = null;
             }
         }
-
         private IEnumerator TransitionCombatAnimLayer(float startWeight, float endWeight, float speed) // maybe remove! performance ^^
         {
             float weight = startWeight;

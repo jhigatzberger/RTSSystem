@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -5503675865491448177, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: 1638664395756096486, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &-2044811054315504795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,6 +54,28 @@ MonoBehaviour:
   entityGroups:
   - {fileID: -2044811054315504795}
   - {fileID: 8729672936140005990}
+--- !u!114 &291085068399748778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Worker
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7157036068445704457, guid: 5be87424a25fd8248bfb0ef61aad4824, type: 3}
+  properties:
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: 5301972228035785663, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 1638664395756096486, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -3348112130234310332, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -8183724263704499467, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 2044284013286271943, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &553174472893864544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +94,7 @@ MonoBehaviour:
   - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: 56055710012726646, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -6351087715476703125, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4996876551240044538, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &8729672936140005990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,4 +109,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entities:
   - {fileID: -8998922325877018594}
+  - {fileID: 291085068399748778}
   children: []

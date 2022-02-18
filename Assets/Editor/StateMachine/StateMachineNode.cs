@@ -37,9 +37,11 @@ public class StateMachineNode : Node
     private void InitActions()
     {
         actionContainer = new VisualElement();
+        if (state.actions == null)
+            state.actions = new Action[0];
         foreach (Action a in state.actions)
             AddAction(a);
-        Button createAction = new Button(() => TypePickerWindow.Show<Action>(AddNewAction));
+        Button createAction = new Button(() => TypePickerWindow.Show<Action>(AddNewAction, parent: SOContainer.Get<Action>()));
         createAction.text = "New Action";
         inputContainer.Add(actionContainer);
         inputContainer.Add(createAction);
@@ -122,10 +124,12 @@ public class StateMachineNode : Node
     private void InitTransitions()
     {
         transitionContainer = new VisualElement();
+        if (state.transitions == null)
+            state.transitions = new Transition[0];
         foreach (Transition t in state.transitions)
             AddTransition(t);
         outputContainer.Add(transitionContainer);
-        Button createTransition = new Button(() => TypePickerWindow.Show<Transition>(AddNewTransition));
+        Button createTransition = new Button(() => TypePickerWindow.Show<Transition>(AddNewTransition, parent: SOContainer.Get<Transition>()));
         createTransition.text = "New Transition";
         outputContainer.Add(createTransition);
     }

@@ -62,5 +62,10 @@ namespace JHiga.RTSEngine
             foreach (IEntityExtension extension in Extensions)
                 extension.Disable();
         }
+
+        public void Disable()
+        {
+            enabled = false;
+        }
     }
 }

@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8183724263704499467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
+  m_Name: PassiveStateMachine
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: 11400000, guid: 6069379fe8a08cb4e8a4d78d1dd7cbb1, type: 2}
+  endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
+  commandable: 1
 --- !u!114 &-7503156559863272037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandCompetence:
   - {fileID: 7176674067703014830, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 5248126612945112393, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
 --- !u!114 &-5503675865491448177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +79,21 @@ MonoBehaviour:
   visionRange: 10
   attackRange: 2
   damageDelay: 1
+--- !u!114 &-3348112130234310332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f006c6e48d9df469ac125617a11af2, type: 3}
+  m_Name: CommandableWorker
+  m_EditorClassIdentifier: 
+  commandCompetence:
+  - {fileID: -3847284177112424030, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
 --- !u!114 &-2837799192545829897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +126,34 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9062d548f8941e441a84508fe9cf35c9, type: 2}
   - {fileID: 2100000, guid: 5070db5067422e041a6bb8c1681020b8, type: 2}
   - {fileID: 2100000, guid: dc851844264c22f4c81c45df6c05894f, type: 2}
+--- !u!114 &-1730685018080194448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7cb116bd6961b43a18d60adfda304e, type: 3}
+  m_Name: TargeterProperties
+  m_EditorClassIdentifier: 
+--- !u!114 &-1487804754538319039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e976e3f8e099da47b9615df79283e2c, type: 3}
+  m_Name: GatherableTreeProperties
+  m_EditorClassIdentifier: 
+  rate: 1
+  resourceType: 0
+  storageType: 0
+  totalStorage: 100
 --- !u!114 &-651756653242385588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,8 +219,36 @@ MonoBehaviour:
   m_Name: SelectableTree
   m_EditorClassIdentifier: 
   priority: 0
-  scale: 1
+  scale: 3
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &2044284013286271943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4beb929e3aa9cf14393fd2ded8359856, type: 3}
+  m_Name: GathererProperties
+  m_EditorClassIdentifier: 
+  carryingCapacity: 1
+  speed: 1
+--- !u!114 &4996876551240044538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daef001ac8fad54fa664d2c9d1ea3ae, type: 3}
+  m_Name: WoodDropoff
+  m_EditorClassIdentifier: 
+  resourceTypes: 00000000
+  offset: {x: 5, y: 0, z: 0}
 --- !u!114 &5301972228035785663
 MonoBehaviour:
   m_ObjectHideFlags: 0

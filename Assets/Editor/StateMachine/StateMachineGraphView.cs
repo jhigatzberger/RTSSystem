@@ -37,7 +37,7 @@ public class StateMachineGraphView : GraphView
     {
         StateMachineNode node = new StateMachineNode
         {
-            title = "null",
+            title = "Idle",
             GUID = Guid.NewGuid().ToString(),
             entryPoint = true
         };

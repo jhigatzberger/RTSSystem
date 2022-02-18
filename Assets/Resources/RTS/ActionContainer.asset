@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831e9c3a3c11f7d4cb25b525dc7f6d24, type: 3}
+  m_Name: ActionContainer
+  m_EditorClassIdentifier: 
+  typeName: Action
+--- !u!114 &2471572664656425273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c693952055131a349bf53e175f8336b2, type: 3}
+  m_Name: DeliverAction
+  m_EditorClassIdentifier: 
+--- !u!114 &3877916336534050221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46b5e19fdab23d48a2c54561cd37a81, type: 3}
+  m_Name: WorkingAnimation
+  m_EditorClassIdentifier: 
+  onEnter: 1
+  enterParameter: StartWorking
+  onExit: 1
+  exitParameter: StopWorking
+--- !u!114 &4216369374091191888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3de0707f86c23488fe93c59e58ec35, type: 3}
+  m_Name: GatherAction
+  m_EditorClassIdentifier: 
+--- !u!114 &8762574854953491697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2b20090c7a827409148f24db9ee6dc, type: 3}
+  m_Name: DropOffAction
+  m_EditorClassIdentifier: 

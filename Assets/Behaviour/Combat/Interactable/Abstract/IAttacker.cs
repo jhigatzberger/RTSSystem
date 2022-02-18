@@ -5,13 +5,9 @@ namespace JHiga.RTSEngine.Combat
     /// <summary>
     /// Handles combat with an <see cref="IAttackable"/>
     /// </summary>
-    public interface IAttacker: IEntityExtension
-    {        
-        /// <summary>
-        /// The current <see cref="IAttackable"/> target.
-        /// </summary>        
-        public IAttackable Target { get; set; }
-
+    public interface IAttacker : IEntityExtension
+    {
+        public Target? Target { get; set; }
         /// <summary>
         /// Checks whether the distance to <see cref="Target"/> is smaller or equal to <see cref="AttackRange"/>.
         /// You can enter an Attack <see cref="State"/> with the <see cref="InRangeDecision"/>.

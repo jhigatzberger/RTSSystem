@@ -79,7 +79,7 @@ namespace JHiga.RTSEngine.CommandPattern
         {
             if (ForcedCommand == null)
                 return;
-            if(ForcedCommand.Applicable(CachedEntity))
+            if(ForcedCommand.Applicable(CachedEntity, true))
                 ForcedCommand.Request(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput, CommandEvents.RequestCommandDistribution);
             ClearForcedCommand();
         }

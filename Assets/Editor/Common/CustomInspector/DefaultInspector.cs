@@ -7,6 +7,9 @@ public class DefaultInspector : Editor
 {
     public override VisualElement CreateInspectorGUI()
     {
-        return new DefaultInspectorElement(serializedObject);
+        VisualElement inspector = new VisualElement();
+        inspector.Add(new NameField(target));
+        inspector.Add(new DefaultInspectorElement(serializedObject));
+        return inspector;
     }
 }

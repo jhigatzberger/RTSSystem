@@ -41,14 +41,14 @@ public class StateMachineGraphWindow : EditorWindow
 
         Button createStateButton = new Button(() =>
         {
-            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.New });
+            TypePickerWindow.Show<State>(CreateStateNode, parent: SOContainer.Get<State>(), editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.New });
         });
         createStateButton.text = "New";
         toolbar.Add(createStateButton);
 
         Button copyStateButton = new Button(() =>
         {
-            TypePickerWindow.Show<State>(CreateStateNode, editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.Copy });
+            TypePickerWindow.Show<State>(CreateStateNode, parent: SOContainer.Get<State>(), editTypes: new TypePickerWindow.EditType[] { TypePickerWindow.EditType.Copy });
         });
         copyStateButton.text = "Copy";
         toolbar.Add(copyStateButton);

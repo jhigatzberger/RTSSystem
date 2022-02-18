@@ -40,6 +40,22 @@ MonoBehaviour:
     amount: 0
   time: 1
   spawn: {fileID: 0}
+--- !u!114 &-3847284177112424030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6fdf7d96fff3749b64f38bb6ef95f7, type: 3}
+  m_Name: GatherCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 444ffa729d67d124d9de666b9bad168b, type: 3}
+  dynamicallyBuildable: 1
+  requireContext: 1
+  state: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +75,8 @@ MonoBehaviour:
   - {fileID: 7176674067703014830}
   - {fileID: -5840748276129422373}
   - {fileID: 6823857285360643638}
+  - {fileID: -3847284177112424030}
+  - {fileID: 5248126612945112393}
 --- !u!114 &1176921838225773690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +93,26 @@ MonoBehaviour:
   dynamicallyBuildable: 1
   requireContext: 1
   state: {fileID: 11400000, guid: bde7e5b7404f6f44baa50db2bd1a9396, type: 2}
+--- !u!114 &5248126612945112393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnWorkerCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 444ffa729d67d124d9de666b9bad168b, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  resourceEffect:
+    resourceType: 0
+    amount: -20
+  time: 1
+  spawn: {fileID: 291085068399748778, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
 --- !u!114 &6053781840455765175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +166,6 @@ MonoBehaviour:
   requireContext: 0
   resourceEffect:
     resourceType: 0
-    amount: -50
+    amount: -120
   time: 1
   spawn: {fileID: -8998922325877018594, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
