@@ -79,7 +79,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandCompetence:
   - {fileID: 5248126612945112393, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
-  - {fileID: -4593153992739152627, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
 --- !u!114 &-6022623909550766482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
   m_Name: BuildableBaracks
   m_EditorClassIdentifier: 
-  finishiedEntity: {fileID: 0}
+  finishiedEntity: {fileID: -6880519057620934973, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
   maxConstructionLevel: 2
 --- !u!114 &-2919917840897380133
 MonoBehaviour:
@@ -345,8 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7a72133419e14eab65f8bd233ca16, type: 3}
   m_Name: TownhallSpawnerProperties
   m_EditorClassIdentifier: 
-  doorPosition: {x: 5, y: 0, z: 0}
---- !u!114 &1203652883113731377
+  doorPosition: {x: 6, y: 0, z: 0}
+--- !u!114 &131642567969212944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,14 +354,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39e77aac27344b146bd6a11cc673751f, type: 3}
-  m_Name: BannerPlayerMaterialsProperties
+  m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
+  m_Name: PassiveStateMachineProperties
   m_EditorClassIdentifier: 
-  changeTexture: {fileID: 2800000, guid: a666c581cfaae2747a540452d3f42fb3, type: 3}
-  playerMaterials:
-  - {fileID: 2100000, guid: d8f2803cee1a9c4478c93d1858cc5037, type: 2}
-  - {fileID: 2100000, guid: f806521b69283c046a40f43fa2679d40, type: 2}
-  - {fileID: 2100000, guid: 5b3184522dc5e5041810df0af22f4b47, type: 2}
+  defaultState: {fileID: 11400000, guid: 6069379fe8a08cb4e8a4d78d1dd7cbb1, type: 2}
+  endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
+  commandable: 1
 --- !u!114 &1507784354444235465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +424,21 @@ MonoBehaviour:
   priority: 0
   scale: 3
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &4181876613820362627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f006c6e48d9df469ac125617a11af2, type: 3}
+  m_Name: BarbarianTownhallCommandableProperties
+  m_EditorClassIdentifier: 
+  commandCompetence:
+  - {fileID: -684924636645562640, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: -4593153992739152627, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
 --- !u!114 &4996876551240044538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +487,19 @@ MonoBehaviour:
   visionRange: 2
   attackRange: 1
   damageDelay: 0.7
+--- !u!114 &8567103948272601740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a7a72133419e14eab65f8bd233ca16, type: 3}
+  m_Name: BuildingSpawner
+  m_EditorClassIdentifier: 
+  doorPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &8728924246521804952
 MonoBehaviour:
   m_ObjectHideFlags: 0

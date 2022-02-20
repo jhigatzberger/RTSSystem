@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f6841f7cf42363d47bc51707d3a92b2f, type: 3}
   - {fileID: 8300000, guid: f295e9da86a96674f971b3fbb4bbf461, type: 3}
   - {fileID: 8300000, guid: 2caad788b1d1da44298d92ef7298d3c8, type: 3}
-  loopUntilExit: 0
+  loopUntilExit: 1
   playDelayed: 0
   delay: 0
 --- !u!114 &-5012783507783836501

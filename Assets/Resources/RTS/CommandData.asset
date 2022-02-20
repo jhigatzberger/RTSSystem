@@ -22,7 +22,7 @@ MonoBehaviour:
   - resourceType: 1
     amount: -20
   time: 1
-  spawn: {fileID: 0}
+  spawn: {fileID: 1493273778241320131, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
 --- !u!114 &-6567315930251814304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,11 +82,11 @@ MonoBehaviour:
   requireContext: 0
   resourceEffect:
   - resourceType: 0
-    amount: 20
+    amount: -20
   - resourceType: 1
-    amount: 20
+    amount: -20
   - resourceType: 2
-    amount: 20
+    amount: -20
   time: 4
   spawn: {fileID: -324542003939901131, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
 --- !u!114 &-4279965886676802490
@@ -145,7 +145,28 @@ MonoBehaviour:
   - resourceType: 1
     amount: -50
   time: 0
-  spawn: {fileID: 0}
+  spawn: {fileID: -7622995121388286650, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+--- !u!114 &-684924636645562640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnBarbarianWorkerCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 34f1f683e1a57ff48b6cdce3c568ce02, type: 3}
+  forcedPreview: {fileID: 0}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  resourceEffect:
+  - resourceType: 0
+    amount: -50
+  time: 1
+  spawn: {fileID: -7376874151518818410, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +193,7 @@ MonoBehaviour:
   - {fileID: -6567315930251814304}
   - {fileID: -4279965886676802490}
   - {fileID: -4593153992739152627}
+  - {fileID: -684924636645562640}
 --- !u!114 &1176921838225773690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +231,7 @@ MonoBehaviour:
   - resourceType: 0
     amount: -50
   time: 1
-  spawn: {fileID: 0}
+  spawn: {fileID: 291085068399748778, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
 --- !u!114 &5640908343698708538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,4 +311,4 @@ MonoBehaviour:
   - resourceType: 2
     amount: -20
   time: 3
-  spawn: {fileID: 0}
+  spawn: {fileID: -8998922325877018594, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}

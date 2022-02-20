@@ -30,7 +30,6 @@ namespace JHiga.RTSEngine.StateMachine
             else if(Properties.commandable)
                 Commandable.Finish();
             TimeStamp = LockStep.time;
-            Debug.Log("STATE: " + currentState.name, Entity.MonoBehaviour);
         }
         public override void Enable()
         {

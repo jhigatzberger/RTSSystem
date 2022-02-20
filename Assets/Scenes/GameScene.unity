@@ -515,11 +515,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpawnData:
-  - players: 0100000002000000
+  - players: 01000000
     factions:
     - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
     entity: {fileID: 553174472893864544, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
-  - players: 0100000002000000
+  - players: 01000000
     factions:
     - {fileID: 11400000, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
     entity: {fileID: 553174472893864544, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
@@ -1425,11 +1425,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpawnData:
-  - players: 0100000002000000
+  - players: 02000000
     factions:
     - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
     entity: {fileID: 553174472893864544, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
-  - players: 0100000002000000
+  - players: 02000000
     factions:
     - {fileID: 11400000, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
     entity: {fileID: 553174472893864544, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
