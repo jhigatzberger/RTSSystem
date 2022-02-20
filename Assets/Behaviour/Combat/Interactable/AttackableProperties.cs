@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Combat
     public class AttackableProperties : ExtensionFactory
     {
         public int health;
-
+        public bool hideOnDeath;
         public override Type ExtensionType => typeof(IAttackable);
 
         public override IEntityExtension Build(IExtendableEntity extendable)

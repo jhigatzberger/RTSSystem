@@ -20,21 +20,33 @@ namespace JHiga.RTSEngine.Network
                 playerResources.Add(clientId,RTSWorldData.Instance.resourceTypes.Select(r => r.startAmount).ToArray());            
         }
 
-        public void AlterResource(ulong clientId, int resourceType, int amount, int callbackId)
+        public void AlterResource(ulong clientId, ResourceNetworkPayload request)
         {
             Debug.Log("AlterResource!");
             bool success = true;
-            if (playerResources[clientId][resourceType] + amount < 0 && amount<0)
-                success = false;
-            else
-                playerResources[clientId][resourceType] += amount;
 
-            ResourceNetwork.Instance.UpdateResourceClientRpc(resourceType, playerResources[clientId][resourceType], callbackId, success, new ClientRpcParams
+            foreach(ResourceData data in request.data)
             {
-                Send = new ClientRpcSendParams
+                if (playerResources[clientId][data.resourceType] + data.amount < 0 && data.amount < 0)
+                    success = false;
+            }
+            if(success)
+            {
+                foreach (ResourceData data in request.data)
+                    playerResources[clientId][data.resourceType] += data.amount;
+            }
+
+            ResourceNetwork.Instance.UpdateResourceClientRpc(
+                new ResourceNetworkPayload
                 {
-                    TargetClientIds = new ulong[] { clientId }
-                }
+                    data = request.data.Select(d=> new ResourceData { resourceType = d.resourceType, amount = playerResources[clientId][d.resourceType] }).ToArray(),
+                    successCallback = request.successCallback
+                }, success, new ClientRpcParams
+                {
+                    Send = new ClientRpcSendParams
+                    {
+                        TargetClientIds = new ulong[] { clientId }
+                    }
             });
         }
     }

@@ -1,13 +1,15 @@
 using JHiga.RTSEngine.CommandPattern;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace JHiga.RTSEngine.UI
 {
-    public class SelectionContextCommandButton : MonoBehaviour
+    public class SelectionContextCommandButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private CommandProperties command;
         private Image image;
+        private GameObject descriptionPanel;
 
         private void Awake()
         {
@@ -19,8 +21,9 @@ namespace JHiga.RTSEngine.UI
             image.sprite = null;
             image.enabled = false;
         }
-        public void Set(CommandProperties command)
+        public void Set(CommandProperties command, GameObject descriptionPanel)
         {
+            this.descriptionPanel = descriptionPanel;
             this.command = command;
             image.sprite = command.icon;
             image.enabled = true;
@@ -30,6 +33,19 @@ namespace JHiga.RTSEngine.UI
             CommandInput.Instance.ForcedCommand = command;
             if (!command.requireContext)
                 CommandInput.Instance.RequestForcedCommand();
+        }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            Debug.Log("MOUSEOVER");
+            if (command != null && !command.Description.Equals(""))
+            {
+                descriptionPanel.SetActive(true);
+                descriptionPanel.GetComponentInChildren<Text>().text = command.Description;
+            }
+        }
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            descriptionPanel.SetActive(false);
         }
     }
 }

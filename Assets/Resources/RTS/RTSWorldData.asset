@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: RTSWorldData
   m_EditorClassIdentifier: 
   resourceTypes:
+  - {fileID: 11400000, guid: 12eb3f93f6533824a8fe0cc285f66df9, type: 2}
   - {fileID: 11400000, guid: 04c96c3dca274384abcaffc16147f642, type: 2}
+  - {fileID: 11400000, guid: e38ff09f79b61e5468c93d2516489607, type: 2}
   selectableLayerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -32,7 +34,7 @@ MonoBehaviour:
   mapFaction: {fileID: 11400000, guid: 48840c06adc31f94f94c015707683e14, type: 2}
   playableFactions:
   - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
-  - {fileID: 11400000, guid: 17bb950129695e74abc310459710d157, type: 2}
+  - {fileID: 11400000, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
   playerColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0.12997723, b: 1, a: 1}

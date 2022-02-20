@@ -31,16 +31,45 @@ namespace JHiga.RTSEngine.Network
                 }
             }
             if (callbackId >= 0)
-                ResourceNetwork.Instance.AlterResourceServerRpc(NetworkManager.Singleton.LocalClientId, request.resourceType, request.amount, callbackId);
+                ResourceNetwork.Instance.AlterResourceServerRpc(NetworkManager.Singleton.LocalClientId, new ResourceNetworkPayload(request.data, callbackId));
         }
 
-        public void UpdateResource(ResourceData data, int callbackId, bool success)
+        public void UpdateResource(ResourceNetworkPayload request, bool success)
         {
             Debug.Log("UpdateResource!");
-            ResourceEvents.UpdateResource(data);
+            foreach(ResourceData data in request.data)
+                ResourceEvents.UpdateResource(data);
             if (success)
-                callbacks[callbackId]();
-            callbacks[callbackId] = null;
+                callbacks[request.successCallback]();
+            callbacks[request.successCallback] = null;
         }
+    }
+    public struct ResourceNetworkPayload : INetworkSerializable
+    {
+        public ResourceData[] data;
+        public int successCallback;
+        public ResourceNetworkPayload(ResourceData[] data, int callback)
+        {
+            this.data = data;
+            successCallback = callback;
+        }
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            serializer.SerializeValue(ref successCallback);
+
+            int length = 0;
+            if (!serializer.IsReader)
+                length = data.Length;
+
+            serializer.SerializeValue(ref length);
+
+            if (serializer.IsReader)
+                data = new ResourceData[length];
+
+            for (int n = 0; n < length; ++n)
+                serializer.SerializeValue(ref data[n]);
+        }
+
     }
 }

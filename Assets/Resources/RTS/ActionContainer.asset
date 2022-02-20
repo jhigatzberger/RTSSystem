@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7225447340955093432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df4c2109171876438492d65802744e1, type: 3}
+  m_Name: HammerSounds
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: f6841f7cf42363d47bc51707d3a92b2f, type: 3}
+  - {fileID: 8300000, guid: f295e9da86a96674f971b3fbb4bbf461, type: 3}
+  - {fileID: 8300000, guid: 2caad788b1d1da44298d92ef7298d3c8, type: 3}
+  loopUntilExit: 0
+  playDelayed: 0
+  delay: 0
+--- !u!114 &-5012783507783836501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df4c2109171876438492d65802744e1, type: 3}
+  m_Name: SwordAudio
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 48fd7011e4a2200408774162e4ee683f, type: 3}
+  - {fileID: 8300000, guid: fe4645d291fec5b40aabc015449bb9aa, type: 3}
+  - {fileID: 8300000, guid: 4640054aa7013df43a7e1d545af2ae6a, type: 3}
+  - {fileID: 8300000, guid: 7c88384344c170c459a741549742c27f, type: 3}
+  loopUntilExit: 0
+  playDelayed: 0
+  delay: 0
+--- !u!114 &-3901806946217863366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178fbb28b4b7c56458e4bccfa3c293fc, type: 3}
+  m_Name: SetGatheringAnimation
+  m_EditorClassIdentifier: 
+  parameterName: WorkAnimation
+  resourceTypeAnimations: 020000000000000000000000
+--- !u!114 &-2971944299767544922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df4c2109171876438492d65802744e1, type: 3}
+  m_Name: StartAudioGatheringAudioClips
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 52dadbaa3b0b42e408a652e8133895bc, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  loopUntilExit: 0
+  playDelayed: 0
+  delay: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,6 +85,54 @@ MonoBehaviour:
   m_Name: ActionContainer
   m_EditorClassIdentifier: 
   typeName: Action
+--- !u!114 &934935996348327818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1314e9a1372f5974a8366ef898b10f61, type: 3}
+  m_Name: ConstructAction
+  m_EditorClassIdentifier: 
+--- !u!114 &1096631118255179923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2d760293f203f43942cfade71091b2, type: 3}
+  m_Name: SetAnimatorConstructionWorkTypeAction
+  m_EditorClassIdentifier: 
+  onEnter: 1
+  enterParameter: WorkAnimation
+  enterValue: 1
+  onExit: 0
+  exitParameter: 
+  exitValue: 0
+--- !u!114 &1832540773125873871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2d760293f203f43942cfade71091b2, type: 3}
+  m_Name: WorkingType
+  m_EditorClassIdentifier: 
+  onEnter: 1
+  enterParameter: WorkAnimation
+  enterValue: 0
+  onExit: 0
+  exitParameter: 
+  exitValue: 0
 --- !u!114 &2471572664656425273
 MonoBehaviour:
   m_ObjectHideFlags: 0

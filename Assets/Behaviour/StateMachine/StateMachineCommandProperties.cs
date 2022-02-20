@@ -1,3 +1,4 @@
+using JHiga.RTSEngine.InputHandling;
 using JHiga.RTSEngine.Selection;
 using JHiga.RTSEngine.StateMachine;
 using System.Collections;
@@ -16,11 +17,7 @@ namespace JHiga.RTSEngine.CommandPattern
         }
         public override Target PackTarget(ICommandable commandable)
         {
-            return new Target
-            {
-                position = SelectionContext.FirstOrNullHovered.MonoBehaviour.transform.position,
-                entity = SelectionContext.FirstOrNullHovered
-            };
+            return Target.FromContext;
         }
         protected virtual void BeforeStateChange(ICommandable commandable, ResolvedCommandReferences references)
         {

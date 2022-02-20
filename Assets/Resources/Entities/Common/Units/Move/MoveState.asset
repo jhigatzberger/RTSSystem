@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoveState
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: e096a77a919ade244bb2175491ccf252, type: 2}
   - {fileID: 11400000, guid: 7ea0688994ee4b74db6c4bc24ad85e0f, type: 2}
+  - {fileID: -2971944299767544922, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
   transitions:
   - {fileID: 11400000, guid: 6f56b5af3efa2ea4987199f4542739e3, type: 2}

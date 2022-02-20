@@ -58,6 +58,7 @@ public class CustomEntityEditor : Editor
         });
         inspector.Add(preview);
         inspector.Add(prefabField);
+        //inspector.Add(new DefaultInspectorElement(serializedObject));
         return inspector;
     }
 

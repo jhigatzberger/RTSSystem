@@ -6,6 +6,8 @@ namespace JHiga.RTSEngine.CommandPattern
     public abstract class CommandProperties : ScriptableObject
     {
         public Sprite icon;
+        public virtual string Description { get; }
+        public GameObject forcedPreview;
         public bool dynamicallyBuildable;
         public bool requireContext;
         public abstract bool Applicable(ICommandable entity, bool forced = false);

@@ -13,13 +13,34 @@ MonoBehaviour:
   m_Name: SpawnSpearmanCommand
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 8978070177785b348bf6d21e45d25eb6, type: 3}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
   resourceEffect:
-    resourceType: 0
-    amount: 0
+  - resourceType: 0
+    amount: -20
+  - resourceType: 1
+    amount: -20
   time: 1
   spawn: {fileID: 0}
+--- !u!114 &-6567315930251814304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6fdf7d96fff3749b64f38bb6ef95f7, type: 3}
+  m_Name: GatherFoodCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  forcedPreview: {fileID: 0}
+  dynamicallyBuildable: 1
+  requireContext: 1
+  state: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  resourceType: 0
 --- !u!114 &-5840748276129422373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,13 +54,59 @@ MonoBehaviour:
   m_Name: SpawnManAtArmsCommand
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
   resourceEffect:
-    resourceType: 0
+  - resourceType: 0
+    amount: 0
+  - resourceType: 0
     amount: 0
   time: 1
   spawn: {fileID: 0}
+--- !u!114 &-4593153992739152627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnWarriorCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
+  forcedPreview: {fileID: 0}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  resourceEffect:
+  - resourceType: 0
+    amount: 20
+  - resourceType: 1
+    amount: 20
+  - resourceType: 2
+    amount: 20
+  time: 4
+  spawn: {fileID: -324542003939901131, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+--- !u!114 &-4279965886676802490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6fdf7d96fff3749b64f38bb6ef95f7, type: 3}
+  m_Name: GatherIronCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  forcedPreview: {fileID: 0}
+  dynamicallyBuildable: 1
+  requireContext: 1
+  state: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  resourceType: 2
 --- !u!114 &-3847284177112424030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,12 +117,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c6fdf7d96fff3749b64f38bb6ef95f7, type: 3}
-  m_Name: GatherCommand
+  m_Name: GatherWoodCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 444ffa729d67d124d9de666b9bad168b, type: 3}
+  icon: {fileID: 0}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 1
   requireContext: 1
   state: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  resourceType: 1
+--- !u!114 &-3001044391822662561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnBarracksConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: f601c56cf9134f74fa05e52bafb8a588, type: 3}
+  forcedPreview: {fileID: 3035259405304923790, guid: a05a4b6c769f753468b47909df4b07a6, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -50
+  time: 0
+  spawn: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +167,11 @@ MonoBehaviour:
   - {fileID: 6823857285360643638}
   - {fileID: -3847284177112424030}
   - {fileID: 5248126612945112393}
+  - {fileID: -3001044391822662561}
+  - {fileID: 5640908343698708538}
+  - {fileID: -6567315930251814304}
+  - {fileID: -4279965886676802490}
+  - {fileID: -4593153992739152627}
 --- !u!114 &1176921838225773690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,7 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1fba048d7c73c4d9c14f1cfd37bcbf, type: 3}
   m_Name: MoveCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: e92d4be15097ec349981436b3095ff31, type: 3}
+  icon: {fileID: 0}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 1
   requireContext: 1
   state: {fileID: 11400000, guid: bde7e5b7404f6f44baa50db2bd1a9396, type: 2}
@@ -105,14 +201,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
   m_Name: SpawnWorkerCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 444ffa729d67d124d9de666b9bad168b, type: 3}
+  icon: {fileID: 21300000, guid: 34f1f683e1a57ff48b6cdce3c568ce02, type: 3}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
   resourceEffect:
-    resourceType: 0
-    amount: -20
+  - resourceType: 0
+    amount: -50
   time: 1
-  spawn: {fileID: 291085068399748778, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  spawn: {fileID: 0}
+--- !u!114 &5640908343698708538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64cca552272f0042ba66c245317f3f5, type: 3}
+  m_Name: BuildCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  forcedPreview: {fileID: 0}
+  dynamicallyBuildable: 1
+  requireContext: 1
+  state: {fileID: 7932788798038112835, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &6053781840455765175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869d7b7ff8fe1e4439c5ba3d5b4afff1, type: 3}
   m_Name: AttackCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 22e28b19643849e4ba22f88146914faf, type: 3}
+  icon: {fileID: 0}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 1
   requireContext: 1
   state: {fileID: 11400000, guid: 97390190838547f479a6682df8680520, type: 2}
@@ -142,10 +257,13 @@ MonoBehaviour:
   m_Name: SpawnSkeletonCommand
   m_EditorClassIdentifier: 
   icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
   resourceEffect:
-    resourceType: 0
+  - resourceType: 0
+    amount: 0
+  - resourceType: 0
     amount: 0
   time: 1
   spawn: {fileID: 0}
@@ -162,10 +280,13 @@ MonoBehaviour:
   m_Name: SpawnKnightCommand
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: efee6508e03fbcf48a58c946ba9295c8, type: 3}
+  forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
   resourceEffect:
-    resourceType: 0
-    amount: -120
-  time: 1
-  spawn: {fileID: -8998922325877018594, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  - resourceType: 0
+    amount: -50
+  - resourceType: 2
+    amount: -20
+  time: 3
+  spawn: {fileID: 0}

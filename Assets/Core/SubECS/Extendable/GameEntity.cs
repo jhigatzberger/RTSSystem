@@ -10,6 +10,7 @@ namespace JHiga.RTSEngine
     /// </summary>
     public class GameEntity : MonoBehaviour, IExtendableEntity
     {
+        private Collider coll;
         public static GameEntity Get(UID uid)
         {
             return GameEntityPool.Get(uid).entities[uid.entityIndex];
@@ -27,7 +28,7 @@ namespace JHiga.RTSEngine
                 _id = value;
                 gameObject.layer = PlayerContext.players[value.playerIndex].ownMask;
 
-                if (TryGetComponent(out Collider coll))
+                if (TryGetComponent(out coll))
                     coll.enabled = true;
                 foreach (IEntityExtension extension in Extensions)
                     extension.Enable();
@@ -57,15 +58,23 @@ namespace JHiga.RTSEngine
         }
         private void OnDisable()
         {
-            if(TryGetComponent(out Collider coll))
+            if(coll != null)
                 coll.enabled = false;
             foreach (IEntityExtension extension in Extensions)
                 extension.Disable();
         }
-
-        public void Disable()
+        public void Disable(bool setGameObjectInactive)
         {
             enabled = false;
+            if (setGameObjectInactive)
+                gameObject.SetActive(false);
+        }
+        public Vector3 Position => transform.position;
+        public Vector3 ClosestEdgePoint(Vector3 pos)
+        {
+            if (coll == null)
+                return Position;
+            return coll.ClosestPointOnBounds(pos);
         }
     }
 }

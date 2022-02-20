@@ -14,20 +14,16 @@ namespace JHiga.RTSEngine.Network
         }
 
         [ServerRpc(RequireOwnership = false)]
-        public void AlterResourceServerRpc(ulong clientId, int resourceType, int amount, int callbackId)
+        public void AlterResourceServerRpc(ulong clientId, ResourceNetworkPayload request)
         {
-            ResourceServer.Instance.AlterResource(clientId, resourceType, amount, callbackId);
+            ResourceServer.Instance.AlterResource(clientId, request);
         }
 
         [ClientRpc]
-        public void UpdateResourceClientRpc(int resourceType, int amount, int callbackId, bool success, ClientRpcParams rpcParams = default)
+        public void UpdateResourceClientRpc(ResourceNetworkPayload request, bool success, ClientRpcParams rpcParams = default)
         {
             Debug.Log("UpdateResourceClientRpc!");
-            ResourceClient.Instance.UpdateResource(new ResourceData
-            {
-                resourceType = resourceType,
-                amount = amount
-            }, callbackId, success);
+            ResourceClient.Instance.UpdateResource(request, success);
         }
     }
 }

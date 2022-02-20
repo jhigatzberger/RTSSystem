@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
   m_Name: WorkGatherableState
   m_EditorClassIdentifier: 
-  actions: []
+  actions:
+  - {fileID: -3901806946217863366, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  - {fileID: 3877916336534050221, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  - {fileID: -2971944299767544922, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
   transitions:
   - {fileID: -1179576439048803181, guid: d706f089d43d51341a0523413b93e755, type: 2}
 --- !u!114 &-2882649675405381954
@@ -29,9 +32,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions:
   - {fileID: 11400000, guid: 398a64fc60d166847b94ff3705956cf9, type: 2}
+  - {fileID: 11400000, guid: 7ea0688994ee4b74db6c4bc24ad85e0f, type: 2}
   transitions:
   - {fileID: 5111644768961962819, guid: d706f089d43d51341a0523413b93e755, type: 2}
   - {fileID: 5681330678951283699, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &-1301262172125601321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: WorkConstructionState
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 1096631118255179923, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  - {fileID: 3877916336534050221, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  - {fileID: -7225447340955093432, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  transitions:
+  - {fileID: 5515746197383197615, guid: d706f089d43d51341a0523413b93e755, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
   m_Name: DeliverState
   m_EditorClassIdentifier: 
-  actions: []
+  actions:
+  - {fileID: 2471572664656425273, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  - {fileID: 11400000, guid: 7ea0688994ee4b74db6c4bc24ad85e0f, type: 2}
   transitions:
   - {fileID: -6759875159776168003, guid: d706f089d43d51341a0523413b93e755, type: 2}
 --- !u!114 &6544760059276826981
@@ -72,8 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
   m_Name: DropoffState
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 8762574854953491697, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  transitions:
+  - {fileID: -991499544113627157, guid: d706f089d43d51341a0523413b93e755, type: 2}
 --- !u!114 &7922906760879440582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,3 +117,36 @@ MonoBehaviour:
   transitions:
   - {fileID: -1475425872228910403, guid: d706f089d43d51341a0523413b93e755, type: 2}
   - {fileID: -4295260833644693234, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &7932788798038112835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: GoToConstructionState
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 7ea0688994ee4b74db6c4bc24ad85e0f, type: 2}
+  - {fileID: 11400000, guid: 398a64fc60d166847b94ff3705956cf9, type: 2}
+  transitions:
+  - {fileID: 6481794405707330340, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &8568303952729646626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: ConstructState
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 934935996348327818, guid: 1ca6931205f7b5b4b95d5fffcf626ebf, type: 2}
+  transitions:
+  - {fileID: -9047602565221161300, guid: d706f089d43d51341a0523413b93e755, type: 2}

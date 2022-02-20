@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -103,6 +104,8 @@ public class StateMachineNode : Node
         List<Action> actions = new List<Action>(state.actions);
         actions.Add(action);
         state.actions = actions.ToArray();
+        EditorUtility.SetDirty(state);
+        AssetDatabase.SaveAssets();
         AddAction(action);
     }
 
@@ -142,6 +145,8 @@ public class StateMachineNode : Node
         List<Transition> transitions = new List<Transition>(state.transitions);
         transitions.Add(transition);
         state.transitions = transitions.ToArray();
+        EditorUtility.SetDirty(state);
+        AssetDatabase.SaveAssets();
         AddTransition(transition);
     }
 

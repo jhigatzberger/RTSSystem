@@ -17,18 +17,21 @@ public static class ResourceEvents
 
 public struct AlterResourceRequest
 {
-    public int resourceType;
-    public int amount;
+    public ResourceData[] data;
     public Action successCallback;
-
     public AlterResourceRequest(ResourceData data, Action callback)
     {
-        resourceType = data.resourceType;
-        amount = data.amount;
+        this.data = new ResourceData[] { data };
+        successCallback = callback;
+    }
+    public AlterResourceRequest(ResourceData[] data, Action callback)
+    {
+        this.data = data;
         successCallback = callback;
     }
 
 }
+
 [Serializable]
 public struct ResourceData
 {

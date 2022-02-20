@@ -60,6 +60,8 @@ MonoBehaviour:
   commandCursors:
   - {fileID: 11400000, guid: c4feb0c2ec1ad2a4dabd27daff761d1f, type: 2}
   - {fileID: 11400000, guid: 4a83c5b7e4d94b64290d4327e491ba39, type: 2}
+  - {fileID: 11400000, guid: edda8dc34dad12c4ea9926e27635316c, type: 2}
+  - {fileID: 11400000, guid: 0dbc882d71d022048b6a1f1be9af444d, type: 2}
   defaultCursor: {fileID: 11400000, guid: c5a7e758431f7594095eec3fa657262e, type: 2}
 --- !u!1 &1948774268
 GameObject:

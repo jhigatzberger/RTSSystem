@@ -31,8 +31,8 @@ namespace JHiga.RTSEngine
             id = 0;
             team = data.mapTeam;
             color = data.playerColors[0];
-            ownMask = 1;
-            enemyMask = 0;
+            ownMask = 0;
+            enemyMask = GenerateEnemyMask();
             faction = data.mapFaction;
             factories = data.mapFaction.CopyEntities(0);
             startEntities = new List<StartEntityData>(data.mapFaction.startEntities);

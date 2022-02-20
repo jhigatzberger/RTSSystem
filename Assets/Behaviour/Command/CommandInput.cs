@@ -1,3 +1,4 @@
+using JHiga.RTSEngine.InputHandling;
 using JHiga.RTSEngine.Selection;
 using System;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace JHiga.RTSEngine.CommandPattern
             }
         }
         private CommandProperties _forcedCommand;
+        private Transform commandPreview;
         public CommandProperties ForcedCommand
         {
             get => _forcedCommand;
@@ -43,9 +45,18 @@ namespace JHiga.RTSEngine.CommandPattern
 
                     _forcedCommand = value;
                     OnForcedCommand?.Invoke(value);
+
+                    if (commandPreview != null)
+                        Destroy(commandPreview.gameObject);
+
+                    if (value != null && value.forcedPreview != null)
+                        commandPreview = Instantiate(value.forcedPreview).transform;
+                    else
+                        commandPreview = null;
                 }
             }
         }
+
 
         public event Action<CommandProperties> OnContextCommand;
         public event Action<CommandProperties> OnForcedCommand;
@@ -89,6 +100,8 @@ namespace JHiga.RTSEngine.CommandPattern
         }
         private void Update()
         {
+            if (commandPreview != null && InputManager.worldPointerPosition.HasValue)
+                commandPreview.position = InputManager.worldPointerPosition.Value;
             CacheEntity();
             if (ForcedCommand != null)
                 return;

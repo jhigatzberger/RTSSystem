@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entities:
   - {fileID: 2500089482278810806}
+  - {fileID: 2394286370583307252}
+  - {fileID: -5309540013199247593}
   children: []
+--- !u!114 &-5309540013199247593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Iron
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7045057129713539820, guid: 05401794fa96e5e41a8995244baec4c4, type: 3}
+  properties:
+  - {fileID: 1987216394735253265, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -4074905166127720818, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,6 +49,22 @@ MonoBehaviour:
   startEntities: []
   entityGroups:
   - {fileID: -8121613573877684937}
+--- !u!114 &2394286370583307252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Berries
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 53388845118319585, guid: 63426b7b94e71e9438e4d2c4ecb0b097, type: 3}
+  properties:
+  - {fileID: 1987216394735253265, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -8951140612755273756, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &2500089482278810806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4104074141718744808, guid: ba0eaa49c138123459421aef2aa2b814, type: 3}
+  prefab: {fileID: 1746012616753649788, guid: 23c707a8fc8524141a18d17dd675f7e3, type: 3}
   properties:
   - {fileID: 1987216394735253265, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -1487804754538319039, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}

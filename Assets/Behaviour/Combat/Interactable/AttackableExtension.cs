@@ -24,7 +24,7 @@ namespace JHiga.RTSEngine.Combat
         public bool IsAlive => Health > 0;
         public virtual void Die()
         {
-            Entity.Disable();
+            Entity.Disable(Properties.hideOnDeath);
         }
     }
 }

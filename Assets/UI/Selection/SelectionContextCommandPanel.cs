@@ -1,4 +1,5 @@
 using JHiga.RTSEngine.CommandPattern;
+using System.Linq;
 using UnityEngine;
 namespace JHiga.RTSEngine.UI
 {
@@ -7,6 +8,8 @@ namespace JHiga.RTSEngine.UI
         CommandProperties[] _commands;
 
         SelectionContextCommandButton[] commandButtons;
+
+        public GameObject descriptionPanel;
 
         public CommandProperties[] Commands
         {
@@ -24,7 +27,7 @@ namespace JHiga.RTSEngine.UI
                     int length = value.Length < commandButtons.Length ? value.Length : commandButtons.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        commandButtons[i].Set(value[i]);
+                        commandButtons[i].Set(value[i], descriptionPanel);
                     }
                 }
             }
@@ -38,7 +41,7 @@ namespace JHiga.RTSEngine.UI
         private void CommandInput_OnCommandableSelectionEntity(ICommandable obj)
         {
             if (obj != null)
-                Commands = obj.CommandCompetence;
+                Commands = obj.CommandCompetence.Where(c=>!c.dynamicallyBuildable).ToArray();
             else
                 Commands = null;
         }

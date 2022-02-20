@@ -6,19 +6,10 @@ namespace JHiga.RTSEngine
         public TargeterExtension(IExtendableEntity entity, TargeterProperties properties) : base(entity, properties)
         {
         }
-
-        private Target? _target;
-
-        public event Action<Target?> OnTarget;
-
-        public Target? Target
+        public Target? Target { get; set; }
+        public override void Clear()
         {
-            get => _target;
-            set
-            {
-                _target = value;
-                OnTarget?.Invoke(value);
-            }
-        }      
+            Target = null;
+        }
     }
 }

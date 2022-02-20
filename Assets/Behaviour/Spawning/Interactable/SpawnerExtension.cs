@@ -8,18 +8,16 @@ namespace JHiga.RTSEngine.Spawning
     {
         private Queue<EntitySpawnData> spawnQueue = new Queue<EntitySpawnData>();
         private float timeStamp;
-        public Target Waypoint {
-            get
-            {
-                return new Target
-                {
-                    position = Properties.doorPosition
-                };
-            }
-            set => throw new System.NotImplementedException();
-        }
+        public Vector3 SpawnOffset { get; set; }
 
         public int QueueSize => spawnQueue.Count;
+
+        public Vector3 DefaultSpawnOffset { get => Properties.doorPosition + Entity.MonoBehaviour.transform.position; }
+
+        public override void Enable()
+        {
+            SpawnOffset = DefaultSpawnOffset;
+        }
 
         public SpawnerExtension(IExtendableEntity entity, SpawnerProperties properties) : base(entity, properties)
         {
@@ -39,7 +37,7 @@ namespace JHiga.RTSEngine.Spawning
                 return;
 
             EntitySpawnData spawnData = spawnQueue.Dequeue();
-            spawnData.factory.Spawn(Entity.MonoBehaviour.transform.position + Properties.doorPosition, spawnData.uid);
+            spawnData.factory.Spawn(SpawnOffset, spawnData.uid);
         }
         public void Enqueue(UID uid, float spawnTime)
         {

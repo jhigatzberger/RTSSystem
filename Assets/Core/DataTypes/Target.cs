@@ -1,3 +1,5 @@
+using JHiga.RTSEngine.InputHandling;
+using JHiga.RTSEngine.Selection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,19 +20,24 @@ namespace JHiga.RTSEngine
                 entity = null;
             position = Vector2ToVector3(skinnedTarget.position);
         }
-        public Vector3 Point => entity == null ? position : entity.MonoBehaviour.transform.position;
+        public Vector3 ClosestPoint(Vector3 position)
+        {
+            if (entity != null)
+                return entity.ClosestEdgePoint(position);
+            return this.position;
+        }
         public float Distance(Vector3 point)
         {
-            return Vector3.Distance(Point, point);
+            return Vector3.Distance(ClosestPoint(point), point);
         }
         public SkinnedTarget Skin => new SkinnedTarget
         {
             position = new Vector2(position.x, position.z),
-            targetEntity = entity==null?-1:entity.UniqueID.uniqueId
+            targetEntity = entity == null ? -1 : entity.UniqueID.uniqueId
         };
         public static Vector3 Vector2ToVector3(Vector2 vector2)
         {
-            if(Physics.Raycast(new Vector3(vector2.x, RTSWorldData.Instance.maxMapHight, vector2.y), Vector3.down, out RaycastHit hit, RTSWorldData.Instance.groundLayerMask))
+            if (Physics.Raycast(new Vector3(vector2.x, RTSWorldData.Instance.maxMapHight, vector2.y), Vector3.down, out RaycastHit hit, RTSWorldData.Instance.groundLayerMask))
                 return hit.point;
             throw new Exception("Target position out of map!");
         }
@@ -44,6 +51,11 @@ namespace JHiga.RTSEngine
         {
             return position == other.position && entity == other.entity;
         }
+        public static Target FromContext => new Target
+        {
+            position = InputManager.worldPointerPosition.Value,
+            entity = SelectionContext.FirstOrNullHovered
+        };
     }
     public struct SkinnedTarget
     {

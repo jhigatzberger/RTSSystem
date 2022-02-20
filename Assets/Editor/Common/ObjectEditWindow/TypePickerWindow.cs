@@ -90,9 +90,9 @@ public class TypePickerWindow : EditorWindow
         if (parent != null && CurrentEditType != EditType.Reference)
         {
             AssetDatabase.AddObjectToAsset(typePicker.Cache, parent);
-            AssetDatabase.SaveAssets();
             EditorUtility.SetDirty(typePicker.Cache);
             EditorUtility.SetDirty(parent);
+            AssetDatabase.SaveAssets();
         }
         if (callback != null)
             callback(typePicker.Cache as T);

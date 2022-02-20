@@ -48,6 +48,7 @@ namespace JHiga.RTSEngine
             GameEntity entity = entities[uid.entityIndex];
             if (entity != null)
             {
+                entity.gameObject.SetActive(true);
                 entity.transform.position = position;
                 entity.enabled = true;
             }

@@ -26,8 +26,7 @@ namespace JHiga.RTSEngine.Movement
                     LockStep.OnStep += UpdateDestination;
             }
         }
-
-        public float Distance => Destination.HasValue? Destination.Value.Distance(Entity.MonoBehaviour.transform.position) : 0;
+        public float Distance => Destination.HasValue? Destination.Value.Distance(Entity.Position) : 0;
         public void Enqueue(Target destination)
         {
             destinations.Enqueue(destination);
@@ -40,13 +39,13 @@ namespace JHiga.RTSEngine.Movement
                 return;
             if (Destination == null)
             {
-                agent.SetDestination(Entity.MonoBehaviour.transform.position);
+                agent.SetDestination(Entity.Position);
                 agent.isStopped = true;
             }
             else
             {
                 agent.isStopped = false;
-                agent.SetDestination(Destination.Value.entity == null ? Destination.Value.position : Destination.Value.entity.MonoBehaviour.transform.position);
+                agent.SetDestination(Destination.Value.ClosestPoint(Entity.Position));
             }
         }
         public void Move()

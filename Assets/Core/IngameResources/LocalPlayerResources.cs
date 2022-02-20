@@ -23,6 +23,13 @@ namespace JHiga.RTSEngine
         {
             return resources[data.resourceType] >= data.amount;
         }
+        public bool CanAfford(ResourceData[] data)
+        {
+            foreach (ResourceData d in data)
+                if (!CanAfford(d))
+                    return false;
+            return true;
+        }
         private void ResourceEvents_OnUpdateResource(ResourceData obj)
         {
             Debug.Log("ResourceEvents_OnUpdateResource!");
