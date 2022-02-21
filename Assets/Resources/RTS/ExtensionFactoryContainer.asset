@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   attackCoolDown: 3
-  visionRange: 3
+  visionRange: 5
   attackRange: 1
 --- !u!114 &-6945702331381669396
 MonoBehaviour:
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   attackCoolDown: 4
-  visionRange: 2.5
+  visionRange: 5
   attackRange: 1.7
 --- !u!114 &1832647795238269208
 MonoBehaviour:
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 7
   attackCoolDown: 3
-  visionRange: 3
+  visionRange: 5
   attackRange: 1.5
 --- !u!114 &8567103948272601740
 MonoBehaviour:
