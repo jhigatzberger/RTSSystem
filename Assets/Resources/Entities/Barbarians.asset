@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
-  m_Name: BarbarianWorker
+  m_Name: Barbarian Worker
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7157036068445704457, guid: 349c6aaa34c1bbf4f9b671febb4c2cb3, type: 3}
+  prefabs:
+  - {fileID: 7157036068445704457, guid: 349c6aaa34c1bbf4f9b671febb4c2cb3, type: 3}
   properties:
   - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
   - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
@@ -49,7 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1137340246058539085, guid: f32ca0a70150e4b4088d86118075f44b, type: 3}
+  prefabs:
+  - {fileID: 1137340246058539085, guid: f32ca0a70150e4b4088d86118075f44b, type: 3}
+  - {fileID: 1137340246058539085, guid: 7789aff4e996c144bbb9d0cacc0388b6, type: 3}
   properties:
   - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
   - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}
@@ -88,7 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Townhall
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6337715713637532847, guid: 978a9832b6b656945863d1db26a7d3cf, type: 3}
+  prefabs:
+  - {fileID: 6337715713637532847, guid: 978a9832b6b656945863d1db26a7d3cf, type: 3}
   properties:
   - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}

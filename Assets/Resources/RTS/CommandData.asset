@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
   m_Name: SpawnSpearmanCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 8978070177785b348bf6d21e45d25eb6, type: 3}
+  icon: {fileID: 21300000, guid: 2e65704661825cd46974c134376767e0, type: 3}
   forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
   m_Name: SpawnWarriorCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: e15a482721c3d2b458444a7b4d6161dc, type: 3}
+  icon: {fileID: 21300000, guid: 71f215af978d11d4d9e20d5d2349fe37, type: 3}
   forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
   m_Name: SpawnKnightCommand
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: efee6508e03fbcf48a58c946ba9295c8, type: 3}
+  icon: {fileID: 21300000, guid: eb81f3727c4699f40bd560600bb64771, type: 3}
   forcedPreview: {fileID: 0}
   dynamicallyBuildable: 0
   requireContext: 0

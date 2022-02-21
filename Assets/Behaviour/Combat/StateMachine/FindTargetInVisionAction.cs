@@ -20,7 +20,7 @@ public class FindTargetInVisionAction : Action
             {
                 if (c.gameObject.GetComponent<GameEntity>().TryGetExtension(out IAttackable target))
                 {
-                    attacker.Target = new Target
+                    entity.GetExtension<ITargeter>().Target = new Target
                     {
                         entity = target.Entity
                     };

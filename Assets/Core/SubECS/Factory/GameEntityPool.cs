@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine
     [CreateAssetMenu(fileName = "Entity", menuName = "RTS/Entity/Entity")]
     public class GameEntityPool : ScriptableObject
     {
-        public GameObject prefab;
+        [SerializeField] private GameObject[] prefabs;
         public ExtensionFactory[] properties;
         private Dictionary<Type, int> _extensionMap;
         private Dictionary<Type, int> ExtensionMap
@@ -54,6 +54,9 @@ namespace JHiga.RTSEngine
             }
             else
             {
+                UnityEngine.Random.InitState(uid.uniqueId);
+                int index = UnityEngine.Random.Range(0, prefabs.Length);
+                GameObject prefab = prefabs[index];
                 entity = Instantiate(prefab, position, Quaternion.identity).AddComponent<GameEntity>();
                 entity.extensionMap = ExtensionMap;
                 entity.Extensions = Build(entity);

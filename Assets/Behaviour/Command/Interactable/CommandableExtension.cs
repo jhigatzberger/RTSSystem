@@ -8,7 +8,6 @@ namespace JHiga.RTSEngine.CommandPattern
     {
         Queue<ResolvedCommand> commandQueue = new Queue<ResolvedCommand>();
         public ResolvedCommand? Current { get; set; }
-        public event Action OnCommandClear;
         public CommandProperties[] CommandCompetence => Properties.commandCompetence;
         public CommandableExtension(IExtendableEntity entity, CommandableProperties properties) : base(entity, properties){}
 
@@ -29,7 +28,6 @@ namespace JHiga.RTSEngine.CommandPattern
         }
         public override void Clear()
         {
-            OnCommandClear?.Invoke();
             Current = null;
             commandQueue.Clear();
         }

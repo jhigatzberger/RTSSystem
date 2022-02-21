@@ -43,9 +43,7 @@ namespace JHiga.RTSEngine
         }
         public bool IsInRange(Vector3 position, float range)
         {
-            if (entity != null)
-                return Vector3.Distance(position, entity.MonoBehaviour.transform.position) < range;
-            return Vector3.Distance(position, this.position) < range;
+            return Distance(position) < range;
         }
         public bool Equals(Target other)
         {

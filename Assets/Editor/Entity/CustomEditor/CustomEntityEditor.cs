@@ -8,13 +8,13 @@ using UnityEditor.UIElements;
 [CanEditMultipleObjects]
 public class CustomEntityEditor : Editor
 {
-    SerializedProperty prefab;
+    SerializedProperty prefabs;
     Texture2D _texture;
     Texture2D Texture {
         get
         {
-            if ((_texture == null || serializedObject.hasModifiedProperties) && prefab.objectReferenceValue != null)
-                _texture = GetPrefabPreview(PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(prefab.objectReferenceValue));
+            if ((_texture == null || serializedObject.hasModifiedProperties) && prefabs.arraySize > 0 && prefabs.GetArrayElementAtIndex(0).objectReferenceValue != null)
+                _texture = GetPrefabPreview(PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(prefabs.GetArrayElementAtIndex(0).objectReferenceValue));
 
             return _texture;
         }
@@ -23,23 +23,23 @@ public class CustomEntityEditor : Editor
     {
         try
         {
-            prefab = serializedObject.FindProperty("prefab");
+            prefabs = serializedObject.FindProperty("prefabs");
         }
         catch
         {
-            prefab = null;
+            prefabs = null;
         }
     }
 
     public override void OnInspectorGUI()
     {
-        if (prefab == null)
+        if (prefabs == null)
             return;
         serializedObject.Update();
         serializedObject.targetObject.name = EditorGUILayout.TextField("Name: ", serializedObject.targetObject.name);
         if(Texture != null)
             GUILayout.Box(Texture);
-        EditorGUILayout.PropertyField(prefab, GUIContent.none, Texture);
+        EditorGUILayout.PropertyField(prefabs, GUIContent.none, Texture);
         serializedObject.ApplyModifiedProperties();
     }
     private Image preview;
@@ -51,7 +51,7 @@ public class CustomEntityEditor : Editor
         preview.image = Texture;
         PropertyField prefabField = new PropertyField();
         prefabField.Bind(serializedObject);
-        prefabField.BindProperty(prefab);
+        prefabField.BindProperty(prefabs);
         prefabField.RegisterCallback<ChangeEvent<Object>>(e =>
         {
             preview.image = Texture;

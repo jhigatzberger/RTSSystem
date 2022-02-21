@@ -14,18 +14,24 @@ namespace JHiga.RTSEngine.Combat
         public override void Enable()
         {
             targeter = Entity.GetExtension<ITargeter>();
+            targeter.OnTargetEvent += Targeter_OnTargetEvent;
+        }
+
+        private void Targeter_OnTargetEvent(Target? obj)
+        {
+            if (Entity.MonoBehaviour.enabled && Entity.MonoBehaviour.gameObject.activeSelf)
+                anim.SetLayerWeight(1, obj == null ? 0 : 1);
         }
         #region Stats
         public int Damage { get => Properties.damage; }
         public float AttackCooldown { get => Properties.attackCoolDown; }
         public float VisionRange { get => Properties.visionRange; }
         public float AttackRange { get => Properties.attackRange; }
-        public float DamageDelay => Properties.damageDelay;
         public bool IsInRange {
             get =>
                 Target != null &&
                 Target.Value.HasActiveEntity &&
-                Target.Value.IsInRange(Entity.MonoBehaviour.transform.position, AttackRange);
+                Target.Value.IsInRange(Entity.Position, AttackRange);
         }
         #endregion
 
@@ -38,7 +44,16 @@ namespace JHiga.RTSEngine.Combat
         {
             if (!CanAttack)
                 return;
-            attackCoroutine = Entity.MonoBehaviour.StartCoroutine(PerformAttack());
+            anim.SetInteger("ABAnim", ABAnim++);
+            lastAttack = LockStep.time;
+            if (Target.HasValue)
+            {
+                IAttackable attackable = Target.Value.entity.GetExtension<IAttackable>();
+                if (attackable.IsAlive)
+                    attackable.Health -= Damage;
+                else
+                    targeter.Target = null;
+            }
         }
         private int abAnim = 0;
         private int ABAnim
@@ -49,25 +64,6 @@ namespace JHiga.RTSEngine.Combat
                 abAnim = value + 2 % 2;
             }
         }
-        IEnumerator PerformAttack()
-        {
-            anim.SetInteger("ABAnim", ABAnim++);
-            anim.SetTrigger("Attack");
-            lastAttack = LockStep.time;
-            yield return new WaitForSeconds(DamageDelay);
-            if(Target.HasValue)
-            {
-                IAttackable attackable = Target.Value.entity.GetExtension<IAttackable>();
-                if (attackable.IsAlive)
-                {
-                    attackable.Health -= Damage;
-                }
-                else
-                    Target = null;
-            }
-
-            attackCoroutine = null;
-        }
         #endregion
 
         #region Target
@@ -75,19 +71,10 @@ namespace JHiga.RTSEngine.Combat
         public Target? Target
         {
             get => targeter.Target;
-            set
-            {
-                if (!value.Equals(targeter.Target))
-                {
-                    targeter.Target = value;
-                    if (Entity.MonoBehaviour.enabled && Entity.MonoBehaviour.gameObject.activeSelf)
-                        Entity.MonoBehaviour.StartCoroutine(TransitionCombatAnimLayer(value == null ? 1 : 0, value == null ? 0 : 1, 3));
-                }
-            }
         }
         public override void Clear()
         {
-            Target = null;
+            targeter.Target = null;
             if (attackCoroutine != null)
             {
                 Entity.MonoBehaviour.StopCoroutine(attackCoroutine);
@@ -98,6 +85,7 @@ namespace JHiga.RTSEngine.Combat
         {
             anim.SetLayerWeight(1, 0);
             targeter.Target = null;
+            targeter.OnTargetEvent -= Targeter_OnTargetEvent;
             if (attackCoroutine != null)
             {
                 Entity.MonoBehaviour.StopCoroutine(attackCoroutine);

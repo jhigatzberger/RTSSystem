@@ -10,10 +10,7 @@ namespace JHiga.RTSEngine.Combat
         public float attackCoolDown;
         public float visionRange; 
         public float attackRange;
-        public float damageDelay;
-
         public override Type ExtensionType => typeof(IAttacker);
-
         public override IEntityExtension Build(IExtendableEntity extendable)
         {
             return new AttackerExtension(extendable, this);

@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Combat
     /// </summary>
     public interface IAttacker : IEntityExtension
     {
-        public Target? Target { get; set; }
+        public Target? Target { get; }
         /// <summary>
         /// Checks whether the distance to <see cref="Target"/> is smaller or equal to <see cref="AttackRange"/>.
         /// You can enter an Attack <see cref="State"/> with the <see cref="InRangeDecision"/>.
@@ -45,11 +45,6 @@ namespace JHiga.RTSEngine.Combat
 
         /// <summary>
         /// The time in seconds between subtracting the <see cref="Damage"/> from the <see cref="IAttackable.Health"/> of <see cref="Target"/>.
-        /// </summary>
-        public float DamageDelay { get; }
-
-        /// <summary>
-        /// True for the <see cref="DamageDelay"/> duration after performing an <see cref="Attack"/>.
         /// </summary>
         public bool IsAttacking { get; }
         

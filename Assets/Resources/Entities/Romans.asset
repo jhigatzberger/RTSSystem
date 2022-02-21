@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Equite
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8726071526014405772, guid: a363258e59b22cb45a8260e05b1a0de7, type: 3}
+  prefabs:
+  - {fileID: 8726071526014405772, guid: a363258e59b22cb45a8260e05b1a0de7, type: 3}
   properties:
   - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
   - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}
@@ -47,9 +48,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
-  m_Name: Baracks
+  m_Name: Barracks
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7169776054492843179, guid: 2562d6431e248614db79bbf5f915a098, type: 3}
+  prefabs:
+  - {fileID: 7169776054492843179, guid: 2562d6431e248614db79bbf5f915a098, type: 3}
   properties:
   - {fileID: -3100469551088636044, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
@@ -63,9 +65,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
-  m_Name: Baracks
+  m_Name: BarracksFinished
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3035259405304923790, guid: a05a4b6c769f753468b47909df4b07a6, type: 3}
+  prefabs:
+  - {fileID: 3035259405304923790, guid: a05a4b6c769f753468b47909df4b07a6, type: 3}
   properties:
   - {fileID: -5234316061317109920, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
@@ -118,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Worker
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7157036068445704457, guid: 5be87424a25fd8248bfb0ef61aad4824, type: 3}
+  prefabs:
+  - {fileID: 7157036068445704457, guid: 5be87424a25fd8248bfb0ef61aad4824, type: 3}
   properties:
   - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
   - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
@@ -142,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Townhall
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1489735120124986376, guid: 83ca73e8b5474b54c83aa19547fca6d7, type: 3}
+  prefabs:
+  - {fileID: 1489735120124986376, guid: 83ca73e8b5474b54c83aa19547fca6d7, type: 3}
   properties:
   - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
@@ -162,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
   m_Name: Legionary
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1137340246058539085, guid: 2435e45bed8a5084ca1d7bbe23a58fe2, type: 3}
+  prefabs:
+  - {fileID: 1137340246058539085, guid: 2435e45bed8a5084ca1d7bbe23a58fe2, type: 3}
   properties:
   - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
   - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}

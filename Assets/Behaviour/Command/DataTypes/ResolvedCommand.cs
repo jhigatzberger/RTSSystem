@@ -26,7 +26,7 @@
                 if (entity.TryGetExtension(out ICommandable commandable))
                 {
                     if (references.clearQueueOnEnqeue)
-                        commandable.Clear();
+                        commandable.Entity.Clear();
                     commandable.Enqueue(this);
                 }
             }

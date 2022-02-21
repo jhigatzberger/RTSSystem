@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cb83c6e88c2d845b42a8493be3ef3a, type: 3}
   m_Name: AttackerWarrior
   m_EditorClassIdentifier: 
-  damage: 10
-  attackCoolDown: 1
-  visionRange: 2
+  damage: 5
+  attackCoolDown: 3
+  visionRange: 3
   attackRange: 1
-  damageDelay: 0.7
 --- !u!114 &-6945702331381669396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc43eecc3faa0964db4051cf0a1b79d9, type: 3}
   m_Name: MovableWarrior
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 3.3
 --- !u!114 &-5722247136699371181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc43eecc3faa0964db4051cf0a1b79d9, type: 3}
   m_Name: WorkerMovableProperties
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 2.5
 --- !u!114 &-2414753097080938353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc43eecc3faa0964db4051cf0a1b79d9, type: 3}
   m_Name: MovableLegionary
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 3
 --- !u!114 &-2411329918141127710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7a72133419e14eab65f8bd233ca16, type: 3}
   m_Name: TownhallSpawnerProperties
   m_EditorClassIdentifier: 
-  doorPosition: {x: 6, y: 0, z: 0}
+  doorPosition: {x: 7, y: 0, z: 0}
 --- !u!114 &131642567969212944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,10 +385,9 @@ MonoBehaviour:
   m_Name: AttackerLegionary
   m_EditorClassIdentifier: 
   damage: 5
-  attackCoolDown: 2
-  visionRange: 2
-  attackRange: 1
-  damageDelay: 0.7
+  attackCoolDown: 4
+  visionRange: 2.5
+  attackRange: 1.7
 --- !u!114 &1832647795238269208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,8 +465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandCompetence:
   - {fileID: -6567315930251814304, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
-  - {fileID: -3847284177112424030, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -4279965886676802490, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: -3847284177112424030, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
 --- !u!114 &8034277702926332492
 MonoBehaviour:
@@ -483,10 +481,9 @@ MonoBehaviour:
   m_Name: AttackerEquite
   m_EditorClassIdentifier: 
   damage: 7
-  attackCoolDown: 2
-  visionRange: 2
-  attackRange: 1
-  damageDelay: 0.7
+  attackCoolDown: 3
+  visionRange: 3
+  attackRange: 1.5
 --- !u!114 &8567103948272601740
 MonoBehaviour:
   m_ObjectHideFlags: 0
