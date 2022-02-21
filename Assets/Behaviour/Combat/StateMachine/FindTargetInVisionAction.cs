@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FindTargetInVisionAction", menuName = "RTS/Behaviour/Actions/FindTargetInVisionAction")]
-public class FindTargetInVisionAction : Action
+public class FindTargetInVisionAction : StateMachineAction
 {
     public override void Enter(IStateMachine stateMachine)
     {

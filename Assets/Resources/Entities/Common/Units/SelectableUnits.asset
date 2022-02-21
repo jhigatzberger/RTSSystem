@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 10
   scale: 1
+  actions:
+  - {fileID: 11400000, guid: 2a7b17a7e37492f4180ec2994bcea15d, type: 2}
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}

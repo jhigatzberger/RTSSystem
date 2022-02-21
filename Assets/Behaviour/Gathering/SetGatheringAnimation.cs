@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine.Gathering
 {
-    public class SetGatheringAnimation : Action
+    public class SetGatheringAnimation : StateMachineAction
     {
         [SerializeField] private string parameterName;
         [SerializeField] private int[] resourceTypeAnimations;

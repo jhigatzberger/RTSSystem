@@ -2,7 +2,7 @@ using JHiga.RTSEngine.StateMachine;
 
 namespace JHiga.RTSEngine.Gathering
 {
-    public class GatherAction : Action
+    public class GatherAction : StateMachineAction
     {
         public override void Enter(IStateMachine stateMachine)
         {

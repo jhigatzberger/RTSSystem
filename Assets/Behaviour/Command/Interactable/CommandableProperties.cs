@@ -8,6 +8,7 @@ namespace JHiga.RTSEngine.CommandPattern
     public class CommandableProperties : ExtensionFactory
     {
         public CommandProperties[] commandCompetence;
+        public BaseAction[] onCommandActions;
         public override Type ExtensionType => typeof(ICommandable);
         public override IEntityExtension Build(IExtendableEntity extendable)
         {

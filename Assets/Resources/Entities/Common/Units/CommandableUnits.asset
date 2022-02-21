@@ -15,3 +15,4 @@ MonoBehaviour:
   commandCompetence:
   - {fileID: 6053781840455765175, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions: []

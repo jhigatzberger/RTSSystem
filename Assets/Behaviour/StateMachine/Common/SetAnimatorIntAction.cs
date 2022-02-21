@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine.StateMachine
 {
-    public class SetAnimatorIntAction : Action
+    public class SetAnimatorIntAction : StateMachineAction
     {
         [SerializeField] private bool onEnter;
         [SerializeField] private string enterParameter;

@@ -30,23 +30,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   scale: 10
+  actions: []
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
---- !u!114 &-7387350016636901164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02cb83c6e88c2d845b42a8493be3ef3a, type: 3}
-  m_Name: AttackerWarrior
-  m_EditorClassIdentifier: 
-  damage: 5
-  attackCoolDown: 3
-  visionRange: 5
-  attackRange: 1
 --- !u!114 &-6945702331381669396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandCompetence:
   - {fileID: 5248126612945112393, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions: []
 --- !u!114 &-6022623909550766482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +120,7 @@ MonoBehaviour:
   commandCompetence:
   - {fileID: -8363520463363847077, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 7176674067703014830, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions: []
 --- !u!114 &-4074905166127720818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +394,7 @@ MonoBehaviour:
   - {fileID: 5640908343698708538, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -3001044391822662561, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions: []
 --- !u!114 &1987216394735253265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +409,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   scale: 3
+  actions: []
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &4107618206730801798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cb83c6e88c2d845b42a8493be3ef3a, type: 3}
+  m_Name: AttackerWarrior
+  m_EditorClassIdentifier: 
+  damage: 5
+  attackCoolDown: 2
+  visionRange: 4
+  attackRange: 1
 --- !u!114 &4181876613820362627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +442,7 @@ MonoBehaviour:
   commandCompetence:
   - {fileID: -684924636645562640, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -4593153992739152627, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions: []
 --- !u!114 &4996876551240044538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +474,8 @@ MonoBehaviour:
   - {fileID: -4279965886676802490, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -3847284177112424030, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions:
+  - {fileID: 11400000, guid: 645d1cb2689374b458acc8224bb90dde, type: 2}
 --- !u!114 &8034277702926332492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,4 +519,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   scale: 2
+  actions: []
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}

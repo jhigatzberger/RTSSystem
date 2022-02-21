@@ -1,17 +1,18 @@
 using UnityEngine;
 
-namespace JHiga.RTSEngine.StateMachine
+namespace JHiga.RTSEngine
 {
-    public class StartAudioClipAction : StateMachineAction
+    [CreateAssetMenu(fileName = "StartAudioClipBaseAction", menuName = "RTS/Behaviour/Actions/StartAudioClipBaseAction")]
+    public class StartAudioClipBaseAction : BaseAction
     {
         [SerializeField] private AudioClip[] clips;
         [SerializeField] private bool loopUntilExit;
         [SerializeField] private bool playDelayed;
         [SerializeField] private float delay;
 
-        public override void Enter(IStateMachine stateMachine)
+        public override void Run(IExtendableEntity entity)
         {
-            AudioSource source = stateMachine.Entity.MonoBehaviour.GetComponent<AudioSource>();
+            AudioSource source = entity.MonoBehaviour.GetComponent<AudioSource>();
             Random.InitState((int)LockStep.count);
             int index = Random.Range(0, clips.Length);
             source.clip = clips[index];
@@ -24,9 +25,9 @@ namespace JHiga.RTSEngine.StateMachine
                 source.Play();
         }
 
-        public override void Exit(IStateMachine stateMachine)
+        public override void Stop(IExtendableEntity entity)
         {
-            AudioSource source = stateMachine.Entity.MonoBehaviour.GetComponent<AudioSource>();
+            AudioSource source = entity.MonoBehaviour.GetComponent<AudioSource>();
             if (loopUntilExit)
                 source.loop = false;
         }

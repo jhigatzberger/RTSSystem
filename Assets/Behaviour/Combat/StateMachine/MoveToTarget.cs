@@ -5,7 +5,7 @@ using JHiga.RTSEngine.StateMachine;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MoveToTarget", menuName = "RTS/Behaviour/Actions/MoveToTarget")]
-public class MoveToTarget : Action
+public class MoveToTarget : StateMachineAction
 {
     public override void Enter(IStateMachine stateMachine)
     {

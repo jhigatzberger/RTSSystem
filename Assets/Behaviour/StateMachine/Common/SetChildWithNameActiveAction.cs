@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine
 {
-    public class SetChildWithNameActiveAction : Action
+    public class SetChildWithNameActiveAction : StateMachineAction
     {
         public string childName;
         public bool changeOnEnter;

@@ -25,11 +25,21 @@ namespace JHiga.RTSEngine.Selection
             if(!Selected)
                 OnSelectedUpdate(true);
             _selectionIndex = index;
+            if(Properties.actions != null && index == 0)
+            {
+                foreach (BaseAction action in Properties.actions)
+                    action.Run(Entity);
+            }
         }
         public void Deselect()
         {
             if (Selected)
                 OnSelectedUpdate(false);
+            if (Properties.actions != null && _selectionIndex == 0)
+            {
+                foreach (BaseAction action in Properties.actions)
+                    action.Stop(Entity);
+            }
             _selectionIndex = -1;
         }
 

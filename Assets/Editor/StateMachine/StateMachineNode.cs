@@ -14,7 +14,7 @@ public class StateMachineNode : Node
     public State state;
     public Dictionary<Transition, VisualTransition> visualTransitions = new Dictionary<Transition, VisualTransition>();
     private VisualElement transitionContainer;
-    private Dictionary<Action, VisualElement> visualActions = new Dictionary<Action, VisualElement>();
+    private Dictionary<StateMachineAction, VisualElement> visualActions = new Dictionary<StateMachineAction, VisualElement>();
     private VisualElement actionContainer;
     private StateMachineGraphView graphView;
     public Port input;
@@ -39,10 +39,10 @@ public class StateMachineNode : Node
     {
         actionContainer = new VisualElement();
         if (state.actions == null)
-            state.actions = new Action[0];
-        foreach (Action a in state.actions)
+            state.actions = new StateMachineAction[0];
+        foreach (StateMachineAction a in state.actions)
             AddAction(a);
-        Button createAction = new Button(() => TypePickerWindow.Show<Action>(AddNewAction, parent: SOContainer.Get<Action>()));
+        Button createAction = new Button(() => TypePickerWindow.Show<StateMachineAction>(AddNewAction, parent: SOContainer.Get<StateMachineAction>()));
         createAction.text = "New Action";
         inputContainer.Add(actionContainer);
         inputContainer.Add(createAction);
@@ -84,7 +84,7 @@ public class StateMachineNode : Node
         return removeButton;
     }
 
-    private void AddAction(Action action)
+    private void AddAction(StateMachineAction action)
     {
         VisualElement container = new VisualElement();
         container.Add(GenerateRemoveButton(() => RemoveAction(action)));
@@ -98,10 +98,10 @@ public class StateMachineNode : Node
     }
     private void AddNewAction(Object o)
     {
-        Action action = o as Action;
+        StateMachineAction action = o as StateMachineAction;
         if (action == null)
             return;
-        List<Action> actions = new List<Action>(state.actions);
+        List<StateMachineAction> actions = new List<StateMachineAction>(state.actions);
         actions.Add(action);
         state.actions = actions.ToArray();
         EditorUtility.SetDirty(state);
@@ -109,10 +109,10 @@ public class StateMachineNode : Node
         AddAction(action);
     }
 
-    private void RemoveAction(Action action)
+    private void RemoveAction(StateMachineAction action)
     {
         actionContainer.Remove(visualActions[action]);
-        List<Action> actions = new List<Action>(state.actions);
+        List<StateMachineAction> actions = new List<StateMachineAction>(state.actions);
         actions.Remove(action);
         state.actions = actions.ToArray();
     }

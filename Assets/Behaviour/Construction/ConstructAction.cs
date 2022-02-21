@@ -2,7 +2,7 @@ using JHiga.RTSEngine.StateMachine;
 
 namespace JHiga.RTSEngine.Construction
 {
-    public class ConstructAction : Action
+    public class ConstructAction : StateMachineAction
     {
         public override void Enter(IStateMachine stateMachine)
         {

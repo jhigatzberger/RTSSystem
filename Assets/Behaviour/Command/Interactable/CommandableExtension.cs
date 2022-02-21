@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine;
 
 namespace JHiga.RTSEngine.CommandPattern
 {
@@ -24,6 +25,11 @@ namespace JHiga.RTSEngine.CommandPattern
             if (commandQueue.Count == 0)
                 return;
             Current = commandQueue.Dequeue();
+            if (Properties.onCommandActions != null && Current.Value.references.entities[0].UniqueID.Equals(Entity.UniqueID))
+            {
+                foreach (BaseAction action in Properties.onCommandActions)
+                    action.Run(Entity);
+            }
             Current.Value.properties.Execute(this, Current.Value.references);
         }
         public override void Clear()
@@ -33,6 +39,11 @@ namespace JHiga.RTSEngine.CommandPattern
         }
         public void Finish()
         {
+            if (Current.HasValue && Properties.onCommandActions != null && Current.Value.references.entities[0] == Entity)
+            {
+                foreach (BaseAction action in Properties.onCommandActions)
+                    action.Stop(Entity);
+            }
             Current = null;
             ExecuteFirstCommand();
         }

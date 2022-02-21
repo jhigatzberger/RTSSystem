@@ -3,7 +3,7 @@ using JHiga.RTSEngine.StateMachine;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "IdleAction", menuName = "RTS/Behaviour/Actions/IdleAction")]
-public class IdleAction : Action
+public class IdleAction : StateMachineAction
 {
     public override void Enter(IStateMachine stateMachine)
     {            

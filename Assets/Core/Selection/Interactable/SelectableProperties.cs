@@ -11,6 +11,7 @@ namespace JHiga.RTSEngine.Selection
     {
         public int priority;
         public float scale = 1;
+        public BaseAction[] actions;
         public GameObject selectionBehaviourPrefab;
 
         public override Type ExtensionType => typeof(ISelectable);

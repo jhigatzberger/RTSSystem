@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace JHiga.RTSEngine.Gathering
 {
-    public class DropoffAction : Action
+    public class DropoffAction : StateMachineAction
     {
         public override void Enter(IStateMachine stateMachine)
         {

@@ -5,16 +5,16 @@ namespace JHiga.RTSEngine.StateMachine
     [CreateAssetMenu(fileName = "State", menuName = "RTS/Behaviour/State")]
     public class State : ScriptableObject
     {
-        public Action[] actions;
+        public StateMachineAction[] actions;
         public Transition[] transitions;
         public void Enter(IStateMachine entity)
         {
-            foreach (Action action in actions)
+            foreach (StateMachineAction action in actions)
                 action.Enter(entity);
         }
         public void Exit(IStateMachine entity)
         {
-            foreach (Action action in actions)
+            foreach (StateMachineAction action in actions)
                 action.Exit(entity);
         }
         public void CheckTransitions(IStateMachine entity)
