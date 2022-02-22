@@ -63,5 +63,10 @@ namespace JHiga.RTSEngine.Gathering
             }
             CurrentLoad += Target.Gather(Speed);
         }
+        public override void Clear()
+        {
+            base.Clear();
+            _dropoff = null;
+        }
     }
 }

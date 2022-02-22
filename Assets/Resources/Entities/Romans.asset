@@ -37,6 +37,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entities:
   - {fileID: -7622995121388286650}
+  - {fileID: 4586922769009968755}
+  - {fileID: -909535151661660790}
+  - {fileID: 2259594410287959041}
+  - {fileID: -4328430026328045443}
   children: []
 --- !u!114 &-7622995121388286650
 MonoBehaviour:
@@ -55,6 +59,25 @@ MonoBehaviour:
   properties:
   - {fileID: -3100469551088636044, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-7620469350765788162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: MineFinished
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 3672805041092565714, guid: 43391dcb48d245440bb9cc5d029ea6ed, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 2409773572592642688, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &-6880519057620934973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +98,42 @@ MonoBehaviour:
   - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: 56055710012726646, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-4328430026328045443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Farm
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 7610771636063499143, guid: 1bc8100bd46ea5a408f44ffbc8131992, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4144897881161997027, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-3158287528390064909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: FarmFinished
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 2920034819108784844, guid: 802b92fa5632a5a40b6e5a07c6d6a02e, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6840942944622134290, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &-2044811054315504795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,8 +149,29 @@ MonoBehaviour:
   entities:
   - {fileID: 553174472893864544}
   - {fileID: -6880519057620934973}
+  - {fileID: 1726976243689369832}
+  - {fileID: 7638127537725980660}
+  - {fileID: -7620469350765788162}
+  - {fileID: -3158287528390064909}
   children:
   - {fileID: -8372294124198973206}
+--- !u!114 &-909535151661660790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Mine
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 6792721671064953101, guid: a9a25fb0d2d1fb347a231625d8459325, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -559888525676470244, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +258,78 @@ MonoBehaviour:
   - {fileID: -5494142349685471339, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: 1679252858482352654, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -2414753097080938353, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &1726976243689369832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: LumberMillFinished
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 5463495985202508140, guid: 7874a4637dc052c449e8394c519c3911, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 6471273518557541404, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &2259594410287959041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Granary
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 8673188141173402410, guid: d5f49680db6a1a24baccb57970ea681d, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 714268653684764085, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &4586922769009968755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: LumberMill
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 2848106226059287510, guid: 05bc615440899e645b4f403512d9c768, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 9039670265386223998, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &7638127537725980660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: GranaryFinished
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 566097565876783074, guid: 60e455dedd860ab429aa58f48c919feb, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6966834160699518675, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &8729672936140005990
 MonoBehaviour:
   m_ObjectHideFlags: 0

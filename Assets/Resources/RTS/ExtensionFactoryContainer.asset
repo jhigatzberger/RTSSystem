@@ -26,12 +26,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2093714405f1a184384a850f4b86d8ce, type: 3}
-  m_Name: SelectableBuildingPropertiesS10
+  m_Name: SelectableBuildingPropertiesS8
   m_EditorClassIdentifier: 
   priority: 0
-  scale: 10
+  scale: 8
   actions: []
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &-6966834160699518675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daef001ac8fad54fa664d2c9d1ea3ae, type: 3}
+  m_Name: FoodDropoff
+  m_EditorClassIdentifier: 
+  resourceTypes: 00000000
 --- !u!114 &-6945702331381669396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,6 +62,22 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0c68c1882ddd40b4ebf2fa7eae477af0, type: 2}
   - {fileID: 2100000, guid: 4a8b820c98c7b4540bab4e4f3d70d7fb, type: 2}
   - {fileID: 2100000, guid: a2085ab309c94a143a706621cd42e213, type: 2}
+--- !u!114 &-6840942944622134290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e976e3f8e099da47b9615df79283e2c, type: 3}
+  m_Name: GatherableFarmProperties
+  m_EditorClassIdentifier: 
+  rate: 1
+  resourceType: 0
+  storageType: 1
+  totalStorage: 0
 --- !u!114 &-6351087715476703125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +193,21 @@ MonoBehaviour:
   m_Name: BuildableBaracks
   m_EditorClassIdentifier: 
   finishiedEntity: {fileID: -6880519057620934973, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
-  maxConstructionLevel: 2
+  maxConstructionLevel: 5
+--- !u!114 &-2946128418418511223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
+  m_Name: BuildableStables
+  m_EditorClassIdentifier: 
+  finishiedEntity: {fileID: -8202722993971950865, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  maxConstructionLevel: 5
 --- !u!114 &-2919917840897380133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +334,20 @@ MonoBehaviour:
   m_Name: New MovableProperties
   m_EditorClassIdentifier: 
   movementSpeed: 5
+--- !u!114 &-559888525676470244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
+  m_Name: BuildableMine
+  m_EditorClassIdentifier: 
+  finishiedEntity: {fileID: -7620469350765788162, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+  maxConstructionLevel: 2
 --- !u!114 &-380329192251285054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7a72133419e14eab65f8bd233ca16, type: 3}
   m_Name: TownhallSpawnerProperties
   m_EditorClassIdentifier: 
-  doorPosition: {x: 7, y: 0, z: 0}
+  offset: {x: 7, y: 0, z: 0}
+  progressIndicator: {fileID: 5145593182747295796, guid: 948c11b50fc0c2c499538b88942f2a50, type: 3}
 --- !u!114 &131642567969212944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +404,20 @@ MonoBehaviour:
   defaultState: {fileID: 11400000, guid: 6069379fe8a08cb4e8a4d78d1dd7cbb1, type: 2}
   endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
   commandable: 1
+--- !u!114 &714268653684764085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
+  m_Name: BuildableGranary
+  m_EditorClassIdentifier: 
+  finishiedEntity: {fileID: 7638127537725980660, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+  maxConstructionLevel: 2
 --- !u!114 &1507784354444235465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +465,10 @@ MonoBehaviour:
   - {fileID: -4279965886676802490, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 5640908343698708538, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -3001044391822662561, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 8491761020279809497, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: -2618330463517444409, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: -5924021235514313358, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: -3188061336130358059, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   onCommandActions: []
 --- !u!114 &1987216394735253265
@@ -411,6 +487,19 @@ MonoBehaviour:
   scale: 3
   actions: []
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &2409773572592642688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daef001ac8fad54fa664d2c9d1ea3ae, type: 3}
+  m_Name: IronDropoff
+  m_EditorClassIdentifier: 
+  resourceTypes: 02000000
 --- !u!114 &4107618206730801798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +516,20 @@ MonoBehaviour:
   attackCoolDown: 2
   visionRange: 4
   attackRange: 1
+--- !u!114 &4144897881161997027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
+  m_Name: BuildableFarm
+  m_EditorClassIdentifier: 
+  finishiedEntity: {fileID: -3158287528390064909, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+  maxConstructionLevel: 3
 --- !u!114 &4181876613820362627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +559,21 @@ MonoBehaviour:
   m_Name: AllDropoff
   m_EditorClassIdentifier: 
   resourceTypes: 000000000100000002000000
-  offset: {x: 5, y: 0, z: 0}
+--- !u!114 &5335803645212183575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f006c6e48d9df469ac125617a11af2, type: 3}
+  m_Name: StableCommandableProperties
+  m_EditorClassIdentifier: 
+  commandCompetence:
+  - {fileID: 8193683547456929387, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions: []
 --- !u!114 &5970694577403610643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,9 +590,24 @@ MonoBehaviour:
   - {fileID: -6567315930251814304, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -4279965886676802490, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -3847284177112424030, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 7344901432976268879, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 8592250534704161766, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   onCommandActions:
   - {fileID: 11400000, guid: 645d1cb2689374b458acc8224bb90dde, type: 2}
+--- !u!114 &6471273518557541404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daef001ac8fad54fa664d2c9d1ea3ae, type: 3}
+  m_Name: WoodDropoff
+  m_EditorClassIdentifier: 
+  resourceTypes: 01000000
 --- !u!114 &8034277702926332492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +624,20 @@ MonoBehaviour:
   attackCoolDown: 3
   visionRange: 5
   attackRange: 1.5
+--- !u!114 &8400215135046258248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
+  m_Name: BuildableMarket
+  m_EditorClassIdentifier: 
+  finishiedEntity: {fileID: 6333854313529660883, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+  maxConstructionLevel: 2
 --- !u!114 &8567103948272601740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7a72133419e14eab65f8bd233ca16, type: 3}
   m_Name: BuildingSpawner
   m_EditorClassIdentifier: 
-  doorPosition: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: 0}
+  progressIndicator: {fileID: 0}
 --- !u!114 &8728924246521804952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,3 +668,17 @@ MonoBehaviour:
   scale: 2
   actions: []
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &9039670265386223998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba92fee921cff44b9b7775af569058, type: 3}
+  m_Name: BuildableLumbermill
+  m_EditorClassIdentifier: 
+  finishiedEntity: {fileID: 1726976243689369832, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+  maxConstructionLevel: 2

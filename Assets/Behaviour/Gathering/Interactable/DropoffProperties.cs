@@ -8,7 +8,6 @@ namespace JHiga.RTSEngine.Gathering
     {
         public override Type ExtensionType => typeof(IDropoff);
         public int[] resourceTypes;
-        public Vector3 offset;
         public override IEntityExtension Build(IExtendableEntity extendable)
         {
             return new DropoffExtension(extendable, this);

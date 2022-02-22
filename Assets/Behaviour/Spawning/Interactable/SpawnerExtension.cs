@@ -12,47 +12,63 @@ namespace JHiga.RTSEngine.Spawning
 
         public int QueueSize => spawnQueue.Count;
 
-        public Vector3 DefaultSpawnOffset { get => Properties.doorPosition + Entity.MonoBehaviour.transform.position; }
+        public Vector3 DefaultSpawnOffset { get => Properties.offset + Entity.MonoBehaviour.transform.position; }
 
-        public override void Enable()
-        {
-            SpawnOffset = DefaultSpawnOffset;
-        }
+        private IProgressIndicator progressIndicator;
 
         public SpawnerExtension(IExtendableEntity entity, SpawnerProperties properties) : base(entity, properties)
         {
+            if(Properties.progressIndicator != null)
+            {
+                progressIndicator = Object.Instantiate(Properties.progressIndicator, Entity.MonoBehaviour.transform).GetComponent<IProgressIndicator>();
+            }
+        }
+        public override void Enable()
+        {
+            SpawnOffset = DefaultSpawnOffset;
             LockStep.OnStep += LockStep_OnStep;
         }
+
         public override void Disable()
         {
             LockStep.OnStep -= LockStep_OnStep;
         }
         private void LockStep_OnStep()
         {
+            if (progressIndicator != null)
+                progressIndicator.Hide(spawnQueue.Count == 0);
+            if (spawnQueue.Count == 0)
+                return;
+            EntitySpawnData data = spawnQueue.Peek();
+            if (progressIndicator != null)
+            {
+                progressIndicator.SetProgress((LockStep.time - timeStamp) / data.spawnTime);
+            }
+            if( timeStamp + data.spawnTime > LockStep.time )
+                return;
             Spawn();
         }
         private void Spawn()
         {
-            if (spawnQueue.Count==0 || spawnQueue.Peek().time > LockStep.time - timeStamp)
-                return;
-
             EntitySpawnData spawnData = spawnQueue.Dequeue();
             spawnData.factory.Spawn(SpawnOffset, spawnData.uid);
+            timeStamp = LockStep.time;
         }
         public void Enqueue(UID uid, float spawnTime)
         {
-            Debug.Log("Enqueue spawn " + uid.uniqueId);
+            if (spawnQueue.Count == 0)
+                timeStamp = LockStep.time;
             spawnQueue.Enqueue(new EntitySpawnData
             {
                 factory = GameEntityPool.Get(uid),
                 uid = uid,
-                time = spawnTime
+                spawnTime = spawnTime,
             });
         }
     }
     public struct EntitySpawnData
     {
-        public float time;
+        public float spawnTime;
         public UID uid;
         public GameEntityPool factory;
     }

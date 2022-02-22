@@ -12,8 +12,7 @@ public class DefaultInspectorElement : VisualElement
             do
             {
                 var propertyField = new PropertyField(iterator.Copy()) { name = "PropertyField:" + iterator.propertyPath };
-                propertyField.Bind(serializedObject);
-
+                propertyField.BindProperty(serializedObject);
                 if (iterator.propertyPath == "m_Script" && serializedObject.targetObject != null)
                     propertyField.SetEnabled(value: false);
 

@@ -36,6 +36,7 @@ namespace JHiga.RTSEngine.UI
         {
             commandButtons = GetComponentsInChildren<SelectionContextCommandButton>();
             CommandInput.Instance.OnCachedEntityChanged += CommandInput_OnCommandableSelectionEntity;
+            gameObject.SetActive(false);
         }
 
         private void CommandInput_OnCommandableSelectionEntity(ICommandable obj)
@@ -44,6 +45,7 @@ namespace JHiga.RTSEngine.UI
                 Commands = obj.CommandCompetence.Where(c=>!c.dynamicallyBuildable).ToArray();
             else
                 Commands = null;
+            gameObject.SetActive(obj != null);
         }
     }
 }

@@ -41,6 +41,27 @@ MonoBehaviour:
   requireContext: 1
   state: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
   resourceType: 0
+--- !u!114 &-5924021235514313358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnGranaryConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 6fe221b9c372c0e4db6a8fe3aabf6193, type: 3}
+  forcedPreview: {fileID: 566097565876783074, guid: 60e455dedd860ab429aa58f48c919feb, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -50
+  time: 0
+  spawn: {fileID: 2259594410287959041, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
 --- !u!114 &-5840748276129422373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +146,27 @@ MonoBehaviour:
   requireContext: 1
   state: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
   resourceType: 1
+--- !u!114 &-3188061336130358059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnFarmConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 572d89b645ce1e546b5649c9a00a0b90, type: 3}
+  forcedPreview: {fileID: 2920034819108784844, guid: 802b92fa5632a5a40b6e5a07c6d6a02e, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -100
+  time: 0
+  spawn: {fileID: -4328430026328045443, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
 --- !u!114 &-3001044391822662561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +188,27 @@ MonoBehaviour:
     amount: -50
   time: 0
   spawn: {fileID: -7622995121388286650, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+--- !u!114 &-2618330463517444409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnMineConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 82aa635ff37ac264dac91c8641d0b3ab, type: 3}
+  forcedPreview: {fileID: 3672805041092565714, guid: 43391dcb48d245440bb9cc5d029ea6ed, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -50
+  time: 0
+  spawn: {fileID: -909535151661660790, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
 --- !u!114 &-684924636645562640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +257,13 @@ MonoBehaviour:
   - {fileID: -4279965886676802490}
   - {fileID: -4593153992739152627}
   - {fileID: -684924636645562640}
+  - {fileID: 8193683547456929387}
+  - {fileID: 8491761020279809497}
+  - {fileID: -2618330463517444409}
+  - {fileID: -5924021235514313358}
+  - {fileID: 7344901432976268879}
+  - {fileID: 8592250534704161766}
+  - {fileID: -3188061336130358059}
 --- !u!114 &1176921838225773690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,3 +382,89 @@ MonoBehaviour:
     amount: -20
   time: 3
   spawn: {fileID: -8998922325877018594, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+--- !u!114 &7344901432976268879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnStablesConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 17ef3cb56b9a1ec419e03e64a69899c4, type: 3}
+  forcedPreview: {fileID: 2256390221432370115, guid: 1de53d012677c334b95c062d22b0df5c, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -50
+  time: 0
+  spawn: {fileID: -1801215534648032295, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+--- !u!114 &8193683547456929387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnBarbarianRiderCommand
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: eb81f3727c4699f40bd560600bb64771, type: 3}
+  forcedPreview: {fileID: 0}
+  dynamicallyBuildable: 0
+  requireContext: 0
+  resourceEffect:
+  - resourceType: 0
+    amount: -50
+  - resourceType: 2
+    amount: -20
+  time: 3
+  spawn: {fileID: 8010331499097926522, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
+--- !u!114 &8491761020279809497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnLumbermillConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 40a0abada62e0d548a6ca82c39055d29, type: 3}
+  forcedPreview: {fileID: 5463495985202508140, guid: 7874a4637dc052c449e8394c519c3911, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -50
+  time: 0
+  spawn: {fileID: 4586922769009968755, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+--- !u!114 &8592250534704161766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eea2c0d33c6b547b2801099dd6db0a, type: 3}
+  m_Name: SpawnMarketConstructionSite
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 5bd6921c3fd95b847af1b8b4f859a059, type: 3}
+  forcedPreview: {fileID: 8849217858852574721, guid: 01a9af0224fec1d4abe10ee361e815ab, type: 3}
+  dynamicallyBuildable: 0
+  requireContext: 1
+  resourceEffect:
+  - resourceType: 1
+    amount: -50
+  time: 0
+  spawn: {fileID: 9134542450349532818, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}

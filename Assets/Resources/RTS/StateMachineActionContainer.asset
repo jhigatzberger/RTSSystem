@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8695752351674403195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1299ecc3181ba7741836f73c55933678, type: 3}
+  m_Name: StartConstructionSounds
+  m_EditorClassIdentifier: 
+  _baseAction: {fileID: 11400000, guid: b4a64807a94aa2245b7abb5f41592249, type: 2}
+--- !u!114 &-5446266236396945013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1299ecc3181ba7741836f73c55933678, type: 3}
+  m_Name: StartSwordSounds
+  m_EditorClassIdentifier: 
+  _baseAction: {fileID: 11400000, guid: 9b711e8f4ea81934997f60371e78b817, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831e9c3a3c11f7d4cb25b525dc7f6d24, type: 3}
+  m_Name: StateMachineActionContainer
+  m_EditorClassIdentifier: 
+  typeName: StateMachineAction

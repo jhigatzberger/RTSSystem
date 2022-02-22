@@ -103,21 +103,6 @@ MonoBehaviour:
   m_Name: TransitionContainer
   m_EditorClassIdentifier: 
   typeName: Transition
---- !u!114 &3133206480499380116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
-  m_Name: IsInRange
-  m_EditorClassIdentifier: 
-  decision: {fileID: 0}
-  trueState: {fileID: 0}
-  falseState: {fileID: 0}
 --- !u!114 &5111644768961962819
 MonoBehaviour:
   m_ObjectHideFlags: 0
