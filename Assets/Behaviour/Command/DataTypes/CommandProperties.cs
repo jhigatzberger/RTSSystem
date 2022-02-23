@@ -10,7 +10,7 @@ namespace JHiga.RTSEngine.CommandPattern
         public GameObject forcedPreview;
         public bool dynamicallyBuildable;
         public bool requireContext;
-        public abstract bool Applicable(ICommandable entity, bool forced = false);
+        public abstract bool ApplicableFromContext(ICommandable entity, bool forced = false);
         public abstract Target PackTarget(ICommandable commandable);
         public abstract void Execute(ICommandable commandable, ResolvedCommandReferences references);
         public virtual void Request(ICommandable reference, IExtendableEntity[] selection, bool clearQueueOnEnqeue, Action<SkinnedCommand> callback)

@@ -28,9 +28,16 @@ namespace JHiga.RTSEngine.Spawning
                 return stringBuilder.ToString();
             }
         }
-        public override bool Applicable(ICommandable entity, bool forced = false)
+        public override bool ApplicableFromContext(ICommandable entity, bool forced = false)
         {
-            return LocalPlayerResources.Instance.CanAfford(resourceEffect);
+            if (!LocalPlayerResources.Instance.CanAfford(resourceEffect))
+                return false;
+            if (forced && CommandInput.Instance.commandPreview != null)
+            {
+                CommandInput.Instance.commandPreview.TryGetComponent(out SpawnIndicator indicator);
+                return indicator.AllowSpawn;
+            }
+            return true;
         }
 
         public override Target PackTarget(ICommandable commandable)

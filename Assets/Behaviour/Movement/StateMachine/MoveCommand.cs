@@ -9,7 +9,7 @@ using System;
 [CreateAssetMenu(fileName = "MoveCommand", menuName = "RTS/Behaviour/Commands/MoveCommand")]
 public class MoveCommand : StateMachineCommandProperties
 {
-    public override bool Applicable(ICommandable entity, bool forced = false)
+    public override bool ApplicableFromContext(ICommandable entity, bool forced = false)
     {
         return InputManager.worldPointerPosition.HasValue;
     }

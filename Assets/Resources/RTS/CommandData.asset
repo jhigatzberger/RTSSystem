@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: SpawnGranaryConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 6fe221b9c372c0e4db6a8fe3aabf6193, type: 3}
-  forcedPreview: {fileID: 566097565876783074, guid: 60e455dedd860ab429aa58f48c919feb, type: 3}
+  forcedPreview: {fileID: 566097565876783074, guid: e1a73b2dbcb7cf9418c910df2aff4fa0, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: SpawnFarmConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 572d89b645ce1e546b5649c9a00a0b90, type: 3}
-  forcedPreview: {fileID: 2920034819108784844, guid: 802b92fa5632a5a40b6e5a07c6d6a02e, type: 3}
+  forcedPreview: {fileID: 2920034819108784844, guid: 3d6f4786bf75f6b43b8db0f8c1d16898, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: SpawnBarracksConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f601c56cf9134f74fa05e52bafb8a588, type: 3}
-  forcedPreview: {fileID: 3035259405304923790, guid: a05a4b6c769f753468b47909df4b07a6, type: 3}
+  forcedPreview: {fileID: 3035259405304923790, guid: 8b964fe0c537c74438b80fed60e6fdf6, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: SpawnMineConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 82aa635ff37ac264dac91c8641d0b3ab, type: 3}
-  forcedPreview: {fileID: 3672805041092565714, guid: 43391dcb48d245440bb9cc5d029ea6ed, type: 3}
+  forcedPreview: {fileID: 3672805041092565714, guid: 579ef480496031e449ab15be4bb2ccb0, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: SpawnStablesConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 17ef3cb56b9a1ec419e03e64a69899c4, type: 3}
-  forcedPreview: {fileID: 2256390221432370115, guid: 1de53d012677c334b95c062d22b0df5c, type: 3}
+  forcedPreview: {fileID: 2256390221432370115, guid: 9db8c00cb3e9d1049835fa9373cac83a, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: SpawnLumbermillConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 40a0abada62e0d548a6ca82c39055d29, type: 3}
-  forcedPreview: {fileID: 5463495985202508140, guid: 7874a4637dc052c449e8394c519c3911, type: 3}
+  forcedPreview: {fileID: 5463495985202508140, guid: 48441703e73a79940acf3433d9ead74b, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: SpawnMarketConstructionSite
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 5bd6921c3fd95b847af1b8b4f859a059, type: 3}
-  forcedPreview: {fileID: 8849217858852574721, guid: 01a9af0224fec1d4abe10ee361e815ab, type: 3}
+  forcedPreview: {fileID: 8849217858852574721, guid: fb35c5a3bce52cc4c93b3fb4418930b0, type: 3}
   dynamicallyBuildable: 0
   requireContext: 1
   resourceEffect:

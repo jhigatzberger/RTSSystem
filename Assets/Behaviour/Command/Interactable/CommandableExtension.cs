@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using UnityEngine;
 
 namespace JHiga.RTSEngine.CommandPattern
 {
@@ -11,7 +9,6 @@ namespace JHiga.RTSEngine.CommandPattern
         public ResolvedCommand? Current { get; set; }
         public CommandProperties[] CommandCompetence => Properties.commandCompetence;
         public CommandableExtension(IExtendableEntity entity, CommandableProperties properties) : base(entity, properties){}
-
         public void Enqueue(ResolvedCommand command)
         {
             if (!CommandCompetence.Any(c => c == command.properties))
@@ -47,13 +44,12 @@ namespace JHiga.RTSEngine.CommandPattern
             Current = null;
             ExecuteFirstCommand();
         }
-
         public CommandProperties FirstApplicableDynamicallyBuildableCommand
         {
             get
             {
                 foreach (CommandProperties command in CommandCompetence)
-                    if (command.dynamicallyBuildable && command.Applicable(this))
+                    if (command.dynamicallyBuildable && command.ApplicableFromContext(this))
                         return command;
                 return null;
             }

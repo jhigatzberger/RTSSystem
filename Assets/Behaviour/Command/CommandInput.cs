@@ -33,7 +33,7 @@ namespace JHiga.RTSEngine.CommandPattern
             }
         }
         private CommandProperties _forcedCommand;
-        private Transform commandPreview;
+        public GameObject commandPreview;
         public CommandProperties ForcedCommand
         {
             get => _forcedCommand;
@@ -50,14 +50,12 @@ namespace JHiga.RTSEngine.CommandPattern
                         Destroy(commandPreview.gameObject);
 
                     if (value != null && value.forcedPreview != null)
-                        commandPreview = Instantiate(value.forcedPreview).transform;
+                        commandPreview = Instantiate(value.forcedPreview);
                     else
                         commandPreview = null;
                 }
             }
         }
-
-
         public event Action<CommandProperties> OnContextCommand;
         public event Action<CommandProperties> OnForcedCommand;
         public event Action<ICommandable> OnCachedEntityChanged;
@@ -90,7 +88,7 @@ namespace JHiga.RTSEngine.CommandPattern
         {
             if (ForcedCommand == null)
                 return;
-            if(ForcedCommand.Applicable(CachedEntity, true))
+            if(ForcedCommand.ApplicableFromContext(CachedEntity, true))
                 ForcedCommand.Request(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput, CommandEvents.RequestCommandDistribution);
             ClearForcedCommand();
         }
@@ -101,7 +99,7 @@ namespace JHiga.RTSEngine.CommandPattern
         private void Update()
         {
             if (commandPreview != null && InputManager.worldPointerPosition.HasValue)
-                commandPreview.position = InputManager.worldPointerPosition.Value;
+                commandPreview.transform.position = InputManager.worldPointerPosition.Value;
             CacheEntity();
             if (ForcedCommand != null)
                 return;
