@@ -25,7 +25,7 @@ namespace JHiga.RTSEngine.Selection
             if(!Selected)
                 OnSelectedUpdate(true);
             _selectionIndex = index;
-            if(Properties.actions != null && index == 0)
+            if(Properties.actions != null && index == 0 && Entity.IsActivePlayer)
             {
                 foreach (BaseAction action in Properties.actions)
                     action.Run(Entity);
@@ -35,7 +35,7 @@ namespace JHiga.RTSEngine.Selection
         {
             if (Selected)
                 OnSelectedUpdate(false);
-            if (Properties.actions != null && _selectionIndex == 0)
+            if (Properties.actions != null && _selectionIndex == 0 && Entity.IsActivePlayer)
             {
                 foreach (BaseAction action in Properties.actions)
                     action.Stop(Entity);

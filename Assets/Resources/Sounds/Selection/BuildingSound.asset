@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a613edcca26b4f842ab6cf2447042905, type: 3}
-  m_Name: ConstructionSounds
+  m_Name: BuildingSound
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: f6841f7cf42363d47bc51707d3a92b2f, type: 3}
-  - {fileID: 8300000, guid: f295e9da86a96674f971b3fbb4bbf461, type: 3}
-  - {fileID: 8300000, guid: 2caad788b1d1da44298d92ef7298d3c8, type: 3}
+  - {fileID: 8300000, guid: 9250da73dfc1d7149b1febc3b071aac4, type: 3}
   loopUntilExit: 0
   playDelayed: 0
   delay: 0

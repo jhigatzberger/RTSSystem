@@ -32,17 +32,16 @@ public class BetterBoxSelector : Selector
     private void Update()
     {
         if (Applicable)
-        {
-            SelectionContext.Deselect();
             UpdateSelectionToBounds(GetViewportBounds(startPos.Value, Input.mousePosition));
-        }
     }
     private void UpdateSelectionToBounds(Bounds selectionBounds)
     {
         foreach (ISelectable selectableObject in SelectionContext.onScreen)
         {
             if (selectionBounds.Contains(Camera.main.WorldToViewportPoint(selectableObject.Entity.MonoBehaviour.transform.position)) && SelectionContext.Priority <= selectableObject.Priority)
-               SelectionContext.Select(selectableObject);
+                SelectionContext.Select(selectableObject);
+            else
+                SelectionContext.Deselect(selectableObject);
         }
     }
     private void OnGUI()

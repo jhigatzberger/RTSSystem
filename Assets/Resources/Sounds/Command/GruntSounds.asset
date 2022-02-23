@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GruntSounds
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 52dadbaa3b0b42e408a652e8133895bc, type: 3}
+  - {fileID: 8300000, guid: 7f79f379ae0fae4469baee2234fe7689, type: 3}
   loopUntilExit: 0
   playDelayed: 0
   delay: 0

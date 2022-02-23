@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63413653ccdba7e4abf75cdcd4b6c4d3, type: 3}
-  m_Name: SuccessfullyReachedTargetDecision
+  m_Script: {fileID: 11500000, guid: a613edcca26b4f842ab6cf2447042905, type: 3}
+  m_Name: ConstructionSounds
   m_EditorClassIdentifier: 
-  stoppingDistance: 0.5
+  clips:
+  - {fileID: 8300000, guid: a96b7c949b675414cbeec780526350d0, type: 3}
+  loopUntilExit: 0
+  playDelayed: 0
+  delay: 0

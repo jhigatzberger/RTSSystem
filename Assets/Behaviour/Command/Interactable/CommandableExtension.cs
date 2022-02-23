@@ -25,7 +25,7 @@ namespace JHiga.RTSEngine.CommandPattern
             if (commandQueue.Count == 0)
                 return;
             Current = commandQueue.Dequeue();
-            if (Properties.onCommandActions != null && Current.Value.references.entities[0].UniqueID.Equals(Entity.UniqueID))
+            if (Properties.onCommandActions != null && Current.Value.references.entities[0].UniqueID.Equals(Entity.UniqueID) && Entity.IsActivePlayer)
             {
                 foreach (BaseAction action in Properties.onCommandActions)
                     action.Run(Entity);
@@ -39,7 +39,7 @@ namespace JHiga.RTSEngine.CommandPattern
         }
         public void Finish()
         {
-            if (Current.HasValue && Properties.onCommandActions != null && Current.Value.references.entities[0] == Entity)
+            if (Current.HasValue && Properties.onCommandActions != null && Current.Value.references.entities[0] == Entity && Entity.IsActivePlayer)
             {
                 foreach (BaseAction action in Properties.onCommandActions)
                     action.Stop(Entity);

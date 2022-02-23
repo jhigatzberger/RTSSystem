@@ -7,10 +7,6 @@ using Unity.Netcode.Transports.UNET;
 
 public class SetIP : MonoBehaviour
 {
-    UNetTransport transport;
-    private void Awake()
-    {
-    }
     public void OnValueChanged(string s)
     {
         NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = s;

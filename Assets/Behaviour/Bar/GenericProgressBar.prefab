@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5145593182323370650}
   - component: {fileID: 5145593182323370652}
   - component: {fileID: 5145593182323370651}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5145593182747295752}
   - component: {fileID: 5145593182747295799}
   - component: {fileID: 7974240920489372310}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: GenericProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: 52, y: 9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5145593182747295753
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 5145593183684979805}
   - component: {fileID: 5145593183684979807}
   - component: {fileID: 5145593183684979806}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 5145593183771494097}
   - component: {fileID: 5145593183771494099}
   - component: {fileID: 5145593183771494098}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

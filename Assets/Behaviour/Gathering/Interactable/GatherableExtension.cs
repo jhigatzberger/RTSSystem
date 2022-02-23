@@ -19,7 +19,7 @@ namespace JHiga.RTSEngine.Gathering
             set
             {
                 _totalStorage = value;
-                if (_totalStorage <= 0)
+                if (_totalStorage <= 0 && GatherableStorageType == IGatherable.StorageType.Finite)
                     Entity.Disable(true);
 
             }

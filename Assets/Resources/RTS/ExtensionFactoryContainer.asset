@@ -30,7 +30,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   scale: 8
-  actions: []
+  actions:
+  - {fileID: 11400000, guid: 9e156ac3f0969b94a89d5b6334c20272, type: 2}
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
 --- !u!114 &-6966834160699518675
 MonoBehaviour:
@@ -77,7 +78,7 @@ MonoBehaviour:
   rate: 1
   resourceType: 0
   storageType: 1
-  totalStorage: 0
+  totalStorage: 999999
 --- !u!114 &-6351087715476703125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +471,8 @@ MonoBehaviour:
   - {fileID: -5924021235514313358, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: -3188061336130358059, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
-  onCommandActions: []
+  onCommandActions:
+  - {fileID: 11400000, guid: a7ebeed1094c570489204fce14799a41, type: 2}
 --- !u!114 &1987216394735253265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +502,23 @@ MonoBehaviour:
   m_Name: IronDropoff
   m_EditorClassIdentifier: 
   resourceTypes: 02000000
+--- !u!114 &3611095594278974163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f006c6e48d9df469ac125617a11af2, type: 3}
+  m_Name: CommandableRider
+  m_EditorClassIdentifier: 
+  commandCompetence:
+  - {fileID: 6053781840455765175, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  onCommandActions:
+  - {fileID: 11400000, guid: c398da47cf93f0448b1fd143ed3431ec, type: 2}
 --- !u!114 &4107618206730801798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,9 +611,10 @@ MonoBehaviour:
   - {fileID: -3847284177112424030, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 7344901432976268879, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 8592250534704161766, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
+  - {fileID: 5640908343698708538, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   - {fileID: 1176921838225773690, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   onCommandActions:
-  - {fileID: 11400000, guid: 645d1cb2689374b458acc8224bb90dde, type: 2}
+  - {fileID: 11400000, guid: c0019a02b1fd7dc4b91078ee23fbabc0, type: 2}
 --- !u!114 &6471273518557541404
 MonoBehaviour:
   m_ObjectHideFlags: 0

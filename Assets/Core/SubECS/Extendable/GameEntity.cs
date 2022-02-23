@@ -70,6 +70,9 @@ namespace JHiga.RTSEngine
                 gameObject.SetActive(false);
         }
         public Vector3 Position => transform.position;
+
+        public bool IsActivePlayer => PlayerContext.PlayerId == UniqueID.playerIndex;
+
         public Vector3 ClosestEdgePoint(Vector3 pos)
         {
             if (coll == null)
