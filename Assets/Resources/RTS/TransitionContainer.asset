@@ -89,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decision: {fileID: 11400000, guid: f9024e2dc2dd87444ad6069bffcc0d62, type: 2}
   trueState: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
-  falseState: {fileID: 0}
+  falseState: {fileID: -9078240975740778385, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +103,21 @@ MonoBehaviour:
   m_Name: TransitionContainer
   m_EditorClassIdentifier: 
   typeName: Transition
+--- !u!114 &3888810463911364100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
+  m_Name: ShouldGatherTransition
+  m_EditorClassIdentifier: 
+  decision: {fileID: 11400000, guid: f9024e2dc2dd87444ad6069bffcc0d62, type: 2}
+  trueState: {fileID: -2882649675405381954, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  falseState: {fileID: -9078240975740778385, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &5111644768961962819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +193,18 @@ MonoBehaviour:
   decision: {fileID: 11400000, guid: 3e8aa7c298965024cbfa8c20161858ef, type: 2}
   trueState: {fileID: -1301262172125601321, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
   falseState: {fileID: 7932788798038112835, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+--- !u!114 &8305634513902040364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
+  m_Name: ShouldIdleTransition
+  m_EditorClassIdentifier: 
+  decision: {fileID: 11400000, guid: 99d05fd17ce4afd4bb9868d31d8fac5f, type: 2}
+  trueState: {fileID: 0}
+  falseState: {fileID: -9078240975740778385, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}

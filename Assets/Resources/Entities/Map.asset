@@ -34,6 +34,29 @@ MonoBehaviour:
   properties:
   - {fileID: 1987216394735253265, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -4074905166127720818, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-1466204287182722727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Neutral Barbarian Rider
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 8726071526014405772, guid: 464b7a83e599dc94c86d8c7ecf6ba01b, type: 3}
+  properties:
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2837799192545829897, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2057137715925239045, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 8034277702926332492, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2919917840897380133, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 3611095594278974163, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,9 +70,27 @@ MonoBehaviour:
   m_Name: Map
   m_EditorClassIdentifier: 
   id: 0
+  icon: {fileID: 0}
   startEntities: []
   entityGroups:
   - {fileID: -8121613573877684937}
+  - {fileID: 750867597127989483}
+--- !u!114 &750867597127989483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Units
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: -1466204287182722727}
+  - {fileID: 5492436739092574172}
+  children: []
 --- !u!114 &2394286370583307252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,3 +128,27 @@ MonoBehaviour:
   properties:
   - {fileID: 1987216394735253265, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
   - {fileID: -1487804754538319039, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &5492436739092574172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Neutral Warrior
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1137340246058539085, guid: f32ca0a70150e4b4088d86118075f44b, type: 3}
+  - {fileID: 1137340246058539085, guid: 7789aff4e996c144bbb9d0cacc0388b6, type: 3}
+  properties:
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}
+  - {fileID: -2837799192545829897, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -3742208707711382588, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6022623909550766482, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4107618206730801798, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}

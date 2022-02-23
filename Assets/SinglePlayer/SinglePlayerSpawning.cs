@@ -9,7 +9,6 @@ namespace JHiga.RTSEngine.SinglePlayer
     {
         private void Start()
         {
-
             SpawnEvents.OnRequestSpawn += RequestEntityInitialization;
             SpawnStartEntities();
         }
@@ -24,7 +23,9 @@ namespace JHiga.RTSEngine.SinglePlayer
                 List<StartEntityData> startEntities = PlayerContext.players[player.id].startEntities.OrderBy(s => s.offsetPosition.magnitude).ToList();
                 for (int i = 0; i < startEntities.Count; i++)
                 {
+                    Debug.Log(player.id + " " + startEntities[i].entity.name +" " + startEntities[i].entity.Index);
                     UID uid = new UID(player.id, startEntities[i].entity.Index, i);
+                    Debug.Log(uid.pool);
                     GameEntityPool.Get(uid).Spawn(startEntities[i].offsetPosition, uid);
                 }
             }

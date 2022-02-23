@@ -35,7 +35,7 @@ public class SinglePlayerLobby : MonoBehaviour
         SkinnedPlayer myPlayer = new SkinnedPlayer
         {
             id = 1,
-            faction = (short)faction,
+            faction = (short)RTSWorldData.Instance.playableFactions[faction].id,
             team = 1
         };
         PlayerContext.players[1] = new PlayerData(myPlayer);

@@ -24,6 +24,7 @@ public class FindTargetInVisionAction : StateMachineAction
                     {
                         entity = target.Entity
                     };
+                    return;
                 }
             }
         }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63413653ccdba7e4abf75cdcd4b6c4d3, type: 3}
   m_Name: SuccessfullyReachedTargetDecision
   m_EditorClassIdentifier: 
-  stoppingDistance: 0.5
+  stoppingDistance: 2
