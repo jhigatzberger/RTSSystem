@@ -9,6 +9,7 @@ namespace JHiga.RTSEngine.Construction
     {
         public GameEntityPool FinishiedEntity { get; }
         public int MaxConstructionLevel { get; }
-        public int CurrentConstructionLevel { get; set; }
+        public int CurrentConstructionLevel { get; }
+        public bool Construct(int speed);
     }
 }

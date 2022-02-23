@@ -13,20 +13,20 @@ namespace JHiga.RTSEngine
         private Collider coll;
         public static GameEntity Get(UID uid)
         {
-            return GameEntityPool.Get(uid).entities[uid.entityIndex];
+            return GameEntityPool.Get(uid).entities[uid.entity];
         }
         public static GameEntity Get(int uid)
         {
             return GameEntityPool.Get(uid).entities[UID.GetEntityIndex(uid)];
         }
         [SerializeField] private UID _id;
-        public UID UniqueID
+        public UID UID
         {
             get => _id;
             internal set
             {
                 _id = value;
-                gameObject.layer = PlayerContext.players[value.playerIndex].ownMask;
+                gameObject.layer = PlayerContext.players[value.player].ownMask;
 
                 if (TryGetComponent(out coll))
                     coll.enabled = true;
@@ -71,7 +71,7 @@ namespace JHiga.RTSEngine
         }
         public Vector3 Position => transform.position;
 
-        public bool IsActivePlayer => PlayerContext.PlayerId == UniqueID.playerIndex;
+        public bool IsActivePlayer => PlayerContext.PlayerId == UID.player;
 
         public Vector3 ClosestEdgePoint(Vector3 pos)
         {

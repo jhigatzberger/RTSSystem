@@ -3,7 +3,7 @@ using JHiga.RTSEngine.StateMachine;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SuccessfullyReachedTargetDecision", menuName = "RTS/Behaviour/Decisions/SuccessfullyReachedTargetDecision")]
-public class SuccessfullyReachedTargetDecision : Decision
+public class SuccessfullyReachedTargetDecision : StateMachineDecision
 {
     public float stoppingDistance = 0.1f;
     public override bool Decide(IStateMachine stateMachine)

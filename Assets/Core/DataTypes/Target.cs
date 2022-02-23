@@ -33,7 +33,7 @@ namespace JHiga.RTSEngine
         public SkinnedTarget Skin => new SkinnedTarget
         {
             position = new Vector2(position.x, position.z),
-            targetEntity = entity == null ? -1 : entity.UniqueID.uniqueId
+            targetEntity = entity == null ? -1 : entity.UID.unique
         };
         public static Vector3 Vector2ToVector3(Vector2 vector2)
         {

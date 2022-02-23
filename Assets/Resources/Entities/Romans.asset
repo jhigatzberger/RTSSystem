@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: Romans
   m_EditorClassIdentifier: 
   id: 0
+  icon: {fileID: 21300000, guid: 2e65704661825cd46974c134376767e0, type: 3}
   startEntities: []
   entityGroups:
   - {fileID: -2044811054315504795}

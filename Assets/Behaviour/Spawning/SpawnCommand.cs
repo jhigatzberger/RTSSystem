@@ -9,9 +9,10 @@ namespace JHiga.RTSEngine.Spawning
     [CreateAssetMenu(fileName = "SpawnCommand", menuName = "RTS/Behaviour/Commands/SpawnCommand")]
     public class SpawnCommand : CommandProperties
     {
-        public ResourceData[] resourceEffect;
-        public float time;
-        public GameEntityPool spawn;
+        [SerializeField] private ResourceData[] resourceEffect;
+        [SerializeField] private float time;
+        [SerializeField] private GameEntityPool spawn;
+        [SerializeField] private CommandAction afterSpawnAction;
         public override string Description
         {
             get
@@ -28,14 +29,14 @@ namespace JHiga.RTSEngine.Spawning
                 return stringBuilder.ToString();
             }
         }
-        public override bool ApplicableFromContext(ICommandable entity, bool forced = false)
+        public override bool IsApplicable(ICommandable entity, bool forced = false)
         {
             if (!LocalPlayerResources.Instance.CanAfford(resourceEffect))
                 return false;
             if (forced && CommandInput.Instance.commandPreview != null)
             {
-                CommandInput.Instance.commandPreview.TryGetComponent(out SpawnIndicator indicator);
-                return indicator.AllowSpawn;
+                if(CommandInput.Instance.commandPreview.TryGetComponent(out SpawnIndicator indicator))
+                    return indicator.AllowSpawn;
             }
             return true;
         }
@@ -52,6 +53,7 @@ namespace JHiga.RTSEngine.Spawning
         {
             ResourceEvents.RequestResourceAlter(
                 new AlterResourceRequest(
+                    reference.Entity.UID.player,
                     resourceEffect,
                     () => base.Request(reference, selection, clearQueueOnEnqeue, callback)
                 )
@@ -72,13 +74,31 @@ namespace JHiga.RTSEngine.Spawning
         public override void Execute(ICommandable commandable, ResolvedCommandReferences references)
         {
             commandable.Entity.GetExtension<ISpawner>().SpawnOffset = references.target.position;
+
+            Action<IExtendableEntity> callback = null;
+            if (afterSpawnAction != null)
+                callback = (entity) => afterSpawnAction.Execute(commandable, InsertedEntity(entity, references));
             SpawnEvents.RequestSpawn(
-                new SpawnRequest {
+                new SpawnRequest
+                {
                     time = time,
                     poolIndex = spawn.Index,
-                    spawnerUID = commandable.Entity.UniqueID.uniqueId
-                }
+                    spawnerUID = commandable.Entity.UID.unique,
+                }, callback
             );            
+        }
+        private ResolvedCommandReferences InsertedEntity(IExtendableEntity entity, ResolvedCommandReferences references)
+        {
+            return new ResolvedCommandReferences
+            {
+                clearQueueOnEnqeue = references.clearQueueOnEnqeue,
+                entities = references.entities,
+                target = new Target
+                {
+                    position = references.target.position,
+                    entity = entity
+                }
+            };
         }
     }
 }

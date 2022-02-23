@@ -13,39 +13,39 @@ namespace JHiga.RTSEngine.Network
             Instance = this;
         }
 
-        private Dictionary<ulong, int[]> playerResources = new Dictionary<ulong, int[]>();
+        private Dictionary<int, int[]> playerResources = new Dictionary<int, int[]>();
         private void Start()
         {
-            foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
-                playerResources.Add(clientId,RTSWorldData.Instance.resourceTypes.Select(r => r.startAmount).ToArray());            
+            foreach(PlayerData player in PlayerContext.players)
+                playerResources.Add(player.id, RTSWorldData.Instance.resourceTypes.Select(r => r.startAmount).ToArray());            
         }
 
-        public void AlterResource(ulong clientId, ResourceNetworkPayload request)
+        public void AlterResource(int playerId, ResourceNetworkPayload request)
         {
             Debug.Log("AlterResource!");
             bool success = true;
 
             foreach(ResourceData data in request.data)
             {
-                if (playerResources[clientId][data.resourceType] + data.amount < 0 && data.amount < 0)
+                if (playerResources[playerId][data.resourceType] + data.amount < 0 && data.amount < 0)
                     success = false;
             }
             if(success)
             {
                 foreach (ResourceData data in request.data)
-                    playerResources[clientId][data.resourceType] += data.amount;
+                    playerResources[playerId][data.resourceType] += data.amount;
             }
 
             ResourceNetwork.Instance.UpdateResourceClientRpc(
                 new ResourceNetworkPayload
                 {
-                    data = request.data.Select(d=> new ResourceData { resourceType = d.resourceType, amount = playerResources[clientId][d.resourceType] }).ToArray(),
+                    data = request.data.Select(d=> new ResourceData { resourceType = d.resourceType, amount = playerResources[playerId][d.resourceType] }).ToArray(),
                     successCallback = request.successCallback
                 }, success, new ClientRpcParams
                 {
                     Send = new ClientRpcSendParams
                     {
-                        TargetClientIds = new ulong[] { clientId }
+                        TargetClientIds = new ulong[] { NetworkGameManager.PlayerToClient(playerId) }
                     }
             });
         }

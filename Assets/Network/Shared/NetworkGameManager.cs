@@ -138,5 +138,15 @@ namespace JHiga.RTSEngine.Network
             NetworkState newState = Instantiate(stateMap[stateType].gameObject).GetComponent<NetworkState>();
             newState.GetComponent<NetworkObject>().Spawn();
         }
+
+        public static ulong PlayerToClient(int player)
+        {
+            return (ulong)(player - 1);
+        }
+        public static int ClientToPlayer(ulong client)
+        {
+            return (int)(client + 1);
+        }
+
     }
 }

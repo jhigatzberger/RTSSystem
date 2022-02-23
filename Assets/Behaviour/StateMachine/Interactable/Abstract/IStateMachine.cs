@@ -22,7 +22,7 @@ namespace JHiga.RTSEngine.StateMachine
         public void ChangeState(State state);        
         
         /// <summary>
-        /// Calls <see cref="ChangeState"/> with the result of the <see cref="Decision"/> of all the <see cref="Transition"/> of the current <see cref="State"/>.
+        /// Calls <see cref="ChangeState"/> with the result of the <see cref="StateMachineDecision"/> of all the <see cref="Transition"/> of the current <see cref="State"/>.
         /// If the current <see cref="State"/> is null change to a default state.
         /// </summary>
         public void UpdateState();

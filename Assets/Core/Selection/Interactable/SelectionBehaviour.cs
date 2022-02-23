@@ -35,7 +35,7 @@ namespace JHiga.RTSEngine.Selection
         {
             if (!selected)
                 return new Color(0, 0, 0, 0);
-            if (Selectable.Entity.UniqueID.playerIndex == PlayerContext.PlayerId)
+            if (Selectable.Entity.UID.player == PlayerContext.PlayerId)
                 return new Color(0, 1, 0, 0.7f);
             else
                 return new Color(1, 1, 1, 0.7f);

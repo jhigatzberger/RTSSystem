@@ -11,9 +11,9 @@ namespace JHiga.RTSEngine.Gathering
         }
         public int[] ResourceTypes => Properties.resourceTypes;
 
-        public void Deliver(ResourceData data)
+        public void Deliver(int playerId, ResourceData data)
         {
-            ResourceEvents.RequestResourceAlter(new AlterResourceRequest(data, () => { Debug.Log("gathered resource"); }));
+            ResourceEvents.RequestResourceAlter(new AlterResourceRequest(playerId, data, () => { Debug.Log("gathered resource"); }));
         }
         public override void Enable()
         {

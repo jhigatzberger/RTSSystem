@@ -27,7 +27,7 @@ namespace JHiga.RTSEngine.CommandPattern
         public SkinnedCommandReferences Skin => new SkinnedCommandReferences {
             clearQueueOnEnqueue = clearQueueOnEnqeue,
             target = target.Skin,
-            entities = entities.Select(e => e.UniqueID.uniqueId).ToArray()
+            entities = entities.Select(e => e.UID.unique).ToArray()
         };        
     }
 }

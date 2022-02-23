@@ -32,6 +32,8 @@ namespace JHiga.RTSEngine.Spawning
         public override void Disable()
         {
             LockStep.OnStep -= LockStep_OnStep;
+            if (progressIndicator != null)
+                progressIndicator.Hide(true);
         }
         private void LockStep_OnStep()
         {
@@ -51,8 +53,9 @@ namespace JHiga.RTSEngine.Spawning
         private void Spawn()
         {
             EntitySpawnData spawnData = spawnQueue.Dequeue();
-            spawnData.factory.Spawn(SpawnOffset, spawnData.uid);
+            GameEntity entity = spawnData.factory.Spawn(SpawnOffset, spawnData.uid);
             timeStamp = LockStep.time;
+            SpawnEvents.TriggerSpawnCallback(Entity.UID.unique, entity);
         }
         public void Enqueue(UID uid, float spawnTime)
         {

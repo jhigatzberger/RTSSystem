@@ -7,6 +7,7 @@ namespace JHiga.RTSEngine
     public class FactionProperties : ScriptableObject
     {
         public int id;
+        public Sprite icon;
         public List<StartEntityData> startEntities = new List<StartEntityData>();
         public List<EntityGroup> entityGroups = new List<EntityGroup>();
 

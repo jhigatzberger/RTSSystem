@@ -3,7 +3,7 @@ using UnityEngine;
 using JHiga.RTSEngine;
 
 [CreateAssetMenu(fileName = "HasValidTargetDecision", menuName = "RTS/Behaviour/Decisions/HasValidTargetDecision")]
-public class HasValidTargetDecision : Decision
+public class HasValidTargetDecision : StateMachineDecision
 {
     public override bool Decide(IStateMachine stateMachine)
     {

@@ -17,15 +17,18 @@ public static class ResourceEvents
 
 public struct AlterResourceRequest
 {
+    public int playerId;
     public ResourceData[] data;
     public Action successCallback;
-    public AlterResourceRequest(ResourceData data, Action callback)
+    public AlterResourceRequest(int playerId, ResourceData data, Action callback)
     {
+        this.playerId = playerId;
         this.data = new ResourceData[] { data };
         successCallback = callback;
     }
-    public AlterResourceRequest(ResourceData[] data, Action callback)
+    public AlterResourceRequest(int playerId, ResourceData[] data, Action callback)
     {
+        this.playerId = playerId;
         this.data = data;
         successCallback = callback;
     }

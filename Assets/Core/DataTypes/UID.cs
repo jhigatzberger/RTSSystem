@@ -3,23 +3,23 @@ namespace JHiga.RTSEngine
     [System.Serializable]
     public struct UID
     {
-        public int uniqueId;
-        public int playerIndex;
-        public int poolIndex;
-        public int entityIndex;
+        public int unique;
+        public int player;
+        public int pool;
+        public int entity;
         public UID(int uniqueId)
         {
-            this.uniqueId = uniqueId;
-            playerIndex = GetPlayerIndex(uniqueId);
-            poolIndex = GetPoolIndex(uniqueId);
-            entityIndex = GetEntityIndex(uniqueId);
+            this.unique = uniqueId;
+            player = GetPlayerIndex(uniqueId);
+            pool = GetPoolIndex(uniqueId);
+            entity = GetEntityIndex(uniqueId);
         }
         public UID(int playerIndex, int poolIndex, int entityIndex)
         {
-            this.playerIndex = playerIndex;
-            this.poolIndex = poolIndex;
-            this.entityIndex = entityIndex;
-            uniqueId = UIDConstants.FIRST_PLAYER_ID * playerIndex + UIDConstants.FIRST_POOL_ID * poolIndex + entityIndex;
+            this.player = playerIndex;
+            this.pool = poolIndex;
+            this.entity = entityIndex;
+            unique = UIDConstants.FIRST_PLAYER_ID * playerIndex + UIDConstants.FIRST_POOL_ID * poolIndex + entityIndex;
         }
         public static int PlayerShifted(int uniqueId, int player)
         {

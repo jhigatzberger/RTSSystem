@@ -88,7 +88,7 @@ namespace JHiga.RTSEngine.CommandPattern
         {
             if (ForcedCommand == null)
                 return;
-            if(ForcedCommand.ApplicableFromContext(CachedEntity, true))
+            if(ForcedCommand.IsApplicable(CachedEntity, true))
                 ForcedCommand.Request(CachedEntity, SelectionContext.selection.Select(s => s.Entity).ToArray(), shouldClearQueueOnInput, CommandEvents.RequestCommandDistribution);
             ClearForcedCommand();
         }
@@ -115,7 +115,7 @@ namespace JHiga.RTSEngine.CommandPattern
                 CachedEntity = null;
             else if (CachedEntity == null || CachedEntity.Entity != SelectionContext.selection[0].Entity)
             {
-                if (SelectionContext.selection[0].Entity.TryGetExtension(out ICommandable commandable) && SelectionContext.selection[0].Entity.UniqueID.playerIndex == PlayerContext.PlayerId)
+                if (SelectionContext.selection[0].Entity.TryGetExtension(out ICommandable commandable) && SelectionContext.selection[0].Entity.UID.player == PlayerContext.PlayerId)
                     CachedEntity = commandable;
                 else
                     CachedEntity = null;

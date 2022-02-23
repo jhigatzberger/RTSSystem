@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Selection
     {
         private Renderer _renderer;
         public bool Visible => _renderer.isVisible;
-        public int Priority => Entity.UniqueID.playerIndex == PlayerContext.PlayerId ? Properties.priority : Properties.priority + SelectionContext.NULL_PRIORITY;
+        public int Priority => Entity.UID.player == PlayerContext.PlayerId ? Properties.priority : Properties.priority + SelectionContext.NULL_PRIORITY;
         public event Action<bool> OnSelectedUpdate;
         public bool Selected => SelectionIndex>=0;
         public int SelectionIndex => _selectionIndex;

@@ -5,7 +5,7 @@ namespace JHiga.RTSEngine.Construction
 {
     public class BuildCommand : StateMachineCommandProperties
     {
-        public override bool ApplicableFromContext(ICommandable entity, bool forced = false)
+        public override bool IsApplicable(ICommandable entity, bool forced = false)
         {
             IExtendableEntity hovered = SelectionContext.FirstOrNullHovered;
             if (hovered != null && hovered.TryGetExtension(out IBuildable buildable))

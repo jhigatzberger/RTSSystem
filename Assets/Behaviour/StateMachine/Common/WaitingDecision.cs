@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "WaitingDecision", menuName = "RTS/Behaviour/Decisions/WaitingDecision")]
-public class WaitingDecision : Decision
+public class WaitingDecision : StateMachineDecision
 {
     public float waitTime;
     public override bool Decide(IStateMachine stateMachine)

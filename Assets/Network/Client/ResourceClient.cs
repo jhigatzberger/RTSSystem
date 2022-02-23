@@ -17,6 +17,10 @@ namespace JHiga.RTSEngine.Network
         {
             ResourceEvents.OnAlterResourceRequest += ResourceEvents_OnAlterResourceRequest;
         }
+        private void OnDestroy()
+        {
+            ResourceEvents.OnAlterResourceRequest -= ResourceEvents_OnAlterResourceRequest;
+        }
 
         private void ResourceEvents_OnAlterResourceRequest(AlterResourceRequest request)
         {
@@ -31,7 +35,7 @@ namespace JHiga.RTSEngine.Network
                 }
             }
             if (callbackId >= 0)
-                ResourceNetwork.Instance.AlterResourceServerRpc(NetworkManager.Singleton.LocalClientId, new ResourceNetworkPayload(request.data, callbackId));
+                ResourceNetwork.Instance.AlterResourceServerRpc(request.playerId, new ResourceNetworkPayload(request.data, callbackId));
         }
 
         public void UpdateResource(ResourceNetworkPayload request, bool success)

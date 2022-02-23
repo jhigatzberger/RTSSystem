@@ -12,7 +12,7 @@ public class FindTargetInVisionAction : StateMachineAction
         IExtendableEntity entity = stateMachine.Entity;
         MonoBehaviour behaviour = entity.MonoBehaviour;
         IAttacker attacker = entity.GetExtension<IAttacker>();
-        Collider[] potentialTargets = Physics.OverlapSphere(behaviour.transform.position, attacker.VisionRange, PlayerContext.players[entity.UniqueID.playerIndex].enemyMask);
+        Collider[] potentialTargets = Physics.OverlapSphere(behaviour.transform.position, attacker.VisionRange, PlayerContext.players[entity.UID.player].enemyMask);
         if (potentialTargets.Length != 0)
         {
             potentialTargets.OrderBy(c => (behaviour.transform.position - c.transform.position).sqrMagnitude);

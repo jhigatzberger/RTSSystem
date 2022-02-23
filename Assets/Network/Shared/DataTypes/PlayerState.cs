@@ -13,7 +13,7 @@ namespace JHiga.RTSEngine.Network
             Status
         }
 
-        public short PlayerId => (short)(clientId + 1);
+        public short PlayerId => (short)NetworkGameManager.ClientToPlayer(clientId);
         public short Team => RTSWorldData.Instance.playableTeams[playableTeamIndex];
         public ulong clientId;
         public short factionId;

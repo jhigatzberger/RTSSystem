@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.Gathering
     public class GatherCommand : StateMachineCommandProperties
     {
         public int resourceType;
-        public override bool ApplicableFromContext(ICommandable entity, bool forced = false)
+        public override bool IsApplicable(ICommandable entity, bool forced = false)
         {
             IExtendableEntity hovered = SelectionContext.FirstOrNullHovered;
             if (hovered != null && hovered.TryGetExtension(out IGatherable gatherable) && gatherable.ResourceType == resourceType)

@@ -27,7 +27,7 @@ namespace JHiga.RTSEngine
         private HashSet<int> pendingPoolIds = new HashSet<int>();
         public static GameEntityPool Get(UID uid)
         {
-            return PlayerData.Get(uid).factories[uid.poolIndex];
+            return PlayerData.Get(uid).factories[uid.pool];
         }
         public static GameEntityPool Get(int uid)
         {
@@ -45,7 +45,7 @@ namespace JHiga.RTSEngine
         public GameEntity[] entities => _entities;
         public GameEntity Spawn(Vector3 position, UID uid)
         {
-            GameEntity entity = entities[uid.entityIndex];
+            GameEntity entity = entities[uid.entity];
             if (entity != null)
             {
                 entity.gameObject.SetActive(true);
@@ -54,16 +54,16 @@ namespace JHiga.RTSEngine
             }
             else
             {
-                UnityEngine.Random.InitState(uid.uniqueId);
+                UnityEngine.Random.InitState(uid.unique);
                 int index = UnityEngine.Random.Range(0, prefabs.Length);
                 GameObject prefab = prefabs[index];
                 entity = Instantiate(prefab, position, Quaternion.identity).AddComponent<GameEntity>();
                 entity.extensionMap = ExtensionMap;
                 entity.Extensions = Build(entity);
-                entities[uid.entityIndex] = entity;
+                entities[uid.entity] = entity;
             }
-            entity.UniqueID = uid;
-            pendingPoolIds.Remove(uid.entityIndex);
+            entity.UID = uid;
+            pendingPoolIds.Remove(uid.entity);
             return entity;
         }
         public int GenerateEntityID()

@@ -53,7 +53,7 @@ namespace JHiga.RTSEngine
         }      
         public static PlayerData Get(UID uid)
         {
-            return PlayerContext.players[uid.playerIndex];
+            return PlayerContext.players[uid.player];
         }
         public static PlayerData Get(int uid)
         {

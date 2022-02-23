@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "ShouldStopMovingDecision", menuName = "RTS/Behaviour/Decisions/ShouldStopMovingDecision")]
-public class ShouldStopMovingDecision : Decision
+public class ShouldStopMovingDecision : StateMachineDecision
 {
     public float stoppingDistance = 0.1f; 
     public override bool Decide(IStateMachine stateMachine)

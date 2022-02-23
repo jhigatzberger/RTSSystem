@@ -14,9 +14,9 @@ namespace JHiga.RTSEngine.Network
         }
 
         [ServerRpc(RequireOwnership = false)]
-        public void AlterResourceServerRpc(ulong clientId, ResourceNetworkPayload request)
+        public void AlterResourceServerRpc(int playerId, ResourceNetworkPayload request)
         {
-            ResourceServer.Instance.AlterResource(clientId, request);
+            ResourceServer.Instance.AlterResource(playerId, request);
         }
 
         [ClientRpc]

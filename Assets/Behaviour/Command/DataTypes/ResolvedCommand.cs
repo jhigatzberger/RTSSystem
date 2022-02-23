@@ -31,5 +31,9 @@
                 }
             }
         }
+        public static void Enqueue(SkinnedCommand command)
+        {
+            new ResolvedCommand(command).Enqueue();
+        }
     }
 }

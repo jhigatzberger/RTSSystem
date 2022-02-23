@@ -7,6 +7,6 @@ namespace JHiga.RTSEngine.Gathering
     public interface IDropoff : IEntityExtension
     {
         public int[] ResourceTypes { get; }
-        public void Deliver(ResourceData data);        
+        public void Deliver(int playerId, ResourceData data);        
     }
 }

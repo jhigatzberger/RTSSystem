@@ -16,13 +16,12 @@ namespace JHiga.RTSEngine.Construction
 
         public void Construct()
         {
-            Target.CurrentConstructionLevel += Speed;
-            if (Target.CurrentConstructionLevel >= Target.MaxConstructionLevel)
+            if(Target.Construct(Speed))
             {
                 Entity.GetExtension<ISpawner>().SpawnOffset = Target.Entity.Position;
                 SpawnEvents.RequestSpawn(new SpawnRequest
                 {
-                    spawnerUID = Entity.UniqueID.uniqueId,
+                    spawnerUID = Entity.UID.unique,
                     poolIndex = Target.FinishiedEntity.Index,
                     time = 0
                 });

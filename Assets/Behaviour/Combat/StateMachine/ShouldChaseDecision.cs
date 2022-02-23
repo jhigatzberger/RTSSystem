@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "ShouldChaseDecision", menuName = "RTS/Behaviour/Decisions/ShouldChaseDecision")]
-public class ShouldChaseDecision : Decision
+public class ShouldChaseDecision : StateMachineDecision
 {
     public override bool Decide(IStateMachine stateMachine)
     {

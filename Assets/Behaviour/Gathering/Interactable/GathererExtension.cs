@@ -44,8 +44,8 @@ namespace JHiga.RTSEngine.Gathering
         {
             if (_dropoff == null)
                 return;
-            if(PlayerContext.PlayerId == Entity.UniqueID.playerIndex)
-                _dropoff.Deliver(new ResourceData
+            if(PlayerContext.PlayerId == Entity.UID.player)
+                _dropoff.Deliver(Entity.UID.player, new ResourceData
                 {
                     resourceType = CurrentResourceType,
                     amount = CurrentLoad

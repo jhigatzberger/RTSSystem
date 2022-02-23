@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine.StateMachine
     [CreateAssetMenu(fileName = "Transition", menuName = "RTS/Behaviour/Transition")]
     public class Transition : ScriptableObject
     {
-        public Decision decision;
+        public StateMachineDecision decision;
         public State trueState;
         public State falseState;
     }

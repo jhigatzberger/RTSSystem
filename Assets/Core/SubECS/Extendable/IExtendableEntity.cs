@@ -5,7 +5,7 @@ namespace JHiga.RTSEngine
     public interface IExtendableEntity
     {
         public bool IsActivePlayer { get; }
-        public UID UniqueID { get; }
+        public UID UID { get; }
         public Vector3 Position { get; }
         public Vector3 ClosestEdgePoint(Vector3 pos);
         public MonoBehaviour MonoBehaviour { get; }

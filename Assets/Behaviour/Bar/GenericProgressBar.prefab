@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5145593182323370650}
   - component: {fileID: 5145593182323370652}
   - component: {fileID: 5145593182323370651}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5145593182747295752}
   - component: {fileID: 5145593182747295799}
   - component: {fileID: 7974240920489372310}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: GenericProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 5145593183684979805}
   - component: {fileID: 5145593183684979807}
   - component: {fileID: 5145593183684979806}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 5145593183771494097}
   - component: {fileID: 5145593183771494099}
   - component: {fileID: 5145593183771494098}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
