@@ -1,0 +1,237 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8202722993971950865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: StablesFinished
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 2256390221432370115, guid: 1de53d012677c334b95c062d22b0df5c, type: 3}
+  properties:
+  - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 56055710012726646, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 5335803645212183575, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-7376874151518818410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Barbarian Worker
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 7157036068445704457, guid: 349c6aaa34c1bbf4f9b671febb4c2cb3, type: 3}
+  properties:
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -5494142349685471339, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -5722247136699371181, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2807943182861424170, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 5970694577403610643, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 131642567969212944, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 8567103948272601740, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 1507784354444235465, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-2044811054315504795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Buildings
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 553174472893864544}
+  - {fileID: 6333854313529660883}
+  - {fileID: -8202722993971950865}
+  children:
+  - {fileID: 7449134444812154894}
+--- !u!114 &-1801215534648032295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Stables
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 6994409032326959488, guid: 50a1d37aa084df546a0c329c84d2991c, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2946128418418511223, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &-324542003939901131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Warrior
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1137340246058539085, guid: f32ca0a70150e4b4088d86118075f44b, type: 3}
+  - {fileID: 1137340246058539085, guid: 7789aff4e996c144bbb9d0cacc0388b6, type: 3}
+  properties:
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: 11400000, guid: 3fd57cb70d033aa4c9d075a3d8c2a68f, type: 2}
+  - {fileID: -2837799192545829897, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -3742208707711382588, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6022623909550766482, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4107618206730801798, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7912fcf47ebf0d14eb48ae8c68dfadca, type: 3}
+  m_Name: Iron Warriors
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 71f215af978d11d4d9e20d5d2349fe37, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 5fe5e5adbf3775843b3dcbff6d56c816, type: 3}
+  startEntities: []
+  entityGroups:
+  - {fileID: -2044811054315504795}
+  - {fileID: 8729672936140005990}
+--- !u!114 &553174472893864544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Townhall
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 6337715713637532847, guid: 978a9832b6b656945863d1db26a7d3cf, type: 3}
+  properties:
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 56055710012726646, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4996876551240044538, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4181876613820362627, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -7494467198494836640, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 7048430566730953355, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &6333854313529660883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: MarketFinished
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 8849217858852574721, guid: 01a9af0224fec1d4abe10ee361e815ab, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -6945702331381669396, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -380329192251285054, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 4996876551240044538, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &7449134444812154894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: UnderConstruction
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 9134542450349532818}
+  - {fileID: -1801215534648032295}
+  children: []
+--- !u!114 &8010331499097926522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Barbarian Rider
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 8726071526014405772, guid: 464b7a83e599dc94c86d8c7ecf6ba01b, type: 3}
+  properties:
+  - {fileID: 11400000, guid: e6a3b68308e087945b95036eed343f6b, type: 2}
+  - {fileID: -1730685018080194448, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2837799192545829897, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2411329918141127710, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2057137715925239045, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 8034277702926332492, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: -2919917840897380133, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 3611095594278974163, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+--- !u!114 &8729672936140005990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2f442539de24582af4114dc59b0c, type: 3}
+  m_Name: Units
+  m_EditorClassIdentifier: 
+  entities:
+  - {fileID: -7376874151518818410}
+  - {fileID: -324542003939901131}
+  - {fileID: 8010331499097926522}
+  children: []
+--- !u!114 &9134542450349532818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef88586f2242a44fb5e8392e931ba29, type: 3}
+  m_Name: Market
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 20396794726515742, guid: ee613423a6cfc8a40aa6e91a6f626118, type: 3}
+  properties:
+  - {fileID: -7503156559863272037, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}
+  - {fileID: 8400215135046258248, guid: 7d09f330b51111640bbac829d60e83e7, type: 2}

@@ -12,10 +12,13 @@ public class GenericBar : MonoBehaviour, IProgressIndicator
 
     void Awake()
     {
-        cam = Camera.main.transform;
         slider.maxValue = maxValue;
         slider.value = value;
         fill.color = gradient.Evaluate(1f);
+    }
+    private void OnEnable()
+    {
+        cam = Camera.main.transform;
     }
     public void SetProgress(float value)
     {

@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: -150087052882999072}
   m_Layer: 0
   m_Name: BarbarianTowncenter
-  m_TagString: Untagged
+  m_TagString: Townhall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1101,7 +1101,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 6.26, y: 2.27, z: 7.545}
+  m_Extents: {x: 4.81, y: 1.75, z: 5.34}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1118,7 +1118,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.633667, y: 5.2225833, z: 16.763372}
+  m_Size: {x: 11.1, y: 5.2225833, z: 12.2}
   m_Center: {x: -1.3161201, y: 2.1112916, z: 0.016453743}
 --- !u!82 &-150087052882999072
 AudioSource:

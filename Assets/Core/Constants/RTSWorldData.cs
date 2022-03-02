@@ -25,6 +25,6 @@ namespace JHiga.RTSEngine
         public Color[] playerColors;
         public short mapTeam;
         public short[] playableTeams = new short[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-        public int[] teamLayers = new int[] { 10, 11, 12, 13, 14, 15, 16, 17 };
+        public int[] teamLayers = new int[] { 0, 10, 11, 12, 13, 14, 15, 16, 17 };
     }
 }

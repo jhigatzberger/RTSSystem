@@ -17,9 +17,14 @@ namespace JHiga.RTSEngine.StateMachine
             }
         }
         public float TimeStamp { get; set; }
-        public StateMachineExtension(IExtendableEntity entity, StateMachineProperties properties) : base(entity, properties) { }
+        public StateMachineExtension(IExtendableEntity entity, StateMachineProperties properties) : base(entity, properties)
+        {
+            TimeStamp = LockStep.time;
+        }
         public void ChangeState(State state)
         {
+            if(state != null)
+                Debug.Log(state.name, Entity.MonoBehaviour);
             if (state == currentState)
                 return;
             if (currentState != null)

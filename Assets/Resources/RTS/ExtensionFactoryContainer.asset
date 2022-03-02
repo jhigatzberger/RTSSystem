@@ -15,7 +15,7 @@ MonoBehaviour:
   rate: 1
   resourceType: 0
   storageType: 0
-  totalStorage: 100
+  totalStorage: 1000
 --- !u!114 &-7503156559863272037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +30,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   scale: 8
+  actions:
+  - {fileID: 11400000, guid: 9e156ac3f0969b94a89d5b6334c20272, type: 2}
+  selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
+--- !u!114 &-7494467198494836640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2093714405f1a184384a850f4b86d8ce, type: 3}
+  m_Name: SelectableBuildingPropertiesS10
+  m_EditorClassIdentifier: 
+  priority: 0
+  scale: 10
   actions:
   - {fileID: 11400000, guid: 9e156ac3f0969b94a89d5b6334c20272, type: 2}
   selectionBehaviourPrefab: {fileID: 3812674456079280870, guid: d1b955f8a96ca38448373f390e29dcf0, type: 3}
@@ -94,6 +111,21 @@ MonoBehaviour:
   commandCompetence:
   - {fileID: 5248126612945112393, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   onCommandActions: []
+--- !u!114 &-6175672811135251470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
+  m_Name: AggressiveStateMachineUD
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: 11400000, guid: fcf90ec97d72c6e4cb2c122bbd718f76, type: 2}
+  endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
+  commandable: 0
 --- !u!114 &-6022623909550766482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   hideOnDeath: 0
+  deathAction: {fileID: 0}
 --- !u!114 &-5234316061317109920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +199,7 @@ MonoBehaviour:
   rate: 1
   resourceType: 2
   storageType: 0
-  totalStorage: 100
+  totalStorage: 1000
 --- !u!114 &-3742208707711382588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   hideOnDeath: 0
+  deathAction: {fileID: 0}
 --- !u!114 &-3100469551088636044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 70
   hideOnDeath: 0
+  deathAction: {fileID: 0}
 --- !u!114 &-2837799192545829897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +316,21 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9062d548f8941e441a84508fe9cf35c9, type: 2}
   - {fileID: 2100000, guid: 5070db5067422e041a6bb8c1681020b8, type: 2}
   - {fileID: 2100000, guid: dc851844264c22f4c81c45df6c05894f, type: 2}
+--- !u!114 &-2305969150923640223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
+  m_Name: NecromancerStatemachine
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: -1682782859213880965, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
+  commandable: 0
 --- !u!114 &-2057137715925239045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +371,7 @@ MonoBehaviour:
   rate: 1
   resourceType: 1
   storageType: 0
-  totalStorage: 100
+  totalStorage: 1000
 --- !u!114 &-651756653242385588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   hideOnDeath: 1
+  deathAction: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +470,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finishiedEntity: {fileID: 7638127537725980660, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
   maxConstructionLevel: 2
+--- !u!114 &1145618970411123120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120d3dda1089a834abcb7ea268090f06, type: 3}
+  m_Name: NecroAttackable
+  m_EditorClassIdentifier: 
+  health: 200
+  hideOnDeath: 0
+  deathAction: {fileID: 11400000, guid: 75f28daeba7ed3942a9b949e64df3fe0, type: 2}
 --- !u!114 &1507784354444235465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +659,20 @@ MonoBehaviour:
   commandCompetence:
   - {fileID: 8193683547456929387, guid: af70cf105c5af3548b3d44969fa4f871, type: 2}
   onCommandActions: []
+--- !u!114 &5921161952951811929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a7a72133419e14eab65f8bd233ca16, type: 3}
+  m_Name: SkeletonSpawner
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 5}
+  progressIndicator: {fileID: 0}
 --- !u!114 &5970694577403610643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +708,36 @@ MonoBehaviour:
   m_Name: WoodDropoff
   m_EditorClassIdentifier: 
   resourceTypes: 01000000
+--- !u!114 &6744666329449515697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8591a9d0b68d3a4419ff43879bfe8ee8, type: 3}
+  m_Name: SearchAndDestroyStateMachine
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: 3775886181763723239, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  endState: {fileID: 11400000, guid: 832c2626f7ace8b4ea798bcb09f41998, type: 2}
+  commandable: 0
+--- !u!114 &7048430566730953355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120d3dda1089a834abcb7ea268090f06, type: 3}
+  m_Name: AttackableTowncenter
+  m_EditorClassIdentifier: 
+  health: 200
+  hideOnDeath: 0
+  deathAction: {fileID: 11400000, guid: 26ab08324986a914ea1f5571429fa22a, type: 2}
 --- !u!114 &8034277702926332492
 MonoBehaviour:
   m_ObjectHideFlags: 0

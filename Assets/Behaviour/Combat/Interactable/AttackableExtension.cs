@@ -25,6 +25,8 @@ namespace JHiga.RTSEngine.Combat
         public virtual void Die()
         {
             Entity.Disable(Properties.hideOnDeath);
+            if (Properties.deathAction != null)
+                Properties.deathAction.Run(Entity);
         }
     }
 }

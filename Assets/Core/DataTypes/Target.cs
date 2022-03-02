@@ -37,9 +37,15 @@ namespace JHiga.RTSEngine
         };
         public static Vector3 Vector2ToVector3(Vector2 vector2)
         {
+            return new Vector3(vector2.x, 0, vector2.y);
+            /*
             if (Physics.Raycast(new Vector3(vector2.x, RTSWorldData.Instance.maxMapHight, vector2.y), Vector3.down, out RaycastHit hit, RTSWorldData.Instance.groundLayerMask))
+            {
+                Debug.Log(hit.point);
+
                 return hit.point;
-            throw new Exception("Target position out of map!");
+            }
+            throw new Exception("Target position out of map!");*/
         }
         public bool IsInRange(Vector3 position, float range)
         {

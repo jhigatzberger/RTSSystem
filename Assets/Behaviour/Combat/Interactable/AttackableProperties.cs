@@ -8,6 +8,7 @@ namespace JHiga.RTSEngine.Combat
     {
         public int health;
         public bool hideOnDeath;
+        public BaseAction deathAction;
         public override Type ExtensionType => typeof(IAttackable);
 
         public override IEntityExtension Build(IExtendableEntity extendable)

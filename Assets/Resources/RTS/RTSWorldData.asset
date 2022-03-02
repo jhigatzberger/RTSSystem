@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e38ff09f79b61e5468c93d2516489607, type: 2}
   selectableLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 261121
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -33,8 +33,8 @@ MonoBehaviour:
   - GameScene
   mapFaction: {fileID: 11400000, guid: 48840c06adc31f94f94c015707683e14, type: 2}
   playableFactions:
-  - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
   - {fileID: 11400000, guid: be7c07d0b7e192447aac680bc2253ccb, type: 2}
+  - {fileID: 11400000, guid: 58cc30355bc41ea43b24444f2ec655b9, type: 2}
   playerColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0.12997723, b: 1, a: 1}
@@ -47,4 +47,4 @@ MonoBehaviour:
   - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   mapTeam: 0
   playableTeams: 01000200030004000500060007000800
-  teamLayers: 0a0000000b0000000c0000000d0000000e0000000f0000001000000011000000
+  teamLayers: 000000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000

@@ -52,6 +52,22 @@ MonoBehaviour:
   transitions:
   - {fileID: 5111644768961962819, guid: d706f089d43d51341a0523413b93e755, type: 2}
   - {fileID: 5681330678951283699, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &-1682782859213880965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: NecromancerIdle
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: fb0ffccc879721b45afbc42ed1df74d7, type: 2}
+  transitions:
+  - {fileID: -6304412471175544132, guid: d706f089d43d51341a0523413b93e755, type: 2}
 --- !u!114 &-1301262172125601321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +86,20 @@ MonoBehaviour:
   - {fileID: -8695752351674403195, guid: 1bb5260fbfb1b364d88ebbda61d4e13a, type: 2}
   transitions:
   - {fileID: 5515746197383197615, guid: d706f089d43d51341a0523413b93e755, type: 2}
+--- !u!114 &-954559750337936491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: SearchAndDestroy
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +113,46 @@ MonoBehaviour:
   m_Name: StateContainer
   m_EditorClassIdentifier: 
   typeName: State
+--- !u!114 &1695097215881051468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: NecromancerSpawn
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: f7d2cfa190d879c4bba4723d8474d152, type: 2}
+  - {fileID: -4017015933432084795, guid: 1bb5260fbfb1b364d88ebbda61d4e13a, type: 2}
+  - {fileID: 11400000, guid: f7d2cfa190d879c4bba4723d8474d152, type: 2}
+  - {fileID: 11400000, guid: f7d2cfa190d879c4bba4723d8474d152, type: 2}
+  - {fileID: 11400000, guid: 3c1b62e76c39d104cabfd13e9a3fded9, type: 2}
+  transitions:
+  - {fileID: 11400000, guid: 260d6031beea4194c8905217785d8734, type: 2}
+--- !u!114 &3775886181763723239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da73d0b9d7d244941ae26e998aa2870d, type: 3}
+  m_Name: SearchTargetState(Clone)
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: fb0ffccc879721b45afbc42ed1df74d7, type: 2}
+  - {fileID: 2768262332899481771, guid: 1bb5260fbfb1b364d88ebbda61d4e13a, type: 2}
+  - {fileID: 11400000, guid: 7ea0688994ee4b74db6c4bc24ad85e0f, type: 2}
+  transitions:
+  - {fileID: -4391798489327894777, guid: d706f089d43d51341a0523413b93e755, type: 2}
+  - {fileID: -4212645358802633018, guid: d706f089d43d51341a0523413b93e755, type: 2}
+  - {fileID: 2919170222601873513, guid: d706f089d43d51341a0523413b93e755, type: 2}
 --- !u!114 &5797817315298483141
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ namespace JHiga.RTSEngine
     [CreateAssetMenu(fileName = "Entity", menuName = "RTS/Entity/Entity")]
     public class GameEntityPool : ScriptableObject
     {
-        [SerializeField] private GameObject[] prefabs;
+        public GameObject[] prefabs;
         public ExtensionFactory[] properties;
         private Dictionary<Type, int> _extensionMap;
         private Dictionary<Type, int> ExtensionMap

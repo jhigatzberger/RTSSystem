@@ -18,7 +18,7 @@ namespace JHiga.RTSEngine.Selection
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, float.MaxValue, selectableLayerMask))
-                SelectionContext.hovered = hit.collider.GetComponent<ISelectionBehaviour>().Selectable.Entity;
+                SelectionContext.hovered = hit.collider.GetComponent<IExtendableEntity>();
             else
                 SelectionContext.hovered = null;
         }

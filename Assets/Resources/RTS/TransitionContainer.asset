@@ -30,6 +30,36 @@ MonoBehaviour:
   decision: {fileID: 11400000, guid: 3e8aa7c298965024cbfa8c20161858ef, type: 2}
   trueState: {fileID: 6544760059276826981, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
   falseState: {fileID: 5797817315298483141, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+--- !u!114 &-6304412471175544132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
+  m_Name: NecroSpawn
+  m_EditorClassIdentifier: 
+  decision: {fileID: 11400000, guid: 10ba3438c15e04a4ea5b0dfa62553add, type: 2}
+  trueState: {fileID: 1695097215881051468, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+  falseState: {fileID: -1682782859213880965, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
+--- !u!114 &-4391798489327894777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
+  m_Name: SearchTargetTransition(Clone)
+  m_EditorClassIdentifier: 
+  decision: {fileID: 11400000, guid: f9024e2dc2dd87444ad6069bffcc0d62, type: 2}
+  trueState: {fileID: 11400000, guid: e7d7f6d094814f24a9f803627f820e9e, type: 2}
+  falseState: {fileID: 3775886181763723239, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &-4295260833644693234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +75,21 @@ MonoBehaviour:
   decision: {fileID: 11400000, guid: f9024e2dc2dd87444ad6069bffcc0d62, type: 2}
   trueState: {fileID: -7301041512075372971, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
   falseState: {fileID: 0}
+--- !u!114 &-4212645358802633018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
+  m_Name: New Transition
+  m_EditorClassIdentifier: 
+  decision: {fileID: 11400000, guid: 1a8f3e2a30978da43b4dae3ae9757ab8, type: 2}
+  trueState: {fileID: 11400000, guid: fcf90ec97d72c6e4cb2c122bbd718f76, type: 2}
+  falseState: {fileID: 3775886181763723239, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &-1475425872228910403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +148,21 @@ MonoBehaviour:
   m_Name: TransitionContainer
   m_EditorClassIdentifier: 
   typeName: Transition
+--- !u!114 &2919170222601873513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04274e498819e4b8967665f21a6c7e, type: 3}
+  m_Name: checker
+  m_EditorClassIdentifier: 
+  decision: {fileID: 11400000, guid: 99d05fd17ce4afd4bb9868d31d8fac5f, type: 2}
+  trueState: {fileID: 0}
+  falseState: {fileID: 3775886181763723239, guid: 19b2abe67cea86247b57cc372ce9be95, type: 2}
 --- !u!114 &3888810463911364100
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -79,5 +79,10 @@ namespace JHiga.RTSEngine
                 return Position;
             return coll.ClosestPointOnBounds(pos);
         }
+
+        public bool HasExtension<T>()
+        {
+            return extensionMap.ContainsKey(typeof(T));
+        }
     }
 }

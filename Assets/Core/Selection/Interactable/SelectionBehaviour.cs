@@ -3,7 +3,6 @@ using UnityEngine;
 namespace JHiga.RTSEngine.Selection
 {
     [RequireComponent(typeof(Renderer))]
-    [RequireComponent(typeof(Collider))]
     public class SelectionBehaviour : MonoBehaviour, ISelectionBehaviour
     {
         private Renderer _renderer;
@@ -43,15 +42,6 @@ namespace JHiga.RTSEngine.Selection
         public void UpdateVisuals(bool selected)
         {
             _renderer.material.color = GetColor(selected);
-        }
-
-        void OnDisable()
-        {
-            GetComponent<Collider>().enabled = false;
-        }
-        void OnEnable()
-        {
-            GetComponent<Collider>().enabled = true;
         }
     }
 }

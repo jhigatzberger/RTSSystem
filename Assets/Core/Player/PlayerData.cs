@@ -19,7 +19,7 @@ namespace JHiga.RTSEngine
             id = skinnedPlayer.id;
             team = skinnedPlayer.team;
             color = RTSWorldData.Instance.playerColors[id];
-            ownMask = RTSWorldData.Instance.teamLayers[team-1];
+            ownMask = RTSWorldData.Instance.teamLayers[team];
             enemyMask = GenerateEnemyMask();
             faction = RTSWorldData.Instance.playableFactions[skinnedPlayer.faction];
             factories = faction.CopyEntities(id);
@@ -31,7 +31,7 @@ namespace JHiga.RTSEngine
             id = 0;
             team = data.mapTeam;
             color = data.playerColors[0];
-            ownMask = 0;
+            ownMask = RTSWorldData.Instance.teamLayers[team];
             enemyMask = GenerateEnemyMask();
             faction = data.mapFaction;
             factories = data.mapFaction.CopyEntities(0);
@@ -46,7 +46,7 @@ namespace JHiga.RTSEngine
             int layer = 0;
             for (int i = 0; i < RTSWorldData.Instance.teamLayers.Length; i++)
             {
-                if (RTSWorldData.Instance.playableTeams[i] != team)
+                if (i != team)
                     layer |= 1 << RTSWorldData.Instance.teamLayers[i];
             }
             return layer;

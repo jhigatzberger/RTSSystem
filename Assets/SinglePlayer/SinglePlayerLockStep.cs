@@ -7,6 +7,11 @@ namespace JHiga.RTSEngine.SinglePlayer
         [SerializeField] private float stepSize = 1f;
         private ulong count;
         private float time;
+        private void Awake()
+        {
+            time = Time.time;
+            LockStep.time = time;
+        }
         private void Update()
         {
             if (Time.time - time > stepSize)
